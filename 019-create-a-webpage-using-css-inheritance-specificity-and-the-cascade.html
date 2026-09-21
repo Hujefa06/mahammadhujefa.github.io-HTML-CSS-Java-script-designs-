@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+
+    <title>Taj Mahal - CSS 19</title>
+
+    <style>
+
+        body {
+            font-family: Arial;
+            color: #075985;
+            background-color: #f0f9ff;
+        }
+
+        /* Inherited color */
+        .city {
+            color: #166534;
+        }
+
+        /* Element selector */
+        p {
+            color: #0369a1;
+        }
+
+        /* Class selector has higher specificity */
+        .special {
+            color: #d97706;
+        }
+
+        /* ID selector has higher specificity */
+        #ancient {
+            color: #7c3aed;
+        }
+
+    </style>
+</head>
+
+<body>
+
+    <h1>Taj Mahal</h1>
+
+    <div class="city">
+
+        <h2>Ancient City</h2>
+
+        <p>
+            This paragraph demonstrates inherited styling.
+        </p>
+
+        <p class="special">
+            Class selector overrides the element selector.
+        </p>
+
+        <p id="ancient" class="special">
+            ID selector has higher specificity.
+        </p>
+
+    </div>
+
+</body>
+</html>

@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Taj Mahal - CSS 59</title>
+
+    <style>
+        body {
+            font-family: Arial;
+            background: #e0f2fe;
+            text-align: center;
+            padding: 70px;
+        }
+
+        h1 {
+            color: #075985;
+        }
+
+        .buttons {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            flex-wrap: wrap;
+            margin-top: 50px;
+        }
+
+        button {
+            padding: 13px 25px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        .primary {
+            background: #075985;
+            color: white;
+            border: 2px solid #075985;
+        }
+
+        .secondary {
+            background: #64748b;
+            color: white;
+            border: 2px solid #64748b;
+        }
+
+        .outline {
+            background: transparent;
+            color: #075985;
+            border: 2px solid #075985;
+        }
+
+        .destructive {
+            background: #dc2626;
+            color: white;
+            border: 2px solid #dc2626;
+        }
+
+        button:hover {
+            transform: translateY(-2px);
+            opacity: 0.85;
+        }
+    </style>
+</head>
+
+<body>
+
+<h1>TAJ MAHAL</h1>
+
+<h2>Button Styles</h2>
+
+<div class="buttons">
+
+    <button class="primary">Primary</button>
+
+    <button class="secondary">Secondary</button>
+
+    <button class="outline">Outline</button>
+
+    <button class="destructive">Delete</button>
+
+</div>
+
+</body>
+</html>

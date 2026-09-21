@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Taj Mahal - CSS 55</title>
+
+    <style>
+        body {
+            font-family: Arial;
+            background: #e0f2fe;
+            padding: 40px;
+        }
+
+        h1 {
+            text-align: center;
+            color: #075985;
+        }
+
+        .feed {
+            max-width: 600px;
+            margin: 40px auto;
+            background: white;
+            padding: 25px;
+            border-radius: 15px;
+            box-shadow: 0 8px 20px #94a3b8;
+        }
+
+        .activity {
+            display: flex;
+            gap: 15px;
+            padding: 18px 0;
+            border-bottom: 1px solid #cbd5e1;
+        }
+
+        .activity:last-child {
+            border-bottom: 0;
+        }
+
+        .avatar {
+            width: 45px;
+            height: 45px;
+            background: #075985;
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .activity h3 {
+            margin: 0;
+            color: #075985;
+        }
+
+        .time {
+            color: #64748b;
+            font-size: 13px;
+        }
+    </style>
+</head>
+
+<body>
+
+<h1>ACTIVITY FEED</h1>
+
+<div class="feed">
+
+    <div class="activity">
+        <div class="avatar">A</div>
+        <div>
+            <h3>Ancient Map Added</h3>
+            <p>A new map was added to the archive.</p>
+            <span class="time">10 minutes ago</span>
+        </div>
+    </div>
+
+    <div class="activity">
+        <div class="avatar">R</div>
+        <div>
+            <h3>Ruins Updated</h3>
+            <p>Underwater ruins records were updated.</p>
+            <span class="time">1 hour ago</span>
+        </div>
+    </div>
+
+    <div class="activity">
+        <div class="avatar">T</div>
+        <div>
+            <h3>Temple Discovered</h3>
+            <p>A new temple record was created.</p>
+            <span class="time">3 hours ago</span>
+        </div>
+    </div>
+
+</div>
+
+</body>
+</html>

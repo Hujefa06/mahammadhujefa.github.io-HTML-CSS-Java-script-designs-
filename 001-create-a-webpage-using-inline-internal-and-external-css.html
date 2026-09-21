@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Taj Mahal - CSS 01</title>
+
+    <!-- EXTERNAL CSS -->
+    <link rel="stylesheet"
+          href="001-create-a-webpage-using-inline-internal-and-external-css.css">
+
+    <!-- INTERNAL CSS -->
+    <style>
+        .internal-section {
+            background-color: #fff3cd;
+            border: 4px solid #d97706;
+            padding: 25px;
+            margin: 25px;
+            text-align: center;
+        }
+
+        .internal-section h2 {
+            color: #b45309;
+            font-family: Georgia, serif;
+        }
+
+        .internal-section p {
+            color: #78350f;
+            font-size: 18px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- INLINE CSS -->
+    <h1 style="
+        color: #075985;
+        text-align: center;
+        font-family: Georgia, serif;
+        font-size: 40px;
+    ">
+        TAJ MAHAL
+    </h1>
+
+    <div style="
+        background-color: #dbeafe;
+        border: 4px solid #0369a1;
+        padding: 25px;
+        margin: 25px;
+        text-align: center;
+    ">
+
+        <h2>INLINE CSS</h2>
+
+        <p>
+            This section is styled using the inline style attribute.
+        </p>
+
+    </div>
+
+
+    <!-- INTERNAL CSS -->
+    <div class="internal-section">
+
+        <h2>INTERNAL CSS</h2>
+
+        <p>
+            This section is styled using CSS inside the HTML style tag.
+        </p>
+
+    </div>
+
+
+    <!-- EXTERNAL CSS -->
+    <div class="external-section">
+
+        <h2>EXTERNAL CSS</h2>
+
+        <p>
+            This section is styled using a separate CSS file.
+        </p>
+
+    </div>
+
+</body>
+</html>

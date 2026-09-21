@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Taj Mahal - CSS 35</title>
+
+    <style>
+        body {
+            font-family: Arial;
+            background: #e0f2fe;
+            text-align: center;
+            padding-top: 80px;
+        }
+
+        h1 {
+            color: #075985;
+        }
+
+        .spinner {
+            width: 90px;
+            height: 90px;
+            margin: 60px auto 30px;
+
+            border: 10px solid #bae6fd;
+            border-top: 10px solid #075985;
+            border-radius: 50%;
+
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+            to {
+                transform: rotate(360deg);
+            }
+        }
+
+        .loading {
+            color: #075985;
+            font-size: 22px;
+            animation: pulse 1s infinite alternate;
+        }
+
+        @keyframes pulse {
+            from {
+                opacity: 0.3;
+            }
+
+            to {
+                opacity: 1;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <h1>TAJ MAHAL</h1>
+
+    <div class="spinner"></div>
+
+    <div class="loading">
+        Discovering Ancient Ruins...
+    </div>
+
+</body>
+</html>

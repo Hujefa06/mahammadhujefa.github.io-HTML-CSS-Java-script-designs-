@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Taj Mahal - Form Validation</title>
+
+<style>
+body {
+    margin: 0;
+    background: #dff6ff;
+    font-family: Arial, sans-serif;
+}
+
+.form {
+    width: 350px;
+    margin: 50px auto;
+    padding: 30px;
+    background: white;
+    border-radius: 15px;
+    box-shadow: 0 8px 25px #8bbdcc;
+}
+
+h1 {
+    text-align: center;
+    color: #075985;
+}
+
+input {
+    width: 100%;
+    box-sizing: border-box;
+    padding: 11px;
+    margin-top: 8px;
+    border: 2px solid #70aebe;
+    border-radius: 7px;
+}
+
+.error {
+    color: #b91c1c;
+    font-size: 13px;
+    margin-top: 4px;
+}
+
+input:invalid {
+    border-color: #dc2626;
+}
+
+button {
+    width: 100%;
+    margin-top: 18px;
+    padding: 11px;
+    border: none;
+    border-radius: 7px;
+    background: #087f8c;
+    color: white;
+}
+</style>
+</head>
+
+<body>
+<div class="form">
+    <h1>Explorer Form</h1>
+
+    <input type="text" placeholder="Name" required>
+    <div class="error">Name is required</div>
+
+    <input type="email" placeholder="Email" required>
+    <div class="error">Enter a valid email</div>
+
+    <input type="password" placeholder="Password" minlength="6" required>
+    <div class="error">Password must contain at least 6 characters</div>
+
+    <button>SUBMIT</button>
+</div>
+</body>
+</html>

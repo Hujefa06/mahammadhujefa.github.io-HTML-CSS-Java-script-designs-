@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Taj Mahal - CSS 33</title>
+
+    <style>
+        body {
+            font-family: Arial;
+            background: #e0f2fe;
+            text-align: center;
+        }
+
+        h1 {
+            color: #075985;
+        }
+
+        .scene {
+            perspective: 600px;
+            margin: 80px auto;
+        }
+
+        .temple {
+            width: 220px;
+            height: 150px;
+            margin: auto;
+            background: #0f766e;
+            color: white;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            transform:
+                rotateX(25deg)
+                rotateY(-25deg);
+
+            box-shadow: 20px 20px 30px rgba(0, 0, 0, 0.3);
+        }
+
+    </style>
+</head>
+
+<body>
+
+    <h1>TAJ MAHAL</h1>
+
+    <h2>3D Perspective</h2>
+
+    <div class="scene">
+
+        <div class="temple">
+            Ancient Temple
+        </div>
+
+    </div>
+
+</body>
+</html>

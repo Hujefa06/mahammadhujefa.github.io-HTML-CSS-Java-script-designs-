@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Taj Mahal - CSS 45</title>
+
+    <style>
+        body {
+            font-family: Arial;
+            background: #e0f2fe;
+            text-align: center;
+            padding: 50px;
+        }
+
+        h1 {
+            color: #075985;
+        }
+
+        .pagination {
+            display: flex;
+            justify-content: center;
+            gap: 8px;
+            margin-top: 60px;
+        }
+
+        .pagination a {
+            padding: 12px 17px;
+            background: white;
+            color: #075985;
+            text-decoration: none;
+            border: 2px solid #bae6fd;
+            border-radius: 7px;
+        }
+
+        .pagination a:hover,
+        .pagination .active {
+            background: #075985;
+            color: white;
+        }
+    </style>
+</head>
+
+<body>
+
+<h1>TAJ MAHAL</h1>
+
+<h2>Ancient Records</h2>
+
+<div class="pagination">
+    <a href="#">‹</a>
+    <a href="#" class="active">1</a>
+    <a href="#">2</a>
+    <a href="#">3</a>
+    <a href="#">4</a>
+    <a href="#">5</a>
+    <a href="#">›</a>
+</div>
+
+</body>
+</html>

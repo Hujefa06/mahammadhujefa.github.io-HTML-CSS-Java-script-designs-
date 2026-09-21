@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Taj Mahal - CSS 30</title>
+
+    <style>
+        body {
+            font-family: Arial;
+            background: #e0f2fe;
+            text-align: center;
+        }
+
+        h1 {
+            color: #075985;
+        }
+
+        .gallery {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+
+        .card {
+            background: white;
+            padding: 10px;
+        }
+
+        img {
+            width: 180px;
+            height: 130px;
+            object-fit: cover;
+        }
+
+        .blur {
+            filter: blur(4px);
+        }
+
+        .gray {
+            filter: grayscale(100%);
+        }
+
+        .bright {
+            filter: brightness(1.5);
+        }
+
+        .contrast {
+            filter: contrast(180%);
+        }
+
+        .fade {
+            filter: opacity(40%);
+        }
+    </style>
+</head>
+
+<body>
+
+    <h1>TAJ MAHAL</h1>
+
+    <div class="gallery">
+
+        <div class="card">
+            <p>Blur</p>
+            <img class="blur"
+                 src="../assets/images/city-of-taj-mahal.png"
+                 alt="City">
+        </div>
+
+        <div class="card">
+            <p>Grayscale</p>
+            <img class="gray"
+                 src="../assets/images/city-of-taj-mahal.png"
+                 alt="City">
+        </div>
+
+        <div class="card">
+            <p>Brightness</p>
+            <img class="bright"
+                 src="../assets/images/city-of-taj-mahal.png"
+                 alt="City">
+        </div>
+
+        <div class="card">
+            <p>Contrast</p>
+            <img class="contrast"
+                 src="../assets/images/city-of-taj-mahal.png"
+                 alt="City">
+        </div>
+
+        <div class="card">
+            <p>Opacity</p>
+            <img class="fade"
+                 src="../assets/images/city-of-taj-mahal.png"
+                 alt="City">
+        </div>
+
+    </div>
+
+</body>
+</html>

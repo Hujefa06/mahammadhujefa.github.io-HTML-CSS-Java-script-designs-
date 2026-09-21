@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Taj Mahal - CSS 22</title>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #e0f2fe;
+            text-align: center;
+        }
+
+        h1 {
+            color: #075985;
+        }
+
+        .scene {
+            position: relative;
+            width: 500px;
+            height: 300px;
+            margin: 50px auto;
+        }
+
+        .box {
+            position: absolute;
+            width: 220px;
+            height: 150px;
+            padding: 20px;
+            color: white;
+        }
+
+        .back {
+            background: #64748b;
+            left: 30px;
+            top: 30px;
+            z-index: 1;
+        }
+
+        .middle {
+            background: #0f766e;
+            left: 100px;
+            top: 70px;
+            z-index: 2;
+        }
+
+        .front {
+            background: #d97706;
+            left: 170px;
+            top: 110px;
+            z-index: 3;
+        }
+    </style>
+</head>
+
+<body>
+
+    <h1>TAJ MAHAL</h1>
+
+    <h2>CSS z-index and Stacking Order</h2>
+
+    <div class="scene">
+
+        <div class="box back">
+            Z-INDEX: 1<br>
+            Ocean
+        </div>
+
+        <div class="box middle">
+            Z-INDEX: 2<br>
+            Island
+        </div>
+
+        <div class="box front">
+            Z-INDEX: 3<br>
+            Temple
+        </div>
+
+    </div>
+
+</body>
+</html>

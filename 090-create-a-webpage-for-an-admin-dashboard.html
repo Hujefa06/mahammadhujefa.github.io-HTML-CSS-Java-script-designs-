@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Taj Mahal - Admin Dashboard</title>
+
+<style>
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background: #e3f7fb;
+}
+
+nav {
+    background: #075985;
+    color: white;
+    padding: 20px;
+}
+
+.container {
+    display: flex;
+}
+
+.sidebar {
+    width: 200px;
+    min-height: 80vh;
+    background: #0e7490;
+    padding: 20px;
+    color: white;
+}
+
+.sidebar p {
+    padding: 10px;
+    border-bottom: 1px solid #5bb4c4;
+}
+
+main {
+    flex: 1;
+    padding: 25px;
+}
+
+.card {
+    background: white;
+    padding: 20px;
+    margin-bottom: 15px;
+    border-radius: 10px;
+    box-shadow: 0 4px 12px #9bcbd5;
+}
+</style>
+</head>
+
+<body>
+<nav>
+    <h1>Taj Mahal Admin</h1>
+</nav>
+
+<div class="container">
+    <aside class="sidebar">
+        <p>Dashboard</p>
+        <p>Explorers</p>
+        <p>Sites</p>
+        <p>Reports</p>
+    </aside>
+
+    <main>
+        <div class="card">Total Explorers: 1,250</div>
+        <div class="card">Registered Sites: 86</div>
+        <div class="card">Pending Reports: 12</div>
+    </main>
+</div>
+</body>
+</html>

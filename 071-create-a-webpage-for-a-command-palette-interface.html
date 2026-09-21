@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Taj Mahal - CSS 71</title>
+
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial;
+            background: #e0f2fe;
+        }
+
+        h1 {
+            text-align: center;
+            color: #075985;
+            padding: 60px;
+        }
+
+        .palette {
+            width: 550px;
+            max-width: 90%;
+            margin: auto;
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 15px 40px #64748b;
+            overflow: hidden;
+        }
+
+        .search {
+            padding: 18px;
+            border-bottom: 1px solid #cbd5e1;
+        }
+
+        input {
+            width: 100%;
+            box-sizing: border-box;
+            border: 0;
+            outline: 0;
+            font-size: 17px;
+        }
+
+        .command {
+            padding: 15px 20px;
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .command:hover {
+            background: #dbeafe;
+        }
+
+        .key {
+            color: #64748b;
+        }
+    </style>
+</head>
+
+<body>
+
+<h1>TAJ MAHAL</h1>
+
+<div class="palette">
+
+    <div class="search">
+        <input type="text" placeholder="Search commands...">
+    </div>
+
+    <div class="command">
+        <span>Search Ancient Cities</span>
+        <span class="key">Ctrl + K</span>
+    </div>
+
+    <div class="command">
+        <span>Open Maps</span>
+        <span class="key">M</span>
+    </div>
+
+    <div class="command">
+        <span>View Temples</span>
+        <span class="key">T</span>
+    </div>
+
+    <div class="command">
+        <span>Open Archives</span>
+        <span class="key">A</span>
+    </div>
+
+</div>
+
+</body>
+</html>

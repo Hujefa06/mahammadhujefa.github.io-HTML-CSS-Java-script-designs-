@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+
+    <title>Taj Mahal - CSS 15</title>
+
+    <style>
+
+        body {
+            font-family: Arial;
+            background-color: #ecfeff;
+            text-align: center;
+        }
+
+        .box {
+            width: 300px;
+            height: 120px;
+            margin: 20px auto;
+            padding: 15px;
+            border: 3px solid #075985;
+            background-color: #bae6fd;
+        }
+
+        .hidden {
+            overflow: hidden;
+        }
+
+        .scroll {
+            overflow: scroll;
+        }
+
+        .x-scroll {
+            overflow-x: auto;
+            overflow-y: hidden;
+            white-space: nowrap;
+        }
+
+        .y-scroll {
+            overflow-x: hidden;
+            overflow-y: auto;
+        }
+
+    </style>
+</head>
+
+<body>
+
+    <h1>CSS Overflow</h1>
+
+    <h2>Hidden</h2>
+
+    <div class="box hidden">
+        Ancient ruins discovered beneath the sea.
+        Ancient ruins discovered beneath the sea.
+        Ancient ruins discovered beneath the sea.
+    </div>
+
+    <h2>Scroll</h2>
+
+    <div class="box scroll">
+        Taj Mahal is remembered through stories,
+        legends and traditions of an ancient southern land.
+        This box demonstrates overflow scrolling.
+    </div>
+
+    <h2>Overflow-X</h2>
+
+    <div class="box x-scroll">
+        Ancient Temple — Harbour — Mountain — Forest — River
+    </div>
+
+    <h2>Overflow-Y</h2>
+
+    <div class="box y-scroll">
+        Temple<br>
+        Harbour<br>
+        Mountain<br>
+        Forest<br>
+        River<br>
+        Ruins<br>
+        Manuscripts<br>
+        Ancient Maps
+    </div>
+
+</body>
+</html>

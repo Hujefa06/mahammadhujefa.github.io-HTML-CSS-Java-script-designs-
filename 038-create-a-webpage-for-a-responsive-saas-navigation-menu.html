@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Taj Mahal - CSS 38</title>
+
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial;
+            background: #e0f2fe;
+        }
+
+        nav {
+            background: #075985;
+            padding: 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            color: white;
+            font-size: 24px;
+            font-weight: bold;
+        }
+
+        .menu {
+            display: flex;
+            gap: 20px;
+        }
+
+        .menu a {
+            color: white;
+            text-decoration: none;
+        }
+
+        .menu-button {
+            display: none;
+            color: white;
+            font-size: 25px;
+        }
+
+        main {
+            text-align: center;
+            padding: 80px 20px;
+        }
+
+        @media (max-width: 600px) {
+
+            nav {
+                flex-wrap: wrap;
+            }
+
+            .menu-button {
+                display: block;
+            }
+
+            .menu {
+                width: 100%;
+                flex-direction: column;
+                text-align: center;
+                margin-top: 20px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <nav>
+
+        <div class="logo">
+            TAJ MAHAL
+        </div>
+
+        <div class="menu-button">
+            ☰
+        </div>
+
+        <div class="menu">
+            <a href="#">Home</a>
+            <a href="#">Cities</a>
+            <a href="#">Temples</a>
+            <a href="#">Maps</a>
+        </div>
+
+    </nav>
+
+    <main>
+
+        <h1>Responsive Navigation</h1>
+
+        <p>Resize the browser window to see the responsive layout.</p>
+
+    </main>
+
+</body>
+</html>

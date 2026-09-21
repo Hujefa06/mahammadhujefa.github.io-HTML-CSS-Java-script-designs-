@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+
+    <title>Taj Mahal - CSS 03</title>
+
+    <style>
+
+        body {
+            font-family: Arial;
+            background-color: #eef9ff;
+            padding: 30px;
+        }
+
+        h1 {
+            text-align: center;
+            color: #075985;
+        }
+
+        /* Descendant selector */
+        .city p {
+            color: #0369a1;
+        }
+
+        /* Child selector */
+        .city > h2 {
+            background-color: #bae6fd;
+            padding: 10px;
+        }
+
+        /* Adjacent sibling selector */
+        h2 + p {
+            font-weight: bold;
+        }
+
+        /* General sibling selector */
+        h2 ~ div {
+            border-left: 5px solid #0f766e;
+            padding: 10px;
+            margin: 10px;
+        }
+
+    </style>
+</head>
+
+<body>
+
+    <h1>Taj Mahal</h1>
+
+    <div class="city">
+
+        <h2>Ancient City</h2>
+
+        <p>Madurai was remembered as an ancient cultural centre.</p>
+
+        <div>Temple Ruins</div>
+
+        <div>Ancient Harbour</div>
+
+    </div>
+
+</body>
+</html>

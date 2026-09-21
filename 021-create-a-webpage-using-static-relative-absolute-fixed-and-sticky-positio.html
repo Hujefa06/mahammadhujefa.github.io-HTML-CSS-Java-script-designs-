@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Taj Mahal - CSS 21</title>
+
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: #e0f2fe;
+        }
+
+        h1 {
+            text-align: center;
+            color: #075985;
+            padding: 30px;
+        }
+
+        .sticky {
+            position: sticky;
+            top: 0;
+            background: #075985;
+            color: white;
+            padding: 15px;
+            text-align: center;
+            z-index: 10;
+        }
+
+        .static {
+            position: static;
+            background: #bae6fd;
+            padding: 20px;
+            margin: 20px;
+        }
+
+        .relative {
+            position: relative;
+            background: #bbf7d0;
+            padding: 30px;
+            margin: 20px;
+        }
+
+        .absolute-container {
+            position: relative;
+            background: #fef3c7;
+            height: 180px;
+            margin: 20px;
+            padding: 20px;
+        }
+
+        .absolute {
+            position: absolute;
+            right: 20px;
+            bottom: 20px;
+            background: #d97706;
+            color: white;
+            padding: 15px;
+        }
+
+        .fixed {
+            position: fixed;
+            right: 20px;
+            bottom: 20px;
+            background: #7c3aed;
+            color: white;
+            padding: 15px;
+            border-radius: 10px;
+        }
+
+        .space {
+            height: 500px;
+            padding: 30px;
+            text-align: center;
+        }
+    </style>
+</head>
+
+<body>
+
+    <h1>TAJ MAHAL</h1>
+
+    <div class="sticky">
+        STICKY — Ancient Navigation Bar
+    </div>
+
+    <div class="static">
+        <h2>Static Position</h2>
+        <p>This element uses position: static.</p>
+    </div>
+
+    <div class="relative">
+        <h2>Relative Position</h2>
+        <p>This element uses position: relative.</p>
+    </div>
+
+    <div class="absolute-container">
+        <h2>Absolute Position</h2>
+
+        <div class="absolute">
+            Ancient Ruins
+        </div>
+    </div>
+
+    <div class="space">
+        <h2>Scroll Down</h2>
+        <p>Observe the sticky and fixed elements.</p>
+    </div>
+
+    <div class="fixed">
+        FIXED
+    </div>
+
+</body>
+</html>

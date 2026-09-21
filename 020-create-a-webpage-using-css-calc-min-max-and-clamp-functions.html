@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+
+    <title>Taj Mahal - CSS 20</title>
+
+    <style>
+
+        body {
+            margin: 0;
+            font-family: Arial;
+            background-color: #e0f2fe;
+            text-align: center;
+        }
+
+        h1 {
+            font-size: clamp(30px, 6vw, 60px);
+            color: #075985;
+        }
+
+        .container {
+            width: calc(100% - 60px);
+            margin: 30px auto;
+            background-color: white;
+            padding: 20px;
+        }
+
+        .min-box {
+            width: min(80%, 500px);
+            background-color: #bae6fd;
+            padding: 20px;
+            margin: 20px auto;
+        }
+
+        .max-box {
+            width: max(300px, 50%);
+            background-color: #bbf7d0;
+            padding: 20px;
+            margin: 20px auto;
+        }
+
+        .clamp-box {
+            width: clamp(250px, 70%, 700px);
+            background-color: #fde68a;
+            padding: 20px;
+            margin: 20px auto;
+        }
+
+    </style>
+</head>
+
+<body>
+
+    <h1>Taj Mahal</h1>
+
+    <div class="container">
+
+        <h2>CSS Functions</h2>
+
+        <div class="min-box">
+            min() — Ancient Temple
+        </div>
+
+        <div class="max-box">
+            max() — Lost Harbour
+        </div>
+
+        <div class="clamp-box">
+            clamp() — Ivory Marble Dome
+        </div>
+
+    </div>
+
+</body>
+</html>

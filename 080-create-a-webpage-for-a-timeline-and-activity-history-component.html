@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Taj Mahal - CSS 80</title>
+
+    <style>
+        body {
+            font-family: Arial;
+            background: #e0f2fe;
+            padding: 50px;
+        }
+
+        h1 {
+            text-align: center;
+            color: #075985;
+        }
+
+        .timeline {
+            max-width: 650px;
+            margin: 50px auto;
+            border-left: 4px solid #075985;
+            padding-left: 30px;
+        }
+
+        .event {
+            position: relative;
+            background: white;
+            padding: 20px;
+            margin-bottom: 25px;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px #cbd5e1;
+        }
+
+        .event::before {
+            content: "";
+            position: absolute;
+            left: -42px;
+            top: 20px;
+            width: 18px;
+            height: 18px;
+            background: #075985;
+            border: 4px solid #e0f2fe;
+            border-radius: 50%;
+        }
+
+        .date {
+            color: #64748b;
+            font-size: 14px;
+        }
+
+        .event h2 {
+            color: #075985;
+        }
+    </style>
+</head>
+
+<body>
+
+<h1>TAJ MAHAL</h1>
+
+<div class="timeline">
+
+    <div class="event">
+        <div class="date">Ancient Era</div>
+        <h2>City Established</h2>
+        <p>A coastal settlement is remembered in ancient stories.</p>
+    </div>
+
+    <div class="event">
+        <div class="date">Later Period</div>
+        <h2>Temple Built</h2>
+        <p>An ancient temple becomes part of the remembered heritage.</p>
+    </div>
+
+    <div class="event">
+        <div class="date">Modern Exploration</div>
+        <h2>Ruins Recorded</h2>
+        <p>Underwater ruins are added to the themed archive.</p>
+    </div>
+
+</div>
+
+</body>
+</html>

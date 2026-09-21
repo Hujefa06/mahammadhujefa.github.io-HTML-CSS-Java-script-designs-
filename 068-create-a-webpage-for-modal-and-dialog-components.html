@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Taj Mahal - CSS 68</title>
+
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial;
+            background: #e0f2fe;
+            text-align: center;
+        }
+
+        h1 {
+            color: #075985;
+            margin-top: 60px;
+        }
+
+        .modal {
+            position: fixed;
+            inset: 0;
+            background: rgba(8, 47, 73, 0.7);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .dialog {
+            width: 350px;
+            background: white;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 15px 40px #082f49;
+        }
+
+        .dialog h2 {
+            color: #075985;
+        }
+
+        button {
+            padding: 12px 25px;
+            border: 0;
+            border-radius: 7px;
+            background: #075985;
+            color: white;
+        }
+    </style>
+</head>
+
+<body>
+
+<h1>TAJ MAHAL</h1>
+
+<div class="modal">
+
+    <div class="dialog">
+
+        <h2>Ancient Archive</h2>
+
+        <p>
+            This is a modal dialog containing archive information.
+        </p>
+
+        <button>Close</button>
+
+    </div>
+
+</div>
+
+</body>
+</html>

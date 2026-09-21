@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Taj Mahal - CSS 62</title>
+
+    <style>
+        body {
+            font-family: Arial;
+            background: #e0f2fe;
+            text-align: center;
+            padding: 50px;
+        }
+
+        h1 {
+            color: #075985;
+        }
+
+        .avatar {
+            width: 70px;
+            height: 70px;
+            border-radius: 50%;
+            background: #075985;
+            color: white;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            font-weight: bold;
+            border: 4px solid white;
+        }
+
+        .group {
+            display: flex;
+            justify-content: center;
+            margin-top: 30px;
+        }
+
+        .group .avatar {
+            margin-left: -15px;
+        }
+
+        .group .avatar:first-child {
+            margin-left: 0;
+        }
+
+        .small {
+            width: 45px;
+            height: 45px;
+            font-size: 15px;
+        }
+    </style>
+</head>
+
+<body>
+
+<h1>TAJ MAHAL</h1>
+
+<h2>Individual Avatars</h2>
+
+<div class="avatar">A</div>
+<div class="avatar">R</div>
+<div class="avatar">M</div>
+
+<h2>Avatar Group</h2>
+
+<div class="group">
+    <div class="avatar small">A</div>
+    <div class="avatar small">R</div>
+    <div class="avatar small">M</div>
+    <div class="avatar small">K</div>
+    <div class="avatar small">+</div>
+</div>
+
+</body>
+</html>

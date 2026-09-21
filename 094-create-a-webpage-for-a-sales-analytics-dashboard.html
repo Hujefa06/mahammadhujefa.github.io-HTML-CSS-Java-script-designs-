@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Taj Mahal - Sales Analytics</title>
+
+<style>
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background: #e4f8fc;
+}
+
+header {
+    background: #075985;
+    color: white;
+    padding: 20px;
+}
+
+.sales {
+    padding: 25px;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+}
+
+.card {
+    background: white;
+    padding: 25px;
+    border-radius: 12px;
+    box-shadow: 0 5px 15px #9bcbd5;
+}
+
+.value {
+    font-size: 30px;
+    font-weight: bold;
+    color: #087f8c;
+}
+
+@media(max-width:700px) {
+    .sales {
+        grid-template-columns: 1fr;
+    }
+}
+</style>
+</head>
+
+<body>
+<header>
+    <h1>Taj Mahal Sales Analytics</h1>
+</header>
+
+<div class="sales">
+    <div class="card">
+        <h3>Artifacts Sold</h3>
+        <div class="value">540</div>
+    </div>
+
+    <div class="card">
+        <h3>Tickets Sold</h3>
+        <div class="value">1,840</div>
+    </div>
+
+    <div class="card">
+        <h3>Total Sales</h3>
+        <div class="value">₹5.2L</div>
+    </div>
+</div>
+</body>
+</html>

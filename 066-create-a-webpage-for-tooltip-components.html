@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Taj Mahal - CSS 66</title>
+
+    <style>
+        body {
+            font-family: Arial;
+            background: #e0f2fe;
+            text-align: center;
+            padding: 100px;
+        }
+
+        h1 {
+            color: #075985;
+        }
+
+        .tooltip {
+            position: relative;
+            display: inline-block;
+            background: #075985;
+            color: white;
+            padding: 15px 25px;
+            border-radius: 8px;
+            cursor: pointer;
+        }
+
+        .tooltip-text {
+            visibility: hidden;
+            opacity: 0;
+            position: absolute;
+            bottom: 125%;
+            left: 50%;
+            transform: translateX(-50%);
+            background: #082f49;
+            color: white;
+            padding: 10px 15px;
+            border-radius: 6px;
+            white-space: nowrap;
+            transition: 0.3s;
+        }
+
+        .tooltip:hover .tooltip-text {
+            visibility: visible;
+            opacity: 1;
+        }
+    </style>
+</head>
+
+<body>
+
+<h1>TAJ MAHAL</h1>
+
+<div class="tooltip">
+    Ancient Ruins
+
+    <span class="tooltip-text">
+        Remains discovered beneath the sea
+    </span>
+</div>
+
+</body>
+</html>

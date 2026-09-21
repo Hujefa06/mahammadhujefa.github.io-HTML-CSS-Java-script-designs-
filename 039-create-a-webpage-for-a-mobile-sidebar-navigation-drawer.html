@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Taj Mahal - CSS 39</title>
+
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial;
+            background: #e0f2fe;
+        }
+
+        .header {
+            background: #075985;
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
+
+        .drawer {
+            width: 280px;
+            height: 100vh;
+            background: #082f49;
+            position: fixed;
+            left: 0;
+            top: 0;
+            padding-top: 80px;
+        }
+
+        .drawer h2 {
+            color: white;
+            text-align: center;
+        }
+
+        .drawer a {
+            display: block;
+            color: white;
+            text-decoration: none;
+            padding: 18px 25px;
+        }
+
+        .drawer a:hover {
+            background: #0e7490;
+        }
+
+        main {
+            margin-left: 280px;
+            padding: 80px;
+            text-align: center;
+        }
+
+        @media (max-width: 600px) {
+
+            .drawer {
+                width: 220px;
+            }
+
+            main {
+                margin-left: 220px;
+                padding: 30px 15px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="header">
+        TAJ MAHAL
+    </div>
+
+    <aside class="drawer">
+
+        <h2>MENU</h2>
+
+        <a href="#">Home</a>
+        <a href="#">Cities</a>
+        <a href="#">Temples</a>
+        <a href="#">Ruins</a>
+        <a href="#">Maps</a>
+
+    </aside>
+
+    <main>
+
+        <h1>Ancient Land</h1>
+
+        <p>
+            Mobile sidebar navigation drawer.
+        </p>
+
+    </main>
+
+</body>
+</html>

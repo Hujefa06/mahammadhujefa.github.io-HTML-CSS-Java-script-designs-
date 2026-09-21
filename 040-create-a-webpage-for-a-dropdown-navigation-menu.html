@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Taj Mahal - CSS 40</title>
+
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial;
+            background: #e0f2fe;
+        }
+
+        nav {
+            background: #075985;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            padding: 10px;
+        }
+
+        .dropdown {
+            position: relative;
+            display: inline-block;
+        }
+
+        .dropdown-button {
+            color: white;
+            padding: 10px;
+            cursor: pointer;
+        }
+
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            top: 45px;
+            left: 0;
+            min-width: 180px;
+            background: white;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.25);
+            border-radius: 8px;
+            overflow: hidden;
+        }
+
+        .dropdown-content a {
+            display: block;
+            color: #075985;
+            padding: 14px;
+        }
+
+        .dropdown-content a:hover {
+            background: #dbeafe;
+        }
+
+        .dropdown:hover .dropdown-content {
+            display: block;
+        }
+
+        main {
+            text-align: center;
+            padding: 80px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <nav>
+
+        <a href="#">Home</a>
+
+        <div class="dropdown">
+
+            <div class="dropdown-button">
+                Explore ▾
+            </div>
+
+            <div class="dropdown-content">
+                <a href="#">Ancient Cities</a>
+                <a href="#">Temples</a>
+                <a href="#">Ivory Marble Dome</a>
+                <a href="#">Ancient Maps</a>
+            </div>
+
+        </div>
+
+        <a href="#">About</a>
+        <a href="#">Contact</a>
+
+    </nav>
+
+    <main>
+
+        <h1>TAJ MAHAL</h1>
+
+        <p>
+            Hover over <strong>Explore</strong> to open the dropdown menu.
+        </p>
+
+    </main>
+
+</body>
+</html>

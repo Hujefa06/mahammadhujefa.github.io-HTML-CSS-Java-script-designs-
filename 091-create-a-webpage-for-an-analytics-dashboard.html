@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Taj Mahal - Analytics</title>
+
+<style>
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background: #e5f8fc;
+}
+
+h1 {
+    background: #075985;
+    color: white;
+    margin: 0;
+    padding: 20px;
+}
+
+.analytics {
+    padding: 25px;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+}
+
+.card {
+    background: white;
+    padding: 25px;
+    border-radius: 12px;
+    box-shadow: 0 5px 15px #9bcbd5;
+}
+
+.bar {
+    height: 25px;
+    margin: 10px 0;
+    background: #0e7490;
+    border-radius: 5px;
+}
+
+.short { width: 45%; }
+.medium { width: 70%; }
+.long { width: 90%; }
+
+@media(max-width:700px) {
+    .analytics {
+        grid-template-columns: 1fr;
+    }
+}
+</style>
+</head>
+
+<body>
+<h1>Taj Mahal Analytics</h1>
+
+<div class="analytics">
+    <div class="card">
+        <h2>Visitors</h2>
+        <div class="bar long"></div>
+        <div class="bar medium"></div>
+        <div class="bar short"></div>
+    </div>
+
+    <div class="card">
+        <h2>Research Activity</h2>
+        <p>Ancient Sites: 86</p>
+        <p>Reports: 42</p>
+        <p>Researchers: 125</p>
+    </div>
+</div>
+</body>
+</html>

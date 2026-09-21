@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Taj Mahal - KPI Dashboard</title>
+
+<style>
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background: #e2f7fb;
+}
+
+h1 {
+    padding: 20px;
+    margin: 0;
+    background: #075985;
+    color: white;
+}
+
+.kpis {
+    padding: 25px;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 15px;
+}
+
+.kpi {
+    background: white;
+    padding: 25px;
+    border-radius: 12px;
+    text-align: center;
+    box-shadow: 0 5px 15px #9bcbd5;
+}
+
+.number {
+    font-size: 30px;
+    color: #087f8c;
+    font-weight: bold;
+}
+
+@media(max-width:800px) {
+    .kpis {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+</style>
+</head>
+
+<body>
+<h1>Taj Mahal KPI Dashboard</h1>
+
+<div class="kpis">
+    <div class="kpi">
+        <div class="number">1,250</div>
+        <p>Explorers</p>
+    </div>
+
+    <div class="kpi">
+        <div class="number">86</div>
+        <p>Sites</p>
+    </div>
+
+    <div class="kpi">
+        <div class="number">42</div>
+        <p>Reports</p>
+    </div>
+
+    <div class="kpi">
+        <div class="number">95%</div>
+        <p>Progress</p>
+    </div>
+</div>
+</body>
+</html>

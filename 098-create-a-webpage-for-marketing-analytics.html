@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Taj Mahal - Marketing Analytics</title>
+
+<style>
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background: #e3f8fc;
+}
+
+header {
+    padding: 20px;
+    background: #075985;
+    color: white;
+}
+
+.marketing {
+    padding: 25px;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+}
+
+.card {
+    background: white;
+    padding: 25px;
+    border-radius: 12px;
+    box-shadow: 0 5px 15px #9bcbd5;
+}
+
+.number {
+    font-size: 30px;
+    color: #087f8c;
+    font-weight: bold;
+}
+
+@media(max-width:700px) {
+    .marketing {
+        grid-template-columns: 1fr;
+    }
+}
+</style>
+</head>
+
+<body>
+<header>
+    <h1>Taj Mahal Marketing Analytics</h1>
+</header>
+
+<div class="marketing">
+    <div class="card">
+        <h3>Campaign Reach</h3>
+        <div class="number">85K</div>
+    </div>
+
+    <div class="card">
+        <h3>Engagement</h3>
+        <div class="number">64%</div>
+    </div>
+
+    <div class="card">
+        <h3>Conversions</h3>
+        <div class="number">2,450</div>
+    </div>
+</div>
+</body>
+</html>

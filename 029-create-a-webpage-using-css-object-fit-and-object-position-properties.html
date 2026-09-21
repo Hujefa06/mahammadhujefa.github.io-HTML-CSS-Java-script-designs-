@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Taj Mahal - CSS 29</title>
+
+    <style>
+        body {
+            font-family: Arial;
+            background: #e0f2fe;
+            text-align: center;
+        }
+
+        h1 {
+            color: #075985;
+        }
+
+        .gallery {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            flex-wrap: wrap;
+        }
+
+        .card {
+            background: white;
+            padding: 15px;
+            border: 3px solid #075985;
+        }
+
+        img {
+            width: 300px;
+            height: 200px;
+        }
+
+        .cover {
+            object-fit: cover;
+            object-position: center;
+        }
+
+        .contain {
+            object-fit: contain;
+            object-position: center;
+            background: #bae6fd;
+        }
+    </style>
+</head>
+
+<body>
+
+    <h1>TAJ MAHAL</h1>
+
+    <h2>CSS Object Fit</h2>
+
+    <div class="gallery">
+
+        <div class="card">
+            <h3>object-fit: cover</h3>
+
+            <img
+                class="cover"
+                src="../assets/images/city-of-taj-mahal.png"
+                alt="Taj Mahal City"
+            >
+        </div>
+
+        <div class="card">
+            <h3>object-fit: contain</h3>
+
+            <img
+                class="contain"
+                src="../assets/images/city-of-taj-mahal.png"
+                alt="Taj Mahal City"
+            >
+        </div>
+
+    </div>
+
+</body>
+</html>

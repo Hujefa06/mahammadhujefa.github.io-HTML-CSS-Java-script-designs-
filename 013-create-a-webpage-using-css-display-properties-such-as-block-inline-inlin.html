@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+
+    <title>Taj Mahal - CSS 13</title>
+
+    <style>
+
+        body {
+            font-family: Arial;
+            background-color: #ecfeff;
+            text-align: center;
+        }
+
+        .block {
+            display: block;
+            background-color: #bae6fd;
+            padding: 15px;
+            margin: 10px;
+        }
+
+        .inline {
+            display: inline;
+            background-color: #fde68a;
+            padding: 10px;
+        }
+
+        .inline-block {
+            display: inline-block;
+            background-color: #bbf7d0;
+            padding: 20px;
+            margin: 10px;
+        }
+
+        .flex {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+        }
+
+        .flex div {
+            background-color: #c4b5fd;
+            padding: 20px;
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 10px;
+            margin: 20px;
+        }
+
+        .grid div {
+            background-color: #fed7aa;
+            padding: 20px;
+        }
+
+        .none {
+            display: none;
+        }
+
+    </style>
+</head>
+
+<body>
+
+    <h1>CSS Display Properties</h1>
+
+    <div class="block">BLOCK</div>
+
+    <span class="inline">INLINE</span>
+
+    <div>
+        <span class="inline-block">INLINE-BLOCK</span>
+        <span class="inline-block">INLINE-BLOCK</span>
+    </div>
+
+    <h2>FLEX</h2>
+
+    <div class="flex">
+        <div>Temple</div>
+        <div>Harbour</div>
+        <div>Ruins</div>
+    </div>
+
+    <h2>GRID</h2>
+
+    <div class="grid">
+        <div>North</div>
+        <div>South</div>
+        <div>East</div>
+    </div>
+
+    <div class="none">
+        This element uses display: none.
+    </div>
+
+</body>
+</html>

@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Taj Mahal - CSS 31</title>
+
+    <style>
+        body {
+            font-family: Arial;
+            background: #e0f2fe;
+            text-align: center;
+            padding: 40px;
+        }
+
+        h1 {
+            color: #075985;
+        }
+
+        .card {
+            width: 250px;
+            margin: 50px auto;
+            padding: 30px;
+            background: #bae6fd;
+            border: 3px solid #075985;
+
+            transition:
+                background-color 0.5s,
+                width 0.5s,
+                box-shadow 0.5s,
+                transform 0.5s;
+        }
+
+        .card:hover {
+            background-color: #bbf7d0;
+            width: 300px;
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
+            transform: translateY(-15px);
+        }
+    </style>
+</head>
+
+<body>
+
+    <h1>TAJ MAHAL</h1>
+
+    <div class="card">
+
+        <h2>Ancient Temple</h2>
+
+        <p>
+            Hover over this card.
+        </p>
+
+    </div>
+
+</body>
+</html>

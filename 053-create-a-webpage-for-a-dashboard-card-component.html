@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Taj Mahal - CSS 53</title>
+
+    <style>
+        body {
+            font-family: Arial;
+            background: #e0f2fe;
+            padding: 40px;
+        }
+
+        h1 {
+            text-align: center;
+            color: #075985;
+        }
+
+        .dashboard {
+            max-width: 900px;
+            margin: 40px auto;
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+        }
+
+        .card {
+            background: white;
+            padding: 25px;
+            border-radius: 15px;
+            box-shadow: 0 7px 18px #94a3b8;
+        }
+
+        .card h2 {
+            color: #075985;
+        }
+
+        .big {
+            font-size: 35px;
+            font-weight: bold;
+        }
+
+        @media (max-width: 700px) {
+            .dashboard {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+<h1>ANCIENT LAND DASHBOARD</h1>
+
+<div class="dashboard">
+
+    <div class="card">
+        <h2>Cities</h2>
+        <div class="big">24</div>
+    </div>
+
+    <div class="card">
+        <h2>Temples</h2>
+        <div class="big">68</div>
+    </div>
+
+    <div class="card">
+        <h2>Ruins</h2>
+        <div class="big">156</div>
+    </div>
+
+    <div class="card">
+        <h2>Maps</h2>
+        <div class="big">42</div>
+    </div>
+
+    <div class="card">
+        <h2>Archives</h2>
+        <div class="big">89</div>
+    </div>
+
+    <div class="card">
+        <h2>Expeditions</h2>
+        <div class="big">17</div>
+    </div>
+
+</div>
+
+</body>
+</html>

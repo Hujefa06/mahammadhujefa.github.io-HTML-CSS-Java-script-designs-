@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Taj Mahal - CSS 60</title>
+
+    <style>
+        body {
+            font-family: Arial;
+            background: #e0f2fe;
+            text-align: center;
+            padding: 60px;
+        }
+
+        h1 {
+            color: #075985;
+        }
+
+        .actions {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-top: 50px;
+        }
+
+        .icon-button {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            border: 2px solid #075985;
+            background: white;
+            color: #075985;
+            font-size: 22px;
+            cursor: pointer;
+        }
+
+        .icon-button:hover {
+            background: #075985;
+            color: white;
+        }
+
+        .action-button {
+            padding: 13px 22px;
+            border: 0;
+            border-radius: 8px;
+            background: #075985;
+            color: white;
+            cursor: pointer;
+        }
+
+        .action-button:hover {
+            background: #0e7490;
+        }
+    </style>
+</head>
+
+<body>
+
+<h1>TAJ MAHAL</h1>
+
+<h2>Icon & Action Buttons</h2>
+
+<div class="actions">
+
+    <button class="icon-button" title="Search">⌕</button>
+
+    <button class="icon-button" title="Map">⌖</button>
+
+    <button class="icon-button" title="Settings">⚙</button>
+
+    <button class="action-button">Explore</button>
+
+    <button class="action-button">View Map</button>
+
+</div>
+
+</body>
+</html>

@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Taj Mahal - Multi Step Form</title>
+
+<style>
+body {
+    margin: 0;
+    background: #dff6ff;
+    font-family: Arial, sans-serif;
+}
+
+.form {
+    width: 450px;
+    max-width: 90%;
+    margin: 50px auto;
+    padding: 30px;
+    background: white;
+    border-radius: 15px;
+    box-shadow: 0 8px 25px #8bbdcc;
+}
+
+h1 {
+    color: #075985;
+    text-align: center;
+}
+
+.steps {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 25px;
+}
+
+.step {
+    padding: 10px 15px;
+    border-radius: 20px;
+    background: #b8e7f0;
+    color: #075985;
+}
+
+.active {
+    background: #087f8c;
+    color: white;
+}
+
+input, select {
+    width: 100%;
+    padding: 11px;
+    margin: 8px 0;
+    box-sizing: border-box;
+    border: 1px solid #70aebe;
+    border-radius: 7px;
+}
+
+button {
+    padding: 10px 20px;
+    margin-top: 10px;
+    border: none;
+    border-radius: 7px;
+    background: #087f8c;
+    color: white;
+}
+</style>
+</head>
+
+<body>
+<div class="form">
+    <h1>Explorer Journey</h1>
+
+    <div class="steps">
+        <div class="step active">1</div>
+        <div class="step">2</div>
+        <div class="step">3</div>
+    </div>
+
+    <h3>Personal Details</h3>
+    <input type="text" placeholder="Explorer Name">
+    <input type="email" placeholder="Email">
+
+    <h3>Exploration Area</h3>
+    <select>
+        <option>Ancient City</option>
+        <option>Temple Ruins</option>
+        <option>Ivory Marble Dome</option>
+    </select>
+
+    <button>NEXT</button>
+</div>
+</body>
+</html>

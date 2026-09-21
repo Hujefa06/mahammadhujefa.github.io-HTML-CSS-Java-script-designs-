@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Taj Mahal - CSS 44</title>
+
+    <style>
+        body {
+            font-family: Arial;
+            background: #e0f2fe;
+            text-align: center;
+            padding: 50px;
+        }
+
+        h1 {
+            color: #075985;
+        }
+
+        .pill-nav {
+            display: flex;
+            justify-content: center;
+            gap: 12px;
+            flex-wrap: wrap;
+            margin-top: 50px;
+        }
+
+        .pill {
+            padding: 12px 25px;
+            border-radius: 50px;
+            background: white;
+            color: #075985;
+            border: 2px solid #075985;
+            text-decoration: none;
+        }
+
+        .pill:hover,
+        .active {
+            background: #075985;
+            color: white;
+        }
+    </style>
+</head>
+
+<body>
+
+<h1>TAJ MAHAL</h1>
+
+<div class="pill-nav">
+    <a class="pill active" href="#">Home</a>
+    <a class="pill" href="#">Cities</a>
+    <a class="pill" href="#">Temples</a>
+    <a class="pill" href="#">Ruins</a>
+    <a class="pill" href="#">Maps</a>
+</div>
+
+</body>
+</html>

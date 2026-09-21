@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Taj Mahal - CSS 67</title>
+
+    <style>
+        body {
+            font-family: Arial;
+            background: #e0f2fe;
+            text-align: center;
+            padding: 80px;
+        }
+
+        h1 {
+            color: #075985;
+        }
+
+        .popover {
+            position: relative;
+            display: inline-block;
+        }
+
+        .button {
+            background: #075985;
+            color: white;
+            padding: 14px 25px;
+            border-radius: 8px;
+            cursor: pointer;
+        }
+
+        .content {
+            display: none;
+            position: absolute;
+            top: 55px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 250px;
+            padding: 20px;
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 10px 25px #64748b;
+            text-align: left;
+        }
+
+        .popover:hover .content {
+            display: block;
+        }
+    </style>
+</head>
+
+<body>
+
+<h1>TAJ MAHAL</h1>
+
+<div class="popover">
+
+    <div class="button">
+        View Information
+    </div>
+
+    <div class="content">
+        <h3>Ancient Temple</h3>
+        <p>
+            A remembered temple from the ancient southern land.
+        </p>
+    </div>
+
+</div>
+
+</body>
+</html>

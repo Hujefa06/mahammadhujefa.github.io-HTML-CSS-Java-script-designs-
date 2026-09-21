@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Taj Mahal - Product Analytics</title>
+
+<style>
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background: #e3f8fc;
+}
+
+header {
+    padding: 20px;
+    background: #075985;
+    color: white;
+}
+
+.products {
+    padding: 25px;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+}
+
+.product {
+    background: white;
+    padding: 25px;
+    border-radius: 12px;
+    box-shadow: 0 5px 15px #9bcbd5;
+}
+
+.product h2 {
+    color: #075985;
+}
+
+.progress {
+    height: 15px;
+    background: #ccecf2;
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+.fill {
+    height: 100%;
+    background: #087f8c;
+}
+
+.a { width: 90%; }
+.b { width: 70%; }
+.c { width: 50%; }
+
+@media(max-width:700px) {
+    .products {
+        grid-template-columns: 1fr;
+    }
+}
+</style>
+</head>
+
+<body>
+<header>
+    <h1>Taj Mahal Product Analytics</h1>
+</header>
+
+<div class="products">
+    <div class="product">
+        <h2>Ancient Map</h2>
+        <p>Popularity: 90%</p>
+        <div class="progress"><div class="fill a"></div></div>
+    </div>
+
+    <div class="product">
+        <h2>Temple Model</h2>
+        <p>Popularity: 70%</p>
+        <div class="progress"><div class="fill b"></div></div>
+    </div>
+
+    <div class="product">
+        <h2>Artifact Guide</h2>
+        <p>Popularity: 50%</p>
+        <div class="progress"><div class="fill c"></div></div>
+    </div>
+</div>
+</body>
+</html>

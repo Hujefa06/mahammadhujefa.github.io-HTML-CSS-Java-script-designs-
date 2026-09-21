@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Taj Mahal - CSS 32</title>
+
+    <style>
+        body {
+            font-family: Arial;
+            background: #f0f9ff;
+            text-align: center;
+        }
+
+        h1 {
+            color: #075985;
+        }
+
+        .container {
+            display: flex;
+            justify-content: center;
+            gap: 40px;
+            flex-wrap: wrap;
+            margin-top: 60px;
+        }
+
+        .box {
+            width: 120px;
+            height: 120px;
+            padding: 20px;
+            background: #bae6fd;
+            border: 3px solid #075985;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .rotate {
+            transform: rotate(15deg);
+        }
+
+        .scale {
+            transform: scale(1.2);
+        }
+
+        .translate {
+            transform: translateY(-20px);
+        }
+
+        .skew {
+            transform: skew(10deg);
+        }
+    </style>
+</head>
+
+<body>
+
+    <h1>TAJ MAHAL</h1>
+
+    <h2>CSS 2D Transformations</h2>
+
+    <div class="container">
+
+        <div class="box rotate">Rotate</div>
+
+        <div class="box scale">Scale</div>
+
+        <div class="box translate">Translate</div>
+
+        <div class="box skew">Skew</div>
+
+    </div>
+
+</body>
+</html>

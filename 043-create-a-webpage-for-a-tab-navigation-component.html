@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Taj Mahal - CSS 43</title>
+
+    <style>
+        body {
+            font-family: Arial;
+            background: #e0f2fe;
+            padding: 40px;
+        }
+
+        h1 {
+            text-align: center;
+            color: #075985;
+        }
+
+        .tabs {
+            max-width: 700px;
+            margin: 50px auto;
+            background: white;
+            border-radius: 12px;
+            overflow: hidden;
+        }
+
+        .tab-buttons {
+            display: flex;
+            background: #075985;
+        }
+
+        .tab {
+            flex: 1;
+            padding: 18px;
+            color: white;
+            text-align: center;
+            cursor: pointer;
+        }
+
+        .tab:hover,
+        .active {
+            background: #0e7490;
+        }
+
+        .content {
+            padding: 30px;
+            text-align: center;
+        }
+    </style>
+</head>
+
+<body>
+
+<h1>TAJ MAHAL</h1>
+
+<div class="tabs">
+
+    <div class="tab-buttons">
+        <div class="tab active">Cities</div>
+        <div class="tab">Temples</div>
+        <div class="tab">Ruins</div>
+    </div>
+
+    <div class="content">
+        <h2>Ancient Cities</h2>
+        <p>Explore the remembered cities of Taj Mahal.</p>
+    </div>
+
+</div>
+
+</body>
+</html>

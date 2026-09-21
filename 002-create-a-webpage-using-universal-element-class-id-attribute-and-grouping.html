@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Taj Mahal - CSS 02</title>
+
+    <style>
+
+        /* Universal selector */
+        * {
+            box-sizing: border-box;
+        }
+
+        /* Element selector */
+        h1 {
+            text-align: center;
+            color: #075985;
+        }
+
+        /* Class selector */
+        .temple {
+            background-color: #dbeafe;
+            padding: 20px;
+            margin: 15px;
+        }
+
+        /* ID selector */
+        #ruins {
+            background-color: #fef3c7;
+            border: 3px solid #d97706;
+            padding: 20px;
+            margin: 15px;
+        }
+
+        /* Attribute selector */
+        input[type="text"] {
+            padding: 10px;
+            border: 2px solid #075985;
+        }
+
+        /* Grouping selector */
+        h2, p {
+            font-family: Arial, sans-serif;
+        }
+
+    </style>
+</head>
+
+<body>
+
+    <h1>Taj Mahal</h1>
+
+    <h2>CSS Selectors</h2>
+
+    <div class="temple">
+        Class Selector — Ancient Temple
+    </div>
+
+    <div id="ruins">
+        ID Selector — Ivory Marble Dome
+    </div>
+
+    <p>Attribute Selector:</p>
+
+    <input type="text" placeholder="Enter ancient city">
+
+</body>
+</html>

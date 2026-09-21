@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Taj Mahal - CSS 65</title>
+
+    <style>
+        body {
+            font-family: Arial;
+            background: #e0f2fe;
+            text-align: center;
+            padding: 50px;
+        }
+
+        h1 {
+            color: #075985;
+        }
+
+        .toast {
+            position: fixed;
+            right: 25px;
+            bottom: 25px;
+            width: 320px;
+            background: #082f49;
+            color: white;
+            padding: 18px;
+            border-radius: 10px;
+            box-shadow: 0 8px 25px #64748b;
+            text-align: left;
+        }
+
+        .toast-title {
+            font-weight: bold;
+            margin-bottom: 8px;
+        }
+
+        .close {
+            float: right;
+            cursor: pointer;
+            color: #bae6fd;
+        }
+    </style>
+</head>
+
+<body>
+
+<h1>TAJ MAHAL</h1>
+
+<h2>Toast Notification</h2>
+
+<p>A notification appears at the bottom-right corner.</p>
+
+<div class="toast">
+    <span class="close">×</span>
+
+    <div class="toast-title">
+        Archive Updated
+    </div>
+
+    <div>
+        A new ancient record has been added.
+    </div>
+</div>
+
+</body>
+</html>

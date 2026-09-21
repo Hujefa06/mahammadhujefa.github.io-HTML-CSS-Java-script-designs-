@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Taj Mahal - User Analytics</title>
+
+<style>
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background: #e3f8fc;
+}
+
+header {
+    background: #075985;
+    color: white;
+    padding: 20px;
+}
+
+.users {
+    padding: 25px;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+}
+
+.card {
+    background: white;
+    padding: 25px;
+    text-align: center;
+    border-radius: 12px;
+    box-shadow: 0 5px 15px #9bcbd5;
+}
+
+.value {
+    font-size: 32px;
+    color: #087f8c;
+    font-weight: bold;
+}
+
+@media(max-width:700px) {
+    .users {
+        grid-template-columns: 1fr;
+    }
+}
+</style>
+</head>
+
+<body>
+<header>
+    <h1>User Analytics</h1>
+</header>
+
+<div class="users">
+    <div class="card">
+        <div class="value">1,250</div>
+        <p>Total Users</p>
+    </div>
+
+    <div class="card">
+        <div class="value">860</div>
+        <p>Active Users</p>
+    </div>
+
+    <div class="card">
+        <div class="value">390</div>
+        <p>New Users</p>
+    </div>
+</div>
+</body>
+</html>

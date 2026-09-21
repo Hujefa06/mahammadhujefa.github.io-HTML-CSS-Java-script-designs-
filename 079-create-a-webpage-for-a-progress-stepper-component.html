@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Taj Mahal - CSS 79</title>
+
+    <style>
+        body {
+            font-family: Arial;
+            background: #e0f2fe;
+            padding: 60px;
+            text-align: center;
+        }
+
+        h1 {
+            color: #075985;
+        }
+
+        .stepper {
+            max-width: 800px;
+            margin: 60px auto;
+            display: flex;
+            justify-content: space-between;
+            position: relative;
+        }
+
+        .stepper::before {
+            content: "";
+            position: absolute;
+            top: 22px;
+            left: 8%;
+            right: 8%;
+            height: 4px;
+            background: #cbd5e1;
+            z-index: 0;
+        }
+
+        .step {
+            position: relative;
+            z-index: 1;
+        }
+
+        .circle {
+            width: 45px;
+            height: 45px;
+            margin: auto;
+            border-radius: 50%;
+            background: #cbd5e1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+        }
+
+        .completed .circle {
+            background: #15803d;
+            color: white;
+        }
+
+        .current .circle {
+            background: #075985;
+            color: white;
+        }
+
+        .label {
+            margin-top: 10px;
+            color: #334155;
+        }
+    </style>
+</head>
+
+<body>
+
+<h1>TAJ MAHAL</h1>
+
+<h2>Expedition Progress</h2>
+
+<div class="stepper">
+
+    <div class="step completed">
+        <div class="circle">✓</div>
+        <div class="label">Map</div>
+    </div>
+
+    <div class="step completed">
+        <div class="circle">✓</div>
+        <div class="label">Search</div>
+    </div>
+
+    <div class="step current">
+        <div class="circle">3</div>
+        <div class="label">Explore</div>
+    </div>
+
+    <div class="step">
+        <div class="circle">4</div>
+        <div class="label">Archive</div>
+    </div>
+
+</div>
+
+</body>
+</html>

@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Taj Mahal - CSS 76</title>
+
+    <style>
+        body {
+            font-family: Arial;
+            background: #e0f2fe;
+            text-align: center;
+            padding: 80px;
+        }
+
+        .loading {
+            max-width: 450px;
+            margin: auto;
+            background: white;
+            padding: 40px;
+            border-radius: 15px;
+            box-shadow: 0 8px 25px #94a3b8;
+        }
+
+        .spinner {
+            width: 60px;
+            height: 60px;
+            margin: auto;
+            border: 7px solid #bae6fd;
+            border-top-color: #075985;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+
+        h1 {
+            color: #075985;
+        }
+
+        @keyframes spin {
+            to {
+                transform: rotate(360deg);
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="loading">
+
+    <div class="spinner"></div>
+
+    <h1>Loading Archives...</h1>
+
+    <p>
+        Searching ancient records.
+    </p>
+
+</div>
+
+</body>
+</html>

@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Taj Mahal - CSS 41</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: #e0f2fe;
+        }
+
+        nav {
+            background: #075985;
+            padding: 18px 40px;
+            display: flex;
+            justify-content: center;
+            gap: 35px;
+        }
+
+        nav a,
+        .mega-button {
+            color: white;
+            text-decoration: none;
+            padding: 12px;
+            cursor: pointer;
+        }
+
+        .mega {
+            position: relative;
+        }
+
+        .mega-content {
+            display: none;
+            position: absolute;
+            left: -250px;
+            top: 48px;
+            width: 800px;
+            background: white;
+            padding: 25px;
+            box-shadow: 0 10px 25px #64748b;
+            border-radius: 10px;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 25px;
+            z-index: 10;
+        }
+
+        .mega:hover .mega-content {
+            display: grid;
+        }
+
+        .mega-content h3 {
+            color: #075985;
+        }
+
+        .mega-content a {
+            display: block;
+            color: #334155;
+            padding: 7px 0;
+        }
+
+        main {
+            text-align: center;
+            padding: 80px;
+        }
+    </style>
+</head>
+
+<body>
+
+<nav>
+    <a href="#">Home</a>
+
+    <div class="mega">
+        <span class="mega-button">Explore ▾</span>
+
+        <div class="mega-content">
+            <div>
+                <h3>Ancient Cities</h3>
+                <a href="#">Taj</a>
+                <a href="#">Madurai</a>
+                <a href="#">Puhar</a>
+            </div>
+
+            <div>
+                <h3>Heritage</h3>
+                <a href="#">Temples</a>
+                <a href="#">Manuscripts</a>
+                <a href="#">Jewels</a>
+            </div>
+
+            <div>
+                <h3>Landscapes</h3>
+                <a href="#">Mountains</a>
+                <a href="#">Rivers</a>
+                <a href="#">Sea</a>
+            </div>
+        </div>
+    </div>
+
+    <a href="#">About</a>
+    <a href="#">Contact</a>
+</nav>
+
+<main>
+    <h1>TAJ MAHAL</h1>
+    <p>Hover over <b>Explore</b> to open the mega menu.</p>
+</main>
+
+</body>
+</html>
