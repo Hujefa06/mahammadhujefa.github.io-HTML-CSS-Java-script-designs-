@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Taj Mahal - Financial Analytics</title>
+
+<style>
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background: #e2f7fb;
+}
+
+header {
+    background: #075985;
+    color: white;
+    padding: 20px;
+}
+
+.finance {
+    padding: 25px;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+}
+
+.card {
+    background: white;
+    padding: 25px;
+    border-radius: 12px;
+    box-shadow: 0 5px 15px #9bcbd5;
+}
+
+.amount {
+    font-size: 30px;
+    color: #087f8c;
+    font-weight: bold;
+}
+
+@media(max-width:700px) {
+    .finance {
+        grid-template-columns: 1fr;
+    }
+}
+</style>
+</head>
+
+<body>
+<header>
+    <h1>Taj Mahal Financial Analytics</h1>
+</header>
+
+<div class="finance">
+    <div class="card">
+        <h3>Revenue</h3>
+        <div class="amount">₹12.5L</div>
+    </div>
+
+    <div class="card">
+        <h3>Expenses</h3>
+        <div class="amount">₹5.2L</div>
+    </div>
+
+    <div class="card">
+        <h3>Profit</h3>
+        <div class="amount">₹7.3L</div>
+    </div>
+</div>
+</body>
+</html>

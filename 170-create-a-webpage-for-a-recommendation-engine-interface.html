@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Recommendation Engine</title>
+<style>
+body{margin:0;background:#e8f8ff;font-family:Arial;color:#164e63}
+header{background:#0369a1;color:white;text-align:center;padding:25px}
+.container{max-width:850px;margin:40px auto}
+.recommendations{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+.card{background:white;padding:25px;border-radius:15px;box-shadow:0 4px 15px #0002}
+.card h3{color:#0284c7}
+@media(max-width:700px){.recommendations{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<header><h1>🏛️ Recommendation Engine</h1></header>
+<div class="container">
+<h2>Recommended for You</h2>
+<div class="recommendations">
+<div class="card"><h3>Ocean Analytics</h3><p>Recommended based on your interests.</p></div>
+<div class="card"><h3>AI Research</h3><p>Popular among similar users.</p></div>
+<div class="card"><h3>Data Explorer</h3><p>Matches your recent activity.</p></div>
+</div>
+</div>
+</body>
+</html>

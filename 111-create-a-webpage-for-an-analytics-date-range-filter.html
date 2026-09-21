@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Taj Mahal - Date Range Filter</title>
+
+<style>
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background: #e3f8fc;
+}
+
+.filter {
+    width: 500px;
+    max-width: 90%;
+    margin: 70px auto;
+    padding: 30px;
+    background: white;
+    border-radius: 15px;
+    box-shadow: 0 5px 15px #9bcbd5;
+}
+
+h1 {
+    color: #075985;
+}
+
+.controls {
+    display: flex;
+    gap: 15px;
+}
+
+input {
+    padding: 12px;
+    border: 1px solid #70aebe;
+    border-radius: 7px;
+}
+
+button {
+    margin-top: 20px;
+    padding: 11px 20px;
+    border: none;
+    border-radius: 7px;
+    background: #087f8c;
+    color: white;
+}
+
+@media(max-width:600px) {
+    .controls {
+        flex-direction: column;
+    }
+}
+</style>
+</head>
+
+<body>
+<div class="filter">
+    <h1>Analytics Date Range</h1>
+
+    <div class="controls">
+        <input type="date">
+        <input type="date">
+    </div>
+
+    <button>APPLY FILTER</button>
+</div>
+</body>
+</html>

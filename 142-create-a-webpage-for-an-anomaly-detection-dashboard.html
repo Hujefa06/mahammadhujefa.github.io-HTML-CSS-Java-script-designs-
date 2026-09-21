@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Taj Mahal - Anomaly Detection</title>
+
+<style>
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background: #e3f8fc;
+}
+
+header {
+    background: #075985;
+    color: white;
+    padding: 20px;
+}
+
+.dashboard {
+    width: 85%;
+    margin: 30px auto;
+}
+
+.alert {
+    background: white;
+    padding: 20px;
+    margin: 15px 0;
+    border-radius: 10px;
+    border-left: 6px solid #dc2626;
+    box-shadow: 0 4px 12px #9bcbd5;
+}
+
+.normal {
+    border-left-color: #087f8c;
+}
+
+.alert h2 {
+    color: #075985;
+}
+
+.status {
+    font-weight: bold;
+    color: #dc2626;
+}
+
+.normal .status {
+    color: #087f8c;
+}
+</style>
+</head>
+
+<body>
+
+<header>
+    <h1>Anomaly Detection Dashboard</h1>
+</header>
+
+<div class="dashboard">
+
+    <div class="alert">
+        <h2>Unusual Visitor Activity</h2>
+        <p>Traffic exceeded the expected range.</p>
+        <div class="status">ANOMALY DETECTED</div>
+    </div>
+
+    <div class="alert normal">
+        <h2>Research Activity</h2>
+        <p>Activity is within the expected range.</p>
+        <div class="status">NORMAL</div>
+    </div>
+
+</div>
+
+</body>
+</html>

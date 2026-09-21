@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Taj Mahal - Agent Task Queue</title>
+
+<style>
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background: #dff6ff;
+}
+
+.queue {
+    width: 750px;
+    max-width: 90%;
+    margin: 40px auto;
+}
+
+h1 {
+    color: #075985;
+}
+
+.task {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: 15px;
+    align-items: center;
+    background: white;
+    padding: 20px;
+    margin: 12px 0;
+    border-radius: 10px;
+    box-shadow: 0 4px 12px #9bcbd5;
+}
+
+.task h2 {
+    margin: 0;
+    color: #075985;
+}
+
+.status {
+    padding: 7px 12px;
+    border-radius: 15px;
+    font-size: 13px;
+}
+
+.waiting {
+    background: #fff4c2;
+    color: #92400e;
+}
+
+.running {
+    background: #d4eef3;
+    color: #075985;
+}
+
+.completed {
+    background: #d7f2e2;
+    color: #166534;
+}
+</style>
+</head>
+
+<body>
+
+<div class="queue">
+    <h1>AI Agent Task Queue</h1>
+
+    <div class="task">
+        <div>
+            <h2>Analyse Site Data</h2>
+            <p>Research Agent</p>
+        </div>
+        <span class="status running">RUNNING</span>
+    </div>
+
+    <div class="task">
+        <div>
+            <h2>Generate Report</h2>
+            <p>Report Agent</p>
+        </div>
+        <span class="status waiting">WAITING</span>
+    </div>
+
+    <div class="task">
+        <div>
+            <h2>Process Analytics</h2>
+            <p>Data Agent</p>
+        </div>
+        <span class="status completed">COMPLETED</span>
+    </div>
+
+</div>
+
+</body>
+</html>

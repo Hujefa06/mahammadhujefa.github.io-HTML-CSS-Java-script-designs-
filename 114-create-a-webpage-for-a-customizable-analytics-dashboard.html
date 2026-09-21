@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Taj Mahal - Custom Analytics</title>
+
+<style>
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background: #e3f8fc;
+}
+
+header {
+    background: #075985;
+    color: white;
+    padding: 20px;
+}
+
+.dashboard {
+    padding: 25px;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 15px;
+}
+
+.card {
+    background: white;
+    padding: 20px;
+    border-radius: 12px;
+    box-shadow: 0 5px 15px #9bcbd5;
+}
+
+.large {
+    grid-column: span 2;
+}
+
+.card h2 {
+    color: #075985;
+}
+
+.value {
+    font-size: 28px;
+    color: #087f8c;
+    font-weight: bold;
+}
+
+@media(max-width:800px) {
+    .dashboard {
+        grid-template-columns: 1fr 1fr;
+    }
+
+    .large {
+        grid-column: span 2;
+    }
+}
+</style>
+</head>
+
+<body>
+<header>
+    <h1>Custom Analytics Dashboard</h1>
+</header>
+
+<div class="dashboard">
+    <div class="card large">
+        <h2>Explorer Growth</h2>
+        <div class="value">+24%</div>
+    </div>
+
+    <div class="card">
+        <h2>Sites</h2>
+        <div class="value">86</div>
+    </div>
+
+    <div class="card">
+        <h2>Reports</h2>
+        <div class="value">420</div>
+    </div>
+
+    <div class="card large">
+        <h2>Research Activity</h2>
+        <p>High activity across ancient coastal sites.</p>
+    </div>
+</div>
+</body>
+</html>

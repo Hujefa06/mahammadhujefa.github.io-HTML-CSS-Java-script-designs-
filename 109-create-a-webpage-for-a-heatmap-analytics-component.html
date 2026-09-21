@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Taj Mahal - Heatmap</title>
+
+<style>
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background: #e3f8fc;
+}
+
+header {
+    background: #075985;
+    color: white;
+    padding: 20px;
+}
+
+.heatmap {
+    width: 80%;
+    max-width: 700px;
+    margin: 40px auto;
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 5px;
+}
+
+.cell {
+    height: 70px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #075985;
+    font-weight: bold;
+    border-radius: 5px;
+}
+
+.low { background: #e8f7fa; }
+.medium { background: #b8e5ec; }
+.high { background: #70c2ce; }
+.veryhigh { background: #2795a5; color: white; }
+</style>
+</head>
+
+<body>
+<header>
+    <h1>Taj Mahal Activity Heatmap</h1>
+</header>
+
+<div class="heatmap">
+    <div class="cell low">12</div>
+    <div class="cell medium">25</div>
+    <div class="cell high">42</div>
+    <div class="cell veryhigh">68</div>
+    <div class="cell high">45</div>
+
+    <div class="cell medium">30</div>
+    <div class="cell high">48</div>
+    <div class="cell veryhigh">72</div>
+    <div class="cell high">51</div>
+    <div class="cell medium">29</div>
+
+    <div class="cell low">15</div>
+    <div class="cell medium">27</div>
+    <div class="cell high">44</div>
+    <div class="cell veryhigh">80</div>
+    <div class="cell high">55</div>
+</div>
+</body>
+</html>

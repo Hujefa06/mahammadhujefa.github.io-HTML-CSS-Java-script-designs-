@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Taj Mahal - Filter Panel</title>
+
+<style>
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background: #e3f8fc;
+}
+
+.panel {
+    width: 350px;
+    margin: 50px auto;
+    padding: 30px;
+    background: white;
+    border-radius: 15px;
+    box-shadow: 0 5px 15px #9bcbd5;
+}
+
+h1 {
+    color: #075985;
+}
+
+label {
+    display: block;
+    margin-top: 15px;
+    color: #164e63;
+}
+
+select {
+    width: 100%;
+    padding: 10px;
+    margin-top: 6px;
+    border: 1px solid #70aebe;
+    border-radius: 7px;
+}
+
+button {
+    width: 100%;
+    margin-top: 20px;
+    padding: 11px;
+    border: none;
+    border-radius: 7px;
+    background: #087f8c;
+    color: white;
+}
+</style>
+</head>
+
+<body>
+<div class="panel">
+    <h1>Analytics Filters</h1>
+
+    <label>Region</label>
+    <select>
+        <option>All Regions</option>
+        <option>Southern Coast</option>
+        <option>Ancient City</option>
+    </select>
+
+    <label>Sort By</label>
+    <select>
+        <option>Most Active</option>
+        <option>Newest</option>
+        <option>Oldest</option>
+    </select>
+
+    <button>APPLY</button>
+</div>
+</body>
+</html>

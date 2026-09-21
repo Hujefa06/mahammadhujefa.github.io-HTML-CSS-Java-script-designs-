@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Taj Mahal - Visualization Cards</title>
+
+<style>
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background: #e3f8fc;
+}
+
+header {
+    background: #075985;
+    color: white;
+    padding: 20px;
+}
+
+.cards {
+    padding: 30px;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+}
+
+.card {
+    background: white;
+    padding: 25px;
+    border-radius: 15px;
+    box-shadow: 0 5px 15px #9bcbd5;
+}
+
+.card h2 {
+    color: #075985;
+}
+
+.number {
+    font-size: 32px;
+    color: #087f8c;
+    font-weight: bold;
+}
+
+.mini-chart {
+    height: 80px;
+    display: flex;
+    align-items: end;
+    gap: 8px;
+}
+
+.mini-chart span {
+    width: 20px;
+    background: #0e7490;
+    border-radius: 4px 4px 0 0;
+}
+
+.s1 { height: 30px; }
+.s2 { height: 55px; }
+.s3 { height: 40px; }
+.s4 { height: 70px; }
+
+@media(max-width:700px) {
+    .cards {
+        grid-template-columns: 1fr;
+    }
+}
+</style>
+</head>
+
+<body>
+<header>
+    <h1>Taj Mahal Data Visualization</h1>
+</header>
+
+<div class="cards">
+    <div class="card">
+        <h2>Visitors</h2>
+        <div class="number">12,450</div>
+        <p>Monthly visitors</p>
+    </div>
+
+    <div class="card">
+        <h2>Sites</h2>
+        <div class="number">86</div>
+        <p>Discovered sites</p>
+    </div>
+
+    <div class="card">
+        <h2>Activity</h2>
+        <div class="mini-chart">
+            <span class="s1"></span>
+            <span class="s2"></span>
+            <span class="s3"></span>
+            <span class="s4"></span>
+        </div>
+    </div>
+</div>
+</body>
+</html>

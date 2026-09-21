@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Taj Mahal - AI Analytics</title>
+
+<style>
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background: #e3f8fc;
+}
+
+header {
+    padding: 20px;
+    background: #075985;
+    color: white;
+}
+
+.dashboard {
+    padding: 25px;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+}
+
+.card {
+    background: white;
+    padding: 25px;
+    border-radius: 12px;
+    box-shadow: 0 5px 15px #9bcbd5;
+}
+
+.card h2 {
+    color: #075985;
+}
+
+.value {
+    font-size: 30px;
+    color: #087f8c;
+    font-weight: bold;
+}
+
+.ai {
+    border-top: 5px solid #087f8c;
+}
+
+@media(max-width:700px) {
+    .dashboard {
+        grid-template-columns: 1fr;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<header>
+    <h1>AI-Powered Taj Analytics</h1>
+</header>
+
+<div class="dashboard">
+
+    <div class="card">
+        <h2>Visitors</h2>
+        <div class="value">12,450</div>
+    </div>
+
+    <div class="card">
+        <h2>Sites</h2>
+        <div class="value">86</div>
+    </div>
+
+    <div class="card ai">
+        <h2>AI Insight</h2>
+        <p>Coastal research is receiving the highest engagement.</p>
+    </div>
+
+</div>
+
+</body>
+</html>

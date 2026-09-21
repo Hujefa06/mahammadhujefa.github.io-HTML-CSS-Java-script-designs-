@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Taj Mahal - Area Chart</title>
+
+<style>
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background: #e3f8fc;
+}
+
+header {
+    background: #075985;
+    color: white;
+    padding: 20px;
+}
+
+.chart {
+    width: 80%;
+    max-width: 800px;
+    height: 300px;
+    margin: 40px auto;
+    background: white;
+    border-left: 3px solid #075985;
+    border-bottom: 3px solid #075985;
+    position: relative;
+    overflow: hidden;
+    box-shadow: 0 5px 15px #9bcbd5;
+}
+
+.area {
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    height: 70%;
+    background: #a8dce5;
+    clip-path: polygon(
+        0 80%,
+        20% 60%,
+        40% 70%,
+        60% 35%,
+        80% 45%,
+        100% 10%,
+        100% 100%,
+        0 100%
+    );
+}
+</style>
+</head>
+
+<body>
+<header>
+    <h1>Taj Mahal Area Analytics</h1>
+</header>
+
+<div class="chart">
+    <div class="area"></div>
+</div>
+</body>
+</html>

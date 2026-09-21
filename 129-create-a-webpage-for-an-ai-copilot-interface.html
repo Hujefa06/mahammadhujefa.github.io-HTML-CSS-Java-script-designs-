@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Taj Mahal - AI Copilot</title>
+
+<style>
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background: #e3f8fc;
+    display: flex;
+    min-height: 100vh;
+}
+
+main {
+    flex: 1;
+    padding: 40px;
+}
+
+main h1 {
+    color: #075985;
+}
+
+.copilot {
+    width: 320px;
+    background: white;
+    border-left: 1px solid #b8dbe2;
+    padding: 25px;
+    box-shadow: -5px 0 15px #c3e0e5;
+}
+
+.copilot h2 {
+    color: #075985;
+}
+
+.action {
+    padding: 15px;
+    margin: 10px 0;
+    background: #e5f6f9;
+    border-radius: 8px;
+}
+
+button {
+    width: 100%;
+    padding: 11px;
+    margin-top: 10px;
+    border: none;
+    border-radius: 7px;
+    background: #087f8c;
+    color: white;
+}
+
+@media(max-width:700px) {
+    body {
+        flex-direction: column;
+    }
+
+    .copilot {
+        width: auto;
+        border-left: none;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<main>
+    <h1>Taj Mahal Workspace</h1>
+    <p>Research your selected ancient site.</p>
+</main>
+
+<aside class="copilot">
+    <h2>AI Copilot</h2>
+
+    <div class="action">Summarize this research</div>
+    <div class="action">Find related topics</div>
+    <div class="action">Generate questions</div>
+
+    <button>ASK COPILOT</button>
+</aside>
+
+</body>
+</html>

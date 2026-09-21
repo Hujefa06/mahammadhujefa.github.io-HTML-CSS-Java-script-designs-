@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Taj Mahal - AI Report Generator</title>
+
+<style>
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background: #e3f8fc;
+}
+
+.report {
+    width: 750px;
+    max-width: 90%;
+    margin: 40px auto;
+    background: white;
+    padding: 30px;
+    border-radius: 15px;
+    box-shadow: 0 6px 18px #9bcbd5;
+}
+
+h1 {
+    color: #075985;
+}
+
+.controls {
+    display: flex;
+    gap: 10px;
+}
+
+select {
+    flex: 1;
+    padding: 11px;
+    border: 1px solid #70aebe;
+    border-radius: 7px;
+}
+
+button {
+    padding: 11px 20px;
+    border: none;
+    border-radius: 7px;
+    background: #087f8c;
+    color: white;
+}
+
+.output {
+    margin-top: 25px;
+    padding: 25px;
+    background: #eef9fb;
+    border-radius: 10px;
+    line-height: 1.7;
+}
+
+@media(max-width:600px) {
+    .controls {
+        flex-direction: column;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<div class="report">
+    <h1>AI Report Generator</h1>
+
+    <div class="controls">
+        <select>
+            <option>Research Report</option>
+            <option>Analytics Report</option>
+            <option>Site Report</option>
+        </select>
+
+        <button>GENERATE</button>
+    </div>
+
+    <div class="output">
+        <h2>Taj Mahal Research Report</h2>
+        <p>
+            AI-generated report based on selected research data
+            and analytics.
+        </p>
+    </div>
+</div>
+
+</body>
+</html>

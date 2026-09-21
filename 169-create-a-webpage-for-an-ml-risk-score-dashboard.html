@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>ML Risk Dashboard</title>
+<style>
+body{margin:0;background:#eff6ff;font-family:Arial;color:#164e63}
+header{background:#075985;color:white;text-align:center;padding:25px}
+.dashboard{max-width:850px;margin:45px auto;display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+.card{background:white;padding:25px;text-align:center;border-radius:15px;box-shadow:0 4px 15px #0002}
+.score{font-size:38px;font-weight:bold;color:#dc2626}
+@media(max-width:700px){.dashboard{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<header><h1>🏛️ ML Risk Dashboard</h1></header>
+<div class="dashboard">
+<div class="card"><h3>Overall Risk</h3><div class="score">28%</div><p>Low</p></div>
+<div class="card"><h3>Security Risk</h3><div class="score">18%</div><p>Low</p></div>
+<div class="card"><h3>Operational Risk</h3><div class="score">35%</div><p>Medium</p></div>
+</div>
+</body>
+</html>

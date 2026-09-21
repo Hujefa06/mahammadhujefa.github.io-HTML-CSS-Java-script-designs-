@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Taj Mahal - AI Autocomplete</title>
+
+<style>
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background: #dff6ff;
+}
+
+.search {
+    width: 600px;
+    max-width: 90%;
+    margin: 80px auto;
+    position: relative;
+}
+
+input {
+    width: 100%;
+    box-sizing: border-box;
+    padding: 15px;
+    border: 2px solid #70aebe;
+    border-radius: 10px;
+    font-size: 16px;
+}
+
+.suggestions {
+    position: absolute;
+    width: 100%;
+    background: white;
+    border-radius: 0 0 10px 10px;
+    box-shadow: 0 5px 15px #9bcbd5;
+    overflow: hidden;
+}
+
+.suggestion {
+    padding: 14px;
+    border-bottom: 1px solid #e0eef1;
+}
+
+.suggestion:hover {
+    background: #e3f6f9;
+}
+
+.ai {
+    color: #087f8c;
+    font-size: 13px;
+    float: right;
+}
+</style>
+</head>
+
+<body>
+
+<div class="search">
+
+    <input type="text" value="ancient">
+
+    <div class="suggestions">
+        <div class="suggestion">
+            ancient cities
+            <span class="ai">AI</span>
+        </div>
+
+        <div class="suggestion">
+            ancient temples
+            <span class="ai">AI</span>
+        </div>
+
+        <div class="suggestion">
+            ancient coastal settlements
+            <span class="ai">AI</span>
+        </div>
+    </div>
+
+</div>
+
+</body>
+</html>

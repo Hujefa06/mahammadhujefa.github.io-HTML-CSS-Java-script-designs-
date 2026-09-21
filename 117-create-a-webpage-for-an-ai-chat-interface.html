@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Taj Mahal - AI Chat</title>
+
+<style>
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background: #dff6ff;
+}
+
+.chat {
+    width: 600px;
+    max-width: 90%;
+    margin: 40px auto;
+    background: white;
+    border-radius: 15px;
+    overflow: hidden;
+    box-shadow: 0 5px 15px #9bcbd5;
+}
+
+header {
+    background: #075985;
+    color: white;
+    padding: 18px;
+}
+
+.messages {
+    padding: 25px;
+    min-height: 300px;
+}
+
+.message {
+    padding: 12px;
+    margin: 12px;
+    border-radius: 10px;
+}
+
+.bot {
+    background: #d7f0f4;
+}
+
+.user {
+    background: #087f8c;
+    color: white;
+    margin-left: 25%;
+}
+
+footer {
+    padding: 15px;
+    border-top: 1px solid #cce4e9;
+}
+
+input {
+    width: 100%;
+    box-sizing: border-box;
+    padding: 12px;
+    border: 1px solid #70aebe;
+    border-radius: 8px;
+}
+</style>
+</head>
+
+<body>
+<div class="chat">
+    <header>
+        <h1>AI Explorer Chat</h1>
+    </header>
+
+    <div class="messages">
+        <div class="message bot">Welcome, explorer.</div>
+        <div class="message user">Show me the ancient city.</div>
+        <div class="message bot">The ancient city section is ready to explore.</div>
+    </div>
+
+    <footer>
+        <input type="text" placeholder="Type your message...">
+    </footer>
+</div>
+</body>
+</html>

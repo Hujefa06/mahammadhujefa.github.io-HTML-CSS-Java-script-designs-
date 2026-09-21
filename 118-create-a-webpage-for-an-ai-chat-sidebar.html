@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Taj Mahal - AI Chat Sidebar</title>
+
+<style>
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background: #e3f8fc;
+    display: flex;
+    min-height: 100vh;
+}
+
+.sidebar {
+    width: 260px;
+    background: #075985;
+    color: white;
+    padding: 20px;
+}
+
+.sidebar h1 {
+    font-size: 22px;
+}
+
+.chat {
+    padding: 15px;
+    margin: 10px 0;
+    background: #0e7490;
+    border-radius: 8px;
+}
+
+main {
+    flex: 1;
+    padding: 40px;
+}
+
+main h2 {
+    color: #075985;
+}
+
+@media(max-width:600px) {
+    .sidebar {
+        width: 180px;
+    }
+}
+</style>
+</head>
+
+<body>
+<aside class="sidebar">
+    <h1>AI Explorer</h1>
+
+    <div class="chat">Ancient Cities</div>
+    <div class="chat">Temple Research</div>
+    <div class="chat">Lost Coast</div>
+    <div class="chat">New Conversation</div>
+</aside>
+
+<main>
+    <h2>Taj Mahal AI</h2>
+    <p>Select a conversation from the sidebar.</p>
+</main>
+</body>
+</html>

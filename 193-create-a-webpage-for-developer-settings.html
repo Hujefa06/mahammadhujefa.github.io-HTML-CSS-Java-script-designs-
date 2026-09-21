@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Developer Settings</title>
+<style>
+*{box-sizing:border-box}
+body{margin:0;font-family:Arial;background:#e8f8ff;color:#164e63}
+header{background:#075985;color:white;text-align:center;padding:25px}
+.box{max-width:750px;margin:45px auto;background:white;padding:30px;border-radius:16px;box-shadow:0 4px 15px #0002}
+.setting{padding:18px 0;border-bottom:1px solid #bae6fd}
+.setting h3{margin:0 0 8px;color:#075985}
+select,input{padding:10px;border:1px solid #7dd3fc;border-radius:7px}
+</style>
+</head>
+<body>
+<header><h1>🏛️ Developer Settings</h1></header>
+<div class="box">
+<h2>Development Preferences</h2>
+<div class="setting">
+<h3>Environment</h3>
+<select><option>Production</option><option>Development</option></select>
+</div>
+<div class="setting">
+<h3>Debug Mode</h3>
+<input type="checkbox" checked> Enable debugging
+</div>
+<div class="setting">
+<h3>API Version</h3>
+<select><option>v3</option><option>v2</option><option>v1</option></select>
+</div>
+</div>
+</body>
+</html>

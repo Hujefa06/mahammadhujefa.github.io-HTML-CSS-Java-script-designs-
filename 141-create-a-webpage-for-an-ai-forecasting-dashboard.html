@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Taj Mahal - AI Forecasting</title>
+
+<style>
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background: #e3f8fc;
+}
+
+header {
+    background: #075985;
+    color: white;
+    padding: 20px;
+}
+
+.dashboard {
+    padding: 25px;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+}
+
+.card {
+    background: white;
+    padding: 25px;
+    border-radius: 12px;
+    box-shadow: 0 5px 15px #9bcbd5;
+}
+
+.card h2 {
+    color: #075985;
+}
+
+.value {
+    font-size: 32px;
+    color: #087f8c;
+    font-weight: bold;
+}
+
+.forecast {
+    border-top: 5px solid #087f8c;
+}
+
+@media(max-width:700px) {
+    .dashboard {
+        grid-template-columns: 1fr;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<header>
+    <h1>AI Forecasting Dashboard</h1>
+</header>
+
+<div class="dashboard">
+
+    <div class="card">
+        <h2>Current Visitors</h2>
+        <div class="value">12,450</div>
+    </div>
+
+    <div class="card forecast">
+        <h2>Next Month</h2>
+        <div class="value">15,200</div>
+    </div>
+
+    <div class="card">
+        <h2>Forecast Growth</h2>
+        <div class="value">+22%</div>
+    </div>
+
+</div>
+
+</body>
+</html>

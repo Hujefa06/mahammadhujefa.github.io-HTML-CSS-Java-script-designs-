@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Taj Mahal - Line Chart</title>
+
+<style>
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background: #e3f8fc;
+}
+
+header {
+    background: #075985;
+    color: white;
+    padding: 20px;
+}
+
+.chart {
+    width: 80%;
+    max-width: 800px;
+    height: 300px;
+    margin: 40px auto;
+    background: white;
+    border-left: 3px solid #075985;
+    border-bottom: 3px solid #075985;
+    position: relative;
+    box-shadow: 0 5px 15px #9bcbd5;
+}
+
+.line {
+    position: absolute;
+    left: 8%;
+    right: 8%;
+    top: 45%;
+    height: 4px;
+    background: #087f8c;
+    transform: rotate(-8deg);
+    transform-origin: left;
+}
+
+.point {
+    position: absolute;
+    width: 14px;
+    height: 14px;
+    background: #075985;
+    border-radius: 50%;
+}
+
+.p1 { left: 10%; top: 65%; }
+.p2 { left: 30%; top: 50%; }
+.p3 { left: 50%; top: 55%; }
+.p4 { left: 70%; top: 30%; }
+.p5 { left: 88%; top: 20%; }
+</style>
+</head>
+
+<body>
+<header>
+    <h1>Taj Mahal Visitor Line Chart</h1>
+</header>
+
+<div class="chart">
+    <div class="line"></div>
+    <div class="point p1"></div>
+    <div class="point p2"></div>
+    <div class="point p3"></div>
+    <div class="point p4"></div>
+    <div class="point p5"></div>
+</div>
+</body>
+</html>

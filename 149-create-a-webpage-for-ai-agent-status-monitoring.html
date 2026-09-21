@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Taj Mahal - Agent Monitoring</title>
+
+<style>
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background: #e3f8fc;
+}
+
+header {
+    background: #075985;
+    color: white;
+    padding: 20px;
+}
+
+.monitor {
+    width: 750px;
+    max-width: 90%;
+    margin: 30px auto;
+}
+
+.agent {
+    background: white;
+    padding: 20px;
+    margin: 15px 0;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px #9bcbd5;
+}
+
+.top {
+    display: flex;
+    justify-content: space-between;
+}
+
+.status {
+    font-weight: bold;
+}
+
+.online {
+    color: #15803d;
+}
+
+.warning {
+    color: #ca8a04;
+}
+
+.offline {
+    color: #dc2626;
+}
+
+.progress {
+    height: 12px;
+    margin-top: 15px;
+    background: #d9eef2;
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+.fill {
+    height: 100%;
+    background: #087f8c;
+}
+
+.high { width: 90%; }
+.medium { width: 65%; }
+.low { width: 30%; }
+</style>
+</head>
+
+<body>
+
+<header>
+    <h1>AI Agent Status Monitoring</h1>
+</header>
+
+<div class="monitor">
+
+    <div class="agent">
+        <div class="top">
+            <strong>Research Agent</strong>
+            <span class="status online">ONLINE</span>
+        </div>
+        <div class="progress">
+            <div class="fill high"></div>
+        </div>
+    </div>
+
+    <div class="agent">
+        <div class="top">
+            <strong>Analytics Agent</strong>
+            <span class="status warning">WARNING</span>
+        </div>
+        <div class="progress">
+            <div class="fill medium"></div>
+        </div>
+    </div>
+
+    <div class="agent">
+        <div class="top">
+            <strong>Report Agent</strong>
+            <span class="status offline">OFFLINE</span>
+        </div>
+        <div class="progress">
+            <div class="fill low"></div>
+        </div>
+    </div>
+
+</div>
+
+</body>
+</html>

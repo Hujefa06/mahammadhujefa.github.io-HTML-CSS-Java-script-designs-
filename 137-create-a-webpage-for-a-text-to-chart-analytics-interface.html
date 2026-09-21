@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Taj Mahal - Text to Chart</title>
+
+<style>
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background: #dff6ff;
+}
+
+.container {
+    width: 800px;
+    max-width: 90%;
+    margin: 40px auto;
+}
+
+h1 {
+    color: #075985;
+}
+
+.input {
+    background: white;
+    padding: 20px;
+    border-radius: 12px;
+    box-shadow: 0 5px 15px #9bcbd5;
+}
+
+input {
+    width: 100%;
+    box-sizing: border-box;
+    padding: 13px;
+    border: 1px solid #70aebe;
+    border-radius: 8px;
+}
+
+button {
+    margin-top: 12px;
+    padding: 11px 20px;
+    border: none;
+    border-radius: 7px;
+    background: #087f8c;
+    color: white;
+}
+
+.chart {
+    margin-top: 25px;
+    padding: 25px;
+    background: white;
+    border-radius: 12px;
+    display: flex;
+    align-items: end;
+    gap: 20px;
+    height: 250px;
+    box-shadow: 0 5px 15px #9bcbd5;
+}
+
+.bar {
+    width: 70px;
+    background: #0e7490;
+}
+
+.a { height: 100px; }
+.b { height: 160px; }
+.c { height: 210px; }
+</style>
+</head>
+
+<body>
+
+<div class="container">
+    <h1>Text-to-Chart Analytics</h1>
+
+    <div class="input">
+        <input type="text" value="Show visitors by month">
+        <button>GENERATE CHART</button>
+    </div>
+
+    <div class="chart">
+        <div class="bar a"></div>
+        <div class="bar b"></div>
+        <div class="bar c"></div>
+    </div>
+</div>
+
+</body>
+</html>

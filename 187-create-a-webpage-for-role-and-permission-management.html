@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Role Permissions</title>
+<style>
+body{margin:0;background:#e8f8ff;font-family:Arial;color:#164e63}
+header{background:#0369a1;color:white;text-align:center;padding:25px}
+.container{max-width:850px;margin:40px auto;background:white;padding:25px;border-radius:16px;box-shadow:0 4px 15px #0002}
+.row{display:grid;grid-template-columns:1fr 1fr 1fr;padding:16px;border-bottom:1px solid #bae6fd}
+.allowed{color:#059669;font-weight:bold}
+.denied{color:#dc2626;font-weight:bold}
+</style>
+</head>
+<body>
+<header><h1>🏛️ Roles & Permissions</h1></header>
+<div class="container">
+<div class="row"><b>Permission</b><b>Admin</b><b>User</b></div>
+<div class="row"><span>View Data</span><span class="allowed">Allowed</span><span class="allowed">Allowed</span></div>
+<div class="row"><span>Edit Data</span><span class="allowed">Allowed</span><span class="allowed">Allowed</span></div>
+<div class="row"><span>Delete Data</span><span class="allowed">Allowed</span><span class="denied">Denied</span></div>
+</div>
+</body>
+</html>

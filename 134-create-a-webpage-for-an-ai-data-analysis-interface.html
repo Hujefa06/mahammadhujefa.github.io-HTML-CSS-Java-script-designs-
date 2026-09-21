@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Taj Mahal - AI Data Analysis</title>
+
+<style>
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background: #e3f8fc;
+}
+
+header {
+    background: #075985;
+    color: white;
+    padding: 20px;
+}
+
+.container {
+    padding: 25px;
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    gap: 20px;
+}
+
+.panel {
+    background: white;
+    padding: 25px;
+    border-radius: 12px;
+    box-shadow: 0 5px 15px #9bcbd5;
+}
+
+.panel h2 {
+    color: #075985;
+}
+
+.metric {
+    padding: 15px;
+    margin: 10px 0;
+    background: #e3f6f9;
+    border-radius: 8px;
+}
+
+.value {
+    color: #087f8c;
+    font-size: 25px;
+    font-weight: bold;
+}
+
+@media(max-width:700px) {
+    .container {
+        grid-template-columns: 1fr;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<header>
+    <h1>AI Data Analysis</h1>
+</header>
+
+<div class="container">
+
+    <div class="panel">
+        <h2>Dataset</h2>
+
+        <div class="metric">
+            <div class="value">12,450</div>
+            Visitors
+        </div>
+
+        <div class="metric">
+            <div class="value">86</div>
+            Sites
+        </div>
+    </div>
+
+    <div class="panel">
+        <h2>AI Analysis</h2>
+        <p>Visitor activity has increased across the research platform.</p>
+        <p>Ancient coastal sites receive the highest engagement.</p>
+    </div>
+
+</div>
+
+</body>
+</html>

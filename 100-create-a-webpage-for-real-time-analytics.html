@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Taj Mahal - Real-Time Analytics</title>
+
+<style>
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background: #e2f7fb;
+}
+
+header {
+    background: #075985;
+    color: white;
+    padding: 20px;
+}
+
+.live {
+    padding: 25px;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 15px;
+}
+
+.card {
+    background: white;
+    padding: 25px;
+    border-radius: 12px;
+    text-align: center;
+    box-shadow: 0 5px 15px #9bcbd5;
+}
+
+.value {
+    font-size: 32px;
+    color: #087f8c;
+    font-weight: bold;
+}
+
+.live-dot {
+    display: inline-block;
+    width: 10px;
+    height: 10px;
+    background: #16a34a;
+    border-radius: 50%;
+}
+
+@media(max-width:800px) {
+    .live {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media(max-width:500px) {
+    .live {
+        grid-template-columns: 1fr;
+    }
+}
+</style>
+</head>
+
+<body>
+<header>
+    <h1>
+        <span class="live-dot"></span>
+        Taj Mahal Real-Time Analytics
+    </h1>
+</header>
+
+<div class="live">
+    <div class="card">
+        <div class="value">328</div>
+        <p>Live Visitors</p>
+    </div>
+
+    <div class="card">
+        <div class="value">86</div>
+        <p>Active Sites</p>
+    </div>
+
+    <div class="card">
+        <div class="value">42</div>
+        <p>Live Reports</p>
+    </div>
+
+    <div class="card">
+        <div class="value">97%</div>
+        <p>System Status</p>
+    </div>
+</div>
+</body>
+</html>

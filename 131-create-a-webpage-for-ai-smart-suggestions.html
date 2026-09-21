@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Taj Mahal - Smart Suggestions</title>
+
+<style>
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background: #e3f8fc;
+}
+
+.container {
+    width: 650px;
+    max-width: 90%;
+    margin: 60px auto;
+}
+
+h1 {
+    color: #075985;
+}
+
+.suggestions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+}
+
+.suggestion {
+    padding: 12px 18px;
+    background: white;
+    border: 1px solid #a9d4dc;
+    border-radius: 25px;
+    color: #075985;
+    box-shadow: 0 3px 10px #c3e0e5;
+}
+
+.suggestion::before {
+    content: "✦ ";
+    color: #087f8c;
+}
+
+.suggestion:hover {
+    background: #d9f1f5;
+}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+    <h1>Smart Suggestions</h1>
+
+    <div class="suggestions">
+        <div class="suggestion">Explore ancient cities</div>
+        <div class="suggestion">Summarize this article</div>
+        <div class="suggestion">Find related ruins</div>
+        <div class="suggestion">Generate research ideas</div>
+        <div class="suggestion">Explain the history</div>
+    </div>
+</div>
+
+</body>
+</html>
