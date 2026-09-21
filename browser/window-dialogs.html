@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>BR 01 - Window Dialogs | Web Tech Lab</title>
+  <link rel="stylesheet" href="../../assets/css/style.css">
+  <link rel="stylesheet" href="../../assets/css/program-viewer.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500&family=Inter:wght@400;500;600&family=Outfit:wght@600;700;800&display=swap" rel="stylesheet">
+  <style>
+    .dialogs-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 1.5rem;
+    }
+    .dialog-card {
+      background: #0f172a;
+      border: 1px solid #334155;
+      border-radius: 12px;
+      padding: 1.75rem;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+    .dialog-card h3 {
+      color: #38bdf8;
+      font-size: 1.15rem;
+      margin-bottom: 0.5rem;
+    }
+    .dialog-desc {
+      font-size: 0.85rem;
+      color: #94a3b8;
+      line-height: 1.5;
+      margin-bottom: 1.25rem;
+    }
+    .return-box {
+      background: #1e293b;
+      border: 1px solid #475569;
+      border-radius: 6px;
+      padding: 0.75rem;
+      margin-top: 1rem;
+      font-family: 'Fira Code', monospace;
+      font-size: 0.85rem;
+      color: #f8fafc;
+      min-height: 44px;
+      display: flex;
+      align-items: center;
+    }
+  </style>
+</head>
+<body>
+  <!-- Navbar -->
+  <nav class="navbar">
+    <div class="nav-container">
+      <a href="../../index.html" class="logo">
+        <span class="logo-icon">&lt;/&gt;</span>
+        <span>WebTech<span class="highlight">Lab</span></span>
+      </a>
+      <div class="nav-links">
+        <a href="../../index.html">Dashboard</a>
+        <a href="../../html/index.html">HTML</a>
+        <a href="../../css/index.html">CSS</a>
+        <a href="../index.html" class="active">JavaScript</a>
+      </div>
+    </div>
+  </nav>
+
+  <main class="page-container">
+    <div class="breadcrumb">
+      <a href="../../index.html">Home</a> &rsaquo; 
+      <a href="../index.html">JavaScript</a> &rsaquo; 
+      <a href="index.html">Browser</a> &rsaquo; 
+      <span>BR 01 - Window Dialogs</span>
+    </div>
+
+    <div class="program-header">
+      <div class="program-badge">Browser BOM • Program 01</div>
+      <h1>Window Dialogs: alert(), confirm(), prompt()</h1>
+      <p class="program-desc">
+        Trigger native browser synchronous modal dialogs: informative alerts (no return), 
+        binary confirmations (returns boolean true/false), and string prompt inputs.
+      </p>
+      <div class="student-pill">
+        <span>👨‍💻 Student: <strong>Shaik Roshan</strong></span>
+        <span>•</span>
+        <span>Reg No: <strong>[TO BE FILLED BY STUDENT]</strong></span>
+      </div>
+    </div>
+
+    <!-- Live Demo -->
+    <div class="demo-section">
+      <div class="demo-header">
+        <div class="demo-title">
+          <span>💬</span> Browser Dialog Triggers
+        </div>
+        <span class="badge badge-success">Modal Dialogs</span>
+      </div>
+      <div class="demo-body">
+        
+        <div class="dialogs-grid">
+          <!-- Alert Card -->
+          <div class="dialog-card">
+            <div>
+              <h3>1. window.alert()</h3>
+              <p class="dialog-desc">Displays an informational message box with an OK button. Freezes code execution until dismissed.</p>
+            </div>
+            <div>
+              <button class="btn btn-primary" style="width: 100%;" onclick="triggerAlert()">Trigger alert()</button>
+              <div id="outAlert" class="return-box">Return: undefined</div>
+            </div>
+          </div>
+
+          <!-- Confirm Card -->
+          <div class="dialog-card">
+            <div>
+              <h3>2. window.confirm()</h3>
+              <p class="dialog-desc">Prompts user with OK and Cancel buttons. Returns true if OK is pressed, false if cancelled.</p>
+            </div>
+            <div>
+              <button class="btn btn-primary" style="width: 100%;" onclick="triggerConfirm()">Trigger confirm()</button>
+              <div id="outConfirm" class="return-box">Return: Waiting...</div>
+            </div>
+          </div>
+
+          <!-- Prompt Card -->
+          <div class="dialog-card">
+            <div>
+              <h3>3. window.prompt()</h3>
+              <p class="dialog-desc">Displays a text entry box. Returns the user's typed string, or null if Cancel is clicked.</p>
+            </div>
+            <div>
+              <button class="btn btn-primary" style="width: 100%;" onclick="triggerPrompt()">Trigger prompt()</button>
+              <div id="outPrompt" class="return-box">Return: Waiting...</div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- Source Code Viewer -->
+    <div class="code-viewer-section">
+      <div class="code-viewer-header">
+        <div class="code-tabs">
+          <button class="code-tab active" data-tab="js">JavaScript Implementation</button>
+        </div>
+        <div class="code-actions">
+          <button class="btn-secondary" id="copyCodeBtn">📋 Copy Code</button>
+        </div>
+      </div>
+      <div class="code-body">
+        <pre><code id="sourceCode">// 1. Alert (no return value)
+window.alert("Laboratory record submitted!");
+
+// 2. Confirm (returns boolean)
+const userConfirmed = window.confirm("Are you sure you want to proceed?");
+if (userConfirmed) {
+  console.log("User selected OK (true)");
+} else {
+  console.log("User selected Cancel (false)");
+}
+
+// 3. Prompt (returns string or null)
+const studentName = window.prompt("Please enter student name:", "Shaik Roshan");
+if (studentName !== null) {
+  console.log("Entered:", studentName);
+} else {
+  console.log("User cancelled prompt");
+}</code></pre>
+      </div>
+    </div>
+
+    <!-- Navigation -->
+    <div class="program-nav">
+      <a href="index.html" class="nav-prev">&larr; Browser Curriculum Index</a>
+      <a href="timers.html" class="nav-next">BR 02: Timers & Intervals &rarr;</a>
+    </div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-content">
+      <p>&copy; 2026 Web Technology Practical Laboratory • Prepared by <strong>Shaik Roshan</strong></p>
+      <p class="subtext">Computer Science & Engineering Department</p>
+    </div>
+  </footer>
+
+  <script src="../../assets/js/code-viewer.js"></script>
+  <script>
+    function triggerAlert() {
+      alert("Hello Shaik Roshan! This is a standard modal window.alert() box.");
+      document.getElementById("outAlert").textContent = "Return: undefined (dismissed)";
+    }
+
+    function triggerConfirm() {
+      const res = confirm("Do you want to submit the Web Technology Laboratory Record now?");
+      document.getElementById("outConfirm").textContent = `Return: ${res} (${typeof res})`;
+    }
+
+    function triggerPrompt() {
+      const res = prompt("Enter student roll number:", "22CS042");
+      if (res === null) {
+        document.getElementById("outPrompt").textContent = `Return: null (User clicked Cancel)`;
+      } else {
+        document.getElementById("outPrompt").textContent = `Return: "${res}"`;
+      }
+    }
+  </script>
+</body>
+</html>

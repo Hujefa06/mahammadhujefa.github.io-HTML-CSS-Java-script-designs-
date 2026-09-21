@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Prime Number Checker | JS-08</title>
+  <link rel="stylesheet" href="../../assets/css/style.css">
+  <link rel="stylesheet" href="../../assets/css/program-viewer.css">
+</head>
+<body>
+  <header class="navbar">
+    <div class="nav-container">
+      <a href="../../index.html" class="nav-brand">
+        <div class="brand-icon" style="background: linear-gradient(135deg, #f59e0b, #d97706);">
+          <span>&lt;/&gt;</span>
+        </div>
+        <span>JS Basics</span>
+      </a>
+      <nav>
+        <ul class="nav-links">
+          <li><a href="../../index.html" class="nav-link">Home</a></li>
+          <li><a href="../../html/index.html" class="nav-link">HTML</a></li>
+          <li><a href="../../css/index.html" class="nav-link">CSS</a></li>
+          <li><a href="../index.html" class="nav-link active">JavaScript</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main class="main-wrapper">
+    <nav class="breadcrumb-bar">
+      <a href="../../index.html">Home</a>
+      <span class="breadcrumb-separator">&rarr;</span>
+      <a href="../index.html">JavaScript</a>
+      <span class="breadcrumb-separator">&rarr;</span>
+      <a href="index.html">Basics</a>
+      <span class="breadcrumb-separator">&rarr;</span>
+      <span class="breadcrumb-current">JS-08: Prime Number</span>
+    </nav>
+
+    <section class="exp-header-card">
+      <div class="exp-meta-row">
+        <span class="exp-id-tag" style="background: #ca8a04;">JS-08</span>
+        <span class="exp-cat-tag">Math</span>
+      </div>
+      <h1 class="exp-heading">Prime Number Checker (Trial Division &amp; O(&radic;n))</h1>
+      <p class="exp-description">
+        Demonstrates the primality test algorithm checking whether an integer n &gt; 1 has only two distinct factors (1 and itself). Optimized with O(&radic;n) upper bound loop limit.
+      </p>
+      <div class="objective-box">
+        <div class="objective-title"><span>🎯</span> Practical Laboratory Objective</div>
+        <div class="objective-text">
+          Understand algorithm time complexity optimization: checking factors only up to &radic;n rather than checking all numbers up to n.
+        </div>
+      </div>
+    </section>
+
+    <!-- Live Demonstration -->
+    <section class="demo-section-wrapper">
+      <div class="demo-section-header">
+        <div class="demo-title"><span>⚡</span> Live Primality Verifier</div>
+        <span class="demo-live-badge">Working Demo</span>
+      </div>
+      <div class="demo-body" style="background: #ffffff;">
+        <div class="demo-controls-row">
+          <div class="demo-input-group">
+            <label class="demo-input-label" for="prime-input">Enter Integer (n):</label>
+            <input type="number" id="prime-input" class="demo-input" value="29" min="0" style="width: 150px;">
+          </div>
+          <button class="demo-btn" onclick="checkPrime()" style="align-self: flex-end;">Test Primality</button>
+        </div>
+
+        <div class="demo-output-box">
+          <div class="demo-output-header">Primality Proof:</div>
+          <div class="demo-output-result" id="res-prime" style="color: #16a34a;">
+            29 is a PRIME number. (No divisors between 2 and &radic;29 &approx; 5.38)
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Source Code Section -->
+    <section class="source-section-wrapper">
+      <div class="source-header">
+        <div class="source-tabs">
+          <button class="code-tab-btn active" data-tab="js">JavaScript Source Code</button>
+        </div>
+        <div class="source-actions">
+          <button class="copy-code-btn" type="button">Copy Code</button>
+          <button class="toggle-code-btn" type="button">Hide Code</button>
+        </div>
+      </div>
+      <div class="code-content-container">
+        <div class="code-pane active" data-tab="js">
+<pre>// Optimized O(sqrt(n)) Primality Test
+function isPrime(n) {
+  if (n &lt;= 1) return false;
+  if (n &lt;= 3) return true;
+  if (n % 2 === 0 || n % 3 === 0) return false;
+
+  for (let i = 5; i * i &lt;= n; i += 6) {
+    if (n % i === 0 || n % (i + 2) === 0) {
+      return false;
+    }
+  }
+  return true;
+}</pre>
+        </div>
+      </div>
+    </section>
+
+    <!-- Bottom Navigation -->
+    <nav class="exp-nav-bar">
+      <a href="fibonacci.html" class="nav-btn nav-btn-prev">&larr; Previous (JS-07)</a>
+      <a href="index.html" class="nav-btn nav-btn-hub">All Basics Programs</a>
+      <a href="palindrome.html" class="nav-btn nav-btn-next">Next (JS-09) &rarr;</a>
+    </nav>
+  </main>
+
+  <script src="../../assets/js/code-viewer.js"></script>
+  <script>
+    function checkPrime() {
+      const n = parseInt(document.getElementById('prime-input').value);
+      const res = document.getElementById('res-prime');
+      if (isNaN(n)) {
+        res.textContent = "Please enter an integer.";
+        return;
+      }
+      if (n <= 1) {
+        res.style.color = "#ef4444";
+        res.textContent = `${n} is NOT a prime number (Primes must be integers > 1).`;
+        return;
+      }
+      let divisor = 0;
+      const limit = Math.floor(Math.sqrt(n));
+      for (let i = 2; i <= limit; i++) {
+        if (n % i === 0) {
+          divisor = i;
+          break;
+        }
+      }
+      if (divisor > 0) {
+        res.style.color = "#ef4444";
+        res.innerHTML = `${n} is a <strong>COMPOSITE</strong> number (Divisible by ${divisor}: ${divisor} &times; ${n / divisor} = ${n}).`;
+      } else {
+        res.style.color = "#16a34a";
+        res.innerHTML = `${n} is a <strong>PRIME</strong> number! (No integer divisors found up to &radic;${n} &approx; ${limit}).`;
+      }
+    }
+  </script>
+</body>
+</html>

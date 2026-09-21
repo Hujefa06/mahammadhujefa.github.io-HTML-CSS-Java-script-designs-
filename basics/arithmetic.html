@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Arithmetic Operations | JS-02</title>
+  <link rel="stylesheet" href="../../assets/css/style.css">
+  <link rel="stylesheet" href="../../assets/css/program-viewer.css">
+</head>
+<body>
+  <header class="navbar">
+    <div class="nav-container">
+      <a href="../../index.html" class="nav-brand">
+        <div class="brand-icon" style="background: linear-gradient(135deg, #f59e0b, #d97706);">
+          <span>&lt;/&gt;</span>
+        </div>
+        <span>JS Basics</span>
+      </a>
+      <nav>
+        <ul class="nav-links">
+          <li><a href="../../index.html" class="nav-link">Home</a></li>
+          <li><a href="../../html/index.html" class="nav-link">HTML</a></li>
+          <li><a href="../../css/index.html" class="nav-link">CSS</a></li>
+          <li><a href="../index.html" class="nav-link active">JavaScript</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main class="main-wrapper">
+    <nav class="breadcrumb-bar">
+      <a href="../../index.html">Home</a>
+      <span class="breadcrumb-separator">&rarr;</span>
+      <a href="../index.html">JavaScript</a>
+      <span class="breadcrumb-separator">&rarr;</span>
+      <a href="index.html">Basics</a>
+      <span class="breadcrumb-separator">&rarr;</span>
+      <span class="breadcrumb-current">JS-02: Arithmetic Operations</span>
+    </nav>
+
+    <section class="exp-header-card">
+      <div class="exp-meta-row">
+        <span class="exp-id-tag" style="background: #ca8a04;">JS-02</span>
+        <span class="exp-cat-tag">Math</span>
+      </div>
+      <h1 class="exp-heading">Comprehensive Arithmetic Operations Engine</h1>
+      <p class="exp-description">
+        Demonstrates basic arithmetic calculation operators in JavaScript: Addition (+), Subtraction (-), Multiplication (*), Floating-point Division (/), Modulus Remainder (%), and Power Exponentiation (**).
+      </p>
+      <div class="objective-box">
+        <div class="objective-title"><span>🎯</span> Practical Laboratory Objective</div>
+        <div class="objective-text">
+          Understand type coercion between string inputs (`input.value`) and numeric types (`parseFloat`), and learn to handle zero-division edge cases gracefully.
+        </div>
+      </div>
+    </section>
+
+    <!-- Live Demonstration -->
+    <section class="demo-section-wrapper">
+      <div class="demo-section-header">
+        <div class="demo-title"><span>⚡</span> Live Arithmetic Calculator</div>
+        <span class="demo-live-badge">Working Demo</span>
+      </div>
+      <div class="demo-body" style="background: #ffffff;">
+        <div class="demo-controls-row">
+          <div class="demo-input-group">
+            <label class="demo-input-label" for="num1">First Number (a):</label>
+            <input type="number" id="num1" class="demo-input" value="12" style="width: 140px;">
+          </div>
+          <div class="demo-input-group">
+            <label class="demo-input-label" for="num2">Second Number (b):</label>
+            <input type="number" id="num2" class="demo-input" value="4" style="width: 140px;">
+          </div>
+          <button class="demo-btn" onclick="calculateAll()" style="align-self: flex-end;">Calculate All Operations</button>
+        </div>
+
+        <div style="margin-top: 1.5rem; overflow-x: auto;">
+          <table style="width: 100%; border-collapse: collapse; font-size: 0.95rem;">
+            <thead>
+              <tr style="background: #f1f5f9; text-align: left;">
+                <th style="padding: 0.75rem; border: 1px solid var(--border);">Operation</th>
+                <th style="padding: 0.75rem; border: 1px solid var(--border);">Operator</th>
+                <th style="padding: 0.75rem; border: 1px solid var(--border);">Formula Expression</th>
+                <th style="padding: 0.75rem; border: 1px solid var(--border); color: #4f46e5;">Calculated Result</th>
+              </tr>
+            </thead>
+            <tbody id="arithmetic-results">
+              <!-- Populated via JS -->
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <!-- Source Code Section -->
+    <section class="source-section-wrapper">
+      <div class="source-header">
+        <div class="source-tabs">
+          <button class="code-tab-btn active" data-tab="js">JavaScript Source Code</button>
+        </div>
+        <div class="source-actions">
+          <button class="copy-code-btn" type="button">Copy Code</button>
+          <button class="toggle-code-btn" type="button">Hide Code</button>
+        </div>
+      </div>
+      <div class="code-content-container">
+        <div class="code-pane active" data-tab="js">
+<pre>function calculate(a, b) {
+  const sum        = a + b;
+  const difference = a - b;
+  const product    = a * b;
+  const quotient   = b !== 0 ? (a / b) : "Division by Zero Error";
+  const remainder  = b !== 0 ? (a % b) : "N/A";
+  const power      = a ** b;
+
+  return { sum, difference, product, quotient, remainder, power };
+}</pre>
+        </div>
+      </div>
+    </section>
+
+    <!-- Bottom Navigation -->
+    <nav class="exp-nav-bar">
+      <a href="hello-world.html" class="nav-btn nav-btn-prev">&larr; Previous (JS-01)</a>
+      <a href="index.html" class="nav-btn nav-btn-hub">All Basics Programs</a>
+      <a href="largest-of-three.html" class="nav-btn nav-btn-next">Next (JS-03) &rarr;</a>
+    </nav>
+  </main>
+
+  <script src="../../assets/js/code-viewer.js"></script>
+  <script>
+    function calculateAll() {
+      const a = parseFloat(document.getElementById('num1').value) || 0;
+      const b = parseFloat(document.getElementById('num2').value) || 0;
+
+      const ops = [
+        { name: "Addition", symbol: "+", expr: `${a} + ${b}`, res: a + b },
+        { name: "Subtraction", symbol: "-", expr: `${a} - ${b}`, res: a - b },
+        { name: "Multiplication", symbol: "*", expr: `${a} * ${b}`, res: a * b },
+        { name: "Division", symbol: "/", expr: `${a} / ${b}`, res: b !== 0 ? (a / b).toFixed(4) : "Undefined (Div by 0)" },
+        { name: "Modulus (Remainder)", symbol: "%", expr: `${a} % ${b}`, res: b !== 0 ? (a % b) : "Undefined" },
+        { name: "Exponentiation", symbol: "**", expr: `${a} ** ${b}`, res: a ** b }
+      ];
+
+      const tbody = document.getElementById('arithmetic-results');
+      tbody.innerHTML = ops.map(op => `
+        <tr>
+          <td style="padding: 0.6rem 0.75rem; border: 1px solid var(--border); font-weight: 600;">${op.name}</td>
+          <td style="padding: 0.6rem 0.75rem; border: 1px solid var(--border); font-family: var(--font-mono);">${op.symbol}</td>
+          <td style="padding: 0.6rem 0.75rem; border: 1px solid var(--border); font-family: var(--font-mono); color: #64748b;">${op.expr}</td>
+          <td style="padding: 0.6rem 0.75rem; border: 1px solid var(--border); font-family: var(--font-mono); font-weight: 700; color: #4f46e5;">${op.res}</td>
+        </tr>
+      `).join('');
+    }
+    calculateAll();
+  </script>
+</body>
+</html>

@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>BR 02 - setTimeout & setInterval | Web Tech Lab</title>
+  <link rel="stylesheet" href="../../assets/css/style.css">
+  <link rel="stylesheet" href="../../assets/css/program-viewer.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500&family=Inter:wght@400;500;600&family=Outfit:wght@600;700;800&display=swap" rel="stylesheet">
+  <style>
+    .timer-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.5rem;
+    }
+    @media (max-width: 768px) {
+      .timer-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+    .timer-card {
+      background: #0f172a;
+      border: 1px solid #334155;
+      border-radius: 12px;
+      padding: 1.75rem;
+    }
+    .timer-display {
+      font-family: 'Fira Code', monospace;
+      font-size: 2.5rem;
+      font-weight: 700;
+      color: #38bdf8;
+      text-align: center;
+      background: #1e293b;
+      border-radius: 8px;
+      padding: 1.25rem;
+      margin: 1rem 0;
+    }
+    .progress-track {
+      height: 8px;
+      background: #1e293b;
+      border-radius: 4px;
+      overflow: hidden;
+      margin-bottom: 1rem;
+    }
+    .progress-bar {
+      height: 100%;
+      width: 0%;
+      background: #38bdf8;
+      transition: width 0.1s linear;
+    }
+  </style>
+</head>
+<body>
+  <!-- Navbar -->
+  <nav class="navbar">
+    <div class="nav-container">
+      <a href="../../index.html" class="logo">
+        <span class="logo-icon">&lt;/&gt;</span>
+        <span>WebTech<span class="highlight">Lab</span></span>
+      </a>
+      <div class="nav-links">
+        <a href="../../index.html">Dashboard</a>
+        <a href="../../html/index.html">HTML</a>
+        <a href="../../css/index.html">CSS</a>
+        <a href="../index.html" class="active">JavaScript</a>
+      </div>
+    </div>
+  </nav>
+
+  <main class="page-container">
+    <div class="breadcrumb">
+      <a href="../../index.html">Home</a> &rsaquo; 
+      <a href="../index.html">JavaScript</a> &rsaquo; 
+      <a href="index.html">Browser</a> &rsaquo; 
+      <span>BR 02 - setTimeout & setInterval</span>
+    </div>
+
+    <div class="program-header">
+      <div class="program-badge">Browser BOM • Program 02</div>
+      <h1>setTimeout vs setInterval Asynchronous Timers</h1>
+      <p class="program-desc">
+        Demonstrate delayed execution using <code>setTimeout</code> and continuous polling 
+        using <code>setInterval</code>, along with id tracking and cancellation via 
+        <code>clearTimeout</code> and <code>clearInterval</code>.
+      </p>
+      <div class="student-pill">
+        <span>👨‍💻 Student: <strong>Shaik Roshan</strong></span>
+        <span>•</span>
+        <span>Reg No: <strong>[TO BE FILLED BY STUDENT]</strong></span>
+      </div>
+    </div>
+
+    <!-- Live Demo -->
+    <div class="demo-section">
+      <div class="demo-header">
+        <div class="demo-title">
+          <span>⏲️</span> Asynchronous Timer Playground
+        </div>
+        <span class="badge badge-success">BOM Timing APIs</span>
+      </div>
+      <div class="demo-body">
+        
+        <div class="timer-grid">
+          <!-- setTimeout Card -->
+          <div class="timer-card">
+            <h3 style="color: #38bdf8;">1. setTimeout() - One-Shot Delay</h3>
+            <p style="font-size: 0.85rem; color: #94a3b8; margin-top: 0.25rem;">
+              Fires a callback function once after a specified 3-second delay.
+            </p>
+
+            <div class="progress-track" style="margin-top: 1.25rem;">
+              <div id="timeoutProgress" class="progress-bar"></div>
+            </div>
+
+            <div id="timeoutStatus" class="timer-display" style="font-size: 1.5rem;">
+              Status: Idle
+            </div>
+
+            <div style="display: flex; gap: 0.5rem;">
+              <button class="btn btn-primary" id="btnStartTimeout" style="flex: 1;" onclick="startTimeoutDemo()">Start 3s Timer</button>
+              <button class="btn btn-secondary" onclick="cancelTimeoutDemo()">Cancel</button>
+            </div>
+          </div>
+
+          <!-- setInterval Card -->
+          <div class="timer-card">
+            <h3 style="color: #38bdf8;">2. setInterval() - Recurring Ticker</h3>
+            <p style="font-size: 0.85rem; color: #94a3b8; margin-top: 0.25rem;">
+              Repeats a callback function indefinitely at 1-second intervals.
+            </p>
+
+            <div id="intervalDisplay" class="timer-display">
+              0s
+            </div>
+
+            <div style="display: flex; gap: 0.5rem;">
+              <button class="btn btn-primary" id="btnStartInterval" style="flex: 1;" onclick="startIntervalDemo()">Start Interval</button>
+              <button class="btn btn-secondary" onclick="stopIntervalDemo()">Pause</button>
+              <button class="btn btn-secondary" onclick="resetIntervalDemo()">Reset</button>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- Source Code Viewer -->
+    <div class="code-viewer-section">
+      <div class="code-viewer-header">
+        <div class="code-tabs">
+          <button class="code-tab active" data-tab="js">JavaScript Implementation</button>
+        </div>
+        <div class="code-actions">
+          <button class="btn-secondary" id="copyCodeBtn">📋 Copy Code</button>
+        </div>
+      </div>
+      <div class="code-body">
+        <pre><code id="sourceCode">// 1. One-Shot Timeout
+let timeoutId = setTimeout(() => {
+  console.log("3 seconds elapsed!");
+}, 3000);
+
+// Cancel timeout before it fires
+clearTimeout(timeoutId);
+
+// 2. Recurring Interval
+let count = 0;
+let intervalId = setInterval(() => {
+  count++;
+  console.log(`Tick count: ${count}`);
+}, 1000);
+
+// Cancel recurring interval
+clearInterval(intervalId);</code></pre>
+      </div>
+    </div>
+
+    <!-- Navigation -->
+    <div class="program-nav">
+      <a href="window-dialogs.html" class="nav-prev">&larr; BR 01: Window Dialogs</a>
+      <a href="digital-clock.html" class="nav-next">BR 03: Digital Clock &rarr;</a>
+    </div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-content">
+      <p>&copy; 2026 Web Technology Practical Laboratory • Prepared by <strong>Shaik Roshan</strong></p>
+      <p class="subtext">Computer Science & Engineering Department</p>
+    </div>
+  </footer>
+
+  <script src="../../assets/js/code-viewer.js"></script>
+  <script>
+    // setTimeout Demo
+    let timeoutId = null;
+    let animTimer = null;
+    const progressEl = document.getElementById("timeoutProgress");
+    const timeoutStatus = document.getElementById("timeoutStatus");
+
+    function startTimeoutDemo() {
+      cancelTimeoutDemo();
+      timeoutStatus.textContent = "Running (3.0s)...";
+      timeoutStatus.style.color = "#f59e0b";
+      progressEl.style.width = "0%";
+
+      let elapsed = 0;
+      animTimer = setInterval(() => {
+        elapsed += 50;
+        const pct = Math.min(100, (elapsed / 3000) * 100);
+        progressEl.style.width = `${pct}%`;
+      }, 50);
+
+      timeoutId = setTimeout(() => {
+        clearInterval(animTimer);
+        progressEl.style.width = "100%";
+        timeoutStatus.textContent = "🎉 Timer Fired!";
+        timeoutStatus.style.color = "#10b981";
+      }, 3000);
+    }
+
+    function cancelTimeoutDemo() {
+      clearTimeout(timeoutId);
+      clearInterval(animTimer);
+      progressEl.style.width = "0%";
+      timeoutStatus.textContent = "Cancelled / Idle";
+      timeoutStatus.style.color = "#38bdf8";
+    }
+
+    // setInterval Demo
+    let intervalId = null;
+    let tick = 0;
+    const intervalDisplay = document.getElementById("intervalDisplay");
+
+    function startIntervalDemo() {
+      if (intervalId) return;
+      intervalId = setInterval(() => {
+        tick++;
+        intervalDisplay.textContent = `${tick}s`;
+      }, 1000);
+    }
+
+    function stopIntervalDemo() {
+      clearInterval(intervalId);
+      intervalId = null;
+    }
+
+    function resetIntervalDemo() {
+      stopIntervalDemo();
+      tick = 0;
+      intervalDisplay.textContent = "0s";
+    }
+  </script>
+</body>
+</html>

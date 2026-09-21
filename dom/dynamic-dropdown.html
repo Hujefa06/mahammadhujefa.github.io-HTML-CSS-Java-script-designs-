@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>DOM 11 - Dynamic Select Dropdown | Web Tech Lab</title>
+  <link rel="stylesheet" href="../../assets/css/style.css">
+  <link rel="stylesheet" href="../../assets/css/program-viewer.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500&family=Inter:wght@400;500;600&family=Outfit:wght@600;700;800&display=swap" rel="stylesheet">
+  <style>
+    .dropdown-layout {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.5rem;
+    }
+    @media (max-width: 768px) {
+      .dropdown-layout {
+        grid-template-columns: 1fr;
+      }
+    }
+    .panel {
+      background: #0f172a;
+      border: 1px solid #334155;
+      padding: 1.5rem;
+      border-radius: 10px;
+    }
+    .select-styled {
+      width: 100%;
+      background: #1e293b;
+      border: 1px solid #475569;
+      color: #f8fafc;
+      padding: 0.75rem 1rem;
+      border-radius: 8px;
+      font-size: 1rem;
+      margin-bottom: 1rem;
+    }
+    .input-field {
+      width: 100%;
+      background: #1e293b;
+      border: 1px solid #475569;
+      color: #f8fafc;
+      padding: 0.65rem 0.85rem;
+      border-radius: 6px;
+      margin-bottom: 0.75rem;
+    }
+    .selection-preview {
+      background: #1e293b;
+      border: 1px solid #3b82f6;
+      border-radius: 8px;
+      padding: 1.25rem;
+      text-align: center;
+    }
+  </style>
+</head>
+<body>
+  <!-- Navbar -->
+  <nav class="navbar">
+    <div class="nav-container">
+      <a href="../../index.html" class="logo">
+        <span class="logo-icon">&lt;/&gt;</span>
+        <span>WebTech<span class="highlight">Lab</span></span>
+      </a>
+      <div class="nav-links">
+        <a href="../../index.html">Dashboard</a>
+        <a href="../../html/index.html">HTML</a>
+        <a href="../../css/index.html">CSS</a>
+        <a href="../index.html" class="active">JavaScript</a>
+      </div>
+    </div>
+  </nav>
+
+  <main class="page-container">
+    <div class="breadcrumb">
+      <a href="../../index.html">Home</a> &rsaquo; 
+      <a href="../index.html">JavaScript</a> &rsaquo; 
+      <a href="index.html">DOM</a> &rsaquo; 
+      <span>DOM 11 - Dynamic Dropdown</span>
+    </div>
+
+    <div class="program-header">
+      <div class="program-badge">DOM Manipulation • Program 11</div>
+      <h1>Dynamic Select Dropdown Generator</h1>
+      <p class="program-desc">
+        Populate, add, remove, and manage HTML5 <code>&lt;select&gt;</code> options programmatically 
+        using <code>new Option()</code> constructor and DOM collection APIs.
+      </p>
+      <div class="student-pill">
+        <span>👨‍💻 Student: <strong>Shaik Roshan</strong></span>
+        <span>•</span>
+        <span>Reg No: <strong>[TO BE FILLED BY STUDENT]</strong></span>
+      </div>
+    </div>
+
+    <!-- Live Demo -->
+    <div class="demo-section">
+      <div class="demo-header">
+        <div class="demo-title">
+          <span>🔽</span> Interactive Select & Options Control
+        </div>
+        <span class="badge badge-success">Interactive Demo</span>
+      </div>
+      <div class="demo-body">
+        
+        <div class="dropdown-layout">
+          <!-- Active Dropdown -->
+          <div class="panel">
+            <h4 style="margin-bottom: 0.75rem; color: #38bdf8;">Active Select Element:</h4>
+            <select id="courseSelect" class="select-styled" onchange="handleCourseChange()">
+              <option value="">-- Choose an Elective Course --</option>
+              <option value="cs-401">Full Stack Web Development</option>
+              <option value="cs-402">Cloud Computing & DevOps</option>
+              <option value="cs-403">Machine Learning Fundamentals</option>
+            </select>
+
+            <div class="selection-preview">
+              <div style="font-size: 0.85rem; color: #94a3b8; margin-bottom: 0.3rem;">Selected Elective:</div>
+              <h3 id="selectedName" style="color: #38bdf8;">None Selected</h3>
+              <p id="selectedVal" style="font-family: 'Fira Code', monospace; font-size: 0.85rem; color: #64748b; margin-top: 0.25rem;">Value: -</p>
+            </div>
+          </div>
+
+          <!-- Controls to add/remove options -->
+          <div class="panel">
+            <h4 style="margin-bottom: 0.75rem; color: #38bdf8;">Option Controls:</h4>
+            
+            <label style="display:block; font-size: 0.8rem; color:#94a3b8; margin-bottom: 0.2rem;">New Course Title:</label>
+            <input type="text" id="newCourseText" class="input-field" placeholder="e.g. Cyber Security & Cryptography">
+
+            <label style="display:block; font-size: 0.8rem; color:#94a3b8; margin-bottom: 0.2rem;">Course Code (Value):</label>
+            <input type="text" id="newCourseVal" class="input-field" placeholder="e.g. cs-404">
+
+            <div style="display: flex; gap: 0.5rem; flex-wrap: wrap;">
+              <button class="btn btn-primary" onclick="addCourseOption()">+ Add Option</button>
+              <button class="btn btn-secondary" onclick="removeSelectedOption()">Remove Selected</button>
+              <button class="btn btn-secondary" style="background:#ef4444; color:#fff;" onclick="resetOptions()">Reset Default</button>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- Source Code Viewer -->
+    <div class="code-viewer-section">
+      <div class="code-viewer-header">
+        <div class="code-tabs">
+          <button class="code-tab active" data-tab="js">JavaScript Implementation</button>
+        </div>
+        <div class="code-actions">
+          <button class="btn-secondary" id="copyCodeBtn">📋 Copy Code</button>
+        </div>
+      </div>
+      <div class="code-body">
+        <pre><code id="sourceCode">const select = document.getElementById("courseSelect");
+
+// 1. Add new Option using Option() constructor
+function addOption(text, value) {
+  const opt = new Option(text, value);
+  select.add(opt); // or select.appendChild(opt);
+}
+
+// 2. Read selected option
+function handleSelectChange() {
+  const selectedText = select.options[select.selectedIndex].text;
+  const selectedVal = select.value;
+  console.log(selectedText, selectedVal);
+}
+
+// 3. Remove selected option
+function removeSelected() {
+  if (select.selectedIndex > 0) {
+    select.remove(select.selectedIndex);
+  }
+}</code></pre>
+      </div>
+    </div>
+
+    <!-- Navigation -->
+    <div class="program-nav">
+      <a href="table-filter-sort.html" class="nav-prev">&larr; DOM 10: Table Filter & Sort</a>
+      <a href="cascading-dropdown.html" class="nav-next">DOM 12: Cascading Dropdowns &rarr;</a>
+    </div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-content">
+      <p>&copy; 2026 Web Technology Practical Laboratory • Prepared by <strong>Shaik Roshan</strong></p>
+      <p class="subtext">Computer Science & Engineering Department</p>
+    </div>
+  </footer>
+
+  <script src="../../assets/js/code-viewer.js"></script>
+  <script>
+    const select = document.getElementById("courseSelect");
+    const selectedName = document.getElementById("selectedName");
+    const selectedVal = document.getElementById("selectedVal");
+
+    function handleCourseChange() {
+      if (select.selectedIndex <= 0) {
+        selectedName.textContent = "None Selected";
+        selectedVal.textContent = "Value: -";
+        return;
+      }
+      const opt = select.options[select.selectedIndex];
+      selectedName.textContent = opt.text;
+      selectedVal.textContent = `Value: "${opt.value}" (Index: ${select.selectedIndex})`;
+    }
+
+    function addCourseOption() {
+      const text = document.getElementById("newCourseText").value.trim();
+      const val = document.getElementById("newCourseVal").value.trim();
+
+      if (!text || !val) {
+        alert("Please provide both course title and code!");
+        return;
+      }
+
+      const opt = new Option(text, val);
+      select.add(opt);
+      select.value = val;
+      handleCourseChange();
+
+      document.getElementById("newCourseText").value = "";
+      document.getElementById("newCourseVal").value = "";
+    }
+
+    function removeSelectedOption() {
+      if (select.selectedIndex <= 0) {
+        alert("Select an elective to remove!");
+        return;
+      }
+      select.remove(select.selectedIndex);
+      handleCourseChange();
+    }
+
+    function resetOptions() {
+      select.innerHTML = `
+        <option value="">-- Choose an Elective Course --</option>
+        <option value="cs-401">Full Stack Web Development</option>
+        <option value="cs-402">Cloud Computing & DevOps</option>
+        <option value="cs-403">Machine Learning Fundamentals</option>
+      `;
+      handleCourseChange();
+    }
+  </script>
+</body>
+</html>

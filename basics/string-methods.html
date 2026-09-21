@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>String Methods Explorer | JS-16</title>
+  <link rel="stylesheet" href="../../assets/css/style.css">
+  <link rel="stylesheet" href="../../assets/css/program-viewer.css">
+</head>
+<body>
+  <header class="navbar">
+    <div class="nav-container">
+      <a href="../../index.html" class="nav-brand">
+        <div class="brand-icon" style="background: linear-gradient(135deg, #f59e0b, #d97706);">
+          <span>&lt;/&gt;</span>
+        </div>
+        <span>JS Basics</span>
+      </a>
+      <nav>
+        <ul class="nav-links">
+          <li><a href="../../index.html" class="nav-link">Home</a></li>
+          <li><a href="../../html/index.html" class="nav-link">HTML</a></li>
+          <li><a href="../../css/index.html" class="nav-link">CSS</a></li>
+          <li><a href="../index.html" class="nav-link active">JavaScript</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main class="main-wrapper">
+    <nav class="breadcrumb-bar">
+      <a href="../../index.html">Home</a>
+      <span class="breadcrumb-separator">&rarr;</span>
+      <a href="../index.html">JavaScript</a>
+      <span class="breadcrumb-separator">&rarr;</span>
+      <a href="index.html">Basics</a>
+      <span class="breadcrumb-separator">&rarr;</span>
+      <span class="breadcrumb-current">JS-16: String Methods</span>
+    </nav>
+
+    <section class="exp-header-card">
+      <div class="exp-meta-row">
+        <span class="exp-id-tag" style="background: #ca8a04;">JS-16</span>
+        <span class="exp-cat-tag">Strings</span>
+      </div>
+      <h1 class="exp-heading">JavaScript String Methods Explorer</h1>
+      <p class="exp-description">
+        Demonstrates built-in methods on JavaScript String primitives: length, toUpperCase(), toLowerCase(), charAt(), slice(), substring(), replace(), includes(), trim(), and split().
+      </p>
+      <div class="objective-box">
+        <div class="objective-title"><span>🎯</span> Practical Laboratory Objective</div>
+        <div class="objective-text">
+          Understand string immutability in JavaScript (methods return new strings rather than mutating the original) and master string slicing and tokenization.
+        </div>
+      </div>
+    </section>
+
+    <!-- Live Demonstration -->
+    <section class="demo-section-wrapper">
+      <div class="demo-section-header">
+        <div class="demo-title"><span>⚡</span> Live String Methods Inspector</div>
+        <span class="demo-live-badge">Working Demo</span>
+      </div>
+      <div class="demo-body" style="background: #ffffff;">
+        <div class="demo-controls-row">
+          <div class="demo-input-group" style="flex: 1; max-width: 400px;">
+            <label class="demo-input-label" for="str-input">Input String:</label>
+            <input type="text" id="str-input" class="demo-input" value="  Web Programming Practical Record  " style="width: 100%;">
+          </div>
+          <button class="demo-btn" onclick="inspectString()" style="align-self: flex-end;">Analyze String</button>
+        </div>
+
+        <div style="margin-top: 1.5rem; overflow-x: auto;">
+          <table style="width: 100%; border-collapse: collapse; font-size: 0.9rem;">
+            <thead>
+              <tr style="background: #f1f5f9; text-align: left;">
+                <th style="padding: 0.65rem; border: 1px solid var(--border);">Method Call</th>
+                <th style="padding: 0.65rem; border: 1px solid var(--border);">Description</th>
+                <th style="padding: 0.65rem; border: 1px solid var(--border); color: #4f46e5;">Evaluated Output</th>
+              </tr>
+            </thead>
+            <tbody id="string-table-body">
+              <!-- Populated via JS -->
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <!-- Source Code Section -->
+    <section class="source-section-wrapper">
+      <div class="source-header">
+        <div class="source-tabs">
+          <button class="code-tab-btn active" data-tab="js">JavaScript Source Code</button>
+        </div>
+        <div class="source-actions">
+          <button class="copy-code-btn" type="button">Copy Code</button>
+          <button class="toggle-code-btn" type="button">Hide Code</button>
+        </div>
+      </div>
+      <div class="code-content-container">
+        <div class="code-pane active" data-tab="js">
+<pre>const text = "  Web Programming Practical Record  ";
+
+const length      = text.length;
+const trimmed     = text.trim();
+const upper       = text.toUpperCase();
+const sliced      = trimmed.slice(0, 15);
+const replaced    = trimmed.replace("Record", "Portfolio");
+const wordsArray  = trimmed.split(" ");</pre>
+        </div>
+      </div>
+    </section>
+
+    <!-- Bottom Navigation -->
+    <nav class="exp-nav-bar">
+      <a href="functions-demo.html" class="nav-btn nav-btn-prev">&larr; Previous (JS-15)</a>
+      <a href="index.html" class="nav-btn nav-btn-hub">All Basics Programs</a>
+      <a href="es6-classes.html" class="nav-btn nav-btn-next">Next (JS-17) &rarr;</a>
+    </nav>
+  </main>
+
+  <script src="../../assets/js/code-viewer.js"></script>
+  <script>
+    function inspectString() {
+      const s = document.getElementById('str-input').value;
+      const t = s.trim();
+
+      const data = [
+        { call: ".length", desc: "Total character count (including whitespace)", val: s.length },
+        { call: ".trim()", desc: "Strips leading and trailing whitespace", val: `"${t}"` },
+        { call: ".toUpperCase()", desc: "Converts entire string to uppercase", val: `"${s.toUpperCase()}"` },
+        { call: ".toLowerCase()", desc: "Converts entire string to lowercase", val: `"${s.toLowerCase()}"` },
+        { call: ".charAt(0)", desc: "First non-empty character", val: `'${t.charAt(0)}'` },
+        { call: ".slice(0, 15)", desc: "Extracts characters between indices 0 and 15", val: `"${t.slice(0, 15)}"` },
+        { call: ".includes('Practical')", desc: "Checks substring presence", val: t.includes("Practical") },
+        { call: ".replace('Record', 'Portfolio')", desc: "Substitutes matching pattern", val: `"${t.replace("Record", "Portfolio")}"` },
+        { call: ".split(' ')", desc: "Splits words into an Array", val: JSON.stringify(t.split(/\s+/)) }
+      ];
+
+      document.getElementById('string-table-body').innerHTML = data.map(row => `
+        <tr>
+          <td style="padding: 0.6rem; border: 1px solid var(--border); font-family: var(--font-mono); font-weight: 600; color: #ca8a04;">${row.call}</td>
+          <td style="padding: 0.6rem; border: 1px solid var(--border); color: #64748b;">${row.desc}</td>
+          <td style="padding: 0.6rem; border: 1px solid var(--border); font-family: var(--font-mono); font-weight: 700; color: #0f172a;">${row.val}</td>
+        </tr>
+      `).join('');
+    }
+    inspectString();
+  </script>
+</body>
+</html>

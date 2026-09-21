@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Bootstrap Components | HTML-14</title>
+  <link rel="stylesheet" href="../assets/css/style.css">
+  <link rel="stylesheet" href="../assets/css/program-viewer.css">
+  <style>
+    .bs-components-container {
+      display: flex;
+      flex-direction: column;
+      gap: 2rem;
+    }
+    /* Contextual Alerts */
+    .bs-alert {
+      padding: 0.85rem 1.25rem;
+      border-radius: 6px;
+      font-size: 0.95rem;
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      border: 1px solid transparent;
+    }
+    .bs-alert-success { background: #d1fae5; color: #065f46; border-color: #a7f3d0; }
+    .bs-alert-warning { background: #fef3c7; color: #92400e; border-color: #fde68a; }
+    .bs-alert-danger  { background: #fee2e2; color: #991b1b; border-color: #fecaca; }
+
+    /* Button Group */
+    .bs-btn-group {
+      display: inline-flex;
+      border-radius: 6px;
+      overflow: hidden;
+      border: 1px solid #cbd5e1;
+    }
+    .bs-btn-group button {
+      padding: 0.6rem 1.2rem;
+      border: none;
+      background: #ffffff;
+      color: #334155;
+      font-weight: 600;
+      cursor: pointer;
+      border-right: 1px solid #cbd5e1;
+      font-size: 0.9rem;
+    }
+    .bs-btn-group button:last-child { border-right: none; }
+    .bs-btn-group button:hover { background: #f1f5f9; }
+    .bs-btn-group button.active { background: #2563eb; color: #ffffff; }
+
+    /* Progress Bar */
+    .bs-progress {
+      height: 18px;
+      background: #e2e8f0;
+      border-radius: 9999px;
+      overflow: hidden;
+      margin: 0.5rem 0;
+    }
+    .bs-progress-bar {
+      height: 100%;
+      background: linear-gradient(90deg, #2563eb, #3b82f6);
+      color: #ffffff;
+      font-size: 0.75rem;
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 9999px;
+      transition: width 0.4s ease;
+    }
+  </style>
+</head>
+<body>
+  <header class="navbar">
+    <div class="nav-container">
+      <a href="../index.html" class="nav-brand">
+        <div class="brand-icon" style="background: linear-gradient(135deg, #e34f26, #f06529);">
+          <span>&lt;/&gt;</span>
+        </div>
+        <span>HTML Programs</span>
+      </a>
+      <nav>
+        <ul class="nav-links">
+          <li><a href="../index.html" class="nav-link">Home</a></li>
+          <li><a href="index.html" class="nav-link active">HTML</a></li>
+          <li><a href="../css/index.html" class="nav-link">CSS</a></li>
+          <li><a href="../javascript/index.html" class="nav-link">JavaScript</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main class="main-wrapper">
+    <nav class="breadcrumb-bar">
+      <a href="../index.html">Home</a>
+      <span class="breadcrumb-separator">&rarr;</span>
+      <a href="index.html">HTML Programs</a>
+      <span class="breadcrumb-separator">&rarr;</span>
+      <span class="breadcrumb-current">HTML-14: Bootstrap Components</span>
+    </nav>
+
+    <section class="exp-header-card">
+      <div class="exp-meta-row">
+        <span class="exp-id-tag" style="background: #e34f26;">HTML-14</span>
+        <span class="exp-cat-tag">Layout & Semantic</span>
+      </div>
+      <h1 class="exp-heading">Modern Component Patterns (Bootstrap Inspired)</h1>
+      <p class="exp-description">
+        Demonstrates the implementation of widely-used UI design system components such as contextual alerts (Success, Warning, Danger), pill badges, button groups with active state toggles, and animated progress bars.
+      </p>
+      <div class="objective-box">
+        <div class="objective-title"><span>🎯</span> Practical Laboratory Objective</div>
+        <div class="objective-text">
+          Understand component modularity and standard design conventions popularized by front-end UI frameworks to create intuitive interactive feedback states.
+        </div>
+      </div>
+    </section>
+
+    <!-- Live Demonstration -->
+    <section class="demo-section-wrapper">
+      <div class="demo-section-header">
+        <div class="demo-title"><span>⚡</span> Live Component Showcase</div>
+        <span class="demo-live-badge">Working Demo</span>
+      </div>
+      <div class="demo-body" style="background: #ffffff;">
+        <div class="bs-components-container">
+          <!-- 1. Contextual Alerts -->
+          <div>
+            <h3 style="color: #0f172a; margin-bottom: 0.75rem; font-size: 1.1rem;">1. Contextual Notification Banners</h3>
+            <div style="display: flex; flex-direction: column; gap: 0.6rem;">
+              <div class="bs-alert bs-alert-success">
+                <span>✅</span> <strong>Success!</strong> Laboratory experiment HTML-14 verified and compiled.
+              </div>
+              <div class="bs-alert bs-alert-warning">
+                <span>⚠️</span> <strong>Notice:</strong> Submission deadline approaching for semester portfolio.
+              </div>
+              <div class="bs-alert bs-alert-danger">
+                <span>🚫</span> <strong>Error:</strong> Please ensure all mandatory form inputs are populated.
+              </div>
+            </div>
+          </div>
+
+          <!-- 2. Button Group -->
+          <div>
+            <h3 style="color: #0f172a; margin-bottom: 0.75rem; font-size: 1.1rem;">2. Interactive Button Segment Group</h3>
+            <div class="bs-btn-group" id="demo-btn-group">
+              <button type="button" class="active" onclick="setBtnGroup(this)">Day View</button>
+              <button type="button" onclick="setBtnGroup(this)">Week View</button>
+              <button type="button" onclick="setBtnGroup(this)">Month View</button>
+            </div>
+          </div>
+
+          <!-- 3. Progress Bars -->
+          <div>
+            <h3 style="color: #0f172a; margin-bottom: 0.75rem; font-size: 1.1rem;">3. Dynamic Academic Progress Bars</h3>
+            <div style="margin-bottom: 0.75rem;">
+              <div style="display: flex; justify-content: space-between; font-size: 0.85rem; font-weight: 600; color: #334155;">
+                <span>HTML Practical Programs Complete</span>
+                <span>100%</span>
+              </div>
+              <div class="bs-progress">
+                <div class="bs-progress-bar" style="width: 100%; background: #10b981;">100%</div>
+              </div>
+            </div>
+
+            <div>
+              <div style="display: flex; justify-content: space-between; font-size: 0.85rem; font-weight: 600; color: #334155;">
+                <span>Semester Coursework Progress</span>
+                <span>85%</span>
+              </div>
+              <div class="bs-progress">
+                <div class="bs-progress-bar" style="width: 85%;">85%</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Source Code Section -->
+    <section class="source-section-wrapper">
+      <div class="source-header">
+        <div class="source-tabs">
+          <button class="code-tab-btn active" data-tab="html">HTML &amp; CSS Source</button>
+        </div>
+        <div class="source-actions">
+          <button class="copy-code-btn" type="button">Copy Code</button>
+          <button class="toggle-code-btn" type="button">Hide Code</button>
+        </div>
+      </div>
+      <div class="code-content-container">
+        <div class="code-pane active" data-tab="html">
+<pre>&lt;!-- Contextual Alert Banner --&gt;
+&lt;div class="alert alert-success" role="alert"&gt;
+  &lt;strong&gt;Success!&lt;/strong&gt; Practical assignment uploaded.
+&lt;/div&gt;
+
+&lt;!-- Button Group --&gt;
+&lt;div class="btn-group" role="group"&gt;
+  &lt;button type="button" class="btn btn-primary"&gt;Left&lt;/button&gt;
+  &lt;button type="button" class="btn btn-secondary"&gt;Middle&lt;/button&gt;
+  &lt;button type="button" class="btn btn-secondary"&gt;Right&lt;/button&gt;
+&lt;/div&gt;
+
+&lt;!-- Progress Bar --&gt;
+&lt;div class="progress"&gt;
+  &lt;div class="progress-bar" style="width: 85%"&gt;85%&lt;/div&gt;
+&lt;/div&gt;</pre>
+        </div>
+      </div>
+    </section>
+
+    <!-- Bottom Navigation -->
+    <nav class="exp-nav-bar">
+      <a href="html-13-responsive-media-queries.html" class="nav-btn nav-btn-prev">&larr; Previous (HTML-13)</a>
+      <a href="index.html" class="nav-btn nav-btn-hub">All HTML Programs</a>
+      <a href="html-15-portfolio.html" class="nav-btn nav-btn-next">Next (HTML-15) &rarr;</a>
+    </nav>
+  </main>
+
+  <script src="../assets/js/code-viewer.js"></script>
+  <script>
+    function setBtnGroup(btn) {
+      document.querySelectorAll('#demo-btn-group button').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+    }
+  </script>
+</body>
+</html>

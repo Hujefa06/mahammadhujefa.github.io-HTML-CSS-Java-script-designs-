@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>DOM 09 - Table Row CRUD Operations | Web Tech Lab</title>
+  <link rel="stylesheet" href="../../assets/css/style.css">
+  <link rel="stylesheet" href="../../assets/css/program-viewer.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500&family=Inter:wght@400;500;600&family=Outfit:wght@600;700;800&display=swap" rel="stylesheet">
+  <style>
+    .form-panel {
+      background: #0f172a;
+      border: 1px solid #334155;
+      padding: 1.25rem;
+      border-radius: 10px;
+      margin-bottom: 1.5rem;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 1rem;
+      align-items: end;
+    }
+    .form-panel input, .form-panel select {
+      width: 100%;
+      background: #1e293b;
+      border: 1px solid #475569;
+      color: #f8fafc;
+      padding: 0.6rem 0.75rem;
+      border-radius: 6px;
+    }
+    .crud-table {
+      width: 100%;
+      border-collapse: collapse;
+      background: #0f172a;
+      border-radius: 10px;
+      overflow: hidden;
+      border: 1px solid #334155;
+    }
+    .crud-table th {
+      background: #1e293b;
+      color: #38bdf8;
+      padding: 12px 14px;
+      text-align: left;
+      font-size: 0.85rem;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+    .crud-table td {
+      padding: 12px 14px;
+      border-top: 1px solid #1e293b;
+      color: #e2e8f0;
+      font-size: 0.9rem;
+    }
+    .crud-table tr:hover {
+      background: rgba(255,255,255,0.02);
+    }
+    .action-btn-group {
+      display: flex;
+      gap: 0.5rem;
+    }
+    .btn-edit {
+      background: #f59e0b;
+      color: #000;
+      padding: 4px 10px;
+      border-radius: 4px;
+      border: none;
+      font-size: 0.8rem;
+      cursor: pointer;
+      font-weight: 500;
+    }
+    .btn-del {
+      background: #ef4444;
+      color: #fff;
+      padding: 4px 10px;
+      border-radius: 4px;
+      border: none;
+      font-size: 0.8rem;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+  <!-- Navbar -->
+  <nav class="navbar">
+    <div class="nav-container">
+      <a href="../../index.html" class="logo">
+        <span class="logo-icon">&lt;/&gt;</span>
+        <span>WebTech<span class="highlight">Lab</span></span>
+      </a>
+      <div class="nav-links">
+        <a href="../../index.html">Dashboard</a>
+        <a href="../../html/index.html">HTML</a>
+        <a href="../../css/index.html">CSS</a>
+        <a href="../index.html" class="active">JavaScript</a>
+      </div>
+    </div>
+  </nav>
+
+  <main class="page-container">
+    <div class="breadcrumb">
+      <a href="../../index.html">Home</a> &rsaquo; 
+      <a href="../index.html">JavaScript</a> &rsaquo; 
+      <a href="index.html">DOM</a> &rsaquo; 
+      <span>DOM 09 - Table Row CRUD Operations</span>
+    </div>
+
+    <div class="program-header">
+      <div class="program-badge">DOM Manipulation • Program 09</div>
+      <h1>Student Records Table CRUD (Create, Read, Update, Delete)</h1>
+      <p class="program-desc">
+        Perform complete in-memory CRUD operations directly on DOM table rows: adding new entries, 
+        inline editing cell data, updating records, and removing table rows.
+      </p>
+      <div class="student-pill">
+        <span>👨‍💻 Student: <strong>Shaik Roshan</strong></span>
+        <span>•</span>
+        <span>Reg No: <strong>[TO BE FILLED BY STUDENT]</strong></span>
+      </div>
+    </div>
+
+    <!-- Live Demo -->
+    <div class="demo-section">
+      <div class="demo-header">
+        <div class="demo-title">
+          <span>📋</span> Student Registration & Grade Records
+        </div>
+        <span class="badge badge-success">Interactive CRUD Table</span>
+      </div>
+      <div class="demo-body">
+        
+        <div class="form-panel">
+          <div>
+            <label style="display:block; font-size:0.8rem; color:#94a3b8; margin-bottom:0.3rem;">Student Name:</label>
+            <input type="text" id="studName" placeholder="e.g. Rahul Sharma">
+          </div>
+          <div>
+            <label style="display:block; font-size:0.8rem; color:#94a3b8; margin-bottom:0.3rem;">Roll Number:</label>
+            <input type="text" id="studRoll" placeholder="e.g. 21CS042">
+          </div>
+          <div>
+            <label style="display:block; font-size:0.8rem; color:#94a3b8; margin-bottom:0.3rem;">Department:</label>
+            <select id="studDept">
+              <option value="CSE">Computer Science (CSE)</option>
+              <option value="IT">Information Technology (IT)</option>
+              <option value="ECE">Electronics (ECE)</option>
+              <option value="MECH">Mechanical (MECH)</option>
+            </select>
+          </div>
+          <div>
+            <label style="display:block; font-size:0.8rem; color:#94a3b8; margin-bottom:0.3rem;">Marks (%):</label>
+            <input type="number" id="studMarks" placeholder="e.g. 92" min="0" max="100">
+          </div>
+          <div>
+            <input type="hidden" id="editIndex" value="-1">
+            <button class="btn btn-primary" id="submitBtn" style="width: 100%;" onclick="handleSaveRecord()">Add Record</button>
+          </div>
+        </div>
+
+        <table class="crud-table" id="studentTable">
+          <thead>
+            <tr>
+              <th>#</th>
+              <th>Roll Number</th>
+              <th>Student Name</th>
+              <th>Department</th>
+              <th>Marks (%)</th>
+              <th>Actions</th>
+            </tr>
+          </thead>
+          <tbody id="tableBody">
+            <!-- Populated via JS -->
+          </tbody>
+        </table>
+
+      </div>
+    </div>
+
+    <!-- Source Code Viewer -->
+    <div class="code-viewer-section">
+      <div class="code-viewer-header">
+        <div class="code-tabs">
+          <button class="code-tab active" data-tab="js">JavaScript Implementation</button>
+        </div>
+        <div class="code-actions">
+          <button class="btn-secondary" id="copyCodeBtn">📋 Copy Code</button>
+        </div>
+      </div>
+      <div class="code-body">
+        <pre><code id="sourceCode">let students = [
+  { roll: "22CSE01", name: "Shaik Roshan", dept: "CSE", marks: 95 },
+  { roll: "22CSE02", name: "Ananya Patel", dept: "IT", marks: 88 }
+];
+
+function renderTable() {
+  const tbody = document.getElementById("tableBody");
+  tbody.innerHTML = "";
+
+  students.forEach((s, i) => {
+    const tr = tbody.insertRow();
+    tr.innerHTML = `
+      &lt;td&gt;${i + 1}&lt;/td&gt;
+      &lt;td&gt;${s.roll}&lt;/td&gt;
+      &lt;td&gt;${s.name}&lt;/td&gt;
+      &lt;td&gt;${s.dept}&lt;/td&gt;
+      &lt;td&gt;${s.marks}%&lt;/td&gt;
+      &lt;td&gt;
+        &lt;button class="btn-edit" onclick="editRow(${i})"&gt;Edit&lt;/button&gt;
+        &lt;button class="btn-del" onclick="deleteRow(${i})"&gt;Delete&lt;/button&gt;
+      &lt;/td&gt;
+    `;
+  });
+}
+
+function deleteRow(index) {
+  students.splice(index, 1);
+  renderTable();
+}</code></pre>
+      </div>
+    </div>
+
+    <!-- Navigation -->
+    <div class="program-nav">
+      <a href="dynamic-tables.html" class="nav-prev">&larr; DOM 08: Dynamic Tables</a>
+      <a href="table-filter-sort.html" class="nav-next">DOM 10: Table Filter & Sort &rarr;</a>
+    </div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-content">
+      <p>&copy; 2026 Web Technology Practical Laboratory • Prepared by <strong>Shaik Roshan</strong></p>
+      <p class="subtext">Computer Science & Engineering Department</p>
+    </div>
+  </footer>
+
+  <script src="../../assets/js/code-viewer.js"></script>
+  <script>
+    let students = [
+      { roll: "22CSE01", name: "Shaik Roshan", dept: "CSE", marks: 96 },
+      { roll: "22CSE05", name: "Kiran Kumar", dept: "IT", marks: 84 },
+      { roll: "22ECE12", name: "Pooja Hegde", dept: "ECE", marks: 91 }
+    ];
+
+    function renderTable() {
+      const tbody = document.getElementById("tableBody");
+      tbody.innerHTML = "";
+
+      if (students.length === 0) {
+        tbody.innerHTML = `<tr><td colspan="6" style="text-align: center; color: #94a3b8; padding: 2rem;">No records found. Add one above!</td></tr>`;
+        return;
+      }
+
+      students.forEach((s, idx) => {
+        const row = tbody.insertRow();
+        row.innerHTML = `
+          <td>${idx + 1}</td>
+          <td><strong>${s.roll}</strong></td>
+          <td>${s.name}</td>
+          <td><span class="badge badge-primary">${s.dept}</span></td>
+          <td>${s.marks}%</td>
+          <td>
+            <div class="action-btn-group">
+              <button class="btn-edit" onclick="editRecord(${idx})">Edit</button>
+              <button class="btn-del" onclick="deleteRecord(${idx})">Delete</button>
+            </div>
+          </td>
+        `;
+      });
+    }
+
+    function handleSaveRecord() {
+      const name = document.getElementById("studName").value.trim();
+      const roll = document.getElementById("studRoll").value.trim();
+      const dept = document.getElementById("studDept").value;
+      const marks = document.getElementById("studMarks").value.trim();
+      const editIdx = parseInt(document.getElementById("editIndex").value);
+
+      if (!name || !roll || !marks) {
+        alert("Please fill all required fields!");
+        return;
+      }
+
+      if (editIdx >= 0) {
+        students[editIdx] = { name, roll, dept, marks };
+        document.getElementById("editIndex").value = -1;
+        document.getElementById("submitBtn").textContent = "Add Record";
+      } else {
+        students.push({ name, roll, dept, marks });
+      }
+
+      document.getElementById("studName").value = "";
+      document.getElementById("studRoll").value = "";
+      document.getElementById("studMarks").value = "";
+      renderTable();
+    }
+
+    function editRecord(idx) {
+      const s = students[idx];
+      document.getElementById("studName").value = s.name;
+      document.getElementById("studRoll").value = s.roll;
+      document.getElementById("studDept").value = s.dept;
+      document.getElementById("studMarks").value = s.marks;
+      document.getElementById("editIndex").value = idx;
+      document.getElementById("submitBtn").textContent = "Update Record";
+    }
+
+    function deleteRecord(idx) {
+      if (confirm(`Are you sure you want to delete ${students[idx].name}?`)) {
+        students.splice(idx, 1);
+        renderTable();
+      }
+    }
+
+    renderTable();
+  </script>
+</body>
+</html>

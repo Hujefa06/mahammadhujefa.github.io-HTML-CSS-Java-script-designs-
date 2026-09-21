@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Hello World & Console | JS-01</title>
+  <link rel="stylesheet" href="../../assets/css/style.css">
+  <link rel="stylesheet" href="../../assets/css/program-viewer.css">
+</head>
+<body>
+  <header class="navbar">
+    <div class="nav-container">
+      <a href="../../index.html" class="nav-brand">
+        <div class="brand-icon" style="background: linear-gradient(135deg, #f59e0b, #d97706);">
+          <span>&lt;/&gt;</span>
+        </div>
+        <span>JS Basics</span>
+      </a>
+      <nav>
+        <ul class="nav-links">
+          <li><a href="../../index.html" class="nav-link">Home</a></li>
+          <li><a href="../../html/index.html" class="nav-link">HTML</a></li>
+          <li><a href="../../css/index.html" class="nav-link">CSS</a></li>
+          <li><a href="../index.html" class="nav-link active">JavaScript</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main class="main-wrapper">
+    <nav class="breadcrumb-bar">
+      <a href="../../index.html">Home</a>
+      <span class="breadcrumb-separator">&rarr;</span>
+      <a href="../index.html">JavaScript</a>
+      <span class="breadcrumb-separator">&rarr;</span>
+      <a href="index.html">Basics</a>
+      <span class="breadcrumb-separator">&rarr;</span>
+      <span class="breadcrumb-current">JS-01: Hello World</span>
+    </nav>
+
+    <section class="exp-header-card">
+      <div class="exp-meta-row">
+        <span class="exp-id-tag" style="background: #ca8a04;">JS-01</span>
+        <span class="exp-cat-tag">Basics</span>
+      </div>
+      <h1 class="exp-heading">Hello World &amp; Console Output Mechanics</h1>
+      <p class="exp-description">
+        Demonstrates the fundamental output channels in JavaScript: document writing, browser alert dialogs, web developer console logging (`console.log`), and dynamic DOM node text injection.
+      </p>
+      <div class="objective-box">
+        <div class="objective-title"><span>🎯</span> Practical Laboratory Objective</div>
+        <div class="objective-text">
+          Understand script execution contexts, how JavaScript interacts with browser developer tooling, and how to write dynamic content into the DOM without page reload.
+        </div>
+      </div>
+    </section>
+
+    <!-- Live Demonstration -->
+    <section class="demo-section-wrapper">
+      <div class="demo-section-header">
+        <div class="demo-title"><span>⚡</span> Live Interactive Console &amp; Output</div>
+        <span class="demo-live-badge">Working Demo</span>
+      </div>
+      <div class="demo-body" style="background: #ffffff;">
+        <div class="demo-controls-row">
+          <button class="demo-btn" onclick="sayHello()">📢 Print to Screen</button>
+          <button class="demo-btn demo-btn-secondary" onclick="logToConsole()">💻 Print to Browser Console</button>
+          <button class="demo-btn demo-btn-secondary" onclick="triggerAlert()">🔔 Trigger Alert Dialog</button>
+        </div>
+
+        <div class="demo-output-box">
+          <div class="demo-output-header">Screen Text Output:</div>
+          <div class="demo-output-result" id="output-screen" style="color: #4f46e5;">
+            [Click 'Print to Screen' button above]
+          </div>
+        </div>
+
+        <div style="margin-top: 1rem; padding: 0.75rem 1rem; background: #f8fafc; border-radius: 6px; font-size: 0.85rem; color: #64748b;">
+          💡 <strong>Tip:</strong> Press <kbd style="background: #e2e8f0; padding: 2px 6px; border-radius: 4px;">F12</kbd> or <kbd style="background: #e2e8f0; padding: 2px 6px; border-radius: 4px;">Ctrl + Shift + I</kbd> and open the <strong>Console</strong> tab to view JavaScript terminal output.
+        </div>
+      </div>
+    </section>
+
+    <!-- Source Code Section -->
+    <section class="source-section-wrapper">
+      <div class="source-header">
+        <div class="source-tabs">
+          <button class="code-tab-btn active" data-tab="js">JavaScript Source Code</button>
+        </div>
+        <div class="source-actions">
+          <button class="copy-code-btn" type="button">Copy Code</button>
+          <button class="toggle-code-btn" type="button">Hide Code</button>
+        </div>
+      </div>
+      <div class="code-content-container">
+        <div class="code-pane active" data-tab="js">
+<pre>// 1. Console Logging (Inspected in Browser DevTools)
+console.log("Hello, World from JavaScript Practical Program!");
+
+// 2. Alert Modal Dialog
+function triggerAlert() {
+  alert("Hello World! Welcome to JavaScript Programming.");
+}
+
+// 3. Dynamic DOM Text Insertion
+function sayHello() {
+  const outputElement = document.getElementById("output-screen");
+  outputElement.textContent = "Hello, World! Successfully executed at: " + new Date().toLocaleTimeString();
+}</pre>
+        </div>
+      </div>
+    </section>
+
+    <!-- Bottom Navigation -->
+    <nav class="exp-nav-bar">
+      <a href="index.html" class="nav-btn nav-btn-prev">&larr; Basics Index</a>
+      <a href="index.html" class="nav-btn nav-btn-hub">All Basics Programs</a>
+      <a href="arithmetic.html" class="nav-btn nav-btn-next">Next (JS-02) &rarr;</a>
+    </nav>
+  </main>
+
+  <script src="../../assets/js/code-viewer.js"></script>
+  <script>
+    function sayHello() {
+      document.getElementById("output-screen").textContent = "Hello, World! Successfully executed at: " + new Date().toLocaleTimeString();
+    }
+    function logToConsole() {
+      console.log("%c[PRACTICAL RECORD JS-01] Hello World logged at " + new Date().toISOString(), "color: #4f46e5; font-weight: bold; font-size: 14px;");
+      document.getElementById("output-screen").textContent = "Logged to browser console! Check DevTools (F12).";
+    }
+    function triggerAlert() {
+      alert("Hello World! Welcome to JavaScript Practical Programming by Shaik Roshan.");
+    }
+  </script>
+</body>
+</html>

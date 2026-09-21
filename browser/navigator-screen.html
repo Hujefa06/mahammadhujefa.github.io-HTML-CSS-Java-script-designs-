@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>BR 07 - Navigator & Screen Hardware Specs | Web Tech Lab</title>
+  <link rel="stylesheet" href="../../assets/css/style.css">
+  <link rel="stylesheet" href="../../assets/css/program-viewer.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500;700&family=Inter:wght@400;500;600&family=Outfit:wght@600;700;800&display=swap" rel="stylesheet">
+  <style>
+    .specs-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.5rem;
+    }
+    @media (max-width: 768px) {
+      .specs-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+    .specs-card {
+      background: #0f172a;
+      border: 1px solid #334155;
+      border-radius: 12px;
+      padding: 1.75rem;
+    }
+    .spec-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.85rem;
+    }
+    .spec-table td {
+      padding: 8px 4px;
+      border-bottom: 1px solid #1e293b;
+    }
+    .spec-prop {
+      color: #38bdf8;
+      font-family: 'Fira Code', monospace;
+      width: 40%;
+    }
+    .spec-val {
+      color: #f8fafc;
+      font-family: 'Fira Code', monospace;
+      word-break: break-all;
+    }
+    .online-indicator {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.35rem 0.85rem;
+      border-radius: 50px;
+      font-size: 0.85rem;
+      font-weight: 600;
+    }
+    .online { background: #065f46; color: #34d399; }
+    .offline { background: #7f1d1d; color: #fca5a5; }
+  </style>
+</head>
+<body>
+  <!-- Navbar -->
+  <nav class="navbar">
+    <div class="nav-container">
+      <a href="../../index.html" class="logo">
+        <span class="logo-icon">&lt;/&gt;</span>
+        <span>WebTech<span class="highlight">Lab</span></span>
+      </a>
+      <div class="nav-links">
+        <a href="../../index.html">Dashboard</a>
+        <a href="../../html/index.html">HTML</a>
+        <a href="../../css/index.html">CSS</a>
+        <a href="../index.html" class="active">JavaScript</a>
+      </div>
+    </div>
+  </nav>
+
+  <main class="page-container">
+    <div class="breadcrumb">
+      <a href="../../index.html">Home</a> &rsaquo; 
+      <a href="../index.html">JavaScript</a> &rsaquo; 
+      <a href="index.html">Browser</a> &rsaquo; 
+      <span>BR 07 - Navigator & Screen Specs</span>
+    </div>
+
+    <div class="program-header">
+      <div class="program-badge">Browser BOM • Program 07</div>
+      <h1>Navigator & Screen Hardware Diagnostics</h1>
+      <p class="program-desc">
+        Query client hardware, browser runtime properties (userAgent, language, online/offline status), 
+        physical display resolutions, and pixel density scaling via <code>window.navigator</code> and <code>window.screen</code>.
+      </p>
+      <div class="student-pill">
+        <span>👨‍💻 Student: <strong>Shaik Roshan</strong></span>
+        <span>•</span>
+        <span>Reg No: <strong>[TO BE FILLED BY STUDENT]</strong></span>
+      </div>
+    </div>
+
+    <!-- Live Demo -->
+    <div class="demo-section">
+      <div class="demo-header">
+        <div class="demo-title">
+          <span>💻</span> Hardware & Environment Diagnostics
+        </div>
+        <div id="onlineBadge" class="online-indicator online">
+          <span style="font-size:0.6rem;">●</span> <span>ONLINE</span>
+        </div>
+      </div>
+      <div class="demo-body">
+        
+        <div class="specs-grid">
+          <!-- Navigator Card -->
+          <div class="specs-card">
+            <h3 style="color: #38bdf8; margin-bottom: 0.75rem;">window.navigator Properties:</h3>
+            <table class="spec-table">
+              <tr>
+                <td class="spec-prop">.userAgent</td>
+                <td class="spec-val" id="navAgent" style="font-size: 0.75rem;">-</td>
+              </tr>
+              <tr>
+                <td class="spec-prop">.language</td>
+                <td class="spec-val" id="navLang">-</td>
+              </tr>
+              <tr>
+                <td class="spec-prop">.platform</td>
+                <td class="spec-val" id="navPlatform">-</td>
+              </tr>
+              <tr>
+                <td class="spec-prop">.cookieEnabled</td>
+                <td class="spec-val" id="navCookie">-</td>
+              </tr>
+              <tr>
+                <td class="spec-prop">.hardwareConcurrency</td>
+                <td class="spec-val" id="navCores">-</td>
+              </tr>
+            </table>
+          </div>
+
+          <!-- Screen Card -->
+          <div class="specs-card">
+            <h3 style="color: #38bdf8; margin-bottom: 0.75rem;">window.screen & Viewport:</h3>
+            <table class="spec-table">
+              <tr>
+                <td class="spec-prop">screen.width × height</td>
+                <td class="spec-val" id="scrRes">-</td>
+              </tr>
+              <tr>
+                <td class="spec-prop">screen.availWidth × height</td>
+                <td class="spec-val" id="scrAvail">-</td>
+              </tr>
+              <tr>
+                <td class="spec-prop">screen.colorDepth</td>
+                <td class="spec-val" id="scrDepth">-</td>
+              </tr>
+              <tr>
+                <td class="spec-prop">window.innerWidth × height</td>
+                <td class="spec-val" id="viewRes">-</td>
+              </tr>
+              <tr>
+                <td class="spec-prop">devicePixelRatio</td>
+                <td class="spec-val" id="scrDpr">-</td>
+              </tr>
+            </table>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- Source Code Viewer -->
+    <div class="code-viewer-section">
+      <div class="code-viewer-header">
+        <div class="code-tabs">
+          <button class="code-tab active" data-tab="js">JavaScript Implementation</button>
+        </div>
+        <div class="code-actions">
+          <button class="btn-secondary" id="copyCodeBtn">📋 Copy Code</button>
+        </div>
+      </div>
+      <div class="code-body">
+        <pre><code id="sourceCode">// 1. Browser info
+console.log("User Agent:", navigator.userAgent);
+console.log("Language:", navigator.language);
+console.log("Online Status:", navigator.onLine);
+console.log("CPU Logical Cores:", navigator.hardwareConcurrency);
+
+// 2. Network connectivity listeners
+window.addEventListener("online", () => console.log("Network connected"));
+window.addEventListener("offline", () => console.log("Network disconnected"));
+
+// 3. Screen display specs
+console.log(`Resolution: ${screen.width} x ${screen.height}`);
+console.log(`Color Depth: ${screen.colorDepth} bit`);
+console.log(`Device Pixel Ratio: ${window.devicePixelRatio}`);</code></pre>
+      </div>
+    </div>
+
+    <!-- Navigation -->
+    <div class="program-nav">
+      <a href="location-history.html" class="nav-prev">&larr; BR 06: Location & History</a>
+      <a href="geolocation-api.html" class="nav-next">BR 08: Geolocation API &rarr;</a>
+    </div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-content">
+      <p>&copy; 2026 Web Technology Practical Laboratory • Prepared by <strong>Shaik Roshan</strong></p>
+      <p class="subtext">Computer Science & Engineering Department</p>
+    </div>
+  </footer>
+
+  <script src="../../assets/js/code-viewer.js"></script>
+  <script>
+    function renderSpecs() {
+      // Navigator
+      document.getElementById("navAgent").textContent = navigator.userAgent;
+      document.getElementById("navLang").textContent = navigator.language;
+      document.getElementById("navPlatform").textContent = navigator.platform || "Win32";
+      document.getElementById("navCookie").textContent = navigator.cookieEnabled ? "true (Cookies Allowed)" : "false";
+      document.getElementById("navCores").textContent = `${navigator.hardwareConcurrency || 8} CPU Cores`;
+
+      // Screen
+      document.getElementById("scrRes").textContent = `${screen.width} × ${screen.height} px`;
+      document.getElementById("scrAvail").textContent = `${screen.availWidth} × ${screen.availHeight} px`;
+      document.getElementById("scrDepth").textContent = `${screen.colorDepth}-bit color`;
+      document.getElementById("viewRes").textContent = `${window.innerWidth} × ${window.innerHeight} px`;
+      document.getElementById("scrDpr").textContent = `${window.devicePixelRatio}x (DPR)`;
+
+      // Network
+      updateNetworkBadge();
+    }
+
+    function updateNetworkBadge() {
+      const badge = document.getElementById("onlineBadge");
+      if (navigator.onLine) {
+        badge.className = "online-indicator online";
+        badge.innerHTML = "<span>●</span> <span>ONLINE</span>";
+      } else {
+        badge.className = "online-indicator offline";
+        badge.innerHTML = "<span>●</span> <span>OFFLINE</span>";
+      }
+    }
+
+    window.addEventListener("online", updateNetworkBadge);
+    window.addEventListener("offline", updateNetworkBadge);
+    window.addEventListener("resize", renderSpecs);
+
+    renderSpecs();
+  </script>
+</body>
+</html>

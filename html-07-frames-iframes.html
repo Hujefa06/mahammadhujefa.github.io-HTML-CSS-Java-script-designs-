@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Frames & Iframes | HTML-07</title>
+  <link rel="stylesheet" href="../assets/css/style.css">
+  <link rel="stylesheet" href="../assets/css/program-viewer.css">
+</head>
+<body>
+  <header class="navbar">
+    <div class="nav-container">
+      <a href="../index.html" class="nav-brand">
+        <div class="brand-icon" style="background: linear-gradient(135deg, #e34f26, #f06529);">
+          <span>&lt;/&gt;</span>
+        </div>
+        <span>HTML Programs</span>
+      </a>
+      <nav>
+        <ul class="nav-links">
+          <li><a href="../index.html" class="nav-link">Home</a></li>
+          <li><a href="index.html" class="nav-link active">HTML</a></li>
+          <li><a href="../css/index.html" class="nav-link">CSS</a></li>
+          <li><a href="../javascript/index.html" class="nav-link">JavaScript</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main class="main-wrapper">
+    <nav class="breadcrumb-bar">
+      <a href="../index.html">Home</a>
+      <span class="breadcrumb-separator">&rarr;</span>
+      <a href="index.html">HTML Programs</a>
+      <span class="breadcrumb-separator">&rarr;</span>
+      <span class="breadcrumb-current">HTML-07: Frames & Iframes</span>
+    </nav>
+
+    <section class="exp-header-card">
+      <div class="exp-meta-row">
+        <span class="exp-id-tag" style="background: #e34f26;">HTML-07</span>
+        <span class="exp-cat-tag">Multimedia & Iframes</span>
+      </div>
+      <h1 class="exp-heading">Inline Frames (&lt;iframe&gt;) and Target Navigation</h1>
+      <p class="exp-description">
+        Demonstrates embedding external or internal documents into a container using the &lt;iframe&gt; tag, configuring sandbox security permissions, loading inline content with srcdoc, and routing hyperlink targets directly into the frame.
+      </p>
+      <div class="objective-box">
+        <div class="objective-title"><span>🎯</span> Practical Laboratory Objective</div>
+        <div class="objective-text">
+          Learn how to securely isolate third-party components using iframes, use sandbox attributes, and bind hyperlink targets (&lt;a target="frame-name"&gt;) to control iframe contents dynamically.
+        </div>
+      </div>
+    </section>
+
+    <!-- Live Output Demonstration -->
+    <section class="demo-section-wrapper">
+      <div class="demo-section-header">
+        <div class="demo-title"><span>⚡</span> Live Output Demonstration</div>
+        <span class="demo-live-badge">Working Demo</span>
+      </div>
+      <div class="demo-body" style="background: #ffffff;">
+        <div style="margin-bottom: 1.25rem;">
+          <strong style="color: #0f172a; font-size: 0.95rem;">Select Page to Load Inside Target Iframe:</strong>
+          <div style="display: flex; gap: 0.75rem; margin-top: 0.5rem; flex-wrap: wrap;">
+            <a href="html-01-basic-tags.html" target="demo-preview-frame" class="demo-btn demo-btn-secondary" style="font-size: 0.85rem; padding: 0.45rem 0.85rem; text-decoration: none;">
+              📄 Load HTML-01 (Basic Tags)
+            </a>
+            <a href="html-02-lists.html" target="demo-preview-frame" class="demo-btn demo-btn-secondary" style="font-size: 0.85rem; padding: 0.45rem 0.85rem; text-decoration: none;">
+              📄 Load HTML-02 (Lists)
+            </a>
+            <a href="html-03-tables.html" target="demo-preview-frame" class="demo-btn demo-btn-secondary" style="font-size: 0.85rem; padding: 0.45rem 0.85rem; text-decoration: none;">
+              📄 Load HTML-03 (Tables)
+            </a>
+          </div>
+        </div>
+
+        <div style="border: 2px solid var(--border); border-radius: 12px; overflow: hidden; box-shadow: var(--shadow-sm);">
+          <div style="background: #f1f5f9; padding: 0.6rem 1rem; border-bottom: 1px solid var(--border); display: flex; align-items: center; justify-content: space-between;">
+            <div style="display: flex; gap: 6px;">
+              <span style="width: 10px; height: 10px; border-radius: 50%; background: #ef4444; display: inline-block;"></span>
+              <span style="width: 10px; height: 10px; border-radius: 50%; background: #f59e0b; display: inline-block;"></span>
+              <span style="width: 10px; height: 10px; border-radius: 50%; background: #10b981; display: inline-block;"></span>
+            </div>
+            <span style="font-family: var(--font-mono); font-size: 0.8rem; color: var(--text-muted);">iframe name="demo-preview-frame"</span>
+            <span></span>
+          </div>
+
+          <iframe 
+            name="demo-preview-frame" 
+            id="demo-preview-frame"
+            src="html-01-basic-tags.html" 
+            title="Interactive Iframe Display"
+            style="width: 100%; height: 380px; border: none; display: block;"
+            loading="lazy">
+          </iframe>
+        </div>
+      </div>
+    </section>
+
+    <!-- Source Code Section -->
+    <section class="source-section-wrapper">
+      <div class="source-header">
+        <div class="source-tabs">
+          <button class="code-tab-btn active" data-tab="html">HTML Source Code</button>
+        </div>
+        <div class="source-actions">
+          <button class="copy-code-btn" type="button">Copy Code</button>
+          <button class="toggle-code-btn" type="button">Hide Code</button>
+        </div>
+      </div>
+      <div class="code-content-container">
+        <div class="code-pane active" data-tab="html">
+<pre>&lt;!-- Navigation links targeting the iframe by name --&gt;
+&lt;p&gt;Select content to display in frame:&lt;/p&gt;
+&lt;a href="page1.html" target="contentFrame"&gt;Page 1&lt;/a&gt; | 
+&lt;a href="page2.html" target="contentFrame"&gt;Page 2&lt;/a&gt;
+
+&lt;!-- Responsive Embedded Iframe --&gt;
+&lt;iframe 
+  name="contentFrame" 
+  src="page1.html" 
+  width="100%" 
+  height="400" 
+  title="Embedded Content Window"
+  sandbox="allow-scripts allow-same-origin"
+  loading="lazy"&gt;
+  Your browser does not support inline frames.
+&lt;/iframe&gt;</pre>
+        </div>
+      </div>
+    </section>
+
+    <!-- Bottom Navigation -->
+    <nav class="exp-nav-bar">
+      <a href="html-06-audio-video.html" class="nav-btn nav-btn-prev">&larr; Previous (HTML-06)</a>
+      <a href="index.html" class="nav-btn nav-btn-hub">All HTML Programs</a>
+      <a href="html-08-semantic-elements.html" class="nav-btn nav-btn-next">Next (HTML-08) &rarr;</a>
+    </nav>
+  </main>
+
+  <script src="../assets/js/code-viewer.js"></script>
+</body>
+</html>

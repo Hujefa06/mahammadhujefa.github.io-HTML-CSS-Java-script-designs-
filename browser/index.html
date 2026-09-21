@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>JavaScript Browser BOM Experiments | Web Tech Lab</title>
+  <link rel="stylesheet" href="../../assets/css/style.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500&family=Inter:wght@400;500;600&family=Outfit:wght@600;700;800&display=swap" rel="stylesheet">
+</head>
+<body>
+  <!-- Global Navbar -->
+  <nav class="navbar">
+    <div class="nav-container">
+      <a href="../../index.html" class="logo">
+        <span class="logo-icon">&lt;/&gt;</span>
+        <span>WebTech<span class="highlight">Lab</span></span>
+      </a>
+      <div class="nav-links">
+        <a href="../../index.html">Dashboard</a>
+        <a href="../../html/index.html">HTML</a>
+        <a href="../../css/index.html">CSS</a>
+        <a href="../index.html" class="active">JavaScript</a>
+      </div>
+    </div>
+  </nav>
+
+  <main class="page-container">
+    <div class="breadcrumb">
+      <a href="../../index.html">Home</a> &rsaquo; 
+      <a href="../index.html">JavaScript</a> &rsaquo; 
+      <span>Browser Object Model</span>
+    </div>
+
+    <header class="section-header">
+      <div class="badge badge-warning">Category: Browser Object Model (BOM)</div>
+      <h1>Browser Object Model (BOM) Experiments</h1>
+      <p class="section-subtitle">
+        Interact directly with the browser host environment: window dialogs, precise interval timers, 
+        digital clocks, stopwatches, location/history APIs, navigator hardware detection, and Geolocation.
+      </p>
+      <div class="student-pill">
+        <span>👨‍💻 Student: <strong>Shaik Roshan</strong></span>
+        <span>•</span>
+        <span>Reg No: <strong>[TO BE FILLED BY STUDENT]</strong></span>
+        <span>•</span>
+        <span>8 Practical Experiments</span>
+      </div>
+    </header>
+
+    <!-- Search & Filter Bar -->
+    <div class="search-filter-section">
+      <div class="search-box">
+        <span class="search-icon">🔍</span>
+        <input type="text" id="programSearch" placeholder="Search browser experiments (e.g. clock, stopwatch, geolocation, timer)...">
+      </div>
+      <div class="filter-pills">
+        <button class="filter-pill active" data-filter="all">All (8)</button>
+        <button class="filter-pill" data-filter="timers">Timers & Clocks</button>
+        <button class="filter-pill" data-filter="browser">Browser APIs</button>
+      </div>
+    </div>
+
+    <!-- Programs Grid -->
+    <div class="programs-grid" id="programsGrid">
+      
+      <!-- BR 01 -->
+      <a href="window-dialogs.html" class="program-card" data-category="browser">
+        <div class="card-top">
+          <span class="card-num">BR 01</span>
+          <span class="card-tag tag-primary">Dialogs</span>
+        </div>
+        <h3 class="card-title">Window Dialogs (alert, confirm, prompt)</h3>
+        <p class="card-desc">Compare native blocking modal dialogs with return value processing and custom simulated non-blocking overlays.</p>
+        <div class="card-footer">
+          <span class="view-btn">Launch Demo &rarr;</span>
+        </div>
+      </a>
+
+      <!-- BR 02 -->
+      <a href="timers.html" class="program-card" data-category="timers">
+        <div class="card-top">
+          <span class="card-num">BR 02</span>
+          <span class="card-tag tag-accent">Timers</span>
+        </div>
+        <h3 class="card-title">setTimeout vs setInterval Mechanics</h3>
+        <p class="card-desc">Delayed one-shot execution, recurring intervals, timer cancellation via clearTimeout and clearInterval.</p>
+        <div class="card-footer">
+          <span class="view-btn">Launch Demo &rarr;</span>
+        </div>
+      </a>
+
+      <!-- BR 03 -->
+      <a href="digital-clock.html" class="program-card" data-category="timers">
+        <div class="card-top">
+          <span class="card-num">BR 03</span>
+          <span class="card-tag tag-success">Clock</span>
+        </div>
+        <h3 class="card-title">Live Digital Clock & Calendar</h3>
+        <p class="card-desc">Precision ticking clock displaying hours, minutes, seconds, AM/PM, day-of-week, and 12/24 hour toggle.</p>
+        <div class="card-footer">
+          <span class="view-btn">Launch Demo &rarr;</span>
+        </div>
+      </a>
+
+      <!-- BR 04 -->
+      <a href="countdown-timer.html" class="program-card" data-category="timers">
+        <div class="card-top">
+          <span class="card-num">BR 04</span>
+          <span class="card-tag tag-warning">Countdown</span>
+        </div>
+        <h3 class="card-title">Interactive Countdown Timer with Alarm</h3>
+        <p class="card-desc">Set custom duration (minutes & seconds), pause, resume, reset, and trigger a visual flash alert on zero.</p>
+        <div class="card-footer">
+          <span class="view-btn">Launch Demo &rarr;</span>
+        </div>
+      </a>
+
+      <!-- BR 05 -->
+      <a href="stopwatch.html" class="program-card" data-category="timers">
+        <div class="card-top">
+          <span class="card-num">BR 05</span>
+          <span class="card-tag tag-accent">Stopwatch</span>
+        </div>
+        <h3 class="card-title">Millisecond Precision Stopwatch with Laps</h3>
+        <p class="card-desc">Accurate stopwatch tracking milliseconds, seconds, minutes with recorded lap times table and delta analysis.</p>
+        <div class="card-footer">
+          <span class="view-btn">Launch Demo &rarr;</span>
+        </div>
+      </a>
+
+      <!-- BR 06 -->
+      <a href="location-history.html" class="program-card" data-category="browser">
+        <div class="card-top">
+          <span class="card-num">BR 06</span>
+          <span class="card-tag tag-primary">Navigation</span>
+        </div>
+        <h3 class="card-title">Window Location & History Inspector</h3>
+        <p class="card-desc">Inspect href, host, protocol, search params, hash, reload page, and navigate history back/forward programmatically.</p>
+        <div class="card-footer">
+          <span class="view-btn">Launch Demo &rarr;</span>
+        </div>
+      </a>
+
+      <!-- BR 07 -->
+      <a href="navigator-screen.html" class="program-card" data-category="browser">
+        <div class="card-top">
+          <span class="card-num">BR 07</span>
+          <span class="card-tag tag-secondary">Device Info</span>
+        </div>
+        <h3 class="card-title">Navigator & Screen Hardware Specs</h3>
+        <p class="card-desc">Inspect browser user agent, online/offline network listener, screen resolution, viewport dimensions, and color depth.</p>
+        <div class="card-footer">
+          <span class="view-btn">Launch Demo &rarr;</span>
+        </div>
+      </a>
+
+      <!-- BR 08 -->
+      <a href="geolocation-api.html" class="program-card" data-category="browser">
+        <div class="card-top">
+          <span class="card-num">BR 08</span>
+          <span class="card-tag tag-success">Geolocation</span>
+        </div>
+        <h3 class="card-title">HTML5 Geolocation API Coordinates</h3>
+        <p class="card-desc">Request user GPS permission, read latitude, longitude, accuracy radius, and open direct location in OpenStreetMap.</p>
+        <div class="card-footer">
+          <span class="view-btn">Launch Demo &rarr;</span>
+        </div>
+      </a>
+
+    </div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-content">
+      <p>&copy; 2026 Web Technology Practical Laboratory • Prepared by <strong>Shaik Roshan</strong></p>
+      <p class="subtext">Computer Science & Engineering Department</p>
+    </div>
+  </footer>
+
+  <script src="../../assets/js/main.js"></script>
+</body>
+</html>

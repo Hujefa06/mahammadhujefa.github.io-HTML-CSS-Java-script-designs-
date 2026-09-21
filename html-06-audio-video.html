@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Audio & Video in HTML5 | HTML-06</title>
+  <link rel="stylesheet" href="../assets/css/style.css">
+  <link rel="stylesheet" href="../assets/css/program-viewer.css">
+</head>
+<body>
+  <header class="navbar">
+    <div class="nav-container">
+      <a href="../index.html" class="nav-brand">
+        <div class="brand-icon" style="background: linear-gradient(135deg, #e34f26, #f06529);">
+          <span>&lt;/&gt;</span>
+        </div>
+        <span>HTML Programs</span>
+      </a>
+      <nav>
+        <ul class="nav-links">
+          <li><a href="../index.html" class="nav-link">Home</a></li>
+          <li><a href="index.html" class="nav-link active">HTML</a></li>
+          <li><a href="../css/index.html" class="nav-link">CSS</a></li>
+          <li><a href="../javascript/index.html" class="nav-link">JavaScript</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main class="main-wrapper">
+    <nav class="breadcrumb-bar">
+      <a href="../index.html">Home</a>
+      <span class="breadcrumb-separator">&rarr;</span>
+      <a href="index.html">HTML Programs</a>
+      <span class="breadcrumb-separator">&rarr;</span>
+      <span class="breadcrumb-current">HTML-06: Audio and Video</span>
+    </nav>
+
+    <section class="exp-header-card">
+      <div class="exp-meta-row">
+        <span class="exp-id-tag" style="background: #e34f26;">HTML-06</span>
+        <span class="exp-cat-tag">Multimedia & Iframes</span>
+      </div>
+      <h1 class="exp-heading">HTML5 Native Audio and Video Embedding</h1>
+      <p class="exp-description">
+        Demonstrates the inclusion of multimedia streams into web pages using the semantic &lt;audio&gt; and &lt;video&gt; elements with playback controls, multiple source formats, poster preview frames, loop, and muted attributes.
+      </p>
+      <div class="objective-box">
+        <div class="objective-title"><span>🎯</span> Practical Laboratory Objective</div>
+        <div class="objective-text">
+          Understand browser multimedia codec support (MP4/WebM, MP3/OGG), attributes for media control (controls, muted, poster), and graceful fallback handling for older browsers.
+        </div>
+      </div>
+    </section>
+
+    <!-- Live Output Demonstration -->
+    <section class="demo-section-wrapper">
+      <div class="demo-section-header">
+        <div class="demo-title"><span>⚡</span> Live Output Demonstration</div>
+        <span class="demo-live-badge">Working Demo</span>
+      </div>
+      <div class="demo-body" style="background: #ffffff;">
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 2rem;">
+          <!-- Video Player Card -->
+          <div style="border: 1px solid var(--border); border-radius: 12px; padding: 1.5rem; background: #fafafa;">
+            <h3 style="color: #1e293b; margin-bottom: 0.5rem; font-size: 1.15rem; display: flex; align-items: center; gap: 0.5rem;">
+              <span>🎬</span> HTML5 Video Player
+            </h3>
+            <p style="font-size: 0.85rem; color: #64748b; margin-bottom: 1rem;">
+              Demonstrating <code>&lt;video controls poster="..."&gt;</code> with responsive styling:
+            </p>
+            
+            <div style="border-radius: 8px; overflow: hidden; background: #000000; box-shadow: var(--shadow-sm);">
+              <video controls style="width: 100%; display: block; max-height: 260px;" poster="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='400' height='225' viewBox='0 0 400 225'><rect width='400' height='225' fill='%231e293b'/><circle cx='200' cy='112' r='35' fill='%23e34f26'/><polygon points='190,97 220,112 190,127' fill='%23ffffff'/><text x='200' y='175' fill='%2394a3b8' font-family='sans-serif' font-size='14' text-anchor='middle'>HTML5 Video Stream Poster</text></svg>">
+                <source src="https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerBlazes.mp4" type="video/mp4">
+                Your browser does not support the video tag.
+              </video>
+            </div>
+            <div style="margin-top: 0.75rem; font-size: 0.8rem; color: #64748b;">
+              Features: Native seek bar, volume control, full screen toggle, and picture-in-picture.
+            </div>
+          </div>
+
+          <!-- Audio Player Card -->
+          <div style="border: 1px solid var(--border); border-radius: 12px; padding: 1.5rem; background: #fafafa;">
+            <h3 style="color: #1e293b; margin-bottom: 0.5rem; font-size: 1.15rem; display: flex; align-items: center; gap: 0.5rem;">
+              <span>🎵</span> HTML5 Audio Player
+            </h3>
+            <p style="font-size: 0.85rem; color: #64748b; margin-bottom: 1rem;">
+              Demonstrating <code>&lt;audio controls&gt;</code> element:
+            </p>
+
+            <div style="padding: 1.5rem; background: #ffffff; border: 1px solid #e2e8f0; border-radius: 8px; text-align: center;">
+              <div style="width: 50px; height: 50px; border-radius: 50%; background: #e0e7ff; color: #4338ca; display: flex; align-items: center; justify-content: center; font-size: 1.5rem; margin: 0 auto 1rem auto;">
+                🔊
+              </div>
+              <h4 style="color: #0f172a; margin-bottom: 0.25rem;">Sample Academic Audio</h4>
+              <p style="font-size: 0.825rem; color: #64748b; margin-bottom: 1rem;">Lecture Stream (MP3 Format)</p>
+              
+              <audio controls style="width: 100%; outline: none;">
+                <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" type="audio/mpeg">
+                Your browser does not support the audio element.
+              </audio>
+            </div>
+            <div style="margin-top: 0.75rem; font-size: 0.8rem; color: #64748b;">
+              Features: Native audio timeline slider, play/pause trigger, and volume control.
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Source Code Section -->
+    <section class="source-section-wrapper">
+      <div class="source-header">
+        <div class="source-tabs">
+          <button class="code-tab-btn active" data-tab="html">HTML Source Code</button>
+        </div>
+        <div class="source-actions">
+          <button class="copy-code-btn" type="button">Copy Code</button>
+          <button class="toggle-code-btn" type="button">Hide Code</button>
+        </div>
+      </div>
+      <div class="code-content-container">
+        <div class="code-pane active" data-tab="html">
+<pre>&lt;!-- Video Player with Poster &amp; Controls --&gt;
+&lt;video controls poster="poster-thumbnail.jpg" width="640" height="360"&gt;
+  &lt;source src="sample-video.mp4" type="video/mp4"&gt;
+  &lt;source src="sample-video.webm" type="video/webm"&gt;
+  Your browser does not support the video tag.
+&lt;/video&gt;
+
+&lt;!-- Audio Player with Multiple Fallback Formats --&gt;
+&lt;audio controls&gt;
+  &lt;source src="audio-track.mp3" type="audio/mpeg"&gt;
+  &lt;source src="audio-track.ogg" type="audio/ogg"&gt;
+  Your browser does not support the audio element.
+&lt;/audio&gt;</pre>
+        </div>
+      </div>
+    </section>
+
+    <!-- Bottom Navigation -->
+    <nav class="exp-nav-bar">
+      <a href="html-05-registration-form.html" class="nav-btn nav-btn-prev">&larr; Previous (HTML-05)</a>
+      <a href="index.html" class="nav-btn nav-btn-hub">All HTML Programs</a>
+      <a href="html-07-frames-iframes.html" class="nav-btn nav-btn-next">Next (HTML-07) &rarr;</a>
+    </nav>
+  </main>
+
+  <script src="../assets/js/code-viewer.js"></script>
+</body>
+</html>

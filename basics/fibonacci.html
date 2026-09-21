@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Fibonacci Series | JS-07</title>
+  <link rel="stylesheet" href="../../assets/css/style.css">
+  <link rel="stylesheet" href="../../assets/css/program-viewer.css">
+  <style>
+    .fibo-pills-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      margin-top: 0.75rem;
+    }
+    .fibo-pill {
+      background: #e0e7ff;
+      color: #3730a3;
+      padding: 0.35rem 0.75rem;
+      border-radius: 6px;
+      font-weight: 700;
+      font-family: var(--font-mono);
+      font-size: 0.95rem;
+      border: 1px solid #c7d2fe;
+    }
+  </style>
+</head>
+<body>
+  <header class="navbar">
+    <div class="nav-container">
+      <a href="../../index.html" class="nav-brand">
+        <div class="brand-icon" style="background: linear-gradient(135deg, #f59e0b, #d97706);">
+          <span>&lt;/&gt;</span>
+        </div>
+        <span>JS Basics</span>
+      </a>
+      <nav>
+        <ul class="nav-links">
+          <li><a href="../../index.html" class="nav-link">Home</a></li>
+          <li><a href="../../html/index.html" class="nav-link">HTML</a></li>
+          <li><a href="../../css/index.html" class="nav-link">CSS</a></li>
+          <li><a href="../index.html" class="nav-link active">JavaScript</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main class="main-wrapper">
+    <nav class="breadcrumb-bar">
+      <a href="../../index.html">Home</a>
+      <span class="breadcrumb-separator">&rarr;</span>
+      <a href="../index.html">JavaScript</a>
+      <span class="breadcrumb-separator">&rarr;</span>
+      <a href="index.html">Basics</a>
+      <span class="breadcrumb-separator">&rarr;</span>
+      <span class="breadcrumb-current">JS-07: Fibonacci Series</span>
+    </nav>
+
+    <section class="exp-header-card">
+      <div class="exp-meta-row">
+        <span class="exp-id-tag" style="background: #ca8a04;">JS-07</span>
+        <span class="exp-cat-tag">Series</span>
+      </div>
+      <h1 class="exp-heading">Fibonacci Sequence Generator</h1>
+      <p class="exp-description">
+        Demonstrates the generation of the Fibonacci integer series where each successive number is the sum of the preceding two: F(0)=0, F(1)=1, F(n) = F(n-1) + F(n-2).
+      </p>
+      <div class="objective-box">
+        <div class="objective-title"><span>🎯</span> Practical Laboratory Objective</div>
+        <div class="objective-text">
+          Understand iterative variable swapping algorithms and array accumulator patterns in JavaScript.
+        </div>
+      </div>
+    </section>
+
+    <!-- Live Demonstration -->
+    <section class="demo-section-wrapper">
+      <div class="demo-section-header">
+        <div class="demo-title"><span>⚡</span> Live Fibonacci Sequence Generator</div>
+        <span class="demo-live-badge">Working Demo</span>
+      </div>
+      <div class="demo-body" style="background: #ffffff;">
+        <div class="demo-controls-row">
+          <div class="demo-input-group">
+            <label class="demo-input-label" for="fibo-terms">Number of Terms (N):</label>
+            <input type="number" id="fibo-terms" class="demo-input" value="10" min="1" max="40" style="width: 140px;">
+          </div>
+          <button class="demo-btn" onclick="generateFibonacci()" style="align-self: flex-end;">Generate Sequence</button>
+        </div>
+
+        <div class="demo-output-box">
+          <div class="demo-output-header">Generated Series Elements:</div>
+          <div id="res-fibo" class="fibo-pills-row">
+            <!-- Populated via JS -->
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Source Code Section -->
+    <section class="source-section-wrapper">
+      <div class="source-header">
+        <div class="source-tabs">
+          <button class="code-tab-btn active" data-tab="js">JavaScript Source Code</button>
+        </div>
+        <div class="source-actions">
+          <button class="copy-code-btn" type="button">Copy Code</button>
+          <button class="toggle-code-btn" type="button">Hide Code</button>
+        </div>
+      </div>
+      <div class="code-content-container">
+        <div class="code-pane active" data-tab="js">
+<pre>function getFibonacci(terms) {
+  if (terms &lt;= 0) return [];
+  if (terms === 1) return [0];
+
+  const series = [0, 1];
+  for (let i = 2; i &lt; terms; i++) {
+    series.push(series[i - 1] + series[i - 2]);
+  }
+  return series;
+}</pre>
+        </div>
+      </div>
+    </section>
+
+    <!-- Bottom Navigation -->
+    <nav class="exp-nav-bar">
+      <a href="factorial.html" class="nav-btn nav-btn-prev">&larr; Previous (JS-06)</a>
+      <a href="index.html" class="nav-btn nav-btn-hub">All Basics Programs</a>
+      <a href="prime-number.html" class="nav-btn nav-btn-next">Next (JS-08) &rarr;</a>
+    </nav>
+  </main>
+
+  <script src="../../assets/js/code-viewer.js"></script>
+  <script>
+    function generateFibonacci() {
+      const n = parseInt(document.getElementById('fibo-terms').value);
+      const container = document.getElementById('res-fibo');
+      if (isNaN(n) || n < 1) {
+        container.innerHTML = `<span style="color: #ef4444;">Please enter a positive integer (N &gt;= 1).</span>`;
+        return;
+      }
+      let series = [0];
+      if (n > 1) {
+        series.push(1);
+        for (let i = 2; i < n; i++) {
+          series.push(series[i - 1] + series[i - 2]);
+        }
+      }
+      container.innerHTML = series.map((num, idx) => `
+        <span class="fibo-pill">
+          <small style="opacity: 0.6; font-size: 0.7rem; display: block;">T${idx+1}</small>
+          ${num.toLocaleString()}
+        </span>
+      `).join('');
+    }
+    generateFibonacci();
+  </script>
+</body>
+</html>

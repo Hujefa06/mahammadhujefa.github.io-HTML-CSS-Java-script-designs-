@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Largest of Three Numbers | JS-03</title>
+  <link rel="stylesheet" href="../../assets/css/style.css">
+  <link rel="stylesheet" href="../../assets/css/program-viewer.css">
+</head>
+<body>
+  <header class="navbar">
+    <div class="nav-container">
+      <a href="../../index.html" class="nav-brand">
+        <div class="brand-icon" style="background: linear-gradient(135deg, #f59e0b, #d97706);">
+          <span>&lt;/&gt;</span>
+        </div>
+        <span>JS Basics</span>
+      </a>
+      <nav>
+        <ul class="nav-links">
+          <li><a href="../../index.html" class="nav-link">Home</a></li>
+          <li><a href="../../html/index.html" class="nav-link">HTML</a></li>
+          <li><a href="../../css/index.html" class="nav-link">CSS</a></li>
+          <li><a href="../index.html" class="nav-link active">JavaScript</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main class="main-wrapper">
+    <nav class="breadcrumb-bar">
+      <a href="../../index.html">Home</a>
+      <span class="breadcrumb-separator">&rarr;</span>
+      <a href="../index.html">JavaScript</a>
+      <span class="breadcrumb-separator">&rarr;</span>
+      <a href="index.html">Basics</a>
+      <span class="breadcrumb-separator">&rarr;</span>
+      <span class="breadcrumb-current">JS-03: Largest of Three Numbers</span>
+    </nav>
+
+    <section class="exp-header-card">
+      <div class="exp-meta-row">
+        <span class="exp-id-tag" style="background: #ca8a04;">JS-03</span>
+        <span class="exp-cat-tag">Logic</span>
+      </div>
+      <h1 class="exp-heading">Find Largest Among Three Numbers</h1>
+      <p class="exp-description">
+        Demonstrates conditional logical decision-making using relational comparison operators (&gt;, &gt;=), nested if-else ladders, ternary expressions, and the native Math.max() function.
+      </p>
+      <div class="objective-box">
+        <div class="objective-title"><span>🎯</span> Practical Laboratory Objective</div>
+        <div class="objective-text">
+          Understand multi-way conditional branching logic and evaluate equality edge cases where two or all three values are identical.
+        </div>
+      </div>
+    </section>
+
+    <!-- Live Demonstration -->
+    <section class="demo-section-wrapper">
+      <div class="demo-section-header">
+        <div class="demo-title"><span>⚡</span> Live Value Comparator</div>
+        <span class="demo-live-badge">Working Demo</span>
+      </div>
+      <div class="demo-body" style="background: #ffffff;">
+        <div class="demo-controls-row">
+          <div class="demo-input-group">
+            <label class="demo-input-label" for="valA">Number A:</label>
+            <input type="number" id="valA" class="demo-input" value="45" style="width: 120px;">
+          </div>
+          <div class="demo-input-group">
+            <label class="demo-input-label" for="valB">Number B:</label>
+            <input type="number" id="valB" class="demo-input" value="89" style="width: 120px;">
+          </div>
+          <div class="demo-input-group">
+            <label class="demo-input-label" for="valC">Number C:</label>
+            <input type="number" id="valC" class="demo-input" value="32" style="width: 120px;">
+          </div>
+          <button class="demo-btn" onclick="findLargest()" style="align-self: flex-end;">Find Largest Number</button>
+        </div>
+
+        <div class="demo-output-box">
+          <div class="demo-output-header">Comparison Result:</div>
+          <div class="demo-output-result" id="res-largest" style="color: #16a34a;">
+            The largest number is 89 (Number B)
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Source Code Section -->
+    <section class="source-section-wrapper">
+      <div class="source-header">
+        <div class="source-tabs">
+          <button class="code-tab-btn active" data-tab="js">JavaScript Source Code</button>
+        </div>
+        <div class="source-actions">
+          <button class="copy-code-btn" type="button">Copy Code</button>
+          <button class="toggle-code-btn" type="button">Hide Code</button>
+        </div>
+      </div>
+      <div class="code-content-container">
+        <div class="code-pane active" data-tab="js">
+<pre>// Method 1: Conditional If-Else Ladder
+function findLargest(a, b, c) {
+  if (a >= b &amp;&amp; a >= c) {
+    return a;
+  } else if (b >= a &amp;&amp; b >= c) {
+    return b;
+  } else {
+    return c;
+  }
+}
+
+// Method 2: Native Math.max API
+const maxVal = Math.max(a, b, c);</pre>
+        </div>
+      </div>
+    </section>
+
+    <!-- Bottom Navigation -->
+    <nav class="exp-nav-bar">
+      <a href="arithmetic.html" class="nav-btn nav-btn-prev">&larr; Previous (JS-02)</a>
+      <a href="index.html" class="nav-btn nav-btn-hub">All Basics Programs</a>
+      <a href="even-odd.html" class="nav-btn nav-btn-next">Next (JS-04) &rarr;</a>
+    </nav>
+  </main>
+
+  <script src="../../assets/js/code-viewer.js"></script>
+  <script>
+    function findLargest() {
+      const a = parseFloat(document.getElementById('valA').value);
+      const b = parseFloat(document.getElementById('valB').value);
+      const c = parseFloat(document.getElementById('valC').value);
+
+      if (isNaN(a) || isNaN(b) || isNaN(c)) {
+        document.getElementById('res-largest').textContent = "Please enter valid numbers in all 3 fields.";
+        return;
+      }
+
+      let winner = "";
+      let max = a;
+
+      if (a >= b && a >= c) {
+        max = a; winner = "Number A";
+      } else if (b >= a && b >= c) {
+        max = b; winner = "Number B";
+      } else {
+        max = c; winner = "Number C";
+      }
+
+      document.getElementById('res-largest').innerHTML = `
+        The largest value is <strong>${max}</strong> (${winner}).<br>
+        <small style="color: #64748b;">Math.max(${a}, ${b}, ${c}) = ${Math.max(a, b, c)}</small>
+      `;
+    }
+  </script>
+</body>
+</html>

@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>DOM 08 - Dynamic Table Generator | Web Tech Lab</title>
+  <link rel="stylesheet" href="../../assets/css/style.css">
+  <link rel="stylesheet" href="../../assets/css/program-viewer.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500&family=Inter:wght@400;500;600&family=Outfit:wght@600;700;800&display=swap" rel="stylesheet">
+  <style>
+    .config-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 1rem;
+      background: #0f172a;
+      border: 1px solid #334155;
+      padding: 1.25rem;
+      border-radius: 10px;
+      margin-bottom: 1.5rem;
+      align-items: end;
+    }
+    .form-group label {
+      display: block;
+      font-size: 0.85rem;
+      color: #94a3b8;
+      margin-bottom: 0.35rem;
+    }
+    .form-group input, .form-group select {
+      width: 100%;
+      background: #1e293b;
+      border: 1px solid #475569;
+      color: #f8fafc;
+      padding: 0.6rem;
+      border-radius: 6px;
+    }
+    .table-container {
+      overflow-x: auto;
+      background: #0f172a;
+      border: 1px solid #334155;
+      border-radius: 10px;
+      padding: 1rem;
+      min-height: 200px;
+    }
+    .generated-table {
+      width: 100%;
+      border-collapse: collapse;
+      text-align: center;
+    }
+    .generated-table th {
+      background: #1e293b;
+      color: #38bdf8;
+      padding: 12px;
+      border: 1px solid #334155;
+      font-weight: 600;
+    }
+    .generated-table td {
+      padding: 10px;
+      border: 1px solid #334155;
+      color: #f8fafc;
+      font-family: 'Fira Code', monospace;
+      font-size: 0.9rem;
+    }
+    .generated-table tr:hover {
+      background: rgba(56, 189, 248, 0.05);
+    }
+  </style>
+</head>
+<body>
+  <!-- Navbar -->
+  <nav class="navbar">
+    <div class="nav-container">
+      <a href="../../index.html" class="logo">
+        <span class="logo-icon">&lt;/&gt;</span>
+        <span>WebTech<span class="highlight">Lab</span></span>
+      </a>
+      <div class="nav-links">
+        <a href="../../index.html">Dashboard</a>
+        <a href="../../html/index.html">HTML</a>
+        <a href="../../css/index.html">CSS</a>
+        <a href="../index.html" class="active">JavaScript</a>
+      </div>
+    </div>
+  </nav>
+
+  <main class="page-container">
+    <div class="breadcrumb">
+      <a href="../../index.html">Home</a> &rsaquo; 
+      <a href="../index.html">JavaScript</a> &rsaquo; 
+      <a href="index.html">DOM</a> &rsaquo; 
+      <span>DOM 08 - Dynamic Table Generator</span>
+    </div>
+
+    <div class="program-header">
+      <div class="program-badge">DOM Manipulation • Program 08</div>
+      <h1>Dynamic HTML Table Generation from Inputs</h1>
+      <p class="program-desc">
+        Generate an N-row by M-column structured HTML table using JavaScript DOM loops, 
+        demonstrating <code>table.insertRow()</code> and <code>row.insertCell()</code> methods.
+      </p>
+      <div class="student-pill">
+        <span>👨‍💻 Student: <strong>Shaik Roshan</strong></span>
+        <span>•</span>
+        <span>Reg No: <strong>[TO BE FILLED BY STUDENT]</strong></span>
+      </div>
+    </div>
+
+    <!-- Live Demo -->
+    <div class="demo-section">
+      <div class="demo-header">
+        <div class="demo-title">
+          <span>📊</span> Table Matrix Generator
+        </div>
+        <span class="badge badge-success">Interactive Generator</span>
+      </div>
+      <div class="demo-body">
+        
+        <div class="config-grid">
+          <div class="form-group">
+            <label>Number of Rows (N):</label>
+            <input type="number" id="numRows" min="1" max="20" value="4">
+          </div>
+          <div class="form-group">
+            <label>Number of Columns (M):</label>
+            <input type="number" id="numCols" min="1" max="10" value="5">
+          </div>
+          <div class="form-group">
+            <label>Fill Pattern:</label>
+            <select id="fillPattern">
+              <option value="coord">Row, Col Coordinates</option>
+              <option value="mult">Multiplication Matrix</option>
+              <option value="counter">Sequential Numbers</option>
+            </select>
+          </div>
+          <div>
+            <button class="btn btn-primary" style="width: 100%;" onclick="generateTable()">Generate Table</button>
+          </div>
+        </div>
+
+        <div class="table-container" id="tableContainer">
+          <!-- Table dynamically inserted here -->
+        </div>
+
+      </div>
+    </div>
+
+    <!-- Source Code Viewer -->
+    <div class="code-viewer-section">
+      <div class="code-viewer-header">
+        <div class="code-tabs">
+          <button class="code-tab active" data-tab="js">JavaScript Implementation</button>
+        </div>
+        <div class="code-actions">
+          <button class="btn-secondary" id="copyCodeBtn">📋 Copy Code</button>
+        </div>
+      </div>
+      <div class="code-body">
+        <pre><code id="sourceCode">function generateTable(rows, cols) {
+  const container = document.getElementById("tableContainer");
+  container.innerHTML = ""; // clear previous
+
+  const table = document.createElement("table");
+  table.className = "generated-table";
+
+  // Create Header Row
+  const thead = table.createTHead();
+  const headerRow = thead.insertRow();
+  for (let c = 1; c <= cols; c++) {
+    const th = document.createElement("th");
+    th.textContent = `Col ${c}`;
+    headerRow.appendChild(th);
+  }
+
+  // Create Table Body
+  const tbody = table.createTBody();
+  for (let r = 1; r <= rows; r++) {
+    const row = tbody.insertRow();
+    for (let c = 1; c <= cols; c++) {
+      const cell = row.insertCell();
+      cell.textContent = `[${r}, ${c}]`;
+    }
+  }
+
+  container.appendChild(table);
+}</code></pre>
+      </div>
+    </div>
+
+    <!-- Navigation -->
+    <div class="program-nav">
+      <a href="dynamic-lists.html" class="nav-prev">&larr; DOM 07: Dynamic Lists</a>
+      <a href="table-row-crud.html" class="nav-next">DOM 09: Table CRUD Operations &rarr;</a>
+    </div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-content">
+      <p>&copy; 2026 Web Technology Practical Laboratory • Prepared by <strong>Shaik Roshan</strong></p>
+      <p class="subtext">Computer Science & Engineering Department</p>
+    </div>
+  </footer>
+
+  <script src="../../assets/js/code-viewer.js"></script>
+  <script>
+    function generateTable() {
+      const rows = parseInt(document.getElementById("numRows").value) || 3;
+      const cols = parseInt(document.getElementById("numCols").value) || 3;
+      const pattern = document.getElementById("fillPattern").value;
+      const container = document.getElementById("tableContainer");
+
+      container.innerHTML = "";
+
+      const table = document.createElement("table");
+      table.className = "generated-table";
+
+      // Table Header
+      const thead = table.createTHead();
+      const headerRow = thead.insertRow();
+      for (let c = 1; c <= cols; c++) {
+        const th = document.createElement("th");
+        th.textContent = `Column ${c}`;
+        headerRow.appendChild(th);
+      }
+
+      // Table Body
+      const tbody = table.createTBody();
+      let counter = 1;
+
+      for (let r = 1; r <= rows; r++) {
+        const row = tbody.insertRow();
+        for (let c = 1; c <= cols; c++) {
+          const cell = row.insertCell();
+          if (pattern === "coord") {
+            cell.textContent = `(${r}, ${c})`;
+          } else if (pattern === "mult") {
+            cell.textContent = `${r * c}`;
+          } else {
+            cell.textContent = `#${counter++}`;
+          }
+        }
+      }
+
+      container.appendChild(table);
+    }
+
+    // Initial table render
+    generateTable();
+  </script>
+</body>
+</html>

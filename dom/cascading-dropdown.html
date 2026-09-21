@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>DOM 12 - Cascading Dropdowns | Web Tech Lab</title>
+  <link rel="stylesheet" href="../../assets/css/style.css">
+  <link rel="stylesheet" href="../../assets/css/program-viewer.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500&family=Inter:wght@400;500;600&family=Outfit:wght@600;700;800&display=swap" rel="stylesheet">
+  <style>
+    .cascade-card {
+      max-width: 540px;
+      margin: 0 auto;
+      background: #0f172a;
+      border: 1px solid #334155;
+      border-radius: 12px;
+      padding: 2rem;
+    }
+    .field-group {
+      margin-bottom: 1.25rem;
+    }
+    .field-group label {
+      display: block;
+      font-size: 0.85rem;
+      color: #94a3b8;
+      margin-bottom: 0.4rem;
+      font-weight: 500;
+    }
+    .select-dropdown {
+      width: 100%;
+      background: #1e293b;
+      border: 1px solid #475569;
+      color: #f8fafc;
+      padding: 0.75rem 1rem;
+      border-radius: 8px;
+      font-size: 0.95rem;
+      transition: border-color 0.2s;
+    }
+    .select-dropdown:disabled {
+      opacity: 0.5;
+      cursor: not-allowed;
+      border-color: #334155;
+    }
+    .summary-box {
+      margin-top: 1.5rem;
+      background: #1e293b;
+      border: 1px solid #3b82f6;
+      border-radius: 8px;
+      padding: 1rem 1.25rem;
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+    .summary-text {
+      font-size: 0.95rem;
+      color: #e2e8f0;
+    }
+  </style>
+</head>
+<body>
+  <!-- Navbar -->
+  <nav class="navbar">
+    <div class="nav-container">
+      <a href="../../index.html" class="logo">
+        <span class="logo-icon">&lt;/&gt;</span>
+        <span>WebTech<span class="highlight">Lab</span></span>
+      </a>
+      <div class="nav-links">
+        <a href="../../index.html">Dashboard</a>
+        <a href="../../html/index.html">HTML</a>
+        <a href="../../css/index.html">CSS</a>
+        <a href="../index.html" class="active">JavaScript</a>
+      </div>
+    </div>
+  </nav>
+
+  <main class="page-container">
+    <div class="breadcrumb">
+      <a href="../../index.html">Home</a> &rsaquo; 
+      <a href="../index.html">JavaScript</a> &rsaquo; 
+      <a href="index.html">DOM</a> &rsaquo; 
+      <span>DOM 12 - Cascading Dropdowns</span>
+    </div>
+
+    <div class="program-header">
+      <div class="program-badge">DOM Manipulation • Program 12</div>
+      <h1>Dependent Cascading Dropdowns (Country &rarr; State &rarr; City)</h1>
+      <p class="program-desc">
+        Dynamically populate dependent dropdown lists using structured nested JavaScript objects. 
+        Selecting a country loads its states and clears child city dropdowns automatically.
+      </p>
+      <div class="student-pill">
+        <span>👨‍💻 Student: <strong>Shaik Roshan</strong></span>
+        <span>•</span>
+        <span>Reg No: <strong>[TO BE FILLED BY STUDENT]</strong></span>
+      </div>
+    </div>
+
+    <!-- Live Demo -->
+    <div class="demo-section">
+      <div class="demo-header">
+        <div class="demo-title">
+          <span>🌍</span> Hierarchical Location Selector
+        </div>
+        <span class="badge badge-success">Interactive Demo</span>
+      </div>
+      <div class="demo-body">
+        
+        <div class="cascade-card">
+          <div class="field-group">
+            <label>1. Select Country:</label>
+            <select id="countrySelect" class="select-dropdown" onchange="onCountrySelected()">
+              <option value="">-- Choose Country --</option>
+            </select>
+          </div>
+
+          <div class="field-group">
+            <label>2. Select State / Province:</label>
+            <select id="stateSelect" class="select-dropdown" onchange="onStateSelected()" disabled>
+              <option value="">-- Choose State --</option>
+            </select>
+          </div>
+
+          <div class="field-group">
+            <label>3. Select City:</label>
+            <select id="citySelect" class="select-dropdown" onchange="onCitySelected()" disabled>
+              <option value="">-- Choose City --</option>
+            </select>
+          </div>
+
+          <div class="summary-box">
+            <span style="font-size: 1.5rem;">📍</span>
+            <div class="summary-text" id="selectionSummary">
+              Please select a country to begin.
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- Source Code Viewer -->
+    <div class="code-viewer-section">
+      <div class="code-viewer-header">
+        <div class="code-tabs">
+          <button class="code-tab active" data-tab="js">JavaScript Implementation</button>
+        </div>
+        <div class="code-actions">
+          <button class="btn-secondary" id="copyCodeBtn">📋 Copy Code</button>
+        </div>
+      </div>
+      <div class="code-body">
+        <pre><code id="sourceCode">const locationData = {
+  "India": {
+    "Telangana": ["Hyderabad", "Warangal", "Nizamabad"],
+    "Karnataka": ["Bengaluru", "Mysuru", "Hubballi"],
+    "Maharashtra": ["Mumbai", "Pune", "Nagpur"]
+  },
+  "USA": {
+    "California": ["Los Angeles", "San Francisco", "San Diego"],
+    "Texas": ["Austin", "Houston", "Dallas"]
+  }
+};
+
+function onCountrySelected() {
+  const country = countrySelect.value;
+  stateSelect.innerHTML = '<option value="">-- Choose State --</option>';
+  citySelect.innerHTML = '<option value="">-- Choose City --</option>';
+  citySelect.disabled = true;
+
+  if (country && locationData[country]) {
+    stateSelect.disabled = false;
+    Object.keys(locationData[country]).forEach(state => {
+      stateSelect.add(new Option(state, state));
+    });
+  } else {
+    stateSelect.disabled = true;
+  }
+}</code></pre>
+      </div>
+    </div>
+
+    <!-- Navigation -->
+    <div class="program-nav">
+      <a href="dynamic-dropdown.html" class="nav-prev">&larr; DOM 11: Dynamic Dropdown</a>
+      <a href="image-slideshow.html" class="nav-next">DOM 13: Image Carousel &rarr;</a>
+    </div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-content">
+      <p>&copy; 2026 Web Technology Practical Laboratory • Prepared by <strong>Shaik Roshan</strong></p>
+      <p class="subtext">Computer Science & Engineering Department</p>
+    </div>
+  </footer>
+
+  <script src="../../assets/js/code-viewer.js"></script>
+  <script>
+    const geoData = {
+      "India": {
+        "Telangana": ["Hyderabad", "Warangal", "Karimnagar", "Nizamabad"],
+        "Karnataka": ["Bengaluru", "Mysuru", "Mangaluru", "Hubballi"],
+        "Maharashtra": ["Mumbai", "Pune", "Nagpur", "Nashik"],
+        "Tamil Nadu": ["Chennai", "Coimbatore", "Madurai"]
+      },
+      "United States": {
+        "California": ["Los Angeles", "San Francisco", "San Jose", "San Diego"],
+        "Texas": ["Houston", "Austin", "Dallas", "San Antonio"],
+        "New York": ["New York City", "Buffalo", "Rochester"]
+      },
+      "United Kingdom": {
+        "England": ["London", "Manchester", "Birmingham", "Liverpool"],
+        "Scotland": ["Edinburgh", "Glasgow", "Aberdeen"]
+      }
+    };
+
+    const countrySel = document.getElementById("countrySelect");
+    const stateSel = document.getElementById("stateSelect");
+    const citySel = document.getElementById("citySelect");
+    const summary = document.getElementById("selectionSummary");
+
+    function initCountries() {
+      Object.keys(geoData).forEach(country => {
+        countrySel.add(new Option(country, country));
+      });
+    }
+
+    function onCountrySelected() {
+      const country = countrySel.value;
+      stateSel.innerHTML = '<option value="">-- Choose State --</option>';
+      citySel.innerHTML = '<option value="">-- Choose City --</option>';
+      citySel.disabled = true;
+
+      if (country && geoData[country]) {
+        stateSel.disabled = false;
+        Object.keys(geoData[country]).forEach(st => {
+          stateSel.add(new Option(st, st));
+        });
+        summary.innerHTML = `Selected Country: <strong>${country}</strong>. Now choose a state.`;
+      } else {
+        stateSel.disabled = true;
+        summary.innerHTML = "Please select a country to begin.";
+      }
+    }
+
+    function onStateSelected() {
+      const country = countrySel.value;
+      const state = stateSel.value;
+      citySel.innerHTML = '<option value="">-- Choose City --</option>';
+
+      if (state && geoData[country][state]) {
+        citySel.disabled = false;
+        geoData[country][state].forEach(c => {
+          citySel.add(new Option(c, c));
+        });
+        summary.innerHTML = `Country: <strong>${country}</strong> &rsaquo; State: <strong>${state}</strong>. Now choose a city.`;
+      } else {
+        citySel.disabled = true;
+      }
+    }
+
+    function onCitySelected() {
+      const country = countrySel.value;
+      const state = stateSel.value;
+      const city = citySel.value;
+
+      if (city) {
+        summary.innerHTML = `Selected Location: <strong style="color:#38bdf8;">${city}, ${state}, ${country}</strong>`;
+      }
+    }
+
+    initCountries();
+  </script>
+</body>
+</html>

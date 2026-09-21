@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Array Sorting | JS-13</title>
+  <link rel="stylesheet" href="../../assets/css/style.css">
+  <link rel="stylesheet" href="../../assets/css/program-viewer.css">
+</head>
+<body>
+  <header class="navbar">
+    <div class="nav-container">
+      <a href="../../index.html" class="nav-brand">
+        <div class="brand-icon" style="background: linear-gradient(135deg, #f59e0b, #d97706);">
+          <span>&lt;/&gt;</span>
+        </div>
+        <span>JS Basics</span>
+      </a>
+      <nav>
+        <ul class="nav-links">
+          <li><a href="../../index.html" class="nav-link">Home</a></li>
+          <li><a href="../../html/index.html" class="nav-link">HTML</a></li>
+          <li><a href="../../css/index.html" class="nav-link">CSS</a></li>
+          <li><a href="../index.html" class="nav-link active">JavaScript</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main class="main-wrapper">
+    <nav class="breadcrumb-bar">
+      <a href="../../index.html">Home</a>
+      <span class="breadcrumb-separator">&rarr;</span>
+      <a href="../index.html">JavaScript</a>
+      <span class="breadcrumb-separator">&rarr;</span>
+      <a href="index.html">Basics</a>
+      <span class="breadcrumb-separator">&rarr;</span>
+      <span class="breadcrumb-current">JS-13: Array Sorting</span>
+    </nav>
+
+    <section class="exp-header-card">
+      <div class="exp-meta-row">
+        <span class="exp-id-tag" style="background: #ca8a04;">JS-13</span>
+        <span class="exp-cat-tag">Arrays</span>
+      </div>
+      <h1 class="exp-heading">Array Sorting: Bubble Sort &amp; Array.prototype.sort()</h1>
+      <p class="exp-description">
+        Demonstrates sorting arrays of numbers and text in ascending and descending orders: comparing classic Bubble Sort with adjacent swap passes against modern V8 TimSort using numeric comparison callback functions `(a, b) =&gt; a - b`.
+      </p>
+      <div class="objective-box">
+        <div class="objective-title"><span>🎯</span> Practical Laboratory Objective</div>
+        <div class="objective-text">
+          Understand why JavaScript's default `.sort()` converts numbers into strings (e.g. "100" comes before "25"), and learn to supply custom compare functions.
+        </div>
+      </div>
+    </section>
+
+    <!-- Live Demonstration -->
+    <section class="demo-section-wrapper">
+      <div class="demo-section-header">
+        <div class="demo-title"><span>⚡</span> Live Sorting Workbench</div>
+        <span class="demo-live-badge">Working Demo</span>
+      </div>
+      <div class="demo-body" style="background: #ffffff;">
+        <div class="demo-controls-row">
+          <div class="demo-input-group" style="flex: 1; max-width: 360px;">
+            <label class="demo-input-label" for="sort-input">Comma-separated Numbers:</label>
+            <input type="text" id="sort-input" class="demo-input" value="64, 34, 25, 12, 22, 11, 90" style="width: 100%;">
+          </div>
+          <button class="demo-btn" onclick="executeSort('asc')" style="align-self: flex-end;">Sort Ascending &uarr;</button>
+          <button class="demo-btn demo-btn-secondary" onclick="executeSort('desc')" style="align-self: flex-end;">Sort Descending &darr;</button>
+        </div>
+
+        <div class="demo-output-box">
+          <div class="demo-output-header">Sorting Output:</div>
+          <div class="demo-output-result" id="res-sort">
+            <!-- Populated via JS -->
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Source Code Section -->
+    <section class="source-section-wrapper">
+      <div class="source-header">
+        <div class="source-tabs">
+          <button class="code-tab-btn active" data-tab="js">JavaScript Source Code</button>
+        </div>
+        <div class="source-actions">
+          <button class="copy-code-btn" type="button">Copy Code</button>
+          <button class="toggle-code-btn" type="button">Hide Code</button>
+        </div>
+      </div>
+      <div class="code-content-container">
+        <div class="code-pane active" data-tab="js">
+<pre>// 1. Native Array.prototype.sort with Numeric Comparator
+const ascending  = [...numbers].sort((a, b) => a - b);
+const descending = [...numbers].sort((a, b) => b - a);
+
+// 2. Classical Bubble Sort Algorithm
+function bubbleSort(arr) {
+  const n = arr.length;
+  for (let i = 0; i &lt; n - 1; i++) {
+    for (let j = 0; j &lt; n - i - 1; j++) {
+      if (arr[j] &gt; arr[j + 1]) {
+        // Swap adjacent elements
+        [arr[j], arr[j + 1]] = [arr[j + 1], arr[j]];
+      }
+    }
+  }
+  return arr;
+}</pre>
+        </div>
+      </div>
+    </section>
+
+    <!-- Bottom Navigation -->
+    <nav class="exp-nav-bar">
+      <a href="array-min-max.html" class="nav-btn nav-btn-prev">&larr; Previous (JS-12)</a>
+      <a href="index.html" class="nav-btn nav-btn-hub">All Basics Programs</a>
+      <a href="array-sum-average.html" class="nav-btn nav-btn-next">Next (JS-14) &rarr;</a>
+    </nav>
+  </main>
+
+  <script src="../../assets/js/code-viewer.js"></script>
+  <script>
+    function executeSort(order) {
+      const raw = document.getElementById('sort-input').value;
+      const res = document.getElementById('res-sort');
+      const arr = raw.split(',').map(item => parseFloat(item.trim())).filter(n => !isNaN(n));
+
+      if (!arr.length) {
+        res.textContent = "Please enter valid comma-separated numbers.";
+        return;
+      }
+
+      const original = [...arr];
+      const sorted = [...arr].sort((a, b) => order === 'asc' ? a - b : b - a);
+
+      res.innerHTML = `
+        <strong>Original Unsorted:</strong> [ ${original.join(', ')} ]<br><br>
+        <span style="color: #4f46e5; font-weight: 700;">Sorted (${order.toUpperCase()}):</span> 
+        [ ${sorted.join(', ')} ]
+      `;
+    }
+    executeSort('asc');
+  </script>
+</body>
+</html>

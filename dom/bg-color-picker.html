@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>DOM 03 - Dynamic Background Color Picker | Web Tech Lab</title>
+  <link rel="stylesheet" href="../../assets/css/style.css">
+  <link rel="stylesheet" href="../../assets/css/program-viewer.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500&family=Inter:wght@400;500;600&family=Outfit:wght@600;700;800&display=swap" rel="stylesheet">
+  <style>
+    .palette-box {
+      border-radius: 12px;
+      padding: 3rem 2rem;
+      text-align: center;
+      transition: background-color 0.3s ease, color 0.3s ease;
+      margin-bottom: 2rem;
+      border: 1px solid rgba(255,255,255,0.1);
+      box-shadow: 0 10px 25px -5px rgba(0,0,0,0.4);
+    }
+    .color-hex-tag {
+      font-family: 'Fira Code', monospace;
+      font-size: 1.75rem;
+      font-weight: 700;
+      letter-spacing: 1px;
+      background: rgba(0,0,0,0.4);
+      color: #fff;
+      display: inline-block;
+      padding: 0.5rem 1.25rem;
+      border-radius: 50px;
+      backdrop-filter: blur(4px);
+      margin-top: 1rem;
+    }
+    .swatches-grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.75rem;
+      justify-content: center;
+      margin: 1.5rem 0;
+    }
+    .swatch-btn {
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      border: 2px solid #ffffff;
+      cursor: pointer;
+      transition: transform 0.2s;
+    }
+    .swatch-btn:hover {
+      transform: scale(1.15);
+    }
+    .controls-row {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+  </style>
+</head>
+<body>
+  <!-- Navbar -->
+  <nav class="navbar">
+    <div class="nav-container">
+      <a href="../../index.html" class="logo">
+        <span class="logo-icon">&lt;/&gt;</span>
+        <span>WebTech<span class="highlight">Lab</span></span>
+      </a>
+      <div class="nav-links">
+        <a href="../../index.html">Dashboard</a>
+        <a href="../../html/index.html">HTML</a>
+        <a href="../../css/index.html">CSS</a>
+        <a href="../index.html" class="active">JavaScript</a>
+      </div>
+    </div>
+  </nav>
+
+  <main class="page-container">
+    <div class="breadcrumb">
+      <a href="../../index.html">Home</a> &rsaquo; 
+      <a href="../index.html">JavaScript</a> &rsaquo; 
+      <a href="index.html">DOM</a> &rsaquo; 
+      <span>DOM 03 - Dynamic Background Color Picker</span>
+    </div>
+
+    <div class="program-header">
+      <div class="program-badge">DOM Manipulation • Program 03</div>
+      <h1>Dynamic Background Color & Hex Generator</h1>
+      <p class="program-desc">
+        Change background colors on the fly using native HTML5 color pickers, curated preset palette swatches, 
+        and algorithmic random hex color generators.
+      </p>
+      <div class="student-pill">
+        <span>👨‍💻 Student: <strong>Shaik Roshan</strong></span>
+        <span>•</span>
+        <span>Reg No: <strong>[TO BE FILLED BY STUDENT]</strong></span>
+      </div>
+    </div>
+
+    <!-- Live Demo -->
+    <div class="demo-section">
+      <div class="demo-header">
+        <div class="demo-title">
+          <span>🎯</span> Live Canvas & Palette
+        </div>
+        <span class="badge badge-success">Interactive Demo</span>
+      </div>
+      <div class="demo-body">
+        
+        <div id="paletteBox" class="palette-box" style="background-color: #6366f1;">
+          <h2 style="color: #ffffff; text-shadow: 0 2px 4px rgba(0,0,0,0.5);">Active Background Color</h2>
+          <div id="hexDisplay" class="color-hex-tag">#6366F1</div>
+        </div>
+
+        <div style="text-align: center; margin-bottom: 0.5rem; color: #94a3b8; font-size: 0.9rem;">
+          Quick Swatches:
+        </div>
+        <div class="swatches-grid">
+          <button class="swatch-btn" style="background: #ef4444;" onclick="setColor('#ef4444')"></button>
+          <button class="swatch-btn" style="background: #f97316;" onclick="setColor('#f97316')"></button>
+          <button class="swatch-btn" style="background: #eab308;" onclick="setColor('#eab308')"></button>
+          <button class="swatch-btn" style="background: #10b981;" onclick="setColor('#10b981')"></button>
+          <button class="swatch-btn" style="background: #06b6d4;" onclick="setColor('#06b6d4')"></button>
+          <button class="swatch-btn" style="background: #6366f1;" onclick="setColor('#6366f1')"></button>
+          <button class="swatch-btn" style="background: #a855f7;" onclick="setColor('#a855f7')"></button>
+          <button class="swatch-btn" style="background: #ec4899;" onclick="setColor('#ec4899')"></button>
+          <button class="swatch-btn" style="background: #0f172a;" onclick="setColor('#0f172a')"></button>
+        </div>
+
+        <div class="controls-row">
+          <label style="display: flex; align-items: center; gap: 0.5rem; cursor: pointer;">
+            <span>Pick Exact Color:</span>
+            <input type="color" id="nativePicker" value="#6366f1" oninput="setColor(this.value)">
+          </label>
+          <button class="btn btn-primary" onclick="generateRandomColor()">🎲 Random Color</button>
+          <button class="btn btn-secondary" onclick="copyHexCode()">📋 Copy Hex</button>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- Source Code Viewer -->
+    <div class="code-viewer-section">
+      <div class="code-viewer-header">
+        <div class="code-tabs">
+          <button class="code-tab active" data-tab="js">JavaScript Implementation</button>
+        </div>
+        <div class="code-actions">
+          <button class="btn-secondary" id="copyCodeBtn">📋 Copy Code</button>
+        </div>
+      </div>
+      <div class="code-body">
+        <pre><code id="sourceCode">const box = document.getElementById("paletteBox");
+const hexDisplay = document.getElementById("hexDisplay");
+
+// Apply color and update text
+function setColor(hex) {
+  box.style.backgroundColor = hex;
+  hexDisplay.textContent = hex.toUpperCase();
+}
+
+// Generate random 6-character hex code
+function generateRandomColor() {
+  const letters = "0123456789ABCDEF";
+  let color = "#";
+  for (let i = 0; i < 6; i++) {
+    color += letters[Math.floor(Math.random() * 16)];
+  }
+  setColor(color);
+}
+
+// Copy color hex to clipboard
+function copyHexCode() {
+  navigator.clipboard.writeText(hexDisplay.textContent);
+  alert("Copied " + hexDisplay.textContent + " to clipboard!");
+}</code></pre>
+      </div>
+    </div>
+
+    <!-- Navigation -->
+    <div class="program-nav">
+      <a href="dynamic-css.html" class="nav-prev">&larr; DOM 02: Dynamic CSS</a>
+      <a href="create-remove-elements.html" class="nav-next">DOM 04: Create & Remove Elements &rarr;</a>
+    </div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-content">
+      <p>&copy; 2026 Web Technology Practical Laboratory • Prepared by <strong>Shaik Roshan</strong></p>
+      <p class="subtext">Computer Science & Engineering Department</p>
+    </div>
+  </footer>
+
+  <script src="../../assets/js/code-viewer.js"></script>
+  <script>
+    const box = document.getElementById("paletteBox");
+    const hexDisplay = document.getElementById("hexDisplay");
+    const nativePicker = document.getElementById("nativePicker");
+
+    function setColor(hex) {
+      box.style.backgroundColor = hex;
+      hexDisplay.textContent = hex.toUpperCase();
+      nativePicker.value = hex;
+    }
+
+    function generateRandomColor() {
+      const letters = "0123456789ABCDEF";
+      let color = "#";
+      for (let i = 0; i < 6; i++) {
+        color += letters[Math.floor(Math.random() * 16)];
+      }
+      setColor(color);
+    }
+
+    function copyHexCode() {
+      navigator.clipboard.writeText(hexDisplay.textContent).then(() => {
+        const toast = document.createElement("div");
+        toast.className = "copy-toast";
+        toast.textContent = "Copied " + hexDisplay.textContent + " to clipboard!";
+        document.body.appendChild(toast);
+        setTimeout(() => toast.remove(), 2000);
+      });
+    }
+  </script>
+</body>
+</html>

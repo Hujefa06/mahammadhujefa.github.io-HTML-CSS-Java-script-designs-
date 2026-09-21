@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>JavaScript DOM Manipulation Experiments | Web Tech Lab</title>
+  <link rel="stylesheet" href="../../assets/css/style.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500&family=Inter:wght@400;500;600&family=Outfit:wght@600;700;800&display=swap" rel="stylesheet">
+</head>
+<body>
+  <!-- Global Navbar -->
+  <nav class="navbar">
+    <div class="nav-container">
+      <a href="../../index.html" class="logo">
+        <span class="logo-icon">&lt;/&gt;</span>
+        <span>WebTech<span class="highlight">Lab</span></span>
+      </a>
+      <div class="nav-links">
+        <a href="../../index.html">Dashboard</a>
+        <a href="../../html/index.html">HTML</a>
+        <a href="../../css/index.html">CSS</a>
+        <a href="../index.html" class="active">JavaScript</a>
+      </div>
+    </div>
+  </nav>
+
+  <main class="page-container">
+    <div class="breadcrumb">
+      <a href="../../index.html">Home</a> &rsaquo; 
+      <a href="../index.html">JavaScript</a> &rsaquo; 
+      <span>DOM Manipulation</span>
+    </div>
+
+    <header class="section-header">
+      <div class="badge badge-warning">Category: Document Object Model</div>
+      <h1>DOM Manipulation Experiments</h1>
+      <p class="section-subtitle">
+        Explore interactive programs demonstrating dynamic element creation, classList manipulation, 
+        event-driven DOM updates, cascading dropdowns, accordions, modals, and dynamic data tables.
+      </p>
+      <div class="student-pill">
+        <span>👨‍💻 Student: <strong>Shaik Roshan</strong></span>
+        <span>•</span>
+        <span>Reg No: <strong>[TO BE FILLED BY STUDENT]</strong></span>
+        <span>•</span>
+        <span>18 Practical Experiments</span>
+      </div>
+    </header>
+
+    <!-- Search & Filter Bar -->
+    <div class="search-filter-section">
+      <div class="search-box">
+        <span class="search-icon">🔍</span>
+        <input type="text" id="programSearch" placeholder="Search DOM experiments (e.g. modal, table, classList, dropdown)...">
+      </div>
+      <div class="filter-pills">
+        <button class="filter-pill active" data-filter="all">All (18)</button>
+        <button class="filter-pill" data-filter="elements">Elements & Content</button>
+        <button class="filter-pill" data-filter="tables">Tables & Lists</button>
+        <button class="filter-pill" data-filter="components">Interactive UI</button>
+      </div>
+    </div>
+
+    <!-- Programs Grid -->
+    <div class="programs-grid" id="programsGrid">
+      
+      <!-- Card 1 -->
+      <a href="text-innerhtml.html" class="program-card" data-category="elements">
+        <div class="card-top">
+          <span class="card-num">DOM 01</span>
+          <span class="card-tag tag-primary">Content</span>
+        </div>
+        <h3 class="card-title">innerText vs innerHTML vs textContent</h3>
+        <p class="card-desc">Compare how text properties handle HTML tags, hidden styling, and raw content rendering dynamically.</p>
+        <div class="card-footer">
+          <span class="view-btn">Launch Demo &rarr;</span>
+        </div>
+      </a>
+
+      <!-- Card 2 -->
+      <a href="dynamic-css.html" class="program-card" data-category="elements">
+        <div class="card-top">
+          <span class="card-num">DOM 02</span>
+          <span class="card-tag tag-accent">Style</span>
+        </div>
+        <h3 class="card-title">Dynamic CSS Style Property Manipulation</h3>
+        <p class="card-desc">Change font size, colors, padding, borders, and transforms of DOM elements in real-time using JS style properties.</p>
+        <div class="card-footer">
+          <span class="view-btn">Launch Demo &rarr;</span>
+        </div>
+      </a>
+
+      <!-- Card 3 -->
+      <a href="bg-color-picker.html" class="program-card" data-category="elements">
+        <div class="card-top">
+          <span class="card-num">DOM 03</span>
+          <span class="card-tag tag-accent">Theme</span>
+        </div>
+        <h3 class="card-title">Dynamic Background Color & Hex Picker</h3>
+        <p class="card-desc">Interactive color swatch picker, random color generator, and hex code readout updating live DOM backgrounds.</p>
+        <div class="card-footer">
+          <span class="view-btn">Launch Demo &rarr;</span>
+        </div>
+      </a>
+
+      <!-- Card 4 -->
+      <a href="create-remove-elements.html" class="program-card" data-category="elements">
+        <div class="card-top">
+          <span class="card-num">DOM 04</span>
+          <span class="card-tag tag-primary">Nodes</span>
+        </div>
+        <h3 class="card-title">Create, Append & Remove DOM Elements</h3>
+        <p class="card-desc">Using createElement(), appendChild(), insertBefore(), and removeChild() to dynamically manage nodes.</p>
+        <div class="card-footer">
+          <span class="view-btn">Launch Demo &rarr;</span>
+        </div>
+      </a>
+
+      <!-- Card 5 -->
+      <a href="dom-classes.html" class="program-card" data-category="elements">
+        <div class="card-top">
+          <span class="card-num">DOM 05</span>
+          <span class="card-tag tag-secondary">classList</span>
+        </div>
+        <h3 class="card-title">ClassList Manipulation (add, remove, toggle)</h3>
+        <p class="card-desc">Inspect classList API: add(), remove(), toggle(), contains(), and replace() with visual card animations.</p>
+        <div class="card-footer">
+          <span class="view-btn">Launch Demo &rarr;</span>
+        </div>
+      </a>
+
+      <!-- Card 6 -->
+      <a href="attributes-manipulation.html" class="program-card" data-category="elements">
+        <div class="card-top">
+          <span class="card-num">DOM 06</span>
+          <span class="card-tag tag-primary">Attributes</span>
+        </div>
+        <h3 class="card-title">DOM Attributes (setAttribute & getAttribute)</h3>
+        <p class="card-desc">Dynamically inspect, set, check (hasAttribute), and remove HTML element attributes including data-* tags.</p>
+        <div class="card-footer">
+          <span class="view-btn">Launch Demo &rarr;</span>
+        </div>
+      </a>
+
+      <!-- Card 7 -->
+      <a href="dynamic-lists.html" class="program-card" data-category="tables">
+        <div class="card-top">
+          <span class="card-num">DOM 07</span>
+          <span class="card-tag tag-success">Lists</span>
+        </div>
+        <h3 class="card-title">Dynamic Interactive List Builder</h3>
+        <p class="card-desc">Add new list items, mark items completed with strike-through, re-order, and delete individual list entries.</p>
+        <div class="card-footer">
+          <span class="view-btn">Launch Demo &rarr;</span>
+        </div>
+      </a>
+
+      <!-- Card 8 -->
+      <a href="dynamic-tables.html" class="program-card" data-category="tables">
+        <div class="card-top">
+          <span class="card-num">DOM 08</span>
+          <span class="card-tag tag-success">Tables</span>
+        </div>
+        <h3 class="card-title">Dynamic HTML Table Generation</h3>
+        <p class="card-desc">Generate an N-row & M-column formatted HTML data table dynamically based on user specified inputs.</p>
+        <div class="card-footer">
+          <span class="view-btn">Launch Demo &rarr;</span>
+        </div>
+      </a>
+
+      <!-- Card 9 -->
+      <a href="table-row-crud.html" class="program-card" data-category="tables">
+        <div class="card-top">
+          <span class="card-num">DOM 09</span>
+          <span class="card-tag tag-warning">CRUD</span>
+        </div>
+        <h3 class="card-title">Student Record Table CRUD Operations</h3>
+        <p class="card-desc">Add, inline-edit, and delete student records (Name, Roll No, Branch, Marks) directly in the DOM table.</p>
+        <div class="card-footer">
+          <span class="view-btn">Launch Demo &rarr;</span>
+        </div>
+      </a>
+
+      <!-- Card 10 -->
+      <a href="table-filter-sort.html" class="program-card" data-category="tables">
+        <div class="card-top">
+          <span class="card-num">DOM 10</span>
+          <span class="card-tag tag-warning">Search</span>
+        </div>
+        <h3 class="card-title">Table Live Search & Column Sorting</h3>
+        <p class="card-desc">Search records across any column in real time and click table headers to sort ascending or descending.</p>
+        <div class="card-footer">
+          <span class="view-btn">Launch Demo &rarr;</span>
+        </div>
+      </a>
+
+      <!-- Card 11 -->
+      <a href="dynamic-dropdown.html" class="program-card" data-category="components">
+        <div class="card-top">
+          <span class="card-num">DOM 11</span>
+          <span class="card-tag tag-primary">Dropdown</span>
+        </div>
+        <h3 class="card-title">Dynamic Select Dropdown Generator</h3>
+        <p class="card-desc">Populate, append, clear, and inspect select dropdown options dynamically from JavaScript arrays.</p>
+        <div class="card-footer">
+          <span class="view-btn">Launch Demo &rarr;</span>
+        </div>
+      </a>
+
+      <!-- Card 12 -->
+      <a href="cascading-dropdown.html" class="program-card" data-category="components">
+        <div class="card-top">
+          <span class="card-num">DOM 12</span>
+          <span class="card-tag tag-accent">Cascading</span>
+        </div>
+        <h3 class="card-title">Cascading Dropdowns (Country &rarr; State &rarr; City)</h3>
+        <p class="card-desc">Dependent hierarchical dropdown selection where selecting a Country filters States, and State filters Cities.</p>
+        <div class="card-footer">
+          <span class="view-btn">Launch Demo &rarr;</span>
+        </div>
+      </a>
+
+      <!-- Card 13 -->
+      <a href="image-slideshow.html" class="program-card" data-category="components">
+        <div class="card-top">
+          <span class="card-num">DOM 13</span>
+          <span class="card-tag tag-accent">Carousel</span>
+        </div>
+        <h3 class="card-title">Image Carousel & Slideshow with Controls</h3>
+        <p class="card-desc">Next, Prev, auto-play timer, thumbnail indicators, and dynamic caption updates using DOM image switching.</p>
+        <div class="card-footer">
+          <span class="view-btn">Launch Demo &rarr;</span>
+        </div>
+      </a>
+
+      <!-- Card 14 -->
+      <a href="show-hide-password.html" class="program-card" data-category="components">
+        <div class="card-top">
+          <span class="card-num">DOM 14</span>
+          <span class="card-tag tag-secondary">Form UX</span>
+        </div>
+        <h3 class="card-title">Show / Hide Password Toggle</h3>
+        <p class="card-desc">Toggle input type between 'password' and 'text' with dynamic eye icon indicator and visual security feedback.</p>
+        <div class="card-footer">
+          <span class="view-btn">Launch Demo &rarr;</span>
+        </div>
+      </a>
+
+      <!-- Card 15 -->
+      <a href="tabs-component.html" class="program-card" data-category="components">
+        <div class="card-top">
+          <span class="card-num">DOM 15</span>
+          <span class="card-tag tag-primary">Tabs</span>
+        </div>
+        <h3 class="card-title">Interactive Tabbed Content Switcher</h3>
+        <p class="card-desc">Dynamic multi-panel tab navigation switching active panels smoothly through classList and aria attributes.</p>
+        <div class="card-footer">
+          <span class="view-btn">Launch Demo &rarr;</span>
+        </div>
+      </a>
+
+      <!-- Card 16 -->
+      <a href="accordion-component.html" class="program-card" data-category="components">
+        <div class="card-top">
+          <span class="card-num">DOM 16</span>
+          <span class="card-tag tag-secondary">Accordion</span>
+        </div>
+        <h3 class="card-title">FAQ Accordion with Animated Collapse</h3>
+        <p class="card-desc">Collapsible FAQ panels with multi-open or single-active mode, smooth height transitions and rotation indicators.</p>
+        <div class="card-footer">
+          <span class="view-btn">Launch Demo &rarr;</span>
+        </div>
+      </a>
+
+      <!-- Card 17 -->
+      <a href="modal-dialog.html" class="program-card" data-category="components">
+        <div class="card-top">
+          <span class="card-num">DOM 17</span>
+          <span class="card-tag tag-warning">Modal</span>
+        </div>
+        <h3 class="card-title">Custom Modal Dialog with Backdrop Blur</h3>
+        <p class="card-desc">Accessible popup modal with backdrop click dismiss, keyboard Escape key listener, and entrance animation.</p>
+        <div class="card-footer">
+          <span class="view-btn">Launch Demo &rarr;</span>
+        </div>
+      </a>
+
+      <!-- Card 18 -->
+      <a href="live-counters.html" class="program-card" data-category="components">
+        <div class="card-top">
+          <span class="card-num">DOM 18</span>
+          <span class="card-tag tag-success">Real-Time</span>
+        </div>
+        <h3 class="card-title">Live Character & Word Counter with Limit</h3>
+        <p class="card-desc">Real-time textarea analysis counting characters, words, sentences, reading time, and limit warning alerts.</p>
+        <div class="card-footer">
+          <span class="view-btn">Launch Demo &rarr;</span>
+        </div>
+      </a>
+
+    </div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-content">
+      <p>&copy; 2026 Web Technology Practical Laboratory • Prepared by <strong>Shaik Roshan</strong></p>
+      <p class="subtext">Computer Science & Engineering Department</p>
+    </div>
+  </footer>
+
+  <script src="../../assets/js/main.js"></script>
+</body>
+</html>

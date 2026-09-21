@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Reverse Number & String | JS-10</title>
+  <link rel="stylesheet" href="../../assets/css/style.css">
+  <link rel="stylesheet" href="../../assets/css/program-viewer.css">
+</head>
+<body>
+  <header class="navbar">
+    <div class="nav-container">
+      <a href="../../index.html" class="nav-brand">
+        <div class="brand-icon" style="background: linear-gradient(135deg, #f59e0b, #d97706);">
+          <span>&lt;/&gt;</span>
+        </div>
+        <span>JS Basics</span>
+      </a>
+      <nav>
+        <ul class="nav-links">
+          <li><a href="../../index.html" class="nav-link">Home</a></li>
+          <li><a href="../../html/index.html" class="nav-link">HTML</a></li>
+          <li><a href="../../css/index.html" class="nav-link">CSS</a></li>
+          <li><a href="../index.html" class="nav-link active">JavaScript</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main class="main-wrapper">
+    <nav class="breadcrumb-bar">
+      <a href="../../index.html">Home</a>
+      <span class="breadcrumb-separator">&rarr;</span>
+      <a href="../index.html">JavaScript</a>
+      <span class="breadcrumb-separator">&rarr;</span>
+      <a href="index.html">Basics</a>
+      <span class="breadcrumb-separator">&rarr;</span>
+      <span class="breadcrumb-current">JS-10: Reverse Number</span>
+    </nav>
+
+    <section class="exp-header-card">
+      <div class="exp-meta-row">
+        <span class="exp-id-tag" style="background: #ca8a04;">JS-10</span>
+        <span class="exp-cat-tag">Math</span>
+      </div>
+      <h1 class="exp-heading">Reverse Integer and String Inversion</h1>
+      <p class="exp-description">
+        Demonstrates the inversion of numbers and text strings: pure mathematical digit extraction using modulo and division arithmetic (`n % 10` and `Math.floor(n / 10)`), alongside JavaScript string character reversal.
+      </p>
+      <div class="objective-box">
+        <div class="objective-title"><span>🎯</span> Practical Laboratory Objective</div>
+        <div class="objective-text">
+          Understand mathematical while-loop digit reversal without converting numbers into strings, and handle negative integer signs correctly.
+        </div>
+      </div>
+    </section>
+
+    <!-- Live Demonstration -->
+    <section class="demo-section-wrapper">
+      <div class="demo-section-header">
+        <div class="demo-title"><span>⚡</span> Live Reversal Engine</div>
+        <span class="demo-live-badge">Working Demo</span>
+      </div>
+      <div class="demo-body" style="background: #ffffff;">
+        <div class="demo-controls-row">
+          <div class="demo-input-group">
+            <label class="demo-input-label" for="rev-input">Enter Number or String:</label>
+            <input type="text" id="rev-input" class="demo-input" value="987654321" style="width: 200px;">
+          </div>
+          <button class="demo-btn" onclick="reverseInput()" style="align-self: flex-end;">Invert Value</button>
+        </div>
+
+        <div class="demo-output-box">
+          <div class="demo-output-header">Reversal Result:</div>
+          <div class="demo-output-result" id="res-reverse" style="color: #4f46e5;">
+            Reversed Output: 123456789
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Source Code Section -->
+    <section class="source-section-wrapper">
+      <div class="source-header">
+        <div class="source-tabs">
+          <button class="code-tab-btn active" data-tab="js">JavaScript Source Code</button>
+        </div>
+        <div class="source-actions">
+          <button class="copy-code-btn" type="button">Copy Code</button>
+          <button class="toggle-code-btn" type="button">Hide Code</button>
+        </div>
+      </div>
+      <div class="code-content-container">
+        <div class="code-pane active" data-tab="js">
+<pre>// 1. Pure Arithmetic Integer Reversal
+function reverseInteger(num) {
+  let isNegative = num &lt; 0;
+  let n = Math.abs(num);
+  let reversed = 0;
+
+  while (n > 0) {
+    let digit = n % 10;
+    reversed = (reversed * 10) + digit;
+    n = Math.floor(n / 10);
+  }
+
+  return isNegative ? -reversed : reversed;
+}
+
+// 2. Generic String Reversal
+function reverseString(str) {
+  return str.split("").reverse().join("");
+}</pre>
+        </div>
+      </div>
+    </section>
+
+    <!-- Bottom Navigation -->
+    <nav class="exp-nav-bar">
+      <a href="palindrome.html" class="nav-btn nav-btn-prev">&larr; Previous (JS-09)</a>
+      <a href="index.html" class="nav-btn nav-btn-hub">All Basics Programs</a>
+      <a href="sum-of-digits.html" class="nav-btn nav-btn-next">Next (JS-11) &rarr;</a>
+    </nav>
+  </main>
+
+  <script src="../../assets/js/code-viewer.js"></script>
+  <script>
+    function reverseInput() {
+      const val = document.getElementById('rev-input').value.trim();
+      const res = document.getElementById('res-reverse');
+      if (!val) {
+        res.textContent = "Please enter an input.";
+        return;
+      }
+      const num = Number(val);
+      if (!isNaN(num) && Number.isInteger(num)) {
+        let isNeg = num < 0;
+        let n = Math.abs(num);
+        let rev = 0;
+        while (n > 0) {
+          rev = (rev * 10) + (n % 10);
+          n = Math.floor(n / 10);
+        }
+        const finalNum = isNeg ? -rev : rev;
+        res.innerHTML = `Original Integer: <strong>${val}</strong> &rarr; Reversed Integer: <strong>${finalNum}</strong> <br><small style="color: #64748b;">(Computed purely via while loop arithmetic)</small>`;
+      } else {
+        const revStr = val.split('').reverse().join('');
+        res.innerHTML = `Original String: <strong>"${val}"</strong> &rarr; Inverted String: <strong>"${revStr}"</strong>`;
+      }
+    }
+  </script>
+</body>
+</html>

@@ -1,0 +1,51 @@
+/* ==========================================
+   EXTERNAL CSS
+   Taj Mahal - Practical 11
+   ========================================== */
+
+body {
+    background-color: #e6f7ff;
+    font-family: Arial, sans-serif;
+    margin: 30px;
+}
+
+/* Main heading */
+h1 {
+    text-align: center;
+    color: #064e6b;
+}
+
+/* Introduction paragraph */
+.intro {
+    text-align: center;
+    font-size: 18px;
+}
+
+
+/* ==========================================
+   EXTERNAL CSS SECTION
+   ========================================== */
+
+.external-section {
+    background-color: #dbeafe;
+    border: 3px solid #075985;
+    padding: 20px;
+    margin: 20px auto;
+    width: 80%;
+    text-align: center;
+}
+
+.external-section h2 {
+    color: #075985;
+}
+
+.external-section p {
+    font-size: 18px;
+}
+
+.external-section div {
+    background-color: #bae6fd;
+    padding: 15px;
+    margin-top: 15px;
+    border: 2px solid #0369a1;
+}

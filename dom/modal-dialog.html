@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>DOM 17 - Modal Dialog with Backdrop | Web Tech Lab</title>
+  <link rel="stylesheet" href="../../assets/css/style.css">
+  <link rel="stylesheet" href="../../assets/css/program-viewer.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500&family=Inter:wght@400;500;600&family=Outfit:wght@600;700;800&display=swap" rel="stylesheet">
+  <style>
+    /* Modal Backdrop */
+    .modal-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      background: rgba(2, 6, 23, 0.75);
+      backdrop-filter: blur(6px);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 9999;
+      opacity: 0;
+      visibility: hidden;
+      transition: opacity 0.25s ease, visibility 0.25s ease;
+    }
+    .modal-overlay.active {
+      opacity: 1;
+      visibility: visible;
+    }
+    .modal-card {
+      background: #0f172a;
+      border: 1px solid #38bdf8;
+      border-radius: 16px;
+      max-width: 500px;
+      width: 90%;
+      padding: 2rem;
+      box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.7);
+      transform: scale(0.9);
+      transition: transform 0.25s cubic-bezier(0.34, 1.56, 0.64, 1);
+    }
+    .modal-overlay.active .modal-card {
+      transform: scale(1);
+    }
+    .modal-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 1rem;
+    }
+    .modal-close-btn {
+      background: none;
+      border: none;
+      color: #94a3b8;
+      font-size: 1.5rem;
+      cursor: pointer;
+      line-height: 1;
+      transition: color 0.2s;
+    }
+    .modal-close-btn:hover {
+      color: #ef4444;
+    }
+  </style>
+</head>
+<body>
+  <!-- Navbar -->
+  <nav class="navbar">
+    <div class="nav-container">
+      <a href="../../index.html" class="logo">
+        <span class="logo-icon">&lt;/&gt;</span>
+        <span>WebTech<span class="highlight">Lab</span></span>
+      </a>
+      <div class="nav-links">
+        <a href="../../index.html">Dashboard</a>
+        <a href="../../html/index.html">HTML</a>
+        <a href="../../css/index.html">CSS</a>
+        <a href="../index.html" class="active">JavaScript</a>
+      </div>
+    </div>
+  </nav>
+
+  <main class="page-container">
+    <div class="breadcrumb">
+      <a href="../../index.html">Home</a> &rsaquo; 
+      <a href="../index.html">JavaScript</a> &rsaquo; 
+      <a href="index.html">DOM</a> &rsaquo; 
+      <span>DOM 17 - Custom Modal Dialog</span>
+    </div>
+
+    <div class="program-header">
+      <div class="program-badge">DOM Manipulation • Program 17</div>
+      <h1>Custom Modal Popup Dialog with Backdrop Blur</h1>
+      <p class="program-desc">
+        Trigger accessible, animated modal dialogs with backdrop blur, keyboard <code>Escape</code> key 
+        dismissal, and outside-click event listeners.
+      </p>
+      <div class="student-pill">
+        <span>👨‍💻 Student: <strong>Shaik Roshan</strong></span>
+        <span>•</span>
+        <span>Reg No: <strong>[TO BE FILLED BY STUDENT]</strong></span>
+      </div>
+    </div>
+
+    <!-- Live Demo -->
+    <div class="demo-section">
+      <div class="demo-header">
+        <div class="demo-title">
+          <span>🪟</span> Interactive Modal Trigger Demo
+        </div>
+        <span class="badge badge-success">Accessible Component</span>
+      </div>
+      <div class="demo-body" style="text-align: center; padding: 3rem 1.5rem;">
+        
+        <p style="color: #cbd5e1; margin-bottom: 1.5rem; max-width: 500px; margin-left: auto; margin-right: auto;">
+          Click the button below to display the modal. Notice that you can close it by clicking the &times; button, clicking anywhere outside on the blurred backdrop, or pressing the <code>Esc</code> key.
+        </p>
+
+        <button class="btn btn-primary" style="font-size: 1.1rem; padding: 0.85rem 1.75rem;" onclick="openModal()">
+          🚀 Open Interactive Dialog
+        </button>
+
+      </div>
+    </div>
+
+    <!-- Modal Element -->
+    <div id="modalOverlay" class="modal-overlay" onclick="onBackdropClick(event)">
+      <div class="modal-card">
+        <div class="modal-header">
+          <h3 style="color: #38bdf8; margin: 0;">Laboratory Submission Notice</h3>
+          <button class="modal-close-btn" onclick="closeModal()" title="Close dialog">&times;</button>
+        </div>
+        <p style="color: #cbd5e1; line-height: 1.6; margin-bottom: 1.5rem;">
+          Hello <strong>Shaik Roshan</strong>, your Web Technology laboratory assignments and practical records have been successfully generated and synchronized.
+        </p>
+        <div style="background: #1e293b; padding: 1rem; border-radius: 8px; margin-bottom: 1.5rem; font-size: 0.9rem; color: #94a3b8;">
+          💡 <em>Keyboard accessibility:</em> You can press the <strong>ESC</strong> key on your physical keyboard to immediately dismiss this popup dialog.
+        </div>
+        <div style="display: flex; justify-content: flex-end; gap: 0.75rem;">
+          <button class="btn btn-secondary" onclick="closeModal()">Cancel</button>
+          <button class="btn btn-primary" onclick="alert('Confirmed action!'); closeModal();">Confirm & Close</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Source Code Viewer -->
+    <div class="code-viewer-section">
+      <div class="code-viewer-header">
+        <div class="code-tabs">
+          <button class="code-tab active" data-tab="js">JavaScript Implementation</button>
+        </div>
+        <div class="code-actions">
+          <button class="btn-secondary" id="copyCodeBtn">📋 Copy Code</button>
+        </div>
+      </div>
+      <div class="code-body">
+        <pre><code id="sourceCode">const modal = document.getElementById("modalOverlay");
+
+function openModal() {
+  modal.classList.add("active");
+  document.body.style.overflow = "hidden"; // prevent scroll
+}
+
+function closeModal() {
+  modal.classList.remove("active");
+  document.body.style.overflow = "";
+}
+
+// Close on backdrop click
+function onBackdropClick(event) {
+  if (event.target === modal) {
+    closeModal();
+  }
+}
+
+// Close on ESC key press
+window.addEventListener("keydown", (e) => {
+  if (e.key === "Escape" && modal.classList.contains("active")) {
+    closeModal();
+  }
+});</code></pre>
+      </div>
+    </div>
+
+    <!-- Navigation -->
+    <div class="program-nav">
+      <a href="accordion-component.html" class="nav-prev">&larr; DOM 16: FAQ Accordion</a>
+      <a href="live-counters.html" class="nav-next">DOM 18: Live Text Counters &rarr;</a>
+    </div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-content">
+      <p>&copy; 2026 Web Technology Practical Laboratory • Prepared by <strong>Shaik Roshan</strong></p>
+      <p class="subtext">Computer Science & Engineering Department</p>
+    </div>
+  </footer>
+
+  <script src="../../assets/js/code-viewer.js"></script>
+  <script>
+    const modal = document.getElementById("modalOverlay");
+
+    function openModal() {
+      modal.classList.add("active");
+      document.body.style.overflow = "hidden";
+    }
+
+    function closeModal() {
+      modal.classList.remove("active");
+      document.body.style.overflow = "";
+    }
+
+    function onBackdropClick(e) {
+      if (e.target === modal) {
+        closeModal();
+      }
+    }
+
+    window.addEventListener("keydown", (e) => {
+      if (e.key === "Escape" && modal.classList.contains("active")) {
+        closeModal();
+      }
+    });
+  </script>
+</body>
+</html>

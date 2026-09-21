@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>DOM 10 - Table Filter & Sorting | Web Tech Lab</title>
+  <link rel="stylesheet" href="../../assets/css/style.css">
+  <link rel="stylesheet" href="../../assets/css/program-viewer.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500&family=Inter:wght@400;500;600&family=Outfit:wght@600;700;800&display=swap" rel="stylesheet">
+  <style>
+    .filter-bar {
+      display: flex;
+      gap: 1rem;
+      margin-bottom: 1.5rem;
+      flex-wrap: wrap;
+    }
+    .filter-input {
+      flex: 1;
+      min-width: 250px;
+      background: #0f172a;
+      border: 1px solid #334155;
+      color: #f8fafc;
+      padding: 0.75rem 1rem;
+      border-radius: 8px;
+    }
+    .sortable-table {
+      width: 100%;
+      border-collapse: collapse;
+      background: #0f172a;
+      border: 1px solid #334155;
+      border-radius: 10px;
+      overflow: hidden;
+    }
+    .sortable-table th {
+      background: #1e293b;
+      color: #38bdf8;
+      padding: 12px 16px;
+      text-align: left;
+      font-size: 0.9rem;
+      cursor: pointer;
+      user-select: none;
+      transition: background 0.2s;
+    }
+    .sortable-table th:hover {
+      background: #334155;
+    }
+    .sortable-table td {
+      padding: 12px 16px;
+      border-top: 1px solid #1e293b;
+      color: #e2e8f0;
+      font-size: 0.9rem;
+    }
+    .sortable-table tr:hover {
+      background: rgba(255, 255, 255, 0.02);
+    }
+    .sort-icon {
+      font-size: 0.75rem;
+      margin-left: 0.3rem;
+      color: #94a3b8;
+    }
+  </style>
+</head>
+<body>
+  <!-- Navbar -->
+  <nav class="navbar">
+    <div class="nav-container">
+      <a href="../../index.html" class="logo">
+        <span class="logo-icon">&lt;/&gt;</span>
+        <span>WebTech<span class="highlight">Lab</span></span>
+      </a>
+      <div class="nav-links">
+        <a href="../../index.html">Dashboard</a>
+        <a href="../../html/index.html">HTML</a>
+        <a href="../../css/index.html">CSS</a>
+        <a href="../index.html" class="active">JavaScript</a>
+      </div>
+    </div>
+  </nav>
+
+  <main class="page-container">
+    <div class="breadcrumb">
+      <a href="../../index.html">Home</a> &rsaquo; 
+      <a href="../index.html">JavaScript</a> &rsaquo; 
+      <a href="index.html">DOM</a> &rsaquo; 
+      <span>DOM 10 - Table Filter & Column Sorting</span>
+    </div>
+
+    <div class="program-header">
+      <div class="program-badge">DOM Manipulation • Program 10</div>
+      <h1>Live Table Search Filter & Column Sorting</h1>
+      <p class="program-desc">
+        Filter tabular data instantaneously across multiple columns and sort records alphabetically 
+        or numerically by clicking column headers.
+      </p>
+      <div class="student-pill">
+        <span>👨‍💻 Student: <strong>Shaik Roshan</strong></span>
+        <span>•</span>
+        <span>Reg No: <strong>[TO BE FILLED BY STUDENT]</strong></span>
+      </div>
+    </div>
+
+    <!-- Live Demo -->
+    <div class="demo-section">
+      <div class="demo-header">
+        <div class="demo-title">
+          <span>🔎</span> Products Inventory Table
+        </div>
+        <span class="badge badge-success">Live Filter & Sort</span>
+      </div>
+      <div class="demo-body">
+        
+        <div class="filter-bar">
+          <input type="text" id="tableSearch" class="filter-input" placeholder="Type to filter products by name, category, or sku..." oninput="filterTable()">
+          <span style="display: flex; align-items: center; color: #94a3b8; font-size: 0.9rem;">
+            Showing <strong id="matchCount" style="color:#38bdf8; margin: 0 4px;">6</strong> of 6 items
+          </span>
+        </div>
+
+        <table class="sortable-table" id="inventoryTable">
+          <thead>
+            <tr>
+              <th onclick="sortTable(0, 'str')">Item Name <span class="sort-icon">↕</span></th>
+              <th onclick="sortTable(1, 'str')">Category <span class="sort-icon">↕</span></th>
+              <th onclick="sortTable(2, 'num')">Stock Qty <span class="sort-icon">↕</span></th>
+              <th onclick="sortTable(3, 'num')">Price ($) <span class="sort-icon">↕</span></th>
+              <th onclick="sortTable(4, 'num')">Rating <span class="sort-icon">↕</span></th>
+            </tr>
+          </thead>
+          <tbody id="inventoryBody">
+            <tr><td>Apple MacBook Pro M3</td><td>Laptops</td><td>18</td><td>1599</td><td>4.9</td></tr>
+            <tr><td>Dell XPS 15 Infinity</td><td>Laptops</td><td>25</td><td>1299</td><td>4.6</td></tr>
+            <tr><td>Sony WH-1000XM5</td><td>Audio</td><td>42</td><td>399</td><td>4.8</td></tr>
+            <tr><td>Logitech MX Master 3S</td><td>Accessories</td><td>80</td><td>99</td><td>4.7</td></tr>
+            <tr><td>LG UltraWide 34-inch</td><td>Monitors</td><td>12</td><td>649</td><td>4.5</td></tr>
+            <tr><td>Keychron Q1 Pro Mechanical</td><td>Keyboards</td><td>34</td><td>199</td><td>4.8</td></tr>
+          </tbody>
+        </table>
+
+      </div>
+    </div>
+
+    <!-- Source Code Viewer -->
+    <div class="code-viewer-section">
+      <div class="code-viewer-header">
+        <div class="code-tabs">
+          <button class="code-tab active" data-tab="js">JavaScript Implementation</button>
+        </div>
+        <div class="code-actions">
+          <button class="btn-secondary" id="copyCodeBtn">📋 Copy Code</button>
+        </div>
+      </div>
+      <div class="code-body">
+        <pre><code id="sourceCode">// 1. Live Filter Rows
+function filterTable() {
+  const query = document.getElementById("tableSearch").value.toLowerCase();
+  const rows = document.querySelectorAll("#inventoryBody tr");
+
+  rows.forEach(row => {
+    const text = row.textContent.toLowerCase();
+    row.style.display = text.includes(query) ? "" : "none";
+  });
+}
+
+// 2. Sort Column (String or Number)
+let sortAsc = true;
+function sortTable(colIndex, type) {
+  const table = document.getElementById("inventoryTable");
+  const tbody = table.tBodies[0];
+  const rows = Array.from(tbody.rows);
+
+  rows.sort((a, b) => {
+    let valA = a.cells[colIndex].textContent.trim();
+    let valB = b.cells[colIndex].textContent.trim();
+
+    if (type === 'num') {
+      return sortAsc ? parseFloat(valA) - parseFloat(valB) : parseFloat(valB) - parseFloat(valA);
+    } else {
+      return sortAsc ? valA.localeCompare(valB) : valB.localeCompare(valA);
+    }
+  });
+
+  sortAsc = !sortAsc;
+  rows.forEach(row => tbody.appendChild(row));
+}</code></pre>
+      </div>
+    </div>
+
+    <!-- Navigation -->
+    <div class="program-nav">
+      <a href="table-row-crud.html" class="nav-prev">&larr; DOM 09: Table CRUD</a>
+      <a href="dynamic-dropdown.html" class="nav-next">DOM 11: Dynamic Dropdown &rarr;</a>
+    </div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-content">
+      <p>&copy; 2026 Web Technology Practical Laboratory • Prepared by <strong>Shaik Roshan</strong></p>
+      <p class="subtext">Computer Science & Engineering Department</p>
+    </div>
+  </footer>
+
+  <script src="../../assets/js/code-viewer.js"></script>
+  <script>
+    function filterTable() {
+      const query = document.getElementById("tableSearch").value.toLowerCase().trim();
+      const rows = document.querySelectorAll("#inventoryBody tr");
+      let count = 0;
+
+      rows.forEach(row => {
+        const text = row.textContent.toLowerCase();
+        if (text.includes(query)) {
+          row.style.display = "";
+          count++;
+        } else {
+          row.style.display = "none";
+        }
+      });
+
+      document.getElementById("matchCount").textContent = count;
+    }
+
+    let sortAsc = true;
+    function sortTable(colIdx, type) {
+      const tbody = document.getElementById("inventoryBody");
+      const rows = Array.from(tbody.querySelectorAll("tr"));
+
+      rows.sort((a, b) => {
+        let vA = a.children[colIdx].textContent.trim();
+        let vB = b.children[colIdx].textContent.trim();
+
+        if (type === 'num') {
+          return sortAsc ? parseFloat(vA) - parseFloat(vB) : parseFloat(vB) - parseFloat(vA);
+        } else {
+          return sortAsc ? vA.localeCompare(vB) : vB.localeCompare(vA);
+        }
+      });
+
+      sortAsc = !sortAsc;
+      rows.forEach(r => tbody.appendChild(r));
+    }
+  </script>
+</body>
+</html>

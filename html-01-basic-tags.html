@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Basic HTML Webpage | HTML-01</title>
+  <link rel="stylesheet" href="../assets/css/style.css">
+  <link rel="stylesheet" href="../assets/css/program-viewer.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+</head>
+<body>
+
+  <!-- Top Navigation -->
+  <header class="navbar">
+    <div class="nav-container">
+      <a href="../index.html" class="nav-brand">
+        <div class="brand-icon" style="background: linear-gradient(135deg, #e34f26, #f06529);">
+          <span>&lt;/&gt;</span>
+        </div>
+        <span>HTML Programs</span>
+      </a>
+      <nav>
+        <ul class="nav-links">
+          <li><a href="../index.html" class="nav-link">Home</a></li>
+          <li><a href="index.html" class="nav-link active">HTML</a></li>
+          <li><a href="../css/index.html" class="nav-link">CSS</a></li>
+          <li><a href="../javascript/index.html" class="nav-link">JavaScript</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main class="main-wrapper">
+    <!-- Breadcrumb -->
+    <nav class="breadcrumb-bar" aria-label="Breadcrumb">
+      <a href="../index.html">Home</a>
+      <span class="breadcrumb-separator">&rarr;</span>
+      <a href="index.html">HTML Programs</a>
+      <span class="breadcrumb-separator">&rarr;</span>
+      <span class="breadcrumb-current">HTML-01: Basic HTML Webpage</span>
+    </nav>
+
+    <!-- Experiment Header -->
+    <section class="exp-header-card">
+      <div class="exp-meta-row">
+        <span class="exp-id-tag" style="background: #e34f26;">HTML-01</span>
+        <span class="exp-cat-tag">Fundamentals</span>
+      </div>
+      <h1 class="exp-heading">Basic HTML Webpage with Headings & Formatting</h1>
+      <p class="exp-description">
+        Demonstrates the fundamental building blocks of an HTML document, including document type declaration, hierarchical headings (h1 to h6), paragraphs, line breaks, horizontal rules, and inline text formatting tags.
+      </p>
+      <div class="objective-box">
+        <div class="objective-title">
+          <span>🎯</span> Practical Laboratory Objective
+        </div>
+        <div class="objective-text">
+          Understand the structure of an HTML5 document and learn how to format text hierarchically using semantic heading levels and typographic elements such as &lt;strong&gt;, &lt;em&gt;, &lt;mark&gt;, &lt;sub&gt;, and &lt;sup&gt;.
+        </div>
+      </div>
+    </section>
+
+    <!-- Live Working Demonstration -->
+    <section class="demo-section-wrapper">
+      <div class="demo-section-header">
+        <div class="demo-title">
+          <span>⚡</span> Live Output Demonstration
+        </div>
+        <span class="demo-live-badge">Working Demo</span>
+      </div>
+      <div class="demo-body" style="background: #ffffff;">
+        <div style="max-width: 800px; margin: 0 auto; padding: 1.5rem; border: 1px solid var(--border); border-radius: 8px;">
+          <!-- Headings Hierarchy -->
+          <h1 style="color: #1e293b; font-size: 2rem; margin-bottom: 0.5rem;">Heading Level 1 (&lt;h1&gt;)</h1>
+          <p style="color: #64748b; margin-bottom: 1rem;">This is a standard paragraph (&lt;p&gt;) introducing the main subject of the document. HTML allows structuring text with logical hierarchy.</p>
+          
+          <h2 style="color: #334155; font-size: 1.6rem; margin-top: 1rem; margin-bottom: 0.5rem;">Heading Level 2 (&lt;h2&gt;)</h2>
+          <p style="color: #64748b; margin-bottom: 1rem;">Sub-sections provide deeper categorization of details. Below are smaller heading tiers:</p>
+
+          <h3 style="color: #475569; font-size: 1.3rem; margin-bottom: 0.4rem;">Heading Level 3 (&lt;h3&gt;)</h3>
+          <h4 style="color: #64748b; font-size: 1.1rem; margin-bottom: 0.4rem;">Heading Level 4 (&lt;h4&gt;)</h4>
+          <h5 style="color: #94a3b8; font-size: 0.95rem; margin-bottom: 0.4rem;">Heading Level 5 (&lt;h5&gt;)</h5>
+          <h6 style="color: #94a3b8; font-size: 0.85rem; margin-bottom: 1rem;">Heading Level 6 (&lt;h6&gt;)</h6>
+
+          <hr style="border: 0; border-top: 1px solid #cbd5e1; margin: 1.5rem 0;">
+
+          <!-- Text Formatting Tags -->
+          <h3 style="color: #334155; margin-bottom: 0.75rem;">Inline Formatting Tags</h3>
+          <p style="margin-bottom: 0.75rem;">
+            This text contains <strong>bold text using &lt;strong&gt;</strong>, 
+            <em>italicized emphasis using &lt;em&gt;</em>, and 
+            <mark style="background: #fef08a; padding: 0.1rem 0.3rem; border-radius: 3px;">highlighted content using &lt;mark&gt;</mark>.
+          </p>
+          <p style="margin-bottom: 0.75rem;">
+            We can express scientific chemical formulas: Water is <strong>H<sub>2</sub>O</strong> (using &lt;sub&gt;).<br>
+            We can express mathematical exponents: Einstein's equation is <strong>E = mc<sup>2</sup></strong> (using &lt;sup&gt;).
+          </p>
+          <p style="margin-bottom: 0.5rem;">
+            Text can also show <del style="color: #ef4444;">deleted price: $100</del> and <ins style="color: #10b981;">inserted price: $79</ins> (using &lt;del&gt; and &lt;ins&gt;).
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Source Code Section -->
+    <section class="source-section-wrapper">
+      <div class="source-header">
+        <div class="source-tabs">
+          <button class="code-tab-btn active" data-tab="html">HTML Source Code</button>
+        </div>
+        <div class="source-actions">
+          <button class="copy-code-btn" type="button">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg> Copy Code
+          </button>
+          <button class="toggle-code-btn" type="button">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17.94 17.94A10.07 10.07 0 0 1 12 20c-7 0-11-8-11-8a18.45 18.45 0 0 1 5.06-5.94M9.9 4.24A9.12 9.12 0 0 1 12 4c7 0 11 8 11 8a18.5 18.5 0 0 1-2.16 3.19m-6.72-1.07a3 3 0 1 1-4.24-4.24"></path><line x1="1" y1="1" x2="23" y2="23"></line></svg> Hide Code
+          </button>
+        </div>
+      </div>
+      <div class="code-content-container">
+        <div class="code-pane active" data-tab="html">
+<pre>&lt;!DOCTYPE html&gt;
+&lt;html lang="en"&gt;
+&lt;head&gt;
+  &lt;meta charset="UTF-8"&gt;
+  &lt;title&gt;Basic HTML Webpage&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+
+  &lt;!-- Heading Hierarchy --&gt;
+  &lt;h1&gt;Heading Level 1 (&amp;lt;h1&amp;gt;)&lt;/h1&gt;
+  &lt;p&gt;This is a standard paragraph introducing the document topic.&lt;/p&gt;
+
+  &lt;h2&gt;Heading Level 2 (&amp;lt;h2&amp;gt;)&lt;/h2&gt;
+  &lt;h3&gt;Heading Level 3 (&amp;lt;h3&amp;gt;)&lt;/h3&gt;
+  &lt;h4&gt;Heading Level 4 (&amp;lt;h4&amp;gt;)&lt;/h4&gt;
+  &lt;h5&gt;Heading Level 5 (&amp;lt;h5&amp;gt;)&lt;/h5&gt;
+  &lt;h6&gt;Heading Level 6 (&amp;lt;h6&amp;gt;)&lt;/h6&gt;
+
+  &lt;hr&gt;
+
+  &lt;!-- Text Formatting --&gt;
+  &lt;p&gt;This text contains &lt;strong&gt;bold text&lt;/strong&gt; and &lt;em&gt;italicized text&lt;/em&gt;.&lt;/p&gt;
+  &lt;p&gt;Chemical formula: H&lt;sub&gt;2&lt;/sub&gt;O and Math formula: E = mc&lt;sup&gt;2&lt;/sup&gt;&lt;/p&gt;
+  &lt;p&gt;Important text can be &lt;mark&gt;highlighted with mark&lt;/mark&gt;.&lt;/p&gt;
+  &lt;p&gt;&lt;del&gt;Old Price: $100&lt;/del&gt; &lt;ins&gt;New Price: $79&lt;/ins&gt;&lt;/p&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;</pre>
+        </div>
+      </div>
+    </section>
+
+    <!-- Bottom Navigation -->
+    <nav class="exp-nav-bar">
+      <span class="nav-btn nav-btn-prev disabled">&larr; Previous</span>
+      <a href="index.html" class="nav-btn nav-btn-hub">All HTML Programs</a>
+      <a href="html-02-lists.html" class="nav-btn nav-btn-next">Next Program &rarr;</a>
+    </nav>
+  </main>
+
+  <script src="../assets/js/code-viewer.js"></script>
+</body>
+</html>

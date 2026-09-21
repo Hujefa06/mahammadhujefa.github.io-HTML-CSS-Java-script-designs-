@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Lists in HTML | HTML-02</title>
+  <link rel="stylesheet" href="../assets/css/style.css">
+  <link rel="stylesheet" href="../assets/css/program-viewer.css">
+</head>
+<body>
+  <header class="navbar">
+    <div class="nav-container">
+      <a href="../index.html" class="nav-brand">
+        <div class="brand-icon" style="background: linear-gradient(135deg, #e34f26, #f06529);">
+          <span>&lt;/&gt;</span>
+        </div>
+        <span>HTML Programs</span>
+      </a>
+      <nav>
+        <ul class="nav-links">
+          <li><a href="../index.html" class="nav-link">Home</a></li>
+          <li><a href="index.html" class="nav-link active">HTML</a></li>
+          <li><a href="../css/index.html" class="nav-link">CSS</a></li>
+          <li><a href="../javascript/index.html" class="nav-link">JavaScript</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main class="main-wrapper">
+    <nav class="breadcrumb-bar">
+      <a href="../index.html">Home</a>
+      <span class="breadcrumb-separator">&rarr;</span>
+      <a href="index.html">HTML Programs</a>
+      <span class="breadcrumb-separator">&rarr;</span>
+      <span class="breadcrumb-current">HTML-02: Ordered, Unordered & Description Lists</span>
+    </nav>
+
+    <section class="exp-header-card">
+      <div class="exp-meta-row">
+        <span class="exp-id-tag" style="background: #e34f26;">HTML-02</span>
+        <span class="exp-cat-tag">Fundamentals</span>
+      </div>
+      <h1 class="exp-heading">Ordered, Unordered and Description Lists</h1>
+      <p class="exp-description">
+        Demonstrates the creation and customization of numbered ordered lists (&lt;ol&gt;), bulleted unordered lists (&lt;ul&gt;), and definition/description lists (&lt;dl&gt;, &lt;dt&gt;, &lt;dd&gt;) with nesting.
+      </p>
+      <div class="objective-box">
+        <div class="objective-title"><span>🎯</span> Practical Laboratory Objective</div>
+        <div class="objective-text">
+          Master the different listing structures in HTML5, their default bullet types, type attributes (numeric, alphabetic, roman), and description pairings for terms and definitions.
+        </div>
+      </div>
+    </section>
+
+    <!-- Live Demonstration -->
+    <section class="demo-section-wrapper">
+      <div class="demo-section-header">
+        <div class="demo-title"><span>⚡</span> Live Output Demonstration</div>
+        <span class="demo-live-badge">Working Demo</span>
+      </div>
+      <div class="demo-body" style="background: #ffffff;">
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 1.5rem;">
+          <!-- Ordered List Card -->
+          <div style="padding: 1.25rem; border: 1px solid var(--border); border-radius: 8px; background: #fafafa;">
+            <h3 style="color: #1e293b; margin-bottom: 0.75rem; font-size: 1.1rem; border-bottom: 2px solid #e34f26; padding-bottom: 0.3rem;">1. Ordered List (&lt;ol&gt;)</h3>
+            <p style="font-size: 0.85rem; color: #64748b; margin-bottom: 0.5rem;">Computer Science Core Curriculum:</p>
+            <ol style="margin-left: 1.5rem; line-height: 1.8; color: #334155;">
+              <li>Data Structures & Algorithms</li>
+              <li>Database Management Systems
+                <ol type="a" style="margin-left: 1.25rem;">
+                  <li>Relational Schema</li>
+                  <li>SQL Queries & Normalization</li>
+                </ol>
+              </li>
+              <li>Operating Systems</li>
+              <li>Computer Networks</li>
+            </ol>
+          </div>
+
+          <!-- Unordered List Card -->
+          <div style="padding: 1.25rem; border: 1px solid var(--border); border-radius: 8px; background: #fafafa;">
+            <h3 style="color: #1e293b; margin-bottom: 0.75rem; font-size: 1.1rem; border-bottom: 2px solid #3b82f6; padding-bottom: 0.3rem;">2. Unordered List (&lt;ul&gt;)</h3>
+            <p style="font-size: 0.85rem; color: #64748b; margin-bottom: 0.5rem;">Web Development Tech Stack:</p>
+            <ul style="margin-left: 1.5rem; line-height: 1.8; color: #334155;">
+              <li>Frontend Development
+                <ul style="list-style-type: circle; margin-left: 1.25rem;">
+                  <li>HTML5 (Structure)</li>
+                  <li>CSS3 (Design)</li>
+                  <li>JavaScript (Interactivity)</li>
+                </ul>
+              </li>
+              <li>Backend & APIs</li>
+              <li>Version Control (Git & GitHub)</li>
+            </ul>
+          </div>
+
+          <!-- Description List Card -->
+          <div style="padding: 1.25rem; border: 1px solid var(--border); border-radius: 8px; background: #fafafa;">
+            <h3 style="color: #1e293b; margin-bottom: 0.75rem; font-size: 1.1rem; border-bottom: 2px solid #10b981; padding-bottom: 0.3rem;">3. Description List (&lt;dl&gt;)</h3>
+            <p style="font-size: 0.85rem; color: #64748b; margin-bottom: 0.5rem;">Web Terminology Glossary:</p>
+            <dl style="line-height: 1.6; color: #334155;">
+              <dt style="font-weight: 700; color: #0f172a; margin-top: 0.5rem;">HTML</dt>
+              <dd style="margin-left: 1rem; color: #475569; font-size: 0.9rem;">HyperText Markup Language: the standard markup language for documents designed to be displayed in a web browser.</dd>
+              <dt style="font-weight: 700; color: #0f172a; margin-top: 0.5rem;">CSS</dt>
+              <dd style="margin-left: 1rem; color: #475569; font-size: 0.9rem;">Cascading Style Sheets: stylesheet language used for describing the presentation of a document.</dd>
+              <dt style="font-weight: 700; color: #0f172a; margin-top: 0.5rem;">DOM</dt>
+              <dd style="margin-left: 1rem; color: #475569; font-size: 0.9rem;">Document Object Model: programmatic API representation for HTML documents.</dd>
+            </dl>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Source Code Section -->
+    <section class="source-section-wrapper">
+      <div class="source-header">
+        <div class="source-tabs">
+          <button class="code-tab-btn active" data-tab="html">HTML Source Code</button>
+        </div>
+        <div class="source-actions">
+          <button class="copy-code-btn" type="button">Copy Code</button>
+          <button class="toggle-code-btn" type="button">Hide Code</button>
+        </div>
+      </div>
+      <div class="code-content-container">
+        <div class="code-pane active" data-tab="html">
+<pre>&lt;!-- Ordered List with Nesting and Type --&gt;
+&lt;ol&gt;
+  &lt;li&gt;Data Structures &amp; Algorithms&lt;/li&gt;
+  &lt;li&gt;Database Management Systems
+    &lt;ol type="a"&gt;
+      &lt;li&gt;Relational Schema&lt;/li&gt;
+      &lt;li&gt;SQL Queries &amp; Normalization&lt;/li&gt;
+    &lt;/ol&gt;
+  &lt;/li&gt;
+  &lt;li&gt;Operating Systems&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;!-- Unordered List with Nested Bullets --&gt;
+&lt;ul&gt;
+  &lt;li&gt;Frontend Technologies
+    &lt;ul type="circle"&gt;
+      &lt;li&gt;HTML5&lt;/li&gt;
+      &lt;li&gt;CSS3&lt;/li&gt;
+      &lt;li&gt;JavaScript&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;Backend Technologies&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;!-- Description List (&lt;dl&gt;, &lt;dt&gt;, &lt;dd&gt;) --&gt;
+&lt;dl&gt;
+  &lt;dt&gt;HTML&lt;/dt&gt;
+  &lt;dd&gt;HyperText Markup Language for web document structure.&lt;/dd&gt;
+  &lt;dt&gt;CSS&lt;/dt&gt;
+  &lt;dd&gt;Cascading Style Sheets for visual styling.&lt;/dd&gt;
+&lt;/dl&gt;</pre>
+        </div>
+      </div>
+    </section>
+
+    <!-- Bottom Navigation -->
+    <nav class="exp-nav-bar">
+      <a href="html-01-basic-tags.html" class="nav-btn nav-btn-prev">&larr; Previous (HTML-01)</a>
+      <a href="index.html" class="nav-btn nav-btn-hub">All HTML Programs</a>
+      <a href="html-03-tables.html" class="nav-btn nav-btn-next">Next (HTML-03) &rarr;</a>
+    </nav>
+  </main>
+
+  <script src="../assets/js/code-viewer.js"></script>
+</body>
+</html>

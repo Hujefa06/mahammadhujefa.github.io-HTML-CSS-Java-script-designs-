@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Taj Mahal - Internal and External CSS</title>
+
+    <!-- External CSS -->
+    <link rel="stylesheet"
+          href="011-create-a-webpage-with-internal-and-external-css-styling.css">
+
+    <!-- Internal CSS -->
+    <style>
+        .internal-section {
+            background-color: #fff4cc;
+            border: 3px solid #d97706;
+            padding: 20px;
+            margin: 20px auto;
+            width: 80%;
+            text-align: center;
+        }
+
+        .internal-section h2 {
+            color: #b45309;
+        }
+
+        .internal-section p {
+            font-size: 18px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <h1>TAJ MAHAL</h1>
+
+    <p class="intro">
+        Ancient land remembered through stories and traditions.
+    </p>
+
+    <!-- INTERNAL CSS SECTION -->
+    <section class="internal-section">
+
+        <h2>INTERNAL CSS</h2>
+
+        <p>
+            This section is styled using CSS written inside
+            the HTML file.
+        </p>
+
+        <div>
+            Ancient Temples
+        </div>
+
+    </section>
+
+
+    <!-- EXTERNAL CSS SECTION -->
+    <section class="external-section">
+
+        <h2>EXTERNAL CSS</h2>
+
+        <p>
+            This section is styled using a separate CSS file.
+        </p>
+
+        <div>
+            Ivory Marble Dome
+        </div>
+
+    </section>
+
+</body>
+</html>

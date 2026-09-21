@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Internal & External CSS Integration | HTML-11</title>
+  <link rel="stylesheet" href="../assets/css/style.css">
+  <link rel="stylesheet" href="../assets/css/program-viewer.css">
+  <style>
+    /* Internal CSS defined directly inside <style> tag */
+    .internal-style-box {
+      background-color: #f0fdf4;
+      border: 2px dashed #16a34a;
+      border-radius: 8px;
+      padding: 1.25rem;
+      color: #14532d;
+    }
+    .cascade-badge {
+      display: inline-block;
+      padding: 0.25rem 0.6rem;
+      border-radius: 4px;
+      font-size: 0.8rem;
+      font-weight: 700;
+      margin-bottom: 0.5rem;
+    }
+  </style>
+</head>
+<body>
+  <header class="navbar">
+    <div class="nav-container">
+      <a href="../index.html" class="nav-brand">
+        <div class="brand-icon" style="background: linear-gradient(135deg, #e34f26, #f06529);">
+          <span>&lt;/&gt;</span>
+        </div>
+        <span>HTML Programs</span>
+      </a>
+      <nav>
+        <ul class="nav-links">
+          <li><a href="../index.html" class="nav-link">Home</a></li>
+          <li><a href="index.html" class="nav-link active">HTML</a></li>
+          <li><a href="../css/index.html" class="nav-link">CSS</a></li>
+          <li><a href="../javascript/index.html" class="nav-link">JavaScript</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main class="main-wrapper">
+    <nav class="breadcrumb-bar">
+      <a href="../index.html">Home</a>
+      <span class="breadcrumb-separator">&rarr;</span>
+      <a href="index.html">HTML Programs</a>
+      <span class="breadcrumb-separator">&rarr;</span>
+      <span class="breadcrumb-current">HTML-11: Internal & External CSS</span>
+    </nav>
+
+    <section class="exp-header-card">
+      <div class="exp-meta-row">
+        <span class="exp-id-tag" style="background: #e34f26;">HTML-11</span>
+        <span class="exp-cat-tag">Fundamentals</span>
+      </div>
+      <h1 class="exp-heading">Integration of Inline, Internal & External CSS</h1>
+      <p class="exp-description">
+        Demonstrates the three primary methods for binding Cascading Style Sheets to an HTML document: Inline styles via the style attribute, Internal styles via the &lt;style&gt; tag in the head, and External styles linked via &lt;link rel="stylesheet"&gt;, highlighting specificity order and priority.
+      </p>
+      <div class="objective-box">
+        <div class="objective-title"><span>🎯</span> Practical Laboratory Objective</div>
+        <div class="objective-text">
+          Understand the architectural separation of structure (HTML) and presentation (CSS), and discover how the CSS cascade prioritizes inline styles over internal and external rules.
+        </div>
+      </div>
+    </section>
+
+    <!-- Live Demonstration -->
+    <section class="demo-section-wrapper">
+      <div class="demo-section-header">
+        <div class="demo-title"><span>⚡</span> Live Styling Priority Comparison</div>
+        <span class="demo-live-badge">Working Demo</span>
+      </div>
+      <div class="demo-body" style="background: #ffffff;">
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.5rem;">
+          <!-- 1. Inline CSS Card -->
+          <div style="background-color: #fff1f2; border: 2px solid #e11d48; border-radius: 8px; padding: 1.25rem; color: #9f1239;">
+            <span class="cascade-badge" style="background: #e11d48; color: #ffffff;">Priority 1: Highest</span>
+            <h3 style="font-size: 1.15rem; margin-bottom: 0.5rem; color: #881337;">Inline CSS</h3>
+            <p style="font-size: 0.885rem; line-height: 1.5;">
+              Applied directly to an HTML element using the <code>style="..."</code> attribute. Overrides external and internal stylesheet rules.
+            </p>
+            <div style="margin-top: 1rem; padding: 0.5rem 0.75rem; background: #ffffff; border-radius: 6px; font-size: 0.8rem; font-family: var(--font-mono);">
+              &lt;div style="color: red;"&gt;
+            </div>
+          </div>
+
+          <!-- 2. Internal CSS Card -->
+          <div class="internal-style-box">
+            <span class="cascade-badge" style="background: #16a34a; color: #ffffff;">Priority 2: Medium</span>
+            <h3 style="font-size: 1.15rem; margin-bottom: 0.5rem; color: #14532d;">Internal CSS</h3>
+            <p style="font-size: 0.885rem; line-height: 1.5;">
+              Defined within a <code>&lt;style&gt;</code> block located in the document's <code>&lt;head&gt;</code>. Applies exclusively to this single HTML page.
+            </p>
+            <div style="margin-top: 1rem; padding: 0.5rem 0.75rem; background: #ffffff; border-radius: 6px; font-size: 0.8rem; font-family: var(--font-mono); color: #166534;">
+              &lt;style&gt; .card { ... } &lt;/style&gt;
+            </div>
+          </div>
+
+          <!-- 3. External CSS Card -->
+          <div style="background-color: #eff6ff; border: 2px dashed #2563eb; border-radius: 8px; padding: 1.25rem; color: #1e3a8a;">
+            <span class="cascade-badge" style="background: #2563eb; color: #ffffff;">Priority 3: Global Base</span>
+            <h3 style="font-size: 1.15rem; margin-bottom: 0.5rem; color: #1e40af;">External CSS</h3>
+            <p style="font-size: 0.885rem; line-height: 1.5;">
+              Linked via <code>&lt;link rel="stylesheet" href="..."&gt;</code>. Best practice for modular, cached, and maintainable site-wide styling.
+            </p>
+            <div style="margin-top: 1rem; padding: 0.5rem 0.75rem; background: #ffffff; border-radius: 6px; font-size: 0.8rem; font-family: var(--font-mono); color: #1e40af;">
+              &lt;link rel="stylesheet" href="style.css"&gt;
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Source Code Section -->
+    <section class="source-section-wrapper">
+      <div class="source-header">
+        <div class="source-tabs">
+          <button class="code-tab-btn active" data-tab="html">HTML Source Code</button>
+        </div>
+        <div class="source-actions">
+          <button class="copy-code-btn" type="button">Copy Code</button>
+          <button class="toggle-code-btn" type="button">Hide Code</button>
+        </div>
+      </div>
+      <div class="code-content-container">
+        <div class="code-pane active" data-tab="html">
+<pre>&lt;!DOCTYPE html&gt;
+&lt;html lang="en"&gt;
+&lt;head&gt;
+  &lt;!-- 1. External CSS Link --&gt;
+  &lt;link rel="stylesheet" href="style.css"&gt;
+
+  &lt;!-- 2. Internal CSS Style Block --&gt;
+  &lt;style&gt;
+    .internal-box {
+      background: #f0fdf4;
+      border: 2px solid #16a34a;
+      color: #14532d;
+    }
+  &lt;/style&gt;
+&lt;/head&gt;
+&lt;body&gt;
+
+  &lt;!-- 3. Inline CSS applied via attribute --&gt;
+  &lt;div style="background: #fff1f2; color: #9f1239;"&gt;
+    Inline Styled Element (Overrides external and internal)
+  &lt;/div&gt;
+
+  &lt;div class="internal-box"&gt;
+    Internal Styled Element
+  &lt;/div&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;</pre>
+        </div>
+      </div>
+    </section>
+
+    <!-- Bottom Navigation -->
+    <nav class="exp-nav-bar">
+      <a href="html-10-college-timetable.html" class="nav-btn nav-btn-prev">&larr; Previous (HTML-10)</a>
+      <a href="index.html" class="nav-btn nav-btn-hub">All HTML Programs</a>
+      <a href="html-12-css-styling.html" class="nav-btn nav-btn-next">Next (HTML-12) &rarr;</a>
+    </nav>
+  </main>
+
+  <script src="../assets/js/code-viewer.js"></script>
+</body>
+</html>

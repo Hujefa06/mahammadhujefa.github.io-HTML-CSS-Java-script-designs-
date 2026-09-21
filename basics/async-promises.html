@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Promises & Async/Await | JS-18</title>
+  <link rel="stylesheet" href="../../assets/css/style.css">
+  <link rel="stylesheet" href="../../assets/css/program-viewer.css">
+</head>
+<body>
+  <header class="navbar">
+    <div class="nav-container">
+      <a href="../../index.html" class="nav-brand">
+        <div class="brand-icon" style="background: linear-gradient(135deg, #f59e0b, #d97706);">
+          <span>&lt;/&gt;</span>
+        </div>
+        <span>JS Basics</span>
+      </a>
+      <nav>
+        <ul class="nav-links">
+          <li><a href="../../index.html" class="nav-link">Home</a></li>
+          <li><a href="../../html/index.html" class="nav-link">HTML</a></li>
+          <li><a href="../../css/index.html" class="nav-link">CSS</a></li>
+          <li><a href="../index.html" class="nav-link active">JavaScript</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main class="main-wrapper">
+    <nav class="breadcrumb-bar">
+      <a href="../../index.html">Home</a>
+      <span class="breadcrumb-separator">&rarr;</span>
+      <a href="../index.html">JavaScript</a>
+      <span class="breadcrumb-separator">&rarr;</span>
+      <a href="index.html">Basics</a>
+      <span class="breadcrumb-separator">&rarr;</span>
+      <span class="breadcrumb-current">JS-18: Async/Await &amp; Promises</span>
+    </nav>
+
+    <section class="exp-header-card">
+      <div class="exp-meta-row">
+        <span class="exp-id-tag" style="background: #ca8a04;">JS-18</span>
+        <span class="exp-cat-tag">Async</span>
+      </div>
+      <h1 class="exp-heading">Asynchronous JavaScript: Promises &amp; Async/Await</h1>
+      <p class="exp-description">
+        Demonstrates non-blocking asynchronous event loop processing: Promise lifecycle states (Pending &rarr; Fulfilled / Rejected), error handling via try/catch, and sequential synchronous-style execution via `async` and `await`.
+      </p>
+      <div class="objective-box">
+        <div class="objective-title"><span>🎯</span> Practical Laboratory Objective</div>
+        <div class="objective-text">
+          Understand why JavaScript's single-threaded runtime relies on non-blocking async promises for network I/O, avoiding browser UI freezing.
+        </div>
+      </div>
+    </section>
+
+    <!-- Live Demonstration -->
+    <section class="demo-section-wrapper">
+      <div class="demo-section-header">
+        <div class="demo-title"><span>⚡</span> Live Asynchronous Task Runner</div>
+        <span class="demo-live-badge">Working Demo</span>
+      </div>
+      <div class="demo-body" style="background: #ffffff;">
+        <div class="demo-controls-row">
+          <button class="demo-btn" onclick="runAsyncSuccess()">🚀 Run Async Fetch (Success Case)</button>
+          <button class="demo-btn demo-btn-danger" onclick="runAsyncFailure()">⚠️ Run Async Fetch (Simulated Error)</button>
+        </div>
+
+        <div class="demo-output-box">
+          <div class="demo-output-header">Asynchronous Execution Log:</div>
+          <div class="demo-output-result" id="res-async" style="font-size: 0.9rem; font-family: var(--font-mono); line-height: 1.8;">
+            Ready to initiate asynchronous promise...
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Source Code Section -->
+    <section class="source-section-wrapper">
+      <div class="source-header">
+        <div class="source-tabs">
+          <button class="code-tab-btn active" data-tab="js">JavaScript Source Code</button>
+        </div>
+        <div class="source-actions">
+          <button class="copy-code-btn" type="button">Copy Code</button>
+          <button class="toggle-code-btn" type="button">Hide Code</button>
+        </div>
+      </div>
+      <div class="code-content-container">
+        <div class="code-pane active" data-tab="js">
+<pre>// 1. Promise Creator with Asynchronous Delay
+function fetchStudentData(shouldSucceed) {
+  return new Promise((resolve, reject) => {
+    setTimeout(() => {
+      if (shouldSucceed) {
+        resolve({ id: 101, name: "Shaik Roshan", role: "Developer" });
+      } else {
+        reject(new Error("503 Network Timeout Server Error"));
+      }
+    }, 1500);
+  });
+}
+
+// 2. Async/Await Consumer with Try/Catch
+async function handleRequest() {
+  try {
+    const data = await fetchStudentData(true);
+    console.log("Received payload:", data);
+  } catch (error) {
+    console.error("Caught error:", error.message);
+  }
+}</pre>
+        </div>
+      </div>
+    </section>
+
+    <!-- Bottom Navigation -->
+    <nav class="exp-nav-bar">
+      <a href="es6-classes.html" class="nav-btn nav-btn-prev">&larr; Previous (JS-17)</a>
+      <a href="index.html" class="nav-btn nav-btn-hub">All Basics Programs</a>
+      <a href="../dom/index.html" class="nav-btn nav-btn-next">Next Category: DOM Manipulation &rarr;</a>
+    </nav>
+  </main>
+
+  <script src="../../assets/js/code-viewer.js"></script>
+  <script>
+    function simulateFetch(succeed) {
+      return new Promise((resolve, reject) => {
+        setTimeout(() => {
+          if (succeed) {
+            resolve({ rollNo: "23CS01", name: "Shaik Roshan", status: "Active Student", recordsVerified: 150 });
+          } else {
+            reject(new Error("404 Remote Academic Record Not Found"));
+          }
+        }, 1200);
+      });
+    }
+
+    async function runAsyncSuccess() {
+      const res = document.getElementById('res-async');
+      res.innerHTML = `[${new Date().toLocaleTimeString()}] ⏳ [PENDING] Dispatching async request to endpoint...<br>`;
+      try {
+        const payload = await simulateFetch(true);
+        res.innerHTML += `[${new Date().toLocaleTimeString()}] <span style="color: #16a34a; font-weight: 700;">✅ [RESOLVED] Successfully fetched data:</span><br>` +
+          `&gt; Student: ${payload.name} (${payload.rollNo})<br>&gt; Status: ${payload.status} (${payload.recordsVerified} experiments verified)`;
+      } catch (err) {
+        res.innerHTML += `[${new Date().toLocaleTimeString()}] ❌ [REJECTED] ${err.message}`;
+      }
+    }
+
+    async function runAsyncFailure() {
+      const res = document.getElementById('res-async');
+      res.innerHTML = `[${new Date().toLocaleTimeString()}] ⏳ [PENDING] Dispatching async request...<br>`;
+      try {
+        await simulateFetch(false);
+      } catch (err) {
+        res.innerHTML += `[${new Date().toLocaleTimeString()}] <span style="color: #ef4444; font-weight: 700;">❌ [REJECTED] Handled in catch block:</span> ${err.message}`;
+      }
+    }
+  </script>
+</body>
+</html>

@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ES6 Classes & Inheritance | JS-17</title>
+  <link rel="stylesheet" href="../../assets/css/style.css">
+  <link rel="stylesheet" href="../../assets/css/program-viewer.css">
+</head>
+<body>
+  <header class="navbar">
+    <div class="nav-container">
+      <a href="../../index.html" class="nav-brand">
+        <div class="brand-icon" style="background: linear-gradient(135deg, #f59e0b, #d97706);">
+          <span>&lt;/&gt;</span>
+        </div>
+        <span>JS Basics</span>
+      </a>
+      <nav>
+        <ul class="nav-links">
+          <li><a href="../../index.html" class="nav-link">Home</a></li>
+          <li><a href="../../html/index.html" class="nav-link">HTML</a></li>
+          <li><a href="../../css/index.html" class="nav-link">CSS</a></li>
+          <li><a href="../index.html" class="nav-link active">JavaScript</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main class="main-wrapper">
+    <nav class="breadcrumb-bar">
+      <a href="../../index.html">Home</a>
+      <span class="breadcrumb-separator">&rarr;</span>
+      <a href="../index.html">JavaScript</a>
+      <span class="breadcrumb-separator">&rarr;</span>
+      <a href="index.html">Basics</a>
+      <span class="breadcrumb-separator">&rarr;</span>
+      <span class="breadcrumb-current">JS-17: ES6 Classes</span>
+    </nav>
+
+    <section class="exp-header-card">
+      <div class="exp-meta-row">
+        <span class="exp-id-tag" style="background: #ca8a04;">JS-17</span>
+        <span class="exp-cat-tag">OOP</span>
+      </div>
+      <h1 class="exp-heading">ES6 Classes and Object-Oriented Inheritance</h1>
+      <p class="exp-description">
+        Demonstrates Object-Oriented Programming (OOP) in ECMAScript 6: class declarations, constructor methods, instance getters/setters, class inheritance using `extends`, and parent constructor delegation using `super()`.
+      </p>
+      <div class="objective-box">
+        <div class="objective-title"><span>🎯</span> Practical Laboratory Objective</div>
+        <div class="objective-text">
+          Understand prototypical inheritance underneath ES6 class syntax sugar, method overriding (polymorphism), and encapsulation of student academic data models.
+        </div>
+      </div>
+    </section>
+
+    <!-- Live Demonstration -->
+    <section class="demo-section-wrapper">
+      <div class="demo-section-header">
+        <div class="demo-title"><span>⚡</span> Live OOP Class Instantiation Workbench</div>
+        <span class="demo-live-badge">Working Demo</span>
+      </div>
+      <div class="demo-body" style="background: #ffffff;">
+        <div class="demo-controls-row">
+          <div class="demo-input-group">
+            <label class="demo-input-label" for="stud-name">Student Name:</label>
+            <input type="text" id="stud-name" class="demo-input" value="Shaik Roshan" style="width: 160px;">
+          </div>
+          <div class="demo-input-group">
+            <label class="demo-input-label" for="stud-branch">Department:</label>
+            <input type="text" id="stud-branch" class="demo-input" value="Computer Science" style="width: 160px;">
+          </div>
+          <div class="demo-input-group">
+            <label class="demo-input-label" for="stud-gpa">GPA (0-10):</label>
+            <input type="number" id="stud-gpa" class="demo-input" value="9.4" step="0.1" style="width: 100px;">
+          </div>
+          <button class="demo-btn" onclick="instantiateStudent()" style="align-self: flex-end;">Instantiate Object</button>
+        </div>
+
+        <div class="demo-output-box">
+          <div class="demo-output-header">Object Instance Inspection:</div>
+          <div class="demo-output-result" id="res-oop" style="color: #0f172a; line-height: 1.8;">
+            <!-- Populated via JS -->
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Source Code Section -->
+    <section class="source-section-wrapper">
+      <div class="source-header">
+        <div class="source-tabs">
+          <button class="code-tab-btn active" data-tab="js">JavaScript Source Code</button>
+        </div>
+        <div class="source-actions">
+          <button class="copy-code-btn" type="button">Copy Code</button>
+          <button class="toggle-code-btn" type="button">Hide Code</button>
+        </div>
+      </div>
+      <div class="code-content-container">
+        <div class="code-pane active" data-tab="js">
+<pre>// Base Class
+class Person {
+  constructor(name) {
+    this.name = name;
+  }
+  introduce() {
+    return `Hello, my name is ${this.name}.`;
+  }
+}
+
+// Subclass Inheriting from Person
+class Student extends Person {
+  constructor(name, department, gpa) {
+    super(name); // Delegates to parent constructor
+    this.department = department;
+    this.gpa = gpa;
+  }
+  getAcademicStatus() {
+    return this.gpa >= 8.5 ? "First Class with Distinction" : "Standard Passing";
+  }
+}</pre>
+        </div>
+      </div>
+    </section>
+
+    <!-- Bottom Navigation -->
+    <nav class="exp-nav-bar">
+      <a href="string-methods.html" class="nav-btn nav-btn-prev">&larr; Previous (JS-16)</a>
+      <a href="index.html" class="nav-btn nav-btn-hub">All Basics Programs</a>
+      <a href="async-promises.html" class="nav-btn nav-btn-next">Next (JS-18) &rarr;</a>
+    </nav>
+  </main>
+
+  <script src="../../assets/js/code-viewer.js"></script>
+  <script>
+    class Person {
+      constructor(name) { this.name = name; }
+      introduce() { return `Member: ${this.name}`; }
+    }
+    class Student extends Person {
+      constructor(name, department, gpa) {
+        super(name);
+        this.department = department;
+        this.gpa = gpa;
+      }
+      getHonors() {
+        return this.gpa >= 8.5 ? "First Class with Distinction" : "First Class";
+      }
+    }
+
+    function instantiateStudent() {
+      const name = document.getElementById('stud-name').value;
+      const dept = document.getElementById('stud-branch').value;
+      const gpa = parseFloat(document.getElementById('stud-gpa').value);
+
+      const s = new Student(name, dept, gpa);
+      document.getElementById('res-oop').innerHTML = `
+        <strong>Instance Created:</strong> new Student("${s.name}", "${s.department}", ${s.gpa})<br>
+        <strong>Inherited Method (Person.introduce):</strong> "${s.introduce()}"<br>
+        <strong>Subclass Method (Student.getHonors):</strong> <span style="color: #16a34a; font-weight: 700;">${s.getHonors()}</span><br>
+        <strong>Instance Check:</strong> (s instanceof Student: ${s instanceof Student}) &amp;&amp; (s instanceof Person: ${s instanceof Person})
+      `;
+    }
+    instantiateStudent();
+  </script>
+</body>
+</html>

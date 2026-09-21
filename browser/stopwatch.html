@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>BR 05 - Millisecond Stopwatch with Laps | Web Tech Lab</title>
+  <link rel="stylesheet" href="../../assets/css/style.css">
+  <link rel="stylesheet" href="../../assets/css/program-viewer.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500;700&family=Inter:wght@400;500;600&family=Outfit:wght@600;700;800&display=swap" rel="stylesheet">
+  <style>
+    .stopwatch-card {
+      max-width: 580px;
+      margin: 0 auto;
+      background: #0f172a;
+      border: 1px solid #334155;
+      border-radius: 12px;
+      padding: 2rem;
+      text-align: center;
+    }
+    .sw-display {
+      font-family: 'Fira Code', monospace;
+      font-size: 3.5rem;
+      font-weight: 800;
+      color: #38bdf8;
+      background: #020617;
+      border: 2px solid #334155;
+      border-radius: 12px;
+      padding: 1rem;
+      margin: 1.5rem 0;
+    }
+    .ms-part {
+      font-size: 2.2rem;
+      color: #f59e0b;
+    }
+    .controls-row {
+      display: flex;
+      justify-content: center;
+      gap: 0.75rem;
+      margin-bottom: 1.5rem;
+    }
+    .laps-container {
+      max-height: 200px;
+      overflow-y: auto;
+      border: 1px solid #1e293b;
+      border-radius: 8px;
+      background: #090d16;
+    }
+    .lap-row {
+      display: flex;
+      justify-content: space-between;
+      padding: 0.5rem 1rem;
+      border-bottom: 1px solid #1e293b;
+      font-family: 'Fira Code', monospace;
+      font-size: 0.85rem;
+      color: #cbd5e1;
+    }
+  </style>
+</head>
+<body>
+  <!-- Navbar -->
+  <nav class="navbar">
+    <div class="nav-container">
+      <a href="../../index.html" class="logo">
+        <span class="logo-icon">&lt;/&gt;</span>
+        <span>WebTech<span class="highlight">Lab</span></span>
+      </a>
+      <div class="nav-links">
+        <a href="../../index.html">Dashboard</a>
+        <a href="../../html/index.html">HTML</a>
+        <a href="../../css/index.html">CSS</a>
+        <a href="../index.html" class="active">JavaScript</a>
+      </div>
+    </div>
+  </nav>
+
+  <main class="page-container">
+    <div class="breadcrumb">
+      <a href="../../index.html">Home</a> &rsaquo; 
+      <a href="../index.html">JavaScript</a> &rsaquo; 
+      <a href="index.html">Browser</a> &rsaquo; 
+      <span>BR 05 - Stopwatch with Laps</span>
+    </div>
+
+    <div class="program-header">
+      <div class="program-badge">Browser BOM • Program 05</div>
+      <h1>Millisecond Precision Stopwatch with Laps</h1>
+      <p class="program-desc">
+        Measure time down to 10-millisecond precision. Start, stop, record lap splits, 
+        and reset using accurate timestamp difference calculations.
+      </p>
+      <div class="student-pill">
+        <span>👨‍💻 Student: <strong>Shaik Roshan</strong></span>
+        <span>•</span>
+        <span>Reg No: <strong>[TO BE FILLED BY STUDENT]</strong></span>
+      </div>
+    </div>
+
+    <!-- Live Demo -->
+    <div class="demo-section">
+      <div class="demo-header">
+        <div class="demo-title">
+          <span>⏱️</span> Athletic Precision Stopwatch
+        </div>
+        <span class="badge badge-success" id="swBadge">Ready</span>
+      </div>
+      <div class="demo-body">
+        
+        <div class="stopwatch-card">
+          <div class="sw-display">
+            <span id="swMinutes">00</span>:<span id="swSeconds">00</span>.<span id="swMillis" class="ms-part">00</span>
+          </div>
+
+          <div class="controls-row">
+            <button class="btn btn-primary" id="btnSwStart" onclick="startSw()">Start</button>
+            <button class="btn btn-secondary" id="btnSwLap" onclick="recordLap()" disabled>Lap</button>
+            <button class="btn btn-secondary" id="btnSwStop" onclick="stopSw()" disabled>Stop</button>
+            <button class="btn btn-secondary" onclick="resetSw()">Reset</button>
+          </div>
+
+          <div class="laps-container" id="lapsBox">
+            <div style="padding: 1rem; color: #64748b; font-size: 0.85rem;">No lap recorded yet. Click 'Lap' while running.</div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- Source Code Viewer -->
+    <div class="code-viewer-section">
+      <div class="code-viewer-header">
+        <div class="code-tabs">
+          <button class="code-tab active" data-tab="js">JavaScript Implementation</button>
+        </div>
+        <div class="code-actions">
+          <button class="btn-secondary" id="copyCodeBtn">📋 Copy Code</button>
+        </div>
+      </div>
+      <div class="code-body">
+        <pre><code id="sourceCode">let startTime = 0;
+let elapsedTime = 0;
+let timerInterval = null;
+
+function startStopwatch() {
+  startTime = Date.now() - elapsedTime;
+  timerInterval = setInterval(() => {
+    elapsedTime = Date.now() - startTime;
+    displayTime(elapsedTime);
+  }, 10);
+}
+
+function displayTime(ms) {
+  const minutes = Math.floor(ms / (1000 * 60));
+  const seconds = Math.floor((ms % (1000 * 60)) / 1000);
+  const hundredths = Math.floor((ms % 1000) / 10);
+
+  const mStr = String(minutes).padStart(2, "0");
+  const sStr = String(seconds).padStart(2, "0");
+  const hStr = String(hundredths).padStart(2, "0");
+
+  console.log(`${mStr}:${sStr}.${hStr}`);
+}</code></pre>
+      </div>
+    </div>
+
+    <!-- Navigation -->
+    <div class="program-nav">
+      <a href="countdown-timer.html" class="nav-prev">&larr; BR 04: Countdown Timer</a>
+      <a href="location-history.html" class="nav-next">BR 06: Location & History &rarr;</a>
+    </div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-content">
+      <p>&copy; 2026 Web Technology Practical Laboratory • Prepared by <strong>Shaik Roshan</strong></p>
+      <p class="subtext">Computer Science & Engineering Department</p>
+    </div>
+  </footer>
+
+  <script src="../../assets/js/code-viewer.js"></script>
+  <script>
+    let startTime = 0;
+    let elapsedTime = 0;
+    let timer = null;
+    let lapCount = 0;
+
+    const mEl = document.getElementById("swMinutes");
+    const sEl = document.getElementById("swSeconds");
+    const msEl = document.getElementById("swMillis");
+    const lapsBox = document.getElementById("lapsBox");
+
+    const btnStart = document.getElementById("btnSwStart");
+    const btnStop = document.getElementById("btnSwStop");
+    const btnLap = document.getElementById("btnSwLap");
+    const badge = document.getElementById("swBadge");
+
+    function renderTime(ms) {
+      const minutes = Math.floor(ms / (1000 * 60));
+      const seconds = Math.floor((ms % (1000 * 60)) / 1000);
+      const hundredths = Math.floor((ms % 1000) / 10);
+
+      mEl.textContent = String(minutes).padStart(2, '0');
+      sEl.textContent = String(seconds).padStart(2, '0');
+      msEl.textContent = String(hundredths).padStart(2, '0');
+
+      return `${mEl.textContent}:${sEl.textContent}.${msEl.textContent}`;
+    }
+
+    function startSw() {
+      if (timer) return;
+      startTime = Date.now() - elapsedTime;
+      timer = setInterval(() => {
+        elapsedTime = Date.now() - startTime;
+        renderTime(elapsedTime);
+      }, 10);
+
+      btnStart.disabled = true;
+      btnStop.disabled = false;
+      btnLap.disabled = false;
+      badge.textContent = "Running";
+      badge.className = "badge badge-primary";
+    }
+
+    function stopSw() {
+      clearInterval(timer);
+      timer = null;
+      btnStart.disabled = false;
+      btnStop.disabled = true;
+      btnLap.disabled = true;
+      badge.textContent = "Stopped";
+      badge.className = "badge badge-warning";
+    }
+
+    function resetSw() {
+      stopSw();
+      elapsedTime = 0;
+      renderTime(0);
+      lapCount = 0;
+      lapsBox.innerHTML = '<div style="padding: 1rem; color: #64748b; font-size: 0.85rem;">No lap recorded yet. Click \'Lap\' while running.</div>';
+      badge.textContent = "Ready";
+      badge.className = "badge badge-success";
+    }
+
+    function recordLap() {
+      if (!timer) return;
+      lapCount++;
+      if (lapCount === 1) lapsBox.innerHTML = "";
+
+      const row = document.createElement("div");
+      row.className = "lap-row";
+      row.innerHTML = `<span>Lap ${lapCount}</span><span>${renderTime(elapsedTime)}</span>`;
+      lapsBox.prepend(row);
+    }
+  </script>
+</body>
+</html>

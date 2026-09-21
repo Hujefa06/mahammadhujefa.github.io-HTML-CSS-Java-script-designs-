@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Array Largest & Smallest | JS-12</title>
+  <link rel="stylesheet" href="../../assets/css/style.css">
+  <link rel="stylesheet" href="../../assets/css/program-viewer.css">
+</head>
+<body>
+  <header class="navbar">
+    <div class="nav-container">
+      <a href="../../index.html" class="nav-brand">
+        <div class="brand-icon" style="background: linear-gradient(135deg, #f59e0b, #d97706);">
+          <span>&lt;/&gt;</span>
+        </div>
+        <span>JS Basics</span>
+      </a>
+      <nav>
+        <ul class="nav-links">
+          <li><a href="../../index.html" class="nav-link">Home</a></li>
+          <li><a href="../../html/index.html" class="nav-link">HTML</a></li>
+          <li><a href="../../css/index.html" class="nav-link">CSS</a></li>
+          <li><a href="../index.html" class="nav-link active">JavaScript</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main class="main-wrapper">
+    <nav class="breadcrumb-bar">
+      <a href="../../index.html">Home</a>
+      <span class="breadcrumb-separator">&rarr;</span>
+      <a href="../index.html">JavaScript</a>
+      <span class="breadcrumb-separator">&rarr;</span>
+      <a href="index.html">Basics</a>
+      <span class="breadcrumb-separator">&rarr;</span>
+      <span class="breadcrumb-current">JS-12: Array Min & Max</span>
+    </nav>
+
+    <section class="exp-header-card">
+      <div class="exp-meta-row">
+        <span class="exp-id-tag" style="background: #ca8a04;">JS-12</span>
+        <span class="exp-cat-tag">Arrays</span>
+      </div>
+      <h1 class="exp-heading">Find Largest &amp; Smallest Element in an Array</h1>
+      <p class="exp-description">
+        Demonstrates linear scan traversal to locate the minimum and maximum numeric values in a dataset, tracking both element values and their zero-based array indices.
+      </p>
+      <div class="objective-box">
+        <div class="objective-title"><span>🎯</span> Practical Laboratory Objective</div>
+        <div class="objective-text">
+          Understand array iteration mechanics, initialization of sentinel min/max markers, and the Math.min(...array) spread operator syntax.
+        </div>
+      </div>
+    </section>
+
+    <!-- Live Demonstration -->
+    <section class="demo-section-wrapper">
+      <div class="demo-section-header">
+        <div class="demo-title"><span>⚡</span> Live Array Min/Max Scanner</div>
+        <span class="demo-live-badge">Working Demo</span>
+      </div>
+      <div class="demo-body" style="background: #ffffff;">
+        <div class="demo-controls-row">
+          <div class="demo-input-group" style="flex: 1; max-width: 380px;">
+            <label class="demo-input-label" for="arr-input">Enter Numbers (comma-separated):</label>
+            <input type="text" id="arr-input" class="demo-input" value="48, 12, 95, 3, 67, 84, 21" style="width: 100%;">
+          </div>
+          <button class="demo-btn" onclick="scanMinMax()" style="align-self: flex-end;">Scan Array</button>
+        </div>
+
+        <div class="demo-output-box">
+          <div class="demo-output-header">Array Scan Results:</div>
+          <div class="demo-output-result" id="res-minmax">
+            <!-- Populated via JS -->
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Source Code Section -->
+    <section class="source-section-wrapper">
+      <div class="source-header">
+        <div class="source-tabs">
+          <button class="code-tab-btn active" data-tab="js">JavaScript Source Code</button>
+        </div>
+        <div class="source-actions">
+          <button class="copy-code-btn" type="button">Copy Code</button>
+          <button class="toggle-code-btn" type="button">Hide Code</button>
+        </div>
+      </div>
+      <div class="code-content-container">
+        <div class="code-pane active" data-tab="js">
+<pre>// Method 1: Iterative O(n) Scan
+function findMinMax(arr) {
+  let min = arr[0];
+  let max = arr[0];
+
+  for (let i = 1; i &lt; arr.length; i++) {
+    if (arr[i] &lt; min) min = arr[i];
+    if (arr[i] &gt; max) max = arr[i];
+  }
+  return { min, max };
+}
+
+// Method 2: Modern Math Spread Operator
+const minVal = Math.min(...arr);
+const maxVal = Math.max(...arr);</pre>
+        </div>
+      </div>
+    </section>
+
+    <!-- Bottom Navigation -->
+    <nav class="exp-nav-bar">
+      <a href="sum-of-digits.html" class="nav-btn nav-btn-prev">&larr; Previous (JS-11)</a>
+      <a href="index.html" class="nav-btn nav-btn-hub">All Basics Programs</a>
+      <a href="array-sorting.html" class="nav-btn nav-btn-next">Next (JS-13) &rarr;</a>
+    </nav>
+  </main>
+
+  <script src="../../assets/js/code-viewer.js"></script>
+  <script>
+    function scanMinMax() {
+      const raw = document.getElementById('arr-input').value;
+      const res = document.getElementById('res-minmax');
+      const arr = raw.split(',').map(item => parseFloat(item.trim())).filter(n => !isNaN(n));
+
+      if (!arr.length) {
+        res.textContent = "Please enter valid comma-separated numbers.";
+        return;
+      }
+
+      let min = arr[0], minIdx = 0;
+      let max = arr[0], maxIdx = 0;
+
+      for (let i = 1; i < arr.length; i++) {
+        if (arr[i] < min) { min = arr[i]; minIdx = i; }
+        if (arr[i] > max) { max = arr[i]; maxIdx = i; }
+      }
+
+      res.innerHTML = `
+        Parsed Elements (${arr.length} items): [ ${arr.join(', ')} ]<br><br>
+        <span style="color: #ef4444; font-weight: 700;">Smallest Element (Min):</span> <strong>${min}</strong> (Found at Index [${minIdx}])<br>
+        <span style="color: #16a34a; font-weight: 700;">Largest Element (Max):</span> <strong>${max}</strong> (Found at Index [${maxIdx}])
+      `;
+    }
+    scanMinMax();
+  </script>
+</body>
+</html>

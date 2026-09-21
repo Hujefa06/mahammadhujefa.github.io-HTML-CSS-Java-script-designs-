@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Functions & Arrow Functions | JS-15</title>
+  <link rel="stylesheet" href="../../assets/css/style.css">
+  <link rel="stylesheet" href="../../assets/css/program-viewer.css">
+</head>
+<body>
+  <header class="navbar">
+    <div class="nav-container">
+      <a href="../../index.html" class="nav-brand">
+        <div class="brand-icon" style="background: linear-gradient(135deg, #f59e0b, #d97706);">
+          <span>&lt;/&gt;</span>
+        </div>
+        <span>JS Basics</span>
+      </a>
+      <nav>
+        <ul class="nav-links">
+          <li><a href="../../index.html" class="nav-link">Home</a></li>
+          <li><a href="../../html/index.html" class="nav-link">HTML</a></li>
+          <li><a href="../../css/index.html" class="nav-link">CSS</a></li>
+          <li><a href="../index.html" class="nav-link active">JavaScript</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main class="main-wrapper">
+    <nav class="breadcrumb-bar">
+      <a href="../../index.html">Home</a>
+      <span class="breadcrumb-separator">&rarr;</span>
+      <a href="../index.html">JavaScript</a>
+      <span class="breadcrumb-separator">&rarr;</span>
+      <a href="index.html">Basics</a>
+      <span class="breadcrumb-separator">&rarr;</span>
+      <span class="breadcrumb-current">JS-15: Functions & Arrow Functions</span>
+    </nav>
+
+    <section class="exp-header-card">
+      <div class="exp-meta-row">
+        <span class="exp-id-tag" style="background: #ca8a04;">JS-15</span>
+        <span class="exp-cat-tag">Functions</span>
+      </div>
+      <h1 class="exp-heading">Function Declarations, Expressions &amp; ES6 Arrow Functions</h1>
+      <p class="exp-description">
+        Demonstrates the evolution of functions in JavaScript: traditional function declarations, anonymous function expressions, default parameter values, and modern ES6 concise arrow functions with lexical `this`.
+      </p>
+      <div class="objective-box">
+        <div class="objective-title"><span>🎯</span> Practical Laboratory Objective</div>
+        <div class="objective-text">
+          Understand function hoisting differences between declarations and expressions, implicit return syntax in one-line arrow functions, and parameter rest syntax.
+        </div>
+      </div>
+    </section>
+
+    <!-- Live Demonstration -->
+    <section class="demo-section-wrapper">
+      <div class="demo-section-header">
+        <div class="demo-title"><span>⚡</span> Live Function Execution Matrix</div>
+        <span class="demo-live-badge">Working Demo</span>
+      </div>
+      <div class="demo-body" style="background: #ffffff;">
+        <div class="demo-controls-row">
+          <div class="demo-input-group">
+            <label class="demo-input-label" for="base-val">Base Value (x):</label>
+            <input type="number" id="base-val" class="demo-input" value="7" style="width: 120px;">
+          </div>
+          <button class="demo-btn" onclick="runFunctions()">Run All Function Types</button>
+        </div>
+
+        <div class="demo-output-box">
+          <div class="demo-output-header">Execution Results:</div>
+          <div class="demo-output-result" id="res-functions">
+            <!-- Populated via JS -->
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Source Code Section -->
+    <section class="source-section-wrapper">
+      <div class="source-header">
+        <div class="source-tabs">
+          <button class="code-tab-btn active" data-tab="js">JavaScript Source Code</button>
+        </div>
+        <div class="source-actions">
+          <button class="copy-code-btn" type="button">Copy Code</button>
+          <button class="toggle-code-btn" type="button">Hide Code</button>
+        </div>
+      </div>
+      <div class="code-content-container">
+        <div class="code-pane active" data-tab="js">
+<pre>// 1. Function Declaration (Hoisted)
+function calculateSquare(n) {
+  return n * n;
+}
+
+// 2. Function Expression
+const calculateCube = function(n) {
+  return n * n * n;
+};
+
+// 3. ES6 Arrow Function (Concise implicit return)
+const calculateDouble = n =&gt; n * 2;</pre>
+        </div>
+      </div>
+    </section>
+
+    <!-- Bottom Navigation -->
+    <nav class="exp-nav-bar">
+      <a href="array-sum-average.html" class="nav-btn nav-btn-prev">&larr; Previous (JS-14)</a>
+      <a href="index.html" class="nav-btn nav-btn-hub">All Basics Programs</a>
+      <a href="string-methods.html" class="nav-btn nav-btn-next">Next (JS-16) &rarr;</a>
+    </nav>
+  </main>
+
+  <script src="../../assets/js/code-viewer.js"></script>
+  <script>
+    function calculateSquare(n) { return n * n; }
+    const calculateCube = function(n) { return n * n * n; };
+    const calculateDouble = n => n * 2;
+
+    function runFunctions() {
+      const x = parseFloat(document.getElementById('base-val').value) || 0;
+      const res = document.getElementById('res-functions');
+      res.innerHTML = `
+        1. Function Declaration: calculateSquare(${x}) = <strong>${calculateSquare(x)}</strong><br>
+        2. Function Expression: calculateCube(${x}) = <strong>${calculateCube(x)}</strong><br>
+        3. ES6 Arrow Function: calculateDouble(${x}) = <strong>${calculateDouble(x)}</strong>
+      `;
+    }
+    runFunctions();
+  </script>
+</body>
+</html>

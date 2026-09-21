@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Palindrome Checker | JS-09</title>
+  <link rel="stylesheet" href="../../assets/css/style.css">
+  <link rel="stylesheet" href="../../assets/css/program-viewer.css">
+</head>
+<body>
+  <header class="navbar">
+    <div class="nav-container">
+      <a href="../../index.html" class="nav-brand">
+        <div class="brand-icon" style="background: linear-gradient(135deg, #f59e0b, #d97706);">
+          <span>&lt;/&gt;</span>
+        </div>
+        <span>JS Basics</span>
+      </a>
+      <nav>
+        <ul class="nav-links">
+          <li><a href="../../index.html" class="nav-link">Home</a></li>
+          <li><a href="../../html/index.html" class="nav-link">HTML</a></li>
+          <li><a href="../../css/index.html" class="nav-link">CSS</a></li>
+          <li><a href="../index.html" class="nav-link active">JavaScript</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main class="main-wrapper">
+    <nav class="breadcrumb-bar">
+      <a href="../../index.html">Home</a>
+      <span class="breadcrumb-separator">&rarr;</span>
+      <a href="../index.html">JavaScript</a>
+      <span class="breadcrumb-separator">&rarr;</span>
+      <a href="index.html">Basics</a>
+      <span class="breadcrumb-separator">&rarr;</span>
+      <span class="breadcrumb-current">JS-09: Palindrome</span>
+    </nav>
+
+    <section class="exp-header-card">
+      <div class="exp-meta-row">
+        <span class="exp-id-tag" style="background: #ca8a04;">JS-09</span>
+        <span class="exp-cat-tag">Strings</span>
+      </div>
+      <h1 class="exp-heading">Palindrome Verifier (Strings &amp; Numbers)</h1>
+      <p class="exp-description">
+        Demonstrates palindrome checking algorithms for both strings and numeric inputs, ignoring punctuation/spaces and casing, using both two-pointer index scanning and string reversal methods.
+      </p>
+      <div class="objective-box">
+        <div class="objective-title"><span>🎯</span> Practical Laboratory Objective</div>
+        <div class="objective-text">
+          Understand string normalization via regex, character array operations (`split().reverse().join()`), and two-pointer character symmetry verification.
+        </div>
+      </div>
+    </section>
+
+    <!-- Live Demonstration -->
+    <section class="demo-section-wrapper">
+      <div class="demo-section-header">
+        <div class="demo-title"><span>⚡</span> Live Palindrome Tester</div>
+        <span class="demo-live-badge">Working Demo</span>
+      </div>
+      <div class="demo-body" style="background: #ffffff;">
+        <div class="demo-controls-row">
+          <div class="demo-input-group" style="flex: 1; max-width: 320px;">
+            <label class="demo-input-label" for="palin-input">Enter Text or Number:</label>
+            <input type="text" id="palin-input" class="demo-input" value="A man a plan a canal Panama" style="width: 100%;">
+          </div>
+          <button class="demo-btn" onclick="checkPalindrome()" style="align-self: flex-end;">Verify Palindrome</button>
+        </div>
+
+        <div class="demo-output-box">
+          <div class="demo-output-header">Verification Result:</div>
+          <div class="demo-output-result" id="res-palin" style="color: #16a34a;">
+            "A man a plan a canal Panama" is a valid PALINDROME!
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Source Code Section -->
+    <section class="source-section-wrapper">
+      <div class="source-header">
+        <div class="source-tabs">
+          <button class="code-tab-btn active" data-tab="js">JavaScript Source Code</button>
+        </div>
+        <div class="source-actions">
+          <button class="copy-code-btn" type="button">Copy Code</button>
+          <button class="toggle-code-btn" type="button">Hide Code</button>
+        </div>
+      </div>
+      <div class="code-content-container">
+        <div class="code-pane active" data-tab="js">
+<pre>function isPalindrome(str) {
+  // Normalize string: strip non-alphanumeric chars &amp; lowercase
+  const clean = str.toString().toLowerCase().replace(/[^a-z0-9]/g, '');
+  const reversed = clean.split('').reverse().join('');
+  return clean === reversed;
+}</pre>
+        </div>
+      </div>
+    </section>
+
+    <!-- Bottom Navigation -->
+    <nav class="exp-nav-bar">
+      <a href="prime-number.html" class="nav-btn nav-btn-prev">&larr; Previous (JS-08)</a>
+      <a href="index.html" class="nav-btn nav-btn-hub">All Basics Programs</a>
+      <a href="reverse-number.html" class="nav-btn nav-btn-next">Next (JS-10) &rarr;</a>
+    </nav>
+  </main>
+
+  <script src="../../assets/js/code-viewer.js"></script>
+  <script>
+    function checkPalindrome() {
+      const raw = document.getElementById('palin-input').value.trim();
+      const res = document.getElementById('res-palin');
+      if (!raw) {
+        res.textContent = "Please enter some text or numbers.";
+        return;
+      }
+      const clean = raw.toLowerCase().replace(/[^a-z0-9]/g, '');
+      const rev = clean.split('').reverse().join('');
+      if (clean === rev) {
+        res.style.color = "#16a34a";
+        res.innerHTML = `<strong>&ldquo;${raw}&rdquo;</strong> is a valid <strong>PALINDROME</strong>!<br><small style="color: #64748b;">Normalized: "${clean}" === "${rev}"</small>`;
+      } else {
+        res.style.color = "#ef4444";
+        res.innerHTML = `<strong>&ldquo;${raw}&rdquo;</strong> is <strong>NOT</strong> a palindrome.<br><small style="color: #64748b;">Normalized: "${clean}" &ne; "${rev}"</small>`;
+      }
+    }
+  </script>
+</body>
+</html>

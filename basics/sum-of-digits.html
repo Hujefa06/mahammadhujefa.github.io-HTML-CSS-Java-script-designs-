@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sum of Digits | JS-11</title>
+  <link rel="stylesheet" href="../../assets/css/style.css">
+  <link rel="stylesheet" href="../../assets/css/program-viewer.css">
+</head>
+<body>
+  <header class="navbar">
+    <div class="nav-container">
+      <a href="../../index.html" class="nav-brand">
+        <div class="brand-icon" style="background: linear-gradient(135deg, #f59e0b, #d97706);">
+          <span>&lt;/&gt;</span>
+        </div>
+        <span>JS Basics</span>
+      </a>
+      <nav>
+        <ul class="nav-links">
+          <li><a href="../../index.html" class="nav-link">Home</a></li>
+          <li><a href="../../html/index.html" class="nav-link">HTML</a></li>
+          <li><a href="../../css/index.html" class="nav-link">CSS</a></li>
+          <li><a href="../index.html" class="nav-link active">JavaScript</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main class="main-wrapper">
+    <nav class="breadcrumb-bar">
+      <a href="../../index.html">Home</a>
+      <span class="breadcrumb-separator">&rarr;</span>
+      <a href="../index.html">JavaScript</a>
+      <span class="breadcrumb-separator">&rarr;</span>
+      <a href="index.html">Basics</a>
+      <span class="breadcrumb-separator">&rarr;</span>
+      <span class="breadcrumb-current">JS-11: Sum of Digits</span>
+    </nav>
+
+    <section class="exp-header-card">
+      <div class="exp-meta-row">
+        <span class="exp-id-tag" style="background: #ca8a04;">JS-11</span>
+        <span class="exp-cat-tag">Math</span>
+      </div>
+      <h1 class="exp-heading">Sum of Digits Calculation</h1>
+      <p class="exp-description">
+        Demonstrates extracting each base-10 digit using repeated modulus 10 operations and accumulating the sum: e.g. for input 4529, sum = 4 + 5 + 2 + 9 = 20.
+      </p>
+      <div class="objective-box">
+        <div class="objective-title"><span>🎯</span> Practical Laboratory Objective</div>
+        <div class="objective-text">
+          Master while-loop termination conditions, accumulator variable patterns, and step-by-step arithmetic trace logging.
+        </div>
+      </div>
+    </section>
+
+    <!-- Live Demonstration -->
+    <section class="demo-section-wrapper">
+      <div class="demo-section-header">
+        <div class="demo-title"><span>⚡</span> Live Sum of Digits Calculator</div>
+        <span class="demo-live-badge">Working Demo</span>
+      </div>
+      <div class="demo-body" style="background: #ffffff;">
+        <div class="demo-controls-row">
+          <div class="demo-input-group">
+            <label class="demo-input-label" for="digits-num">Enter Non-Negative Integer:</label>
+            <input type="number" id="digits-num" class="demo-input" value="4529" min="0" style="width: 160px;">
+          </div>
+          <button class="demo-btn" onclick="calcSumDigits()" style="align-self: flex-end;">Calculate Sum</button>
+        </div>
+
+        <div class="demo-output-box">
+          <div class="demo-output-header">Accumulated Breakdown:</div>
+          <div class="demo-output-result" id="res-digits" style="color: #4f46e5;">
+            4 + 5 + 2 + 9 = 20
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Source Code Section -->
+    <section class="source-section-wrapper">
+      <div class="source-header">
+        <div class="source-tabs">
+          <button class="code-tab-btn active" data-tab="js">JavaScript Source Code</button>
+        </div>
+        <div class="source-actions">
+          <button class="copy-code-btn" type="button">Copy Code</button>
+          <button class="toggle-code-btn" type="button">Hide Code</button>
+        </div>
+      </div>
+      <div class="code-content-container">
+        <div class="code-pane active" data-tab="js">
+<pre>function sumOfDigits(num) {
+  let n = Math.abs(num);
+  let sum = 0;
+
+  while (n > 0) {
+    sum += n % 10;
+    n = Math.floor(n / 10);
+  }
+
+  return sum;
+}</pre>
+        </div>
+      </div>
+    </section>
+
+    <!-- Bottom Navigation -->
+    <nav class="exp-nav-bar">
+      <a href="reverse-number.html" class="nav-btn nav-btn-prev">&larr; Previous (JS-10)</a>
+      <a href="index.html" class="nav-btn nav-btn-hub">All Basics Programs</a>
+      <a href="array-min-max.html" class="nav-btn nav-btn-next">Next (JS-12) &rarr;</a>
+    </nav>
+  </main>
+
+  <script src="../../assets/js/code-viewer.js"></script>
+  <script>
+    function calcSumDigits() {
+      const input = document.getElementById('digits-num').value.trim();
+      const res = document.getElementById('res-digits');
+      let n = Math.abs(parseInt(input));
+      if (isNaN(n)) {
+        res.textContent = "Please enter an integer.";
+        return;
+      }
+      if (n === 0) {
+        res.textContent = "Sum of digits of 0 = 0";
+        return;
+      }
+      let digits = [];
+      let temp = n;
+      let sum = 0;
+      while (temp > 0) {
+        let d = temp % 10;
+        digits.unshift(d);
+        sum += d;
+        temp = Math.floor(temp / 10);
+      }
+      res.innerHTML = `${digits.join(' + ')} = <strong>${sum}</strong>`;
+    }
+  </script>
+</body>
+</html>

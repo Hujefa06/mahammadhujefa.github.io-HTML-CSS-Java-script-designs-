@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>HTML5 Specialized Inputs | HTML-09</title>
+  <link rel="stylesheet" href="../assets/css/style.css">
+  <link rel="stylesheet" href="../assets/css/program-viewer.css">
+  <style>
+    .inputs-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 1.5rem;
+    }
+    .input-card {
+      background: #f8fafc;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 1.25rem;
+    }
+    .input-card label {
+      display: block;
+      font-weight: 600;
+      color: #1e293b;
+      margin-bottom: 0.4rem;
+      font-size: 0.9rem;
+    }
+    .input-card input {
+      width: 100%;
+      padding: 0.6rem 0.8rem;
+      border: 1.5px solid #cbd5e1;
+      border-radius: 6px;
+      font-family: inherit;
+      font-size: 0.95rem;
+      background: #ffffff;
+      outline: none;
+    }
+    .input-card input:focus {
+      border-color: #e34f26;
+    }
+    .input-live-val {
+      font-size: 0.85rem;
+      color: #4f46e5;
+      font-weight: 600;
+      margin-top: 0.5rem;
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+    }
+  </style>
+</head>
+<body>
+  <header class="navbar">
+    <div class="nav-container">
+      <a href="../index.html" class="nav-brand">
+        <div class="brand-icon" style="background: linear-gradient(135deg, #e34f26, #f06529);">
+          <span>&lt;/&gt;</span>
+        </div>
+        <span>HTML Programs</span>
+      </a>
+      <nav>
+        <ul class="nav-links">
+          <li><a href="../index.html" class="nav-link">Home</a></li>
+          <li><a href="index.html" class="nav-link active">HTML</a></li>
+          <li><a href="../css/index.html" class="nav-link">CSS</a></li>
+          <li><a href="../javascript/index.html" class="nav-link">JavaScript</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main class="main-wrapper">
+    <nav class="breadcrumb-bar">
+      <a href="../index.html">Home</a>
+      <span class="breadcrumb-separator">&rarr;</span>
+      <a href="index.html">HTML Programs</a>
+      <span class="breadcrumb-separator">&rarr;</span>
+      <span class="breadcrumb-current">HTML-09: HTML5 Input Types</span>
+    </nav>
+
+    <section class="exp-header-card">
+      <div class="exp-meta-row">
+        <span class="exp-id-tag" style="background: #e34f26;">HTML-09</span>
+        <span class="exp-cat-tag">Forms & Tables</span>
+      </div>
+      <h1 class="exp-heading">HTML5 Specialized Input Types & Datalist</h1>
+      <p class="exp-description">
+        Demonstrates modern HTML5 input controls including color picker, date/time pickers, range slider with live readout, numeric steppers with min/max constraints, search with clear triggers, URL/Tel validators, and autocomplete suggestions using &lt;datalist&gt;.
+      </p>
+      <div class="objective-box">
+        <div class="objective-title"><span>🎯</span> Practical Laboratory Objective</div>
+        <div class="objective-text">
+          Evaluate the client-side validation, mobile on-screen keyboard tailoring, and user experience enhancements introduced by HTML5 specialized input types and pre-defined datalist options.
+        </div>
+      </div>
+    </section>
+
+    <!-- Live Demonstration -->
+    <section class="demo-section-wrapper">
+      <div class="demo-section-header">
+        <div class="demo-title"><span>⚡</span> Live Interactive Controls</div>
+        <span class="demo-live-badge">Working Demo</span>
+      </div>
+      <div class="demo-body" style="background: #ffffff;">
+        <div class="inputs-grid">
+          <!-- Color Picker -->
+          <div class="input-card">
+            <label for="input-color">1. Color Picker (type="color")</label>
+            <input type="color" id="input-color" value="#4f46e5" style="height: 44px; padding: 2px; cursor: pointer;">
+            <div class="input-live-val" id="color-val">Selected Hex: #4f46e5</div>
+          </div>
+
+          <!-- Range Slider -->
+          <div class="input-card">
+            <label for="input-range">2. Range Slider (type="range")</label>
+            <input type="range" id="input-range" min="0" max="100" value="65" style="cursor: pointer;">
+            <div class="input-live-val" id="range-val">Current Value: 65%</div>
+          </div>
+
+          <!-- Number Stepper -->
+          <div class="input-card">
+            <label for="input-number">3. Numeric Stepper (type="number")</label>
+            <input type="number" id="input-number" min="1" max="10" step="1" value="4">
+            <div class="input-live-val">Constraint: Min 1, Max 10, Step 1</div>
+          </div>
+
+          <!-- Date & Time -->
+          <div class="input-card">
+            <label for="input-date">4. Date Picker (type="date")</label>
+            <input type="date" id="input-date" value="2026-09-21">
+            <div class="input-live-val">Native calendar picker</div>
+          </div>
+
+          <!-- Search Input -->
+          <div class="input-card">
+            <label for="input-search">5. Search Field (type="search")</label>
+            <input type="search" id="input-search" placeholder="Type to search terms...">
+            <div class="input-live-val">Features native clear icon (x)</div>
+          </div>
+
+          <!-- Datalist Autocomplete -->
+          <div class="input-card">
+            <label for="input-course">6. Datalist Autocomplete (list="courses")</label>
+            <input list="courses" id="input-course" placeholder="Type 'Java', 'Python'...">
+            <datalist id="courses">
+              <option value="Java Programming">
+              <option value="Python Data Science">
+              <option value="HTML & Web Development">
+              <option value="Database Engineering">
+              <option value="Machine Learning">
+            </datalist>
+            <div class="input-live-val">Offers drop-down autocomplete list</div>
+          </div>
+        </div>
+
+        <!-- Dynamic Color Test Box -->
+        <div id="dynamic-color-preview" style="margin-top: 1.5rem; padding: 1.25rem; border-radius: 8px; background: #4f46e5; color: #ffffff; text-align: center; font-weight: 600; transition: background 0.2s ease;">
+          Interactive Preview Box (Dynamically reacts to color picker above)
+        </div>
+      </div>
+    </section>
+
+    <!-- Source Code Section -->
+    <section class="source-section-wrapper">
+      <div class="source-header">
+        <div class="source-tabs">
+          <button class="code-tab-btn active" data-tab="html">HTML Source Code</button>
+        </div>
+        <div class="source-actions">
+          <button class="copy-code-btn" type="button">Copy Code</button>
+          <button class="toggle-code-btn" type="button">Hide Code</button>
+        </div>
+      </div>
+      <div class="code-content-container">
+        <div class="code-pane active" data-tab="html">
+<pre>&lt;!-- Color picker --&gt;
+&lt;input type="color" id="favcolor" name="favcolor" value="#4f46e5"&gt;
+
+&lt;!-- Range slider --&gt;
+&lt;input type="range" id="volume" name="volume" min="0" max="100" value="65"&gt;
+
+&lt;!-- Number input with range constraints --&gt;
+&lt;input type="number" min="1" max="10" step="1" value="4"&gt;
+
+&lt;!-- Date picker --&gt;
+&lt;input type="date" name="examdate"&gt;
+
+&lt;!-- Datalist input with autocomplete suggestions --&gt;
+&lt;input list="courseList" name="course" placeholder="Select or type..."&gt;
+&lt;datalist id="courseList"&gt;
+  &lt;option value="Java Programming"&gt;
+  &lt;option value="HTML &amp; Web Development"&gt;
+  &lt;option value="Database Engineering"&gt;
+&lt;/datalist&gt;</pre>
+        </div>
+      </div>
+    </section>
+
+    <!-- Bottom Navigation -->
+    <nav class="exp-nav-bar">
+      <a href="html-08-semantic-elements.html" class="nav-btn nav-btn-prev">&larr; Previous (HTML-08)</a>
+      <a href="index.html" class="nav-btn nav-btn-hub">All HTML Programs</a>
+      <a href="html-10-college-timetable.html" class="nav-btn nav-btn-next">Next (HTML-10) &rarr;</a>
+    </nav>
+  </main>
+
+  <script src="../assets/js/code-viewer.js"></script>
+  <script>
+    const colorInput = document.getElementById('input-color');
+    const colorVal = document.getElementById('color-val');
+    const colorPreview = document.getElementById('dynamic-color-preview');
+    colorInput.addEventListener('input', (e) => {
+      colorVal.textContent = 'Selected Hex: ' + e.target.value;
+      colorPreview.style.backgroundColor = e.target.value;
+    });
+
+    const rangeInput = document.getElementById('input-range');
+    const rangeVal = document.getElementById('range-val');
+    rangeInput.addEventListener('input', (e) => {
+      rangeVal.textContent = 'Current Value: ' + e.target.value + '%';
+    });
+  </script>
+</body>
+</html>

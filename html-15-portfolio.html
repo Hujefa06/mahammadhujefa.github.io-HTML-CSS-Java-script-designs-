@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Personal Student Portfolio | HTML-15</title>
+  <link rel="stylesheet" href="../assets/css/style.css">
+  <link rel="stylesheet" href="../assets/css/program-viewer.css">
+  <style>
+    .portfolio-wrapper {
+      max-width: 800px;
+      margin: 0 auto;
+      display: flex;
+      flex-direction: column;
+      gap: 2rem;
+    }
+    .profile-hero {
+      display: flex;
+      align-items: center;
+      gap: 1.5rem;
+      padding: 1.5rem;
+      background: linear-gradient(135deg, #eef2ff, #f8fafc);
+      border-radius: 12px;
+      border: 1px solid #c7d2fe;
+    }
+    .profile-avatar {
+      width: 80px;
+      height: 80px;
+      border-radius: 50%;
+      background: #4f46e5;
+      color: #ffffff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 2rem;
+      font-weight: 700;
+      flex-shrink: 0;
+    }
+    .skill-pills {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      margin-top: 0.5rem;
+    }
+    .skill-pill {
+      padding: 0.35rem 0.75rem;
+      background: #e0e7ff;
+      color: #3730a3;
+      border-radius: 9999px;
+      font-size: 0.85rem;
+      font-weight: 600;
+    }
+    .project-mini-card {
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 1rem;
+      background: #ffffff;
+      margin-top: 0.75rem;
+    }
+  </style>
+</head>
+<body>
+  <header class="navbar">
+    <div class="nav-container">
+      <a href="../index.html" class="nav-brand">
+        <div class="brand-icon" style="background: linear-gradient(135deg, #e34f26, #f06529);">
+          <span>&lt;/&gt;</span>
+        </div>
+        <span>HTML Programs</span>
+      </a>
+      <nav>
+        <ul class="nav-links">
+          <li><a href="../index.html" class="nav-link">Home</a></li>
+          <li><a href="index.html" class="nav-link active">HTML</a></li>
+          <li><a href="../css/index.html" class="nav-link">CSS</a></li>
+          <li><a href="../javascript/index.html" class="nav-link">JavaScript</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main class="main-wrapper">
+    <nav class="breadcrumb-bar">
+      <a href="../index.html">Home</a>
+      <span class="breadcrumb-separator">&rarr;</span>
+      <a href="index.html">HTML Programs</a>
+      <span class="breadcrumb-separator">&rarr;</span>
+      <span class="breadcrumb-current">HTML-15: Personal Portfolio</span>
+    </nav>
+
+    <section class="exp-header-card">
+      <div class="exp-meta-row">
+        <span class="exp-id-tag" style="background: #e34f26;">HTML-15</span>
+        <span class="exp-cat-tag">Layout & Semantic</span>
+      </div>
+      <h1 class="exp-heading">Personal Student Portfolio Webpage</h1>
+      <p class="exp-description">
+        Comprehensive culmination project consolidating semantic markup, profile introduction, skills taxonomy, academic projects showcase, education timeline, and interactive contact message form.
+      </p>
+      <div class="objective-box">
+        <div class="objective-title"><span>🎯</span> Practical Laboratory Objective</div>
+        <div class="objective-text">
+          Integrate all core HTML5 elements studied throughout the curriculum into a cohesive, professional personal portfolio suitable for college laboratory evaluation and career presentations.
+        </div>
+      </div>
+    </section>
+
+    <!-- Live Demonstration -->
+    <section class="demo-section-wrapper">
+      <div class="demo-section-header">
+        <div class="demo-title"><span>⚡</span> Live Portfolio Showcase</div>
+        <span class="demo-live-badge">Working Demo</span>
+      </div>
+      <div class="demo-body" style="background: #ffffff;">
+        <div class="portfolio-wrapper">
+          <!-- Profile Banner -->
+          <div class="profile-hero">
+            <div class="profile-avatar">SR</div>
+            <div>
+              <h2 style="color: #0f172a; font-size: 1.5rem; margin-bottom: 0.25rem;">Shaik Roshan</h2>
+              <p style="color: #4f46e5; font-weight: 600; font-size: 0.95rem;">Computer Science & Engineering Student</p>
+              <p style="color: #64748b; font-size: 0.85rem; margin-top: 0.25rem;">Passionate about Frontend Engineering, Responsive UI/UX, and Modern Web Systems.</p>
+            </div>
+          </div>
+
+          <!-- Technical Skills -->
+          <div>
+            <h3 style="color: #1e293b; font-size: 1.15rem; margin-bottom: 0.4rem;">Technical Competencies</h3>
+            <div class="skill-pills">
+              <span class="skill-pill">HTML5 Semantic</span>
+              <span class="skill-pill">CSS3 (Grid / Flexbox)</span>
+              <span class="skill-pill">JavaScript (ES6+)</span>
+              <span class="skill-pill">DOM &amp; Event APIs</span>
+              <span class="skill-pill">Git &amp; GitHub</span>
+              <span class="skill-pill">Responsive Design</span>
+            </div>
+          </div>
+
+          <!-- Academic Projects -->
+          <div>
+            <h3 style="color: #1e293b; font-size: 1.15rem; margin-bottom: 0.4rem;">Featured Academic Projects</h3>
+            <div class="project-mini-card">
+              <h4 style="color: #0f172a; margin-bottom: 0.25rem;">1. Web Development Practical Record Platform</h4>
+              <p style="color: #64748b; font-size: 0.875rem;">Interactive laboratory record with 150+ practical programs in HTML, CSS, and JS with code viewers and live demos.</p>
+            </div>
+            <div class="project-mini-card">
+              <h4 style="color: #0f172a; margin-bottom: 0.25rem;">2. Student Grade & Attendance Tracker</h4>
+              <p style="color: #64748b; font-size: 0.875rem;">Client-side web portal utilizing LocalStorage for recording semester course outcomes and attendance percentages.</p>
+            </div>
+          </div>
+
+          <!-- Contact Form -->
+          <div style="background: #f8fafc; padding: 1.25rem; border-radius: 8px; border: 1px solid var(--border);">
+            <h3 style="color: #1e293b; font-size: 1.15rem; margin-bottom: 0.75rem;">Get in Touch</h3>
+            <form onsubmit="event.preventDefault(); document.getElementById('port-msg').style.display = 'block';">
+              <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-bottom: 1rem;">
+                <input type="text" placeholder="Your Name" required style="padding: 0.6rem; border: 1px solid #cbd5e1; border-radius: 6px;">
+                <input type="email" placeholder="Your Email" required style="padding: 0.6rem; border: 1px solid #cbd5e1; border-radius: 6px;">
+              </div>
+              <textarea placeholder="Write a message..." rows="3" required style="width: 100%; padding: 0.6rem; border: 1px solid #cbd5e1; border-radius: 6px; margin-bottom: 1rem; font-family: inherit;"></textarea>
+              <button type="submit" class="demo-btn" style="background: #4f46e5;">Send Portfolio Message &rarr;</button>
+            </form>
+            <div id="port-msg" style="display: none; margin-top: 0.75rem; color: #166534; font-weight: 600; font-size: 0.9rem;">
+              ✅ Thank you! Message sent to Shaik Roshan.
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Source Code Section -->
+    <section class="source-section-wrapper">
+      <div class="source-header">
+        <div class="source-tabs">
+          <button class="code-tab-btn active" data-tab="html">HTML Source Code</button>
+        </div>
+        <div class="source-actions">
+          <button class="copy-code-btn" type="button">Copy Code</button>
+          <button class="toggle-code-btn" type="button">Hide Code</button>
+        </div>
+      </div>
+      <div class="code-content-container">
+        <div class="code-pane active" data-tab="html">
+<pre>&lt;!-- Portfolio Header --&gt;
+&lt;header class="hero"&gt;
+  &lt;h1&gt;Shaik Roshan&lt;/h1&gt;
+  &lt;p&gt;Computer Science &amp; Engineering Student&lt;/p&gt;
+&lt;/header&gt;
+
+&lt;!-- Skills Section --&gt;
+&lt;section class="skills"&gt;
+  &lt;h2&gt;Technical Skills&lt;/h2&gt;
+  &lt;span class="badge"&gt;HTML5&lt;/span&gt;
+  &lt;span class="badge"&gt;CSS3&lt;/span&gt;
+  &lt;span class="badge"&gt;JavaScript&lt;/span&gt;
+&lt;/section&gt;
+
+&lt;!-- Projects Section --&gt;
+&lt;section class="projects"&gt;
+  &lt;h2&gt;Academic Projects&lt;/h2&gt;
+  &lt;article&gt;
+    &lt;h3&gt;Practical Record Portal&lt;/h3&gt;
+    &lt;p&gt;Interactive web engineering laboratory record.&lt;/p&gt;
+  &lt;/article&gt;
+&lt;/section&gt;</pre>
+        </div>
+      </div>
+    </section>
+
+    <!-- Bottom Navigation -->
+    <nav class="exp-nav-bar">
+      <a href="html-14-bootstrap-components.html" class="nav-btn nav-btn-prev">&larr; Previous (HTML-14)</a>
+      <a href="index.html" class="nav-btn nav-btn-hub">All HTML Programs</a>
+      <a href="../css/index.html" class="nav-btn nav-btn-next">Next Section: CSS Programs &rarr;</a>
+    </nav>
+  </main>
+
+  <script src="../assets/js/code-viewer.js"></script>
+</body>
+</html>

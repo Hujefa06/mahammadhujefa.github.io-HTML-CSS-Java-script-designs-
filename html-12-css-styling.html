@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CSS Selectors & Styling | HTML-12</title>
+  <link rel="stylesheet" href="../assets/css/style.css">
+  <link rel="stylesheet" href="../assets/css/program-viewer.css">
+  <style>
+    .selector-demo-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 1.5rem;
+    }
+    .box-model-container {
+      background: #fef08a; /* Margin color */
+      padding: 20px;
+      border-radius: 8px;
+      text-align: center;
+      font-weight: 600;
+      color: #854d0e;
+    }
+    .box-model-border {
+      background: #fed7aa; /* Border color */
+      padding: 16px;
+      border: 4px dashed #ea580c;
+      border-radius: 6px;
+      color: #9a3412;
+    }
+    .box-model-padding {
+      background: #bbf7d0; /* Padding color */
+      padding: 16px;
+      border-radius: 4px;
+      color: #166534;
+    }
+    .box-model-content {
+      background: #bfdbfe; /* Content color */
+      padding: 16px;
+      border-radius: 4px;
+      color: #1e40af;
+    }
+    .color-swatch-hsl {
+      background-color: hsl(245, 82%, 67%);
+      color: #ffffff;
+      padding: 0.75rem;
+      border-radius: 6px;
+      text-align: center;
+      font-weight: 600;
+    }
+  </style>
+</head>
+<body>
+  <header class="navbar">
+    <div class="nav-container">
+      <a href="../index.html" class="nav-brand">
+        <div class="brand-icon" style="background: linear-gradient(135deg, #e34f26, #f06529);">
+          <span>&lt;/&gt;</span>
+        </div>
+        <span>HTML Programs</span>
+      </a>
+      <nav>
+        <ul class="nav-links">
+          <li><a href="../index.html" class="nav-link">Home</a></li>
+          <li><a href="index.html" class="nav-link active">HTML</a></li>
+          <li><a href="../css/index.html" class="nav-link">CSS</a></li>
+          <li><a href="../javascript/index.html" class="nav-link">JavaScript</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main class="main-wrapper">
+    <nav class="breadcrumb-bar">
+      <a href="../index.html">Home</a>
+      <span class="breadcrumb-separator">&rarr;</span>
+      <a href="index.html">HTML Programs</a>
+      <span class="breadcrumb-separator">&rarr;</span>
+      <span class="breadcrumb-current">HTML-12: Selectors, Colors & Box Model</span>
+    </nav>
+
+    <section class="exp-header-card">
+      <div class="exp-meta-row">
+        <span class="exp-id-tag" style="background: #e34f26;">HTML-12</span>
+        <span class="exp-cat-tag">Fundamentals</span>
+      </div>
+      <h1 class="exp-heading">CSS Selectors, Colors, Typography & Box Model</h1>
+      <p class="exp-description">
+        Demonstrates the application of elemental, class, and ID selectors, modern color formats (HEX, RGB, HSL), web typography with Google Fonts, and the foundational CSS Box Model (content, padding, border, margin).
+      </p>
+      <div class="objective-box">
+        <div class="objective-title"><span>🎯</span> Practical Laboratory Objective</div>
+        <div class="objective-text">
+          Understand how browser layout engines calculate component dimensions using box model layers, and master CSS selectors for granular element targeting.
+        </div>
+      </div>
+    </section>
+
+    <!-- Live Demonstration -->
+    <section class="demo-section-wrapper">
+      <div class="demo-section-header">
+        <div class="demo-title"><span>⚡</span> Live Visual Demonstration</div>
+        <span class="demo-live-badge">Working Demo</span>
+      </div>
+      <div class="demo-body" style="background: #ffffff;">
+        <div class="selector-demo-grid">
+          <!-- 1. Visual Box Model Hierarchy -->
+          <div style="border: 1px solid var(--border); border-radius: 8px; padding: 1.25rem;">
+            <h3 style="color: #0f172a; margin-bottom: 0.75rem; font-size: 1.1rem;">CSS Box Model Layers</h3>
+            <div class="box-model-container">
+              Margin (Outer Spacing)
+              <div class="box-model-border">
+                Border (Divider Boundary)
+                <div class="box-model-padding">
+                  Padding (Inner Clearance)
+                  <div class="box-model-content">
+                    Core Content Box
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- 2. Colors & Typography -->
+          <div style="border: 1px solid var(--border); border-radius: 8px; padding: 1.25rem; display: flex; flex-direction: column; gap: 0.75rem;">
+            <h3 style="color: #0f172a; font-size: 1.1rem;">Modern Color Models</h3>
+            
+            <div>
+              <span style="font-size: 0.85rem; color: #64748b;">Hexadecimal Format:</span>
+              <div style="background-color: #4f46e5; color: #ffffff; padding: 0.5rem; border-radius: 6px; text-align: center; font-weight: 600;">
+                #4f46e5 (Indigo)
+              </div>
+            </div>
+
+            <div>
+              <span style="font-size: 0.85rem; color: #64748b;">RGB with Alpha Channel:</span>
+              <div style="background-color: rgba(6, 182, 212, 0.85); color: #ffffff; padding: 0.5rem; border-radius: 6px; text-align: center; font-weight: 600;">
+                rgba(6, 182, 212, 0.85) (Cyan Alpha)
+              </div>
+            </div>
+
+            <div>
+              <span style="font-size: 0.85rem; color: #64748b;">HSL (Hue, Saturation, Lightness):</span>
+              <div class="color-swatch-hsl">
+                hsl(245, 82%, 67%) (Harmonious Violet)
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Source Code Section -->
+    <section class="source-section-wrapper">
+      <div class="source-header">
+        <div class="source-tabs">
+          <button class="code-tab-btn active" data-tab="html">HTML &amp; CSS Source</button>
+        </div>
+        <div class="source-actions">
+          <button class="copy-code-btn" type="button">Copy Code</button>
+          <button class="toggle-code-btn" type="button">Hide Code</button>
+        </div>
+      </div>
+      <div class="code-content-container">
+        <div class="code-pane active" data-tab="html">
+<pre>/* Box Model Configuration */
+.card-component {
+  width: 300px;
+  margin: 20px auto;       /* Outer spacing */
+  border: 2px solid #cbd5e1;/* Boundary line */
+  padding: 16px;           /* Inner clearance */
+  background: #ffffff;     /* Content backdrop */
+  box-sizing: border-box;  /* Includes padding/border in width */
+}
+
+/* Color Model Implementations */
+.hex-color  { background-color: #4f46e5; color: #ffffff; }
+.rgba-color { background-color: rgba(6, 182, 212, 0.8); }
+.hsl-color  { background-color: hsl(245, 82%, 67%); }</pre>
+        </div>
+      </div>
+    </section>
+
+    <!-- Bottom Navigation -->
+    <nav class="exp-nav-bar">
+      <a href="html-11-internal-external-css.html" class="nav-btn nav-btn-prev">&larr; Previous (HTML-11)</a>
+      <a href="index.html" class="nav-btn nav-btn-hub">All HTML Programs</a>
+      <a href="html-13-responsive-media-queries.html" class="nav-btn nav-btn-next">Next (HTML-13) &rarr;</a>
+    </nav>
+  </main>
+
+  <script src="../assets/js/code-viewer.js"></script>
+</body>
+</html>

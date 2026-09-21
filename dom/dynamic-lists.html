@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>DOM 07 - Dynamic Interactive List Builder | Web Tech Lab</title>
+  <link rel="stylesheet" href="../../assets/css/style.css">
+  <link rel="stylesheet" href="../../assets/css/program-viewer.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500&family=Inter:wght@400;500;600&family=Outfit:wght@600;700;800&display=swap" rel="stylesheet">
+  <style>
+    .list-wrapper {
+      max-width: 580px;
+      margin: 0 auto;
+      background: #0f172a;
+      border: 1px solid #334155;
+      border-radius: 12px;
+      padding: 1.5rem;
+    }
+    .input-row {
+      display: flex;
+      gap: 0.5rem;
+      margin-bottom: 1.5rem;
+    }
+    .input-row input {
+      flex: 1;
+      background: #1e293b;
+      border: 1px solid #475569;
+      color: #f8fafc;
+      padding: 0.75rem 1rem;
+      border-radius: 6px;
+    }
+    .task-list {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+    }
+    .task-item {
+      background: #1e293b;
+      border: 1px solid #334155;
+      padding: 0.75rem 1rem;
+      border-radius: 6px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      transition: all 0.2s;
+    }
+    .task-item.completed span {
+      text-decoration: line-through;
+      color: #64748b;
+    }
+    .task-actions {
+      display: flex;
+      gap: 0.5rem;
+    }
+    .btn-icon {
+      background: none;
+      border: none;
+      cursor: pointer;
+      font-size: 1rem;
+      padding: 4px;
+      border-radius: 4px;
+      transition: background 0.2s;
+    }
+    .btn-icon:hover {
+      background: #334155;
+    }
+  </style>
+</head>
+<body>
+  <!-- Navbar -->
+  <nav class="navbar">
+    <div class="nav-container">
+      <a href="../../index.html" class="logo">
+        <span class="logo-icon">&lt;/&gt;</span>
+        <span>WebTech<span class="highlight">Lab</span></span>
+      </a>
+      <div class="nav-links">
+        <a href="../../index.html">Dashboard</a>
+        <a href="../../html/index.html">HTML</a>
+        <a href="../../css/index.html">CSS</a>
+        <a href="../index.html" class="active">JavaScript</a>
+      </div>
+    </div>
+  </nav>
+
+  <main class="page-container">
+    <div class="breadcrumb">
+      <a href="../../index.html">Home</a> &rsaquo; 
+      <a href="../index.html">JavaScript</a> &rsaquo; 
+      <a href="index.html">DOM</a> &rsaquo; 
+      <span>DOM 07 - Dynamic Interactive List</span>
+    </div>
+
+    <div class="program-header">
+      <div class="program-badge">DOM Manipulation • Program 07</div>
+      <h1>Dynamic Interactive List Builder</h1>
+      <p class="program-desc">
+        Add new list items dynamically, mark items completed with strike-through class toggles, 
+        and remove items from the DOM tree.
+      </p>
+      <div class="student-pill">
+        <span>👨‍💻 Student: <strong>Shaik Roshan</strong></span>
+        <span>•</span>
+        <span>Reg No: <strong>[TO BE FILLED BY STUDENT]</strong></span>
+      </div>
+    </div>
+
+    <!-- Live Demo -->
+    <div class="demo-section">
+      <div class="demo-header">
+        <div class="demo-title">
+          <span>📝</span> Dynamic Task / Todo List
+        </div>
+        <span class="badge badge-success">Interactive Demo</span>
+      </div>
+      <div class="demo-body">
+        
+        <div class="list-wrapper">
+          <div class="input-row">
+            <input type="text" id="newItemInput" placeholder="Add a new task (e.g. Complete Lab Record 5)..." onkeypress="if(event.key==='Enter') addItem()">
+            <button class="btn btn-primary" onclick="addItem()">Add Item</button>
+          </div>
+
+          <div style="display: flex; justify-content: space-between; font-size: 0.85rem; color: #94a3b8; margin-bottom: 0.75rem;">
+            <span>Tasks (<span id="countDisplay">3</span>)</span>
+            <span style="cursor: pointer; color: #ef4444;" onclick="clearAll()">Clear Completed</span>
+          </div>
+
+          <ul class="task-list" id="taskList">
+            <li class="task-item">
+              <span>Complete HTML5 Semantic Tags experiment</span>
+              <div class="task-actions">
+                <button class="btn-icon" title="Toggle Complete" onclick="toggleTask(this)">✔️</button>
+                <button class="btn-icon" title="Delete" onclick="deleteTask(this)">🗑️</button>
+              </div>
+            </li>
+            <li class="task-item completed">
+              <span>Install modern browser for JavaScript testing</span>
+              <div class="task-actions">
+                <button class="btn-icon" title="Toggle Complete" onclick="toggleTask(this)">✔️</button>
+                <button class="btn-icon" title="Delete" onclick="deleteTask(this)">🗑️</button>
+              </div>
+            </li>
+            <li class="task-item">
+              <span>Study Document Object Model hierarchy</span>
+              <div class="task-actions">
+                <button class="btn-icon" title="Toggle Complete" onclick="toggleTask(this)">✔️</button>
+                <button class="btn-icon" title="Delete" onclick="deleteTask(this)">🗑️</button>
+              </div>
+            </li>
+          </ul>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- Source Code Viewer -->
+    <div class="code-viewer-section">
+      <div class="code-viewer-header">
+        <div class="code-tabs">
+          <button class="code-tab active" data-tab="js">JavaScript Implementation</button>
+        </div>
+        <div class="code-actions">
+          <button class="btn-secondary" id="copyCodeBtn">📋 Copy Code</button>
+        </div>
+      </div>
+      <div class="code-body">
+        <pre><code id="sourceCode">const list = document.getElementById("taskList");
+const input = document.getElementById("newItemInput");
+
+function addItem() {
+  const text = input.value.trim();
+  if (!text) return;
+
+  // Create list item node
+  const li = document.createElement("li");
+  li.className = "task-item";
+  li.innerHTML = `
+    &lt;span&gt;${text}&lt;/span&gt;
+    &lt;div class="task-actions"&gt;
+      &lt;button class="btn-icon" onclick="toggleTask(this)"&gt;✔️&lt;/button&gt;
+      &lt;button class="btn-icon" onclick="deleteTask(this)"&gt;🗑️&lt;/button&gt;
+    &lt;/div&gt;
+  `;
+
+  list.appendChild(li);
+  input.value = "";
+}
+
+function toggleTask(btn) {
+  const item = btn.closest(".task-item");
+  item.classList.toggle("completed");
+}
+
+function deleteTask(btn) {
+  const item = btn.closest(".task-item");
+  item.remove();
+}</code></pre>
+      </div>
+    </div>
+
+    <!-- Navigation -->
+    <div class="program-nav">
+      <a href="attributes-manipulation.html" class="nav-prev">&larr; DOM 06: Attributes</a>
+      <a href="dynamic-tables.html" class="nav-next">DOM 08: Dynamic Tables &rarr;</a>
+    </div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-content">
+      <p>&copy; 2026 Web Technology Practical Laboratory • Prepared by <strong>Shaik Roshan</strong></p>
+      <p class="subtext">Computer Science & Engineering Department</p>
+    </div>
+  </footer>
+
+  <script src="../../assets/js/code-viewer.js"></script>
+  <script>
+    const list = document.getElementById("taskList");
+    const input = document.getElementById("newItemInput");
+    const countDisplay = document.getElementById("countDisplay");
+
+    function updateCount() {
+      countDisplay.textContent = list.children.length;
+    }
+
+    function addItem() {
+      const text = input.value.trim();
+      if (!text) {
+        alert("Please enter task description!");
+        return;
+      }
+
+      const li = document.createElement("li");
+      li.className = "task-item";
+      li.innerHTML = `
+        <span>${text}</span>
+        <div class="task-actions">
+          <button class="btn-icon" title="Toggle Complete" onclick="toggleTask(this)">✔️</button>
+          <button class="btn-icon" title="Delete" onclick="deleteTask(this)">🗑️</button>
+        </div>
+      `;
+      list.appendChild(li);
+      input.value = "";
+      updateCount();
+    }
+
+    function toggleTask(btn) {
+      const item = btn.closest(".task-item");
+      item.classList.toggle("completed");
+    }
+
+    function deleteTask(btn) {
+      const item = btn.closest(".task-item");
+      item.remove();
+      updateCount();
+    }
+
+    function clearAll() {
+      const completed = list.querySelectorAll(".task-item.completed");
+      completed.forEach(item => item.remove());
+      updateCount();
+    }
+
+    updateCount();
+  </script>
+</body>
+</html>

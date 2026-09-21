@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Semantic HTML Elements | HTML-08</title>
+  <link rel="stylesheet" href="../assets/css/style.css">
+  <link rel="stylesheet" href="../assets/css/program-viewer.css">
+  <style>
+    .semantic-wireframe {
+      display: grid;
+      gap: 1rem;
+      background: #f8fafc;
+      padding: 1.5rem;
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      font-family: var(--font-sans);
+    }
+    .sem-block {
+      border: 2px dashed #94a3b8;
+      border-radius: 8px;
+      padding: 1rem;
+      position: relative;
+    }
+    .sem-tag-name {
+      position: absolute;
+      top: -10px;
+      left: 12px;
+      background: #334155;
+      color: #ffffff;
+      font-family: var(--font-mono);
+      font-size: 0.75rem;
+      padding: 0.15rem 0.5rem;
+      border-radius: 4px;
+      font-weight: 700;
+    }
+    .sem-header { background: #fee2e2; border-color: #ef4444; }
+    .sem-header .sem-tag-name { background: #ef4444; }
+    .sem-nav { background: #fef3c7; border-color: #f59e0b; }
+    .sem-nav .sem-tag-name { background: #f59e0b; }
+    .sem-main-layout { display: grid; grid-template-columns: 2.2fr 1fr; gap: 1rem; }
+    .sem-main { background: #dbeafe; border-color: #3b82f6; }
+    .sem-main .sem-tag-name { background: #3b82f6; }
+    .sem-article { background: #ffffff; border-color: #60a5fa; margin-bottom: 0.75rem; }
+    .sem-aside { background: #f3e8ff; border-color: #a855f7; }
+    .sem-aside .sem-tag-name { background: #a855f7; }
+    .sem-footer { background: #dcfce7; border-color: #10b981; }
+    .sem-footer .sem-tag-name { background: #10b981; }
+    @media (max-width: 768px) {
+      .sem-main-layout { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+  <header class="navbar">
+    <div class="nav-container">
+      <a href="../index.html" class="nav-brand">
+        <div class="brand-icon" style="background: linear-gradient(135deg, #e34f26, #f06529);">
+          <span>&lt;/&gt;</span>
+        </div>
+        <span>HTML Programs</span>
+      </a>
+      <nav>
+        <ul class="nav-links">
+          <li><a href="../index.html" class="nav-link">Home</a></li>
+          <li><a href="index.html" class="nav-link active">HTML</a></li>
+          <li><a href="../css/index.html" class="nav-link">CSS</a></li>
+          <li><a href="../javascript/index.html" class="nav-link">JavaScript</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main class="main-wrapper">
+    <nav class="breadcrumb-bar">
+      <a href="../index.html">Home</a>
+      <span class="breadcrumb-separator">&rarr;</span>
+      <a href="index.html">HTML Programs</a>
+      <span class="breadcrumb-separator">&rarr;</span>
+      <span class="breadcrumb-current">HTML-08: Semantic HTML Elements</span>
+    </nav>
+
+    <section class="exp-header-card">
+      <div class="exp-meta-row">
+        <span class="exp-id-tag" style="background: #e34f26;">HTML-08</span>
+        <span class="exp-cat-tag">Layout & Semantic</span>
+      </div>
+      <h1 class="exp-heading">Semantic HTML5 Document Structure</h1>
+      <p class="exp-description">
+        Demonstrates the architectural layout of modern websites using semantic tags (&lt;header&gt;, &lt;nav&gt;, &lt;main&gt;, &lt;section&gt;, &lt;article&gt;, &lt;aside&gt;, and &lt;footer&gt;) to enhance screen reader accessibility and search engine indexing.
+      </p>
+      <div class="objective-box">
+        <div class="objective-title"><span>🎯</span> Practical Laboratory Objective</div>
+        <div class="objective-text">
+          Understand the transition from non-semantic division containers (&lt;div&gt;) to meaningful semantic HTML5 tags that communicate purpose to search crawlers, browser engines, and assistive devices.
+        </div>
+      </div>
+    </section>
+
+    <!-- Live Demonstration -->
+    <section class="demo-section-wrapper">
+      <div class="demo-section-header">
+        <div class="demo-title"><span>⚡</span> Live Visual Wireframe Demonstration</div>
+        <span class="demo-live-badge">Working Demo</span>
+      </div>
+      <div class="demo-body" style="background: #ffffff;">
+        <div class="semantic-wireframe">
+          <!-- Header -->
+          <div class="sem-block sem-header">
+            <span class="sem-tag-name">&lt;header&gt;</span>
+            <h2 style="font-size: 1.25rem; color: #991b1b; margin-top: 0.25rem;">University Academic Portal</h2>
+            <p style="font-size: 0.85rem; color: #7f1d1d;">Branding, site title, and global institutional identity.</p>
+          </div>
+
+          <!-- Nav -->
+          <div class="sem-block sem-nav">
+            <span class="sem-tag-name">&lt;nav&gt;</span>
+            <div style="display: flex; gap: 1rem; font-weight: 600; font-size: 0.9rem; color: #92400e; flex-wrap: wrap;">
+              <span>[ Admissions ]</span>
+              <span>[ Departments ]</span>
+              <span>[ Research Labs ]</span>
+              <span>[ Student Portal ]</span>
+            </div>
+          </div>
+
+          <!-- Main Layout -->
+          <div class="sem-main-layout">
+            <!-- Main Content -->
+            <div class="sem-block sem-main">
+              <span class="sem-tag-name">&lt;main&gt;</span>
+              <p style="color: #1e40af; font-weight: 700; font-size: 0.9rem; margin-bottom: 0.75rem;">Central Unique Page Content</p>
+
+              <!-- Article 1 -->
+              <div class="sem-block sem-article">
+                <span class="sem-tag-name" style="background: #2563eb;">&lt;article&gt;</span>
+                <h3 style="font-size: 1.05rem; color: #1e293b; margin-top: 0.2rem;">Modern Web Development Standards</h3>
+                <p style="font-size: 0.85rem; color: #64748b;">
+                  Self-contained technical publication discussing the adoption of semantic markup across modern educational platforms.
+                </p>
+                <time datetime="2026-09-21" style="font-size: 0.75rem; color: #94a3b8; display: block; margin-top: 0.4rem;">Published: Sept 21, 2026</time>
+              </div>
+
+              <!-- Section -->
+              <div class="sem-block" style="background: #f8fafc; border-color: #cbd5e1;">
+                <span class="sem-tag-name" style="background: #64748b;">&lt;section&gt;</span>
+                <h4 style="font-size: 0.95rem; color: #334155; margin-top: 0.2rem;">Upcoming Technical Symposiums</h4>
+                <p style="font-size: 0.825rem; color: #64748b;">Thematic group of related academic announcements and dates.</p>
+              </div>
+            </div>
+
+            <!-- Aside -->
+            <div class="sem-block sem-aside">
+              <span class="sem-tag-name">&lt;aside&gt;</span>
+              <h4 style="font-size: 0.95rem; color: #6b21a8; margin-top: 0.2rem;">Quick Notice Board</h4>
+              <ul style="font-size: 0.825rem; color: #581c87; margin-left: 1rem; line-height: 1.6; margin-top: 0.5rem;">
+                <li>Practical Record Submission: End of Month</li>
+                <li>Lab Viva Schedule released</li>
+                <li>Internal Assessments Link</li>
+              </ul>
+            </div>
+          </div>
+
+          <!-- Footer -->
+          <div class="sem-block sem-footer">
+            <span class="sem-tag-name">&lt;footer&gt;</span>
+            <div style="font-size: 0.85rem; color: #166534; display: flex; justify-content: space-between; flex-wrap: gap: 0.5rem;">
+              <span>&copy; 2026 Computer Science Department. All rights reserved.</span>
+              <span>Accessibility • Terms • Contact Webmaster</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Source Code Section -->
+    <section class="source-section-wrapper">
+      <div class="source-header">
+        <div class="source-tabs">
+          <button class="code-tab-btn active" data-tab="html">HTML Source Code</button>
+        </div>
+        <div class="source-actions">
+          <button class="copy-code-btn" type="button">Copy Code</button>
+          <button class="toggle-code-btn" type="button">Hide Code</button>
+        </div>
+      </div>
+      <div class="code-content-container">
+        <div class="code-pane active" data-tab="html">
+<pre>&lt;!DOCTYPE html&gt;
+&lt;html lang="en"&gt;
+&lt;head&gt;
+  &lt;title&gt;Semantic Structure&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+
+  &lt;!-- Top branding --&gt;
+  &lt;header&gt;
+    &lt;h1&gt;University Academic Portal&lt;/h1&gt;
+  &lt;/header&gt;
+
+  &lt;!-- Navigation bar --&gt;
+  &lt;nav&gt;
+    &lt;ul&gt;
+      &lt;li&gt;&lt;a href="#home"&gt;Home&lt;/a&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;a href="#courses"&gt;Courses&lt;/a&gt;&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/nav&gt;
+
+  &lt;!-- Primary unique content --&gt;
+  &lt;main&gt;
+    &lt;article&gt;
+      &lt;h2&gt;Modern Web Standards&lt;/h2&gt;
+      &lt;p&gt;Standalone article content...&lt;/p&gt;
+      &lt;time datetime="2026-09-21"&gt;Sept 21, 2026&lt;/time&gt;
+    &lt;/article&gt;
+
+    &lt;section&gt;
+      &lt;h3&gt;Key Highlights&lt;/h3&gt;
+      &lt;p&gt;Thematic grouped section...&lt;/p&gt;
+    &lt;/section&gt;
+  &lt;/main&gt;
+
+  &lt;!-- Sidebar / supplementary links --&gt;
+  &lt;aside&gt;
+    &lt;h4&gt;Quick Notices&lt;/h4&gt;
+  &lt;/aside&gt;
+
+  &lt;!-- Footer copyright &amp; info --&gt;
+  &lt;footer&gt;
+    &lt;p&gt;&amp;copy; 2026 Department Practical Record.&lt;/p&gt;
+  &lt;/footer&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;</pre>
+        </div>
+      </div>
+    </section>
+
+    <!-- Bottom Navigation -->
+    <nav class="exp-nav-bar">
+      <a href="html-07-frames-iframes.html" class="nav-btn nav-btn-prev">&larr; Previous (HTML-07)</a>
+      <a href="index.html" class="nav-btn nav-btn-hub">All HTML Programs</a>
+      <a href="html-09-html5-inputs.html" class="nav-btn nav-btn-next">Next (HTML-09) &rarr;</a>
+    </nav>
+  </main>
+
+  <script src="../assets/js/code-viewer.js"></script>
+</body>
+</html>

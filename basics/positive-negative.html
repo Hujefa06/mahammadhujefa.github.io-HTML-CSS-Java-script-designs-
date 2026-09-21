@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Positive, Negative or Zero | JS-05</title>
+  <link rel="stylesheet" href="../../assets/css/style.css">
+  <link rel="stylesheet" href="../../assets/css/program-viewer.css">
+</head>
+<body>
+  <header class="navbar">
+    <div class="nav-container">
+      <a href="../../index.html" class="nav-brand">
+        <div class="brand-icon" style="background: linear-gradient(135deg, #f59e0b, #d97706);">
+          <span>&lt;/&gt;</span>
+        </div>
+        <span>JS Basics</span>
+      </a>
+      <nav>
+        <ul class="nav-links">
+          <li><a href="../../index.html" class="nav-link">Home</a></li>
+          <li><a href="../../html/index.html" class="nav-link">HTML</a></li>
+          <li><a href="../../css/index.html" class="nav-link">CSS</a></li>
+          <li><a href="../index.html" class="nav-link active">JavaScript</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main class="main-wrapper">
+    <nav class="breadcrumb-bar">
+      <a href="../../index.html">Home</a>
+      <span class="breadcrumb-separator">&rarr;</span>
+      <a href="../index.html">JavaScript</a>
+      <span class="breadcrumb-separator">&rarr;</span>
+      <a href="index.html">Basics</a>
+      <span class="breadcrumb-separator">&rarr;</span>
+      <span class="breadcrumb-current">JS-05: Sign Checker</span>
+    </nav>
+
+    <section class="exp-header-card">
+      <div class="exp-meta-row">
+        <span class="exp-id-tag" style="background: #ca8a04;">JS-05</span>
+        <span class="exp-cat-tag">Logic</span>
+      </div>
+      <h1 class="exp-heading">Check Positive, Negative or Zero</h1>
+      <p class="exp-description">
+        Demonstrates numerical classification using comparative conditional branches (&gt; 0, &lt; 0, === 0) and the built-in Math.sign() numeric utility.
+      </p>
+      <div class="objective-box">
+        <div class="objective-title"><span>🎯</span> Practical Laboratory Objective</div>
+        <div class="objective-text">
+          Understand tripartite numeric evaluation logic and learn how Math.sign() returns 1, -1, or 0.
+        </div>
+      </div>
+    </section>
+
+    <!-- Live Demonstration -->
+    <section class="demo-section-wrapper">
+      <div class="demo-section-header">
+        <div class="demo-title"><span>⚡</span> Live Sign Evaluator</div>
+        <span class="demo-live-badge">Working Demo</span>
+      </div>
+      <div class="demo-body" style="background: #ffffff;">
+        <div class="demo-controls-row">
+          <div class="demo-input-group">
+            <label class="demo-input-label" for="sign-val">Enter Any Real Number:</label>
+            <input type="number" id="sign-val" class="demo-input" value="-15.5" style="width: 160px;" step="any">
+          </div>
+          <button class="demo-btn" onclick="checkSign()" style="align-self: flex-end;">Evaluate Sign</button>
+        </div>
+
+        <div class="demo-output-box">
+          <div class="demo-output-header">Evaluation Result:</div>
+          <div class="demo-output-result" id="res-sign" style="color: #ef4444;">
+            -15.5 is a NEGATIVE number (&lt; 0)
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Source Code Section -->
+    <section class="source-section-wrapper">
+      <div class="source-header">
+        <div class="source-tabs">
+          <button class="code-tab-btn active" data-tab="js">JavaScript Source Code</button>
+        </div>
+        <div class="source-actions">
+          <button class="copy-code-btn" type="button">Copy Code</button>
+          <button class="toggle-code-btn" type="button">Hide Code</button>
+        </div>
+      </div>
+      <div class="code-content-container">
+        <div class="code-pane active" data-tab="js">
+<pre>function checkNumberSign(n) {
+  if (n > 0) {
+    return "Positive";
+  } else if (n &lt; 0) {
+    return "Negative";
+  } else {
+    return "Zero";
+  }
+}
+
+// Alternatively using Math.sign(n) which returns 1, -1, or 0</pre>
+        </div>
+      </div>
+    </section>
+
+    <!-- Bottom Navigation -->
+    <nav class="exp-nav-bar">
+      <a href="even-odd.html" class="nav-btn nav-btn-prev">&larr; Previous (JS-04)</a>
+      <a href="index.html" class="nav-btn nav-btn-hub">All Basics Programs</a>
+      <a href="factorial.html" class="nav-btn nav-btn-next">Next (JS-06) &rarr;</a>
+    </nav>
+  </main>
+
+  <script src="../../assets/js/code-viewer.js"></script>
+  <script>
+    function checkSign() {
+      const val = parseFloat(document.getElementById('sign-val').value);
+      const res = document.getElementById('res-sign');
+      if (isNaN(val)) {
+        res.textContent = "Please enter a valid number.";
+        return;
+      }
+      if (val > 0) {
+        res.style.color = "#16a34a";
+        res.textContent = `${val} is a POSITIVE number (> 0). Math.sign = +1`;
+      } else if (val < 0) {
+        res.style.color = "#ef4444";
+        res.textContent = `${val} is a NEGATIVE number (< 0). Math.sign = -1`;
+      } else {
+        res.style.color = "#3b82f6";
+        res.textContent = `The number is ZERO (0). Math.sign = 0`;
+      }
+    }
+  </script>
+</body>
+</html>

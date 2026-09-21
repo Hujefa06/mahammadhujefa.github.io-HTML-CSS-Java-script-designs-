@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>DOM 02 - Dynamic CSS Style Manipulation | Web Tech Lab</title>
+  <link rel="stylesheet" href="../../assets/css/style.css">
+  <link rel="stylesheet" href="../../assets/css/program-viewer.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500&family=Inter:wght@400;500;600&family=Outfit:wght@600;700;800&display=swap" rel="stylesheet">
+  <style>
+    .studio-container {
+      display: grid;
+      grid-template-columns: 320px 1fr;
+      gap: 1.5rem;
+      background: #0f172a;
+      border: 1px solid #334155;
+      padding: 1.5rem;
+      border-radius: 12px;
+    }
+    @media (max-width: 768px) {
+      .studio-container {
+        grid-template-columns: 1fr;
+      }
+    }
+    .control-group {
+      margin-bottom: 1rem;
+    }
+    .control-group label {
+      display: block;
+      font-size: 0.85rem;
+      color: #94a3b8;
+      margin-bottom: 0.4rem;
+    }
+    .control-group input[type="range"],
+    .control-group select,
+    .control-group input[type="color"] {
+      width: 100%;
+      background: #1e293b;
+      border: 1px solid #475569;
+      color: #f8fafc;
+      padding: 0.5rem;
+      border-radius: 6px;
+    }
+    .preview-canvas {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: #020617;
+      border: 1px dashed #334155;
+      border-radius: 10px;
+      min-height: 280px;
+      padding: 2rem;
+      overflow: hidden;
+    }
+    .sample-card {
+      background: #3b82f6;
+      color: #ffffff;
+      padding: 24px;
+      border-radius: 8px;
+      text-align: center;
+      transition: all 0.2s ease;
+      box-shadow: 0 10px 25px -5px rgba(0,0,0,0.3);
+      max-width: 320px;
+      width: 100%;
+    }
+  </style>
+</head>
+<body>
+  <!-- Navbar -->
+  <nav class="navbar">
+    <div class="nav-container">
+      <a href="../../index.html" class="logo">
+        <span class="logo-icon">&lt;/&gt;</span>
+        <span>WebTech<span class="highlight">Lab</span></span>
+      </a>
+      <div class="nav-links">
+        <a href="../../index.html">Dashboard</a>
+        <a href="../../html/index.html">HTML</a>
+        <a href="../../css/index.html">CSS</a>
+        <a href="../index.html" class="active">JavaScript</a>
+      </div>
+    </div>
+  </nav>
+
+  <main class="page-container">
+    <div class="breadcrumb">
+      <a href="../../index.html">Home</a> &rsaquo; 
+      <a href="../index.html">JavaScript</a> &rsaquo; 
+      <a href="index.html">DOM</a> &rsaquo; 
+      <span>DOM 02 - Dynamic CSS Style Manipulation</span>
+    </div>
+
+    <div class="program-header">
+      <div class="program-badge">DOM Manipulation • Program 02</div>
+      <h1>Dynamic CSS Style Property Manipulation</h1>
+      <p class="program-desc">
+        Change inline CSS styles directly using the JavaScript <code>element.style</code> object.
+        Modify dimensions, colors, font sizes, border radiuses, and rotation in real-time.
+      </p>
+      <div class="student-pill">
+        <span>👨‍💻 Student: <strong>Shaik Roshan</strong></span>
+        <span>•</span>
+        <span>Reg No: <strong>[TO BE FILLED BY STUDENT]</strong></span>
+      </div>
+    </div>
+
+    <!-- Live Demo -->
+    <div class="demo-section">
+      <div class="demo-header">
+        <div class="demo-title">
+          <span>🎨</span> Live CSS Styler Studio
+        </div>
+        <span class="badge badge-success">Live Controls</span>
+      </div>
+      <div class="demo-body">
+        
+        <div class="studio-container">
+          <div class="controls-col">
+            <div class="control-group">
+              <label>Background Color (style.backgroundColor):</label>
+              <input type="color" id="bgColor" value="#3b82f6" oninput="updateStyles()">
+            </div>
+            <div class="control-group">
+              <label>Text Color (style.color):</label>
+              <input type="color" id="textColor" value="#ffffff" oninput="updateStyles()">
+            </div>
+            <div class="control-group">
+              <label>Font Size (<span id="fontSizeVal">18</span>px) (style.fontSize):</label>
+              <input type="range" id="fontSize" min="12" max="36" value="18" oninput="updateStyles()">
+            </div>
+            <div class="control-group">
+              <label>Border Radius (<span id="radiusVal">8</span>px) (style.borderRadius):</label>
+              <input type="range" id="borderRadius" min="0" max="50" value="8" oninput="updateStyles()">
+            </div>
+            <div class="control-group">
+              <label>Rotation (<span id="rotateVal">0</span>deg) (style.transform):</label>
+              <input type="range" id="rotation" min="-45" max="45" value="0" oninput="updateStyles()">
+            </div>
+            <button class="btn btn-secondary" style="width: 100%; margin-top: 0.5rem;" onclick="resetCardStyles()">Reset to Defaults</button>
+          </div>
+
+          <div class="preview-canvas">
+            <div id="targetCard" class="sample-card">
+              <h3 style="margin-bottom: 0.5rem; font-size: 1.25em;">Dynamic Element</h3>
+              <p style="font-size: 0.9em; opacity: 0.9;">JavaScript DOM updates my inline CSS styling directly through the style property.</p>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- Source Code Viewer -->
+    <div class="code-viewer-section">
+      <div class="code-viewer-header">
+        <div class="code-tabs">
+          <button class="code-tab active" data-tab="js">JavaScript Implementation</button>
+        </div>
+        <div class="code-actions">
+          <button class="btn-secondary" id="copyCodeBtn">📋 Copy Code</button>
+        </div>
+      </div>
+      <div class="code-body">
+        <pre><code id="sourceCode">// Select the target element
+const card = document.getElementById("targetCard");
+
+// Modifying CSS properties via camelCase property names
+function updateStyles() {
+  const bg = document.getElementById("bgColor").value;
+  const color = document.getElementById("textColor").value;
+  const size = document.getElementById("fontSize").value;
+  const radius = document.getElementById("borderRadius").value;
+  const rot = document.getElementById("rotation").value;
+
+  // Inline CSS assignment
+  card.style.backgroundColor = bg;
+  card.style.color = color;
+  card.style.fontSize = size + "px";
+  card.style.borderRadius = radius + "px";
+  card.style.transform = `rotate(${rot}deg)`;
+}</code></pre>
+      </div>
+    </div>
+
+    <!-- Navigation -->
+    <div class="program-nav">
+      <a href="text-innerhtml.html" class="nav-prev">&larr; DOM 01: text vs innerHTML</a>
+      <a href="bg-color-picker.html" class="nav-next">DOM 03: BG Color Picker &rarr;</a>
+    </div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-content">
+      <p>&copy; 2026 Web Technology Practical Laboratory • Prepared by <strong>Shaik Roshan</strong></p>
+      <p class="subtext">Computer Science & Engineering Department</p>
+    </div>
+  </footer>
+
+  <script src="../../assets/js/code-viewer.js"></script>
+  <script>
+    const card = document.getElementById("targetCard");
+
+    function updateStyles() {
+      const bg = document.getElementById("bgColor").value;
+      const color = document.getElementById("textColor").value;
+      const size = document.getElementById("fontSize").value;
+      const radius = document.getElementById("borderRadius").value;
+      const rot = document.getElementById("rotation").value;
+
+      document.getElementById("fontSizeVal").textContent = size;
+      document.getElementById("radiusVal").textContent = radius;
+      document.getElementById("rotateVal").textContent = rot;
+
+      card.style.backgroundColor = bg;
+      card.style.color = color;
+      card.style.fontSize = size + "px";
+      card.style.borderRadius = radius + "px";
+      card.style.transform = `rotate(${rot}deg)`;
+    }
+
+    function resetCardStyles() {
+      document.getElementById("bgColor").value = "#3b82f6";
+      document.getElementById("textColor").value = "#ffffff";
+      document.getElementById("fontSize").value = 18;
+      document.getElementById("borderRadius").value = 8;
+      document.getElementById("rotation").value = 0;
+      updateStyles();
+    }
+  </script>
+</body>
+</html>

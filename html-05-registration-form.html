@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Student Registration Form | HTML-05</title>
+  <link rel="stylesheet" href="../assets/css/style.css">
+  <link rel="stylesheet" href="../assets/css/program-viewer.css">
+  <style>
+    .form-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 1.25rem;
+      margin-bottom: 1.5rem;
+    }
+    .form-field {
+      display: flex;
+      flex-direction: column;
+      gap: 0.4rem;
+    }
+    .form-field label {
+      font-size: 0.875rem;
+      font-weight: 600;
+      color: #1e293b;
+    }
+    .form-field input, .form-field select, .form-field textarea {
+      padding: 0.65rem 0.85rem;
+      border: 1.5px solid #cbd5e1;
+      border-radius: 6px;
+      font-family: inherit;
+      font-size: 0.925rem;
+      background: #ffffff;
+      outline: none;
+    }
+    .form-field input:focus, .form-field select:focus, .form-field textarea:focus {
+      border-color: #e34f26;
+    }
+    .radio-group, .checkbox-group {
+      display: flex;
+      gap: 1.25rem;
+      align-items: center;
+      margin-top: 0.25rem;
+      flex-wrap: wrap;
+    }
+    .radio-label, .checkbox-label {
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+      font-size: 0.9rem;
+      color: #334155;
+      cursor: pointer;
+    }
+    .submission-summary {
+      background: #f0fdf4;
+      border: 1.5px solid #86efac;
+      border-radius: 8px;
+      padding: 1.25rem;
+      margin-top: 1.5rem;
+      display: none;
+    }
+  </style>
+</head>
+<body>
+  <header class="navbar">
+    <div class="nav-container">
+      <a href="../index.html" class="nav-brand">
+        <div class="brand-icon" style="background: linear-gradient(135deg, #e34f26, #f06529);">
+          <span>&lt;/&gt;</span>
+        </div>
+        <span>HTML Programs</span>
+      </a>
+      <nav>
+        <ul class="nav-links">
+          <li><a href="../index.html" class="nav-link">Home</a></li>
+          <li><a href="index.html" class="nav-link active">HTML</a></li>
+          <li><a href="../css/index.html" class="nav-link">CSS</a></li>
+          <li><a href="../javascript/index.html" class="nav-link">JavaScript</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main class="main-wrapper">
+    <nav class="breadcrumb-bar">
+      <a href="../index.html">Home</a>
+      <span class="breadcrumb-separator">&rarr;</span>
+      <a href="index.html">HTML Programs</a>
+      <span class="breadcrumb-separator">&rarr;</span>
+      <span class="breadcrumb-current">HTML-05: Student Registration Form</span>
+    </nav>
+
+    <section class="exp-header-card">
+      <div class="exp-meta-row">
+        <span class="exp-id-tag" style="background: #e34f26;">HTML-05</span>
+        <span class="exp-cat-tag">Forms & Tables</span>
+      </div>
+      <h1 class="exp-heading">Comprehensive Student Registration Form</h1>
+      <p class="exp-description">
+        Demonstrates the creation of an extensive HTML input form incorporating text, email, password, telephone, date, gender radio buttons, interests checkboxes, select dropdowns, file upload, and textarea with submit and reset controls.
+      </p>
+      <div class="objective-box">
+        <div class="objective-title"><span>🎯</span> Practical Laboratory Objective</div>
+        <div class="objective-text">
+          Understand form grouping (&lt;fieldset&gt;, &lt;legend&gt;), input attribute constraints (required, minlength, pattern), and accessibility pairing with explicit &lt;label for="..."&gt; bindings.
+        </div>
+      </div>
+    </section>
+
+    <!-- Live Demonstration -->
+    <section class="demo-section-wrapper">
+      <div class="demo-section-header">
+        <div class="demo-title"><span>⚡</span> Live Output Demonstration</div>
+        <span class="demo-live-badge">Working Demo</span>
+      </div>
+      <div class="demo-body" style="background: #ffffff;">
+        <form id="student-reg-form" style="max-width: 800px; margin: 0 auto;">
+          <!-- Fieldset 1: Personal Details -->
+          <fieldset style="border: 1px solid #e2e8f0; border-radius: 8px; padding: 1.5rem; margin-bottom: 1.5rem;">
+            <legend style="font-weight: 700; color: #e34f26; padding: 0 0.5rem; font-size: 1.05rem;">Personal Information</legend>
+            <div class="form-grid">
+              <div class="form-field">
+                <label for="first-name">First Name *</label>
+                <input type="text" id="first-name" name="firstName" placeholder="e.g. Shaik" required>
+              </div>
+              <div class="form-field">
+                <label for="last-name">Last Name *</label>
+                <input type="text" id="last-name" name="lastName" placeholder="e.g. Roshan" required>
+              </div>
+              <div class="form-field">
+                <label for="email">College Email *</label>
+                <input type="email" id="email" name="email" placeholder="student@college.edu" required>
+              </div>
+              <div class="form-field">
+                <label for="phone">Mobile Number *</label>
+                <input type="tel" id="phone" name="phone" placeholder="10-digit mobile" pattern="[0-9]{10}" required>
+              </div>
+              <div class="form-field">
+                <label for="dob">Date of Birth *</label>
+                <input type="date" id="dob" name="dob" required>
+              </div>
+              <div class="form-field">
+                <label>Gender *</label>
+                <div class="radio-group">
+                  <label class="radio-label"><input type="radio" name="gender" value="Male" required checked> Male</label>
+                  <label class="radio-label"><input type="radio" name="gender" value="Female"> Female</label>
+                  <label class="radio-label"><input type="radio" name="gender" value="Other"> Other</label>
+                </div>
+              </div>
+            </div>
+          </fieldset>
+
+          <!-- Fieldset 2: Academic Program -->
+          <fieldset style="border: 1px solid #e2e8f0; border-radius: 8px; padding: 1.5rem; margin-bottom: 1.5rem;">
+            <legend style="font-weight: 700; color: #2563eb; padding: 0 0.5rem; font-size: 1.05rem;">Academic Enrollment</legend>
+            <div class="form-grid">
+              <div class="form-field">
+                <label for="branch">Engineering Department *</label>
+                <select id="branch" name="branch" required>
+                  <option value="">Select Branch...</option>
+                  <option value="Computer Science & Engineering" selected>Computer Science & Engineering</option>
+                  <option value="Information Technology">Information Technology</option>
+                  <option value="Electronics & Communication">Electronics & Communication</option>
+                  <option value="Mechanical Engineering">Mechanical Engineering</option>
+                </select>
+              </div>
+              <div class="form-field">
+                <label for="semester">Current Semester *</label>
+                <select id="semester" name="semester" required>
+                  <option value="1">Semester 1</option>
+                  <option value="2">Semester 2</option>
+                  <option value="3">Semester 3</option>
+                  <option value="4" selected>Semester 4</option>
+                  <option value="5">Semester 5</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="form-field" style="margin-bottom: 1rem;">
+              <label>Technical Areas of Interest</label>
+              <div class="checkbox-group">
+                <label class="checkbox-label"><input type="checkbox" name="interest" value="Web Development" checked> Full Stack Web</label>
+                <label class="checkbox-label"><input type="checkbox" name="interest" value="Artificial Intelligence" checked> Artificial Intelligence</label>
+                <label class="checkbox-label"><input type="checkbox" name="interest" value="Cybersecurity"> Cybersecurity</label>
+                <label class="checkbox-label"><input type="checkbox" name="interest" value="Cloud Computing"> Cloud Computing</label>
+              </div>
+            </div>
+
+            <div class="form-field">
+              <label for="student-bio">Statement of Purpose / Address</label>
+              <textarea id="student-bio" name="bio" rows="3" placeholder="Enter brief statement or permanent residential address..."></textarea>
+            </div>
+          </fieldset>
+
+          <!-- Form Buttons -->
+          <div style="display: flex; gap: 1rem; justify-content: flex-end;">
+            <button type="reset" class="demo-btn demo-btn-secondary">Reset Form</button>
+            <button type="submit" class="demo-btn" style="background: #e34f26;">Submit Registration &rarr;</button>
+          </div>
+        </form>
+
+        <!-- Dynamic Success Summary Box -->
+        <div id="form-summary" class="submission-summary">
+          <h4 style="color: #166534; font-size: 1.1rem; margin-bottom: 0.5rem; display: flex; align-items: center; gap: 0.4rem;">
+            <span>✅</span> Registration Successfully Received!
+          </h4>
+          <div id="summary-content" style="color: #1e293b; font-size: 0.95rem; line-height: 1.6;"></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Source Code Section -->
+    <section class="source-section-wrapper">
+      <div class="source-header">
+        <div class="source-tabs">
+          <button class="code-tab-btn active" data-tab="html">HTML Source Code</button>
+        </div>
+        <div class="source-actions">
+          <button class="copy-code-btn" type="button">Copy Code</button>
+          <button class="toggle-code-btn" type="button">Hide Code</button>
+        </div>
+      </div>
+      <div class="code-content-container">
+        <div class="code-pane active" data-tab="html">
+<pre>&lt;form action="/submit" method="POST"&gt;
+  &lt;fieldset&gt;
+    &lt;legend&gt;Student Details&lt;/legend&gt;
+    
+    &lt;label for="name"&gt;Full Name:&lt;/label&gt;
+    &lt;input type="text" id="name" name="name" required&gt;
+
+    &lt;label for="email"&gt;Email Address:&lt;/label&gt;
+    &lt;input type="email" id="email" name="email" required&gt;
+
+    &lt;label&gt;Gender:&lt;/label&gt;
+    &lt;input type="radio" name="gender" value="Male" id="m"&gt; &lt;label for="m"&gt;Male&lt;/label&gt;
+    &lt;input type="radio" name="gender" value="Female" id="f"&gt; &lt;label for="f"&gt;Female&lt;/label&gt;
+
+    &lt;label for="branch"&gt;Department:&lt;/label&gt;
+    &lt;select id="branch" name="branch"&gt;
+      &lt;option value="CSE"&gt;Computer Science&lt;/option&gt;
+      &lt;option value="ECE"&gt;Electronics&lt;/option&gt;
+    &lt;/select&gt;
+
+    &lt;label&gt;Interests:&lt;/label&gt;
+    &lt;input type="checkbox" name="interest" value="Web"&gt; Web Dev
+    &lt;input type="checkbox" name="interest" value="AI"&gt; AI
+
+    &lt;label for="bio"&gt;Address / Bio:&lt;/label&gt;
+    &lt;textarea id="bio" name="bio" rows="4"&gt;&lt;/textarea&gt;
+
+    &lt;button type="reset"&gt;Reset&lt;/button&gt;
+    &lt;button type="submit"&gt;Submit&lt;/button&gt;
+  &lt;/fieldset&gt;
+&lt;/form&gt;</pre>
+        </div>
+      </div>
+    </section>
+
+    <!-- Bottom Navigation -->
+    <nav class="exp-nav-bar">
+      <a href="html-04-images-hyperlinks.html" class="nav-btn nav-btn-prev">&larr; Previous (HTML-04)</a>
+      <a href="index.html" class="nav-btn nav-btn-hub">All HTML Programs</a>
+      <a href="html-06-audio-video.html" class="nav-btn nav-btn-next">Next (HTML-06) &rarr;</a>
+    </nav>
+  </main>
+
+  <script src="../assets/js/code-viewer.js"></script>
+  <script>
+    document.getElementById('student-reg-form').addEventListener('submit', function(e) {
+      e.preventDefault();
+      const fn = document.getElementById('first-name').value;
+      const ln = document.getElementById('last-name').value;
+      const email = document.getElementById('email').value;
+      const phone = document.getElementById('phone').value;
+      const branch = document.getElementById('branch').value;
+      const sem = document.getElementById('semester').value;
+      const gender = document.querySelector('input[name="gender"]:checked').value;
+      
+      const summaryDiv = document.getElementById('form-summary');
+      const content = document.getElementById('summary-content');
+      content.innerHTML = `
+        <strong>Enrolled Student:</strong> ${fn} ${ln} (${gender})<br>
+        <strong>Email:</strong> ${email} | <strong>Mobile:</strong> ${phone}<br>
+        <strong>Department:</strong> ${branch} (Semester ${sem})<br>
+        <span style="color: #059669; font-weight: 600;">Status: Application verified and saved in session.</span>
+      `;
+      summaryDiv.style.display = 'block';
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>DOM 05 - ClassList Manipulation | Web Tech Lab</title>
+  <link rel="stylesheet" href="../../assets/css/style.css">
+  <link rel="stylesheet" href="../../assets/css/program-viewer.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500&family=Inter:wght@400;500;600&family=Outfit:wght@600;700;800&display=swap" rel="stylesheet">
+  <style>
+    .sample-box {
+      background: #1e293b;
+      border: 2px solid #334155;
+      border-radius: 12px;
+      padding: 2.5rem;
+      text-align: center;
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      margin-bottom: 1.5rem;
+    }
+    /* Dynamic classes */
+    .sample-box.theme-highlight {
+      background: #4338ca !important;
+      border-color: #818cf8 !important;
+      color: #fff !important;
+      box-shadow: 0 0 25px rgba(99, 102, 241, 0.5);
+    }
+    .sample-box.shape-pill {
+      border-radius: 50px !important;
+    }
+    .sample-box.state-active {
+      transform: scale(1.05);
+      border-width: 4px;
+    }
+    .sample-box.text-glow {
+      text-shadow: 0 0 10px #38bdf8, 0 0 20px #38bdf8;
+    }
+
+    .btn-panel {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.75rem;
+      margin-bottom: 1.5rem;
+    }
+    .class-status-bar {
+      background: #0f172a;
+      border: 1px solid #334155;
+      padding: 1rem;
+      border-radius: 8px;
+      font-family: 'Fira Code', monospace;
+      font-size: 0.9rem;
+      color: #38bdf8;
+    }
+  </style>
+</head>
+<body>
+  <!-- Navbar -->
+  <nav class="navbar">
+    <div class="nav-container">
+      <a href="../../index.html" class="logo">
+        <span class="logo-icon">&lt;/&gt;</span>
+        <span>WebTech<span class="highlight">Lab</span></span>
+      </a>
+      <div class="nav-links">
+        <a href="../../index.html">Dashboard</a>
+        <a href="../../html/index.html">HTML</a>
+        <a href="../../css/index.html">CSS</a>
+        <a href="../index.html" class="active">JavaScript</a>
+      </div>
+    </div>
+  </nav>
+
+  <main class="page-container">
+    <div class="breadcrumb">
+      <a href="../../index.html">Home</a> &rsaquo; 
+      <a href="../index.html">JavaScript</a> &rsaquo; 
+      <a href="index.html">DOM</a> &rsaquo; 
+      <span>DOM 05 - ClassList Manipulation</span>
+    </div>
+
+    <div class="program-header">
+      <div class="program-badge">DOM Manipulation • Program 05</div>
+      <h1>classList API: add(), remove(), toggle(), contains()</h1>
+      <p class="program-desc">
+        Modern class manipulation in JavaScript without fragile string concatenations using 
+        the HTML5 <code>DOMTokenList</code> (classList) interface.
+      </p>
+      <div class="student-pill">
+        <span>👨‍💻 Student: <strong>Shaik Roshan</strong></span>
+        <span>•</span>
+        <span>Reg No: <strong>[TO BE FILLED BY STUDENT]</strong></span>
+      </div>
+    </div>
+
+    <!-- Live Demo -->
+    <div class="demo-section">
+      <div class="demo-header">
+        <div class="demo-title">
+          <span>🏷️</span> Live ClassList Toggle Board
+        </div>
+        <span class="badge badge-success">Interactive Demo</span>
+      </div>
+      <div class="demo-body">
+        
+        <div id="targetBox" class="sample-box">
+          <h2 id="boxTitle" style="margin-bottom: 0.5rem;">Interactive Target Element</h2>
+          <p id="boxSubtitle" style="opacity: 0.85;">Observe my styles transforming smoothly when CSS classes are added or removed.</p>
+        </div>
+
+        <div class="btn-panel">
+          <button class="btn btn-primary" onclick="toggleHighlight()">Toggle 'theme-highlight'</button>
+          <button class="btn btn-primary" onclick="togglePill()">Toggle 'shape-pill'</button>
+          <button class="btn btn-primary" onclick="toggleActive()">Toggle 'state-active'</button>
+          <button class="btn btn-primary" onclick="toggleGlow()">Toggle 'text-glow'</button>
+          <button class="btn btn-secondary" onclick="checkActive()">Check .contains('theme-highlight')</button>
+          <button class="btn btn-secondary" style="background:#ef4444; color:#fff;" onclick="resetClasses()">Reset All Classes</button>
+        </div>
+
+        <div class="class-status-bar">
+          <strong>targetBox.className:</strong> <span id="classDisplay" style="color: #f8fafc;">sample-box</span>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- Source Code Viewer -->
+    <div class="code-viewer-section">
+      <div class="code-viewer-header">
+        <div class="code-tabs">
+          <button class="code-tab active" data-tab="js">JavaScript Implementation</button>
+        </div>
+        <div class="code-actions">
+          <button class="btn-secondary" id="copyCodeBtn">📋 Copy Code</button>
+        </div>
+      </div>
+      <div class="code-body">
+        <pre><code id="sourceCode">const box = document.getElementById("targetBox");
+
+// 1. add() - appends a class if not present
+box.classList.add("theme-highlight");
+
+// 2. remove() - removes the specified class
+box.classList.remove("theme-highlight");
+
+// 3. toggle() - adds if missing, removes if present
+function toggleHighlight() {
+  box.classList.toggle("theme-highlight");
+  console.log("Active classes:", box.classList.value);
+}
+
+// 4. contains() - returns boolean true/false
+function checkHighlight() {
+  const isPresent = box.classList.contains("theme-highlight");
+  alert("Is 'theme-highlight' applied? " + isPresent);
+}
+
+// 5. replace() - swaps one class for another
+box.classList.replace("old-class", "new-class");</code></pre>
+      </div>
+    </div>
+
+    <!-- Navigation -->
+    <div class="program-nav">
+      <a href="create-remove-elements.html" class="nav-prev">&larr; DOM 04: Create & Remove Nodes</a>
+      <a href="attributes-manipulation.html" class="nav-next">DOM 06: Attribute Manipulation &rarr;</a>
+    </div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-content">
+      <p>&copy; 2026 Web Technology Practical Laboratory • Prepared by <strong>Shaik Roshan</strong></p>
+      <p class="subtext">Computer Science & Engineering Department</p>
+    </div>
+  </footer>
+
+  <script src="../../assets/js/code-viewer.js"></script>
+  <script>
+    const box = document.getElementById("targetBox");
+    const classDisplay = document.getElementById("classDisplay");
+
+    function syncDisplay() {
+      classDisplay.textContent = box.className;
+    }
+
+    function toggleHighlight() {
+      box.classList.toggle("theme-highlight");
+      syncDisplay();
+    }
+
+    function togglePill() {
+      box.classList.toggle("shape-pill");
+      syncDisplay();
+    }
+
+    function toggleActive() {
+      box.classList.toggle("state-active");
+      syncDisplay();
+    }
+
+    function toggleGlow() {
+      box.classList.toggle("text-glow");
+      syncDisplay();
+    }
+
+    function checkActive() {
+      const has = box.classList.contains("theme-highlight");
+      alert("box.classList.contains('theme-highlight') => " + has);
+    }
+
+    function resetClasses() {
+      box.className = "sample-box";
+      syncDisplay();
+    }
+  </script>
+</body>
+</html>

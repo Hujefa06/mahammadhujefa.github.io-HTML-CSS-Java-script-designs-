@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Even or Odd Number | JS-04</title>
+  <link rel="stylesheet" href="../../assets/css/style.css">
+  <link rel="stylesheet" href="../../assets/css/program-viewer.css">
+</head>
+<body>
+  <header class="navbar">
+    <div class="nav-container">
+      <a href="../../index.html" class="nav-brand">
+        <div class="brand-icon" style="background: linear-gradient(135deg, #f59e0b, #d97706);">
+          <span>&lt;/&gt;</span>
+        </div>
+        <span>JS Basics</span>
+      </a>
+      <nav>
+        <ul class="nav-links">
+          <li><a href="../../index.html" class="nav-link">Home</a></li>
+          <li><a href="../../html/index.html" class="nav-link">HTML</a></li>
+          <li><a href="../../css/index.html" class="nav-link">CSS</a></li>
+          <li><a href="../index.html" class="nav-link active">JavaScript</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main class="main-wrapper">
+    <nav class="breadcrumb-bar">
+      <a href="../../index.html">Home</a>
+      <span class="breadcrumb-separator">&rarr;</span>
+      <a href="../index.html">JavaScript</a>
+      <span class="breadcrumb-separator">&rarr;</span>
+      <a href="index.html">Basics</a>
+      <span class="breadcrumb-separator">&rarr;</span>
+      <span class="breadcrumb-current">JS-04: Even or Odd</span>
+    </nav>
+
+    <section class="exp-header-card">
+      <div class="exp-meta-row">
+        <span class="exp-id-tag" style="background: #ca8a04;">JS-04</span>
+        <span class="exp-cat-tag">Logic</span>
+      </div>
+      <h1 class="exp-heading">Even or Odd Number Verifier</h1>
+      <p class="exp-description">
+        Demonstrates the division remainder test using the modulus operator (% 2) and bitwise AND (&amp; 1) to determine parity of positive and negative integers.
+      </p>
+      <div class="objective-box">
+        <div class="objective-title"><span>🎯</span> Practical Laboratory Objective</div>
+        <div class="objective-text">
+          Understand parity classification, mathematical remainder properties, and bitwise parity checking for high-speed integer validation.
+        </div>
+      </div>
+    </section>
+
+    <!-- Live Demonstration -->
+    <section class="demo-section-wrapper">
+      <div class="demo-section-header">
+        <div class="demo-title"><span>⚡</span> Live Parity Tester</div>
+        <span class="demo-live-badge">Working Demo</span>
+      </div>
+      <div class="demo-body" style="background: #ffffff;">
+        <div class="demo-controls-row">
+          <div class="demo-input-group">
+            <label class="demo-input-label" for="parity-num">Enter Any Integer:</label>
+            <input type="number" id="parity-num" class="demo-input" value="42" style="width: 160px;">
+          </div>
+          <button class="demo-btn" onclick="checkParity()" style="align-self: flex-end;">Check Parity</button>
+        </div>
+
+        <div class="demo-output-box">
+          <div class="demo-output-header">Parity Verification Result:</div>
+          <div class="demo-output-result" id="res-parity" style="color: #4f46e5;">
+            42 is an EVEN number (42 % 2 === 0)
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Source Code Section -->
+    <section class="source-section-wrapper">
+      <div class="source-header">
+        <div class="source-tabs">
+          <button class="code-tab-btn active" data-tab="js">JavaScript Source Code</button>
+        </div>
+        <div class="source-actions">
+          <button class="copy-code-btn" type="button">Copy Code</button>
+          <button class="toggle-code-btn" type="button">Hide Code</button>
+        </div>
+      </div>
+      <div class="code-content-container">
+        <div class="code-pane active" data-tab="js">
+<pre>// Method 1: Modulo Arithmetic Operator
+function isEven(n) {
+  return n % 2 === 0;
+}
+
+// Method 2: Bitwise Fast Parity
+function isEvenBitwise(n) {
+  return (n &amp; 1) === 0;
+}</pre>
+        </div>
+      </div>
+    </section>
+
+    <!-- Bottom Navigation -->
+    <nav class="exp-nav-bar">
+      <a href="largest-of-three.html" class="nav-btn nav-btn-prev">&larr; Previous (JS-03)</a>
+      <a href="index.html" class="nav-btn nav-btn-hub">All Basics Programs</a>
+      <a href="positive-negative.html" class="nav-btn nav-btn-next">Next (JS-05) &rarr;</a>
+    </nav>
+  </main>
+
+  <script src="../../assets/js/code-viewer.js"></script>
+  <script>
+    function checkParity() {
+      const n = parseInt(document.getElementById('parity-num').value);
+      if (isNaN(n)) {
+        document.getElementById('res-parity').textContent = "Please enter an integer.";
+        return;
+      }
+      const isEven = (n % 2 === 0);
+      const resEl = document.getElementById('res-parity');
+      if (isEven) {
+        resEl.style.color = "#16a34a";
+        resEl.textContent = `${n} is an EVEN number (${n} % 2 === 0).`;
+      } else {
+        resEl.style.color = "#ea580c";
+        resEl.textContent = `${n} is an ODD number (${n} % 2 !== 0).`;
+      }
+    }
+  </script>
+</body>
+</html>

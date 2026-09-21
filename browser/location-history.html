@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>BR 06 - Location & History APIs | Web Tech Lab</title>
+  <link rel="stylesheet" href="../../assets/css/style.css">
+  <link rel="stylesheet" href="../../assets/css/program-viewer.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500;700&family=Inter:wght@400;500;600&family=Outfit:wght@600;700;800&display=swap" rel="stylesheet">
+  <style>
+    .location-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.5rem;
+    }
+    @media (max-width: 768px) {
+      .location-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+    .panel-card {
+      background: #0f172a;
+      border: 1px solid #334155;
+      border-radius: 12px;
+      padding: 1.75rem;
+    }
+    .loc-prop-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.85rem;
+    }
+    .loc-prop-table td {
+      padding: 8px 4px;
+      border-bottom: 1px solid #1e293b;
+    }
+    .prop-name {
+      color: #38bdf8;
+      font-family: 'Fira Code', monospace;
+      width: 35%;
+    }
+    .prop-val {
+      color: #f8fafc;
+      font-family: 'Fira Code', monospace;
+      word-break: break-all;
+    }
+    .history-controls {
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+      margin-top: 1rem;
+    }
+  </style>
+</head>
+<body>
+  <!-- Navbar -->
+  <nav class="navbar">
+    <div class="nav-container">
+      <a href="../../index.html" class="logo">
+        <span class="logo-icon">&lt;/&gt;</span>
+        <span>WebTech<span class="highlight">Lab</span></span>
+      </a>
+      <div class="nav-links">
+        <a href="../../index.html">Dashboard</a>
+        <a href="../../html/index.html">HTML</a>
+        <a href="../../css/index.html">CSS</a>
+        <a href="../index.html" class="active">JavaScript</a>
+      </div>
+    </div>
+  </nav>
+
+  <main class="page-container">
+    <div class="breadcrumb">
+      <a href="../../index.html">Home</a> &rsaquo; 
+      <a href="../index.html">JavaScript</a> &rsaquo; 
+      <a href="index.html">Browser</a> &rsaquo; 
+      <span>BR 06 - Location & History APIs</span>
+    </div>
+
+    <div class="program-header">
+      <div class="program-badge">Browser BOM • Program 06</div>
+      <h1>Window Location & History Navigation APIs</h1>
+      <p class="program-desc">
+        Inspect URL breakdowns using <code>window.location</code> (href, protocol, host, pathname, search, hash), 
+        and control browsing sessions with <code>history.back()</code>, <code>history.forward()</code>, and <code>location.reload()</code>.
+      </p>
+      <div class="student-pill">
+        <span>👨‍💻 Student: <strong>Shaik Roshan</strong></span>
+        <span>•</span>
+        <span>Reg No: <strong>[TO BE FILLED BY STUDENT]</strong></span>
+      </div>
+    </div>
+
+    <!-- Live Demo -->
+    <div class="demo-section">
+      <div class="demo-header">
+        <div class="demo-title">
+          <span>🌐</span> BOM Navigation Inspector
+        </div>
+        <span class="badge badge-success">Live Properties</span>
+      </div>
+      <div class="demo-body">
+        
+        <div class="location-grid">
+          <!-- Location Properties -->
+          <div class="panel-card">
+            <h3 style="color: #38bdf8; margin-bottom: 0.75rem;">window.location Breakdown:</h3>
+            <table class="loc-prop-table">
+              <tr>
+                <td class="prop-name">.href</td>
+                <td class="prop-val" id="locHref">-</td>
+              </tr>
+              <tr>
+                <td class="prop-name">.protocol</td>
+                <td class="prop-val" id="locProtocol">-</td>
+              </tr>
+              <tr>
+                <td class="prop-name">.host</td>
+                <td class="prop-val" id="locHost">-</td>
+              </tr>
+              <tr>
+                <td class="prop-name">.pathname</td>
+                <td class="prop-val" id="locPath">-</td>
+              </tr>
+              <tr>
+                <td class="prop-name">.hash</td>
+                <td class="prop-val" id="locHash">#none</td>
+              </tr>
+            </table>
+
+            <div style="margin-top: 1rem; display: flex; gap: 0.5rem;">
+              <button class="btn btn-primary" style="flex: 1;" onclick="setSampleHash()">Add Hash #demo</button>
+              <button class="btn btn-secondary" onclick="location.reload()">Reload</button>
+            </div>
+          </div>
+
+          <!-- History API -->
+          <div class="panel-card">
+            <h3 style="color: #38bdf8; margin-bottom: 0.75rem;">window.history Session:</h3>
+            <p style="font-size: 0.85rem; color: #94a3b8; line-height: 1.5;">
+              Active session entries count: <strong id="histLength" style="color: #f59e0b;">0</strong>
+            </p>
+
+            <div class="history-controls">
+              <button class="btn btn-secondary" onclick="history.back()">⬅️ history.back() (Go Back)</button>
+              <button class="btn btn-secondary" onclick="history.forward()">➡️ history.forward() (Go Forward)</button>
+              <button class="btn btn-primary" onclick="simulatePushState()">history.pushState() (Virtual URL)</button>
+            </div>
+
+            <div id="pushNotice" style="margin-top: 1rem; font-size: 0.8rem; color: #10b981; display: none;">
+              ✔ Virtual state pushed! Notice browser address bar updated without page reload.
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- Source Code Viewer -->
+    <div class="code-viewer-section">
+      <div class="code-viewer-header">
+        <div class="code-tabs">
+          <button class="code-tab active" data-tab="js">JavaScript Implementation</button>
+        </div>
+        <div class="code-actions">
+          <button class="btn-secondary" id="copyCodeBtn">📋 Copy Code</button>
+        </div>
+      </div>
+      <div class="code-body">
+        <pre><code id="sourceCode">// 1. Location Object Readout
+console.log("Full URL:", window.location.href);
+console.log("Protocol:", window.location.protocol);
+console.log("Host Name:", window.location.host);
+console.log("Pathname:", window.location.pathname);
+
+// 2. Navigation Actions
+// window.location.href = "https://example.com"; // Redirect
+// window.location.reload(); // Refresh current page
+
+// 3. History Navigation
+// window.history.back();    // Equivalent to browser Back button
+// window.history.forward(); // Equivalent to browser Forward button
+
+// 4. HTML5 History pushState (SPA routing)
+window.history.pushState({ page: 2 }, "Title", "?view=details");</code></pre>
+      </div>
+    </div>
+
+    <!-- Navigation -->
+    <div class="program-nav">
+      <a href="stopwatch.html" class="nav-prev">&larr; BR 05: Stopwatch</a>
+      <a href="navigator-screen.html" class="nav-next">BR 07: Navigator & Screen &rarr;</a>
+    </div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-content">
+      <p>&copy; 2026 Web Technology Practical Laboratory • Prepared by <strong>Shaik Roshan</strong></p>
+      <p class="subtext">Computer Science & Engineering Department</p>
+    </div>
+  </footer>
+
+  <script src="../../assets/js/code-viewer.js"></script>
+  <script>
+    function renderLocation() {
+      document.getElementById("locHref").textContent = window.location.href;
+      document.getElementById("locProtocol").textContent = window.location.protocol;
+      document.getElementById("locHost").textContent = window.location.host || "(Local file system)";
+      document.getElementById("locPath").textContent = window.location.pathname;
+      document.getElementById("locHash").textContent = window.location.hash || "(empty)";
+      document.getElementById("histLength").textContent = window.history.length;
+    }
+
+    function setSampleHash() {
+      window.location.hash = "student-shaik-roshan";
+      renderLocation();
+    }
+
+    function simulatePushState() {
+      window.history.pushState({ id: 42 }, "Lab Demo", "?query=webtech-lab-2026");
+      renderLocation();
+      document.getElementById("pushNotice").style.display = "block";
+    }
+
+    renderLocation();
+  </script>
+</body>
+</html>

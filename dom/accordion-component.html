@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>DOM 16 - FAQ Accordion Component | Web Tech Lab</title>
+  <link rel="stylesheet" href="../../assets/css/style.css">
+  <link rel="stylesheet" href="../../assets/css/program-viewer.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500&family=Inter:wght@400;500;600&family=Outfit:wght@600;700;800&display=swap" rel="stylesheet">
+  <style>
+    .accordion-wrap {
+      max-width: 680px;
+      margin: 0 auto;
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+    }
+    .accordion-item {
+      background: #0f172a;
+      border: 1px solid #334155;
+      border-radius: 10px;
+      overflow: hidden;
+      transition: border-color 0.2s;
+    }
+    .accordion-item.open {
+      border-color: #38bdf8;
+    }
+    .accordion-header {
+      width: 100%;
+      background: #1e293b;
+      padding: 1.25rem 1.5rem;
+      border: none;
+      color: #f8fafc;
+      font-size: 1rem;
+      font-weight: 600;
+      text-align: left;
+      cursor: pointer;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      transition: background 0.2s;
+    }
+    .accordion-header:hover {
+      background: #334155;
+    }
+    .acc-icon {
+      transition: transform 0.3s ease;
+      font-size: 0.85rem;
+      color: #38bdf8;
+    }
+    .accordion-item.open .acc-icon {
+      transform: rotate(180deg);
+    }
+    .accordion-content {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.3s cubic-bezier(0.4, 0, 0.2, 1), padding 0.3s ease;
+      padding: 0 1.5rem;
+      color: #cbd5e1;
+      line-height: 1.6;
+      background: #0f172a;
+    }
+    .accordion-item.open .accordion-content {
+      max-height: 250px;
+      padding: 1.25rem 1.5rem;
+    }
+  </style>
+</head>
+<body>
+  <!-- Navbar -->
+  <nav class="navbar">
+    <div class="nav-container">
+      <a href="../../index.html" class="logo">
+        <span class="logo-icon">&lt;/&gt;</span>
+        <span>WebTech<span class="highlight">Lab</span></span>
+      </a>
+      <div class="nav-links">
+        <a href="../../index.html">Dashboard</a>
+        <a href="../../html/index.html">HTML</a>
+        <a href="../../css/index.html">CSS</a>
+        <a href="../index.html" class="active">JavaScript</a>
+      </div>
+    </div>
+  </nav>
+
+  <main class="page-container">
+    <div class="breadcrumb">
+      <a href="../../index.html">Home</a> &rsaquo; 
+      <a href="../index.html">JavaScript</a> &rsaquo; 
+      <a href="index.html">DOM</a> &rsaquo; 
+      <span>DOM 16 - FAQ Accordion Component</span>
+    </div>
+
+    <div class="program-header">
+      <div class="program-badge">DOM Manipulation • Program 16</div>
+      <h1>Expandable / Collapsible FAQ Accordion</h1>
+      <p class="program-desc">
+        Build a collapsible accordion interface with smooth animated height transitions 
+        and rotating chevron indicators, supporting both single-open and multi-expand modes.
+      </p>
+      <div class="student-pill">
+        <span>👨‍💻 Student: <strong>Shaik Roshan</strong></span>
+        <span>•</span>
+        <span>Reg No: <strong>[TO BE FILLED BY STUDENT]</strong></span>
+      </div>
+    </div>
+
+    <!-- Live Demo -->
+    <div class="demo-section">
+      <div class="demo-header">
+        <div class="demo-title">
+          <span>❓</span> Frequently Asked Questions (FAQ)
+        </div>
+        <div style="display: flex; gap: 0.5rem; align-items: center;">
+          <label style="font-size: 0.8rem; color: #94a3b8; display: flex; align-items: center; gap: 0.35rem; cursor: pointer;">
+            <input type="checkbox" id="singleModeCheckbox" checked>
+            <span>Single-Open Accordion Mode</span>
+          </label>
+        </div>
+      </div>
+      <div class="demo-body">
+        
+        <div class="accordion-wrap" id="accordion">
+          
+          <div class="accordion-item open">
+            <button class="accordion-header" onclick="toggleAccordion(this)">
+              <span>What is the Document Object Model (DOM)?</span>
+              <span class="acc-icon">&#9660;</span>
+            </button>
+            <div class="accordion-content">
+              The DOM is an object-oriented programmatic representation of the web page. It acts as an API for JavaScript to navigate, inspect, add, alter, and delete HTML elements, attributes, and CSS styling dynamically at runtime.
+            </div>
+          </div>
+
+          <div class="accordion-item">
+            <button class="accordion-header" onclick="toggleAccordion(this)">
+              <span>What is the difference between event bubbling and capturing?</span>
+              <span class="acc-icon">&#9660;</span>
+            </button>
+            <div class="accordion-content">
+              In capturing phase, the event descends from the outermost window/document down to the target element. In bubbling phase (the browser default), the event bubbles up from the innermost clicked element back up to window.
+            </div>
+          </div>
+
+          <div class="accordion-item">
+            <button class="accordion-header" onclick="toggleAccordion(this)">
+              <span>Why should we use addEventListener instead of onclick?</span>
+              <span class="acc-icon">&#9660;</span>
+            </button>
+            <div class="accordion-content">
+              <code>addEventListener()</code> allows registering multiple distinct event handlers for the exact same event without overwriting previous handlers, supports event capturing phases, and facilitates clean detachment via <code>removeEventListener()</code>.
+            </div>
+          </div>
+
+          <div class="accordion-item">
+            <button class="accordion-header" onclick="toggleAccordion(this)">
+              <span>What is the difference between LocalStorage and SessionStorage?</span>
+              <span class="acc-icon">&#9660;</span>
+            </button>
+            <div class="accordion-content">
+              <code>localStorage</code> persists data indefinitely across browser sessions until explicitly cleared. <code>sessionStorage</code> only retains data during the active browser tab lifetime and gets destroyed upon closing the tab.
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+    </div>
+
+    <!-- Source Code Viewer -->
+    <div class="code-viewer-section">
+      <div class="code-viewer-header">
+        <div class="code-tabs">
+          <button class="code-tab active" data-tab="js">JavaScript Implementation</button>
+        </div>
+        <div class="code-actions">
+          <button class="btn-secondary" id="copyCodeBtn">📋 Copy Code</button>
+        </div>
+      </div>
+      <div class="code-body">
+        <pre><code id="sourceCode">function toggleAccordion(btn) {
+  const item = btn.parentElement;
+  const singleMode = document.getElementById("singleModeCheckbox").checked;
+
+  if (singleMode) {
+    // Close all other sibling items
+    document.querySelectorAll(".accordion-item").forEach(otherItem => {
+      if (otherItem !== item) {
+        otherItem.classList.remove("open");
+      }
+    });
+  }
+
+  // Toggle current item
+  item.classList.toggle("open");
+}</code></pre>
+      </div>
+    </div>
+
+    <!-- Navigation -->
+    <div class="program-nav">
+      <a href="tabs-component.html" class="nav-prev">&larr; DOM 15: Tabbed Panels</a>
+      <a href="modal-dialog.html" class="nav-next">DOM 17: Modal Popup &rarr;</a>
+    </div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-content">
+      <p>&copy; 2026 Web Technology Practical Laboratory • Prepared by <strong>Shaik Roshan</strong></p>
+      <p class="subtext">Computer Science & Engineering Department</p>
+    </div>
+  </footer>
+
+  <script src="../../assets/js/code-viewer.js"></script>
+  <script>
+    function toggleAccordion(button) {
+      const item = button.parentElement;
+      const isSingleMode = document.getElementById("singleModeCheckbox").checked;
+
+      if (isSingleMode) {
+        document.querySelectorAll(".accordion-item").forEach(other => {
+          if (other !== item) other.classList.remove("open");
+        });
+      }
+
+      item.classList.toggle("open");
+    }
+  </script>
+</body>
+</html>

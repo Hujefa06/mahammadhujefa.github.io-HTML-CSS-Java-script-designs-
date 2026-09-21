@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Tables with Merged Cells | HTML-03</title>
+  <link rel="stylesheet" href="../assets/css/style.css">
+  <link rel="stylesheet" href="../assets/css/program-viewer.css">
+  <style>
+    .custom-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 1rem 0;
+      font-size: 0.95rem;
+    }
+    .custom-table th, .custom-table td {
+      border: 1px solid #cbd5e1;
+      padding: 0.75rem 1rem;
+      text-align: center;
+    }
+    .custom-table th {
+      background-color: #f1f5f9;
+      color: #1e293b;
+      font-weight: 700;
+    }
+    .custom-table tr:nth-child(even) {
+      background-color: #f8fafc;
+    }
+    .custom-table caption {
+      font-weight: 700;
+      font-size: 1.1rem;
+      color: #0f172a;
+      margin-bottom: 0.75rem;
+    }
+    .cell-merged-h {
+      background-color: #e0e7ff !important;
+      color: #3730a3;
+      font-weight: 600;
+    }
+    .cell-merged-v {
+      background-color: #ecfdf5 !important;
+      color: #065f46;
+      font-weight: 600;
+    }
+  </style>
+</head>
+<body>
+  <header class="navbar">
+    <div class="nav-container">
+      <a href="../index.html" class="nav-brand">
+        <div class="brand-icon" style="background: linear-gradient(135deg, #e34f26, #f06529);">
+          <span>&lt;/&gt;</span>
+        </div>
+        <span>HTML Programs</span>
+      </a>
+      <nav>
+        <ul class="nav-links">
+          <li><a href="../index.html" class="nav-link">Home</a></li>
+          <li><a href="index.html" class="nav-link active">HTML</a></li>
+          <li><a href="../css/index.html" class="nav-link">CSS</a></li>
+          <li><a href="../javascript/index.html" class="nav-link">JavaScript</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main class="main-wrapper">
+    <nav class="breadcrumb-bar">
+      <a href="../index.html">Home</a>
+      <span class="breadcrumb-separator">&rarr;</span>
+      <a href="index.html">HTML Programs</a>
+      <span class="breadcrumb-separator">&rarr;</span>
+      <span class="breadcrumb-current">HTML-03: Tables with Merged Cells</span>
+    </nav>
+
+    <section class="exp-header-card">
+      <div class="exp-meta-row">
+        <span class="exp-id-tag" style="background: #e34f26;">HTML-03</span>
+        <span class="exp-cat-tag">Forms & Tables</span>
+      </div>
+      <h1 class="exp-heading">HTML Tables with Rows, Columns & Merged Cells</h1>
+      <p class="exp-description">
+        Demonstrates the construction of structured tabular datasets using table headers (&lt;th&gt;), table rows (&lt;tr&gt;), standard table data cells (&lt;td&gt;), caption, and cell merging using colspan and rowspan.
+      </p>
+      <div class="objective-box">
+        <div class="objective-title"><span>🎯</span> Practical Laboratory Objective</div>
+        <div class="objective-text">
+          Understand table syntax, row/column alignment, border formatting, and how to effectively merge cells across columns (colspan) and rows (rowspan) for academic grade reports.
+        </div>
+      </div>
+    </section>
+
+    <!-- Live Output Demonstration -->
+    <section class="demo-section-wrapper">
+      <div class="demo-section-header">
+        <div class="demo-title"><span>⚡</span> Live Output Demonstration</div>
+        <span class="demo-live-badge">Working Demo</span>
+      </div>
+      <div class="demo-body" style="background: #ffffff; overflow-x: auto;">
+        <table class="custom-table">
+          <caption>B.Tech Semester Examination Grade Sheet</caption>
+          <thead>
+            <tr>
+              <th rowspan="2">Roll No</th>
+              <th rowspan="2">Student Name</th>
+              <th colspan="3" class="cell-merged-h">Theory Subjects (Marks / 100)</th>
+              <th colspan="2" class="cell-merged-h">Practical Labs (Marks / 50)</th>
+              <th rowspan="2">Total Marks</th>
+              <th rowspan="2">Result</th>
+            </tr>
+            <tr>
+              <th>Web Tech</th>
+              <th>DBMS</th>
+              <th>OS</th>
+              <th>Web Lab</th>
+              <th>DBMS Lab</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>23CS01</td>
+              <td>Shaik Roshan</td>
+              <td>94</td>
+              <td>88</td>
+              <td>90</td>
+              <td>48</td>
+              <td>49</td>
+              <td><strong>369 / 400</strong></td>
+              <td><span style="color: #16a34a; font-weight: 700;">Distinction</span></td>
+            </tr>
+            <tr>
+              <td>23CS02</td>
+              <td>Aarav Sharma</td>
+              <td>85</td>
+              <td>78</td>
+              <td>82</td>
+              <td>45</td>
+              <td>44</td>
+              <td><strong>334 / 400</strong></td>
+              <td><span style="color: #16a34a; font-weight: 700;">First Class</span></td>
+            </tr>
+            <tr>
+              <td>23CS03</td>
+              <td>Sneha Reddy</td>
+              <td>91</td>
+              <td>95</td>
+              <td>89</td>
+              <td>49</td>
+              <td>50</td>
+              <td><strong>374 / 400</strong></td>
+              <td><span style="color: #16a34a; font-weight: 700;">Distinction</span></td>
+            </tr>
+            <tr>
+              <td colspan="2" class="cell-merged-h"><strong>Department Status</strong></td>
+              <td colspan="7" class="cell-merged-h" style="text-align: left; padding-left: 1.5rem;">
+                All candidates successfully qualified semester practical requirements with distinction.
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- Source Code Section -->
+    <section class="source-section-wrapper">
+      <div class="source-header">
+        <div class="source-tabs">
+          <button class="code-tab-btn active" data-tab="html">HTML Source Code</button>
+        </div>
+        <div class="source-actions">
+          <button class="copy-code-btn" type="button">Copy Code</button>
+          <button class="toggle-code-btn" type="button">Hide Code</button>
+        </div>
+      </div>
+      <div class="code-content-container">
+        <div class="code-pane active" data-tab="html">
+<pre>&lt;table border="1" cellpadding="8" cellspacing="0"&gt;
+  &lt;caption&gt;B.Tech Semester Examination Grade Sheet&lt;/caption&gt;
+  &lt;thead&gt;
+    &lt;tr&gt;
+      &lt;!-- Rowspan merges across multiple vertical rows --&gt;
+      &lt;th rowspan="2"&gt;Roll No&lt;/th&gt;
+      &lt;th rowspan="2"&gt;Student Name&lt;/th&gt;
+      &lt;!-- Colspan merges across multiple horizontal columns --&gt;
+      &lt;th colspan="3"&gt;Theory Subjects&lt;/th&gt;
+      &lt;th colspan="2"&gt;Practical Labs&lt;/th&gt;
+      &lt;th rowspan="2"&gt;Total&lt;/th&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;th&gt;Web Tech&lt;/th&gt;
+      &lt;th&gt;DBMS&lt;/th&gt;
+      &lt;th&gt;OS&lt;/th&gt;
+      &lt;th&gt;Web Lab&lt;/th&gt;
+      &lt;th&gt;DBMS Lab&lt;/th&gt;
+    &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+    &lt;tr&gt;
+      &lt;td&gt;23CS01&lt;/td&gt;
+      &lt;td&gt;Shaik Roshan&lt;/td&gt;
+      &lt;td&gt;94&lt;/td&gt;
+      &lt;td&gt;88&lt;/td&gt;
+      &lt;td&gt;90&lt;/td&gt;
+      &lt;td&gt;48&lt;/td&gt;
+      &lt;td&gt;49&lt;/td&gt;
+      &lt;td&gt;369&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td colspan="2"&gt;&lt;strong&gt;Department Summary&lt;/strong&gt;&lt;/td&gt;
+      &lt;td colspan="6"&gt;All students successfully qualified.&lt;/td&gt;
+    &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;</pre>
+        </div>
+      </div>
+    </section>
+
+    <!-- Bottom Navigation -->
+    <nav class="exp-nav-bar">
+      <a href="html-02-lists.html" class="nav-btn nav-btn-prev">&larr; Previous (HTML-02)</a>
+      <a href="index.html" class="nav-btn nav-btn-hub">All HTML Programs</a>
+      <a href="html-04-images-hyperlinks.html" class="nav-btn nav-btn-next">Next (HTML-04) &rarr;</a>
+    </nav>
+  </main>
+
+  <script src="../assets/js/code-viewer.js"></script>
+</body>
+</html>

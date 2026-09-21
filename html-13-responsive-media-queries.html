@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Responsive Webpage (Media Queries) | HTML-13</title>
+  <link rel="stylesheet" href="../assets/css/style.css">
+  <link rel="stylesheet" href="../assets/css/program-viewer.css">
+  <style>
+    /* Responsive Demo Container Styles */
+    .responsive-demo-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1rem;
+      margin: 1.5rem 0;
+    }
+    .res-card {
+      background: #ffffff;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 1.25rem;
+      box-shadow: var(--shadow-xs);
+      text-align: center;
+      transition: all 0.3s ease;
+    }
+    .device-indicator {
+      display: inline-block;
+      padding: 0.4rem 0.85rem;
+      border-radius: var(--radius-full);
+      font-weight: 700;
+      font-size: 0.85rem;
+      margin-bottom: 1rem;
+    }
+
+    /* Media Queries for Responsive Demo */
+    @media (max-width: 1024px) {
+      .responsive-demo-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+      .device-indicator {
+        background: #fef3c7;
+        color: #92400e;
+      }
+      .device-indicator::after {
+        content: " (Tablet Mode: <= 1024px)";
+      }
+    }
+
+    @media (max-width: 640px) {
+      .responsive-demo-grid {
+        grid-template-columns: 1fr;
+      }
+      .device-indicator {
+        background: #fee2e2;
+        color: #991b1b;
+      }
+      .device-indicator::after {
+        content: " (Mobile Mode: <= 640px)";
+      }
+    }
+
+    @media (min-width: 1025px) {
+      .device-indicator {
+        background: #dcfce7;
+        color: #166534;
+      }
+      .device-indicator::after {
+        content: " (Desktop Mode: > 1024px)";
+      }
+    }
+  </style>
+</head>
+<body>
+  <header class="navbar">
+    <div class="nav-container">
+      <a href="../index.html" class="nav-brand">
+        <div class="brand-icon" style="background: linear-gradient(135deg, #e34f26, #f06529);">
+          <span>&lt;/&gt;</span>
+        </div>
+        <span>HTML Programs</span>
+      </a>
+      <nav>
+        <ul class="nav-links">
+          <li><a href="../index.html" class="nav-link">Home</a></li>
+          <li><a href="index.html" class="nav-link active">HTML</a></li>
+          <li><a href="../css/index.html" class="nav-link">CSS</a></li>
+          <li><a href="../javascript/index.html" class="nav-link">JavaScript</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main class="main-wrapper">
+    <nav class="breadcrumb-bar">
+      <a href="../index.html">Home</a>
+      <span class="breadcrumb-separator">&rarr;</span>
+      <a href="index.html">HTML Programs</a>
+      <span class="breadcrumb-separator">&rarr;</span>
+      <span class="breadcrumb-current">HTML-13: Responsive Webpage</span>
+    </nav>
+
+    <section class="exp-header-card">
+      <div class="exp-meta-row">
+        <span class="exp-id-tag" style="background: #e34f26;">HTML-13</span>
+        <span class="exp-cat-tag">Layout & Semantic</span>
+      </div>
+      <h1 class="exp-heading">Responsive Webpage using CSS Media Queries</h1>
+      <p class="exp-description">
+        Demonstrates adaptive layout techniques using CSS3 @media at-rules. The layout seamlessly transforms from a 4-column desktop display to a 2-column tablet layout, and collapses to a single column on mobile screens.
+      </p>
+      <div class="objective-box">
+        <div class="objective-title"><span>🎯</span> Practical Laboratory Objective</div>
+        <div class="objective-text">
+          Understand fluid grid systems, viewport meta tag configurations, and breakpoint strategies using min-width and max-width conditions to support diverse client display form factors.
+        </div>
+      </div>
+    </section>
+
+    <!-- Live Demonstration -->
+    <section class="demo-section-wrapper">
+      <div class="demo-section-header">
+        <div class="demo-title"><span>⚡</span> Live Adaptive Demonstration</div>
+        <span class="demo-live-badge">Working Demo</span>
+      </div>
+      <div class="demo-body" style="background: #ffffff;">
+        <div style="text-align: center;">
+          <span class="device-indicator">Active Breakpoint</span>
+          <p style="color: #64748b; font-size: 0.9rem;">
+            Resize your browser window or switch device modes in Developer Tools to watch this grid adapt!
+          </p>
+        </div>
+
+        <div class="responsive-demo-grid">
+          <div class="res-card">
+            <div style="font-size: 2rem; margin-bottom: 0.5rem;">📱</div>
+            <h4 style="color: #1e293b; margin-bottom: 0.25rem;">Mobile First</h4>
+            <p style="font-size: 0.85rem; color: #64748b;">Single column stacking on compact viewports.</p>
+          </div>
+          <div class="res-card">
+            <div style="font-size: 2rem; margin-bottom: 0.5rem;">💻</div>
+            <h4 style="color: #1e293b; margin-bottom: 0.25rem;">Tablet Layout</h4>
+            <p style="font-size: 0.85rem; color: #64748b;">Two column pairing for intermediate tablets.</p>
+          </div>
+          <div class="res-card">
+            <div style="font-size: 2rem; margin-bottom: 0.5rem;">🖥️</div>
+            <h4 style="color: #1e293b; margin-bottom: 0.25rem;">Desktop Display</h4>
+            <p style="font-size: 0.85rem; color: #64748b;">Four column grid utilizing widescreen real estate.</p>
+          </div>
+          <div class="res-card">
+            <div style="font-size: 2rem; margin-bottom: 0.5rem;">⚡</div>
+            <h4 style="color: #1e293b; margin-bottom: 0.25rem;">Fluid Typography</h4>
+            <p style="font-size: 0.85rem; color: #64748b;">Scalable rem units and viewport relative sizes.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Source Code Section -->
+    <section class="source-section-wrapper">
+      <div class="source-header">
+        <div class="source-tabs">
+          <button class="code-tab-btn active" data-tab="html">CSS Media Queries Code</button>
+        </div>
+        <div class="source-actions">
+          <button class="copy-code-btn" type="button">Copy Code</button>
+          <button class="toggle-code-btn" type="button">Hide Code</button>
+        </div>
+      </div>
+      <div class="code-content-container">
+        <div class="code-pane active" data-tab="html">
+<pre>/* Default Desktop: 4 Columns */
+.grid-container {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 16px;
+}
+
+/* Tablet Breakpoint: 2 Columns */
+@media (max-width: 1024px) {
+  .grid-container {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+/* Mobile Breakpoint: 1 Column */
+@media (max-width: 640px) {
+  .grid-container {
+    grid-template-columns: 1fr;
+  }
+}</pre>
+        </div>
+      </div>
+    </section>
+
+    <!-- Bottom Navigation -->
+    <nav class="exp-nav-bar">
+      <a href="html-12-css-styling.html" class="nav-btn nav-btn-prev">&larr; Previous (HTML-12)</a>
+      <a href="index.html" class="nav-btn nav-btn-hub">All HTML Programs</a>
+      <a href="html-14-bootstrap-components.html" class="nav-btn nav-btn-next">Next (HTML-14) &rarr;</a>
+    </nav>
+  </main>
+
+  <script src="../assets/js/code-viewer.js"></script>
+</body>
+</html>
