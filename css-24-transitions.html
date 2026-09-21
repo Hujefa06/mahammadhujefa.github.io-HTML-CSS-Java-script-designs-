@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CSS Transitions & Timing | CSS-24</title>
+  <link rel="stylesheet" href="../assets/css/style.css">
+  <link rel="stylesheet" href="../assets/css/program-viewer.css">
+  <style>
+    .transition-track {
+      background: #f1f5f9;
+      border-radius: 8px;
+      padding: 0.5rem;
+      margin-bottom: 1rem;
+      position: relative;
+      height: 50px;
+    }
+    .track-runner {
+      width: 40px;
+      height: 38px;
+      border-radius: 6px;
+      position: absolute;
+      left: 6px;
+      top: 6px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #ffffff;
+      font-weight: 700;
+      font-size: 0.8rem;
+    }
+    .track-runner.active {
+      left: calc(100% - 46px);
+    }
+  </style>
+</head>
+<body>
+  <header class="navbar">
+    <div class="nav-container">
+      <a href="../index.html" class="nav-brand">
+        <div class="brand-icon" style="background: linear-gradient(135deg, #2563eb, #3b82f6);">
+          <span>&lt;/&gt;</span>
+        </div>
+        <span>CSS Programs</span>
+      </a>
+      <nav>
+        <ul class="nav-links">
+          <li><a href="../index.html" class="nav-link">Home</a></li>
+          <li><a href="../html/index.html" class="nav-link">HTML</a></li>
+          <li><a href="index.html" class="nav-link active">CSS</a></li>
+          <li><a href="../javascript/index.html" class="nav-link">JavaScript</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main class="main-wrapper">
+    <nav class="breadcrumb-bar">
+      <a href="../index.html">Home</a>
+      <span class="breadcrumb-separator">&rarr;</span>
+      <a href="index.html">CSS Programs</a>
+      <span class="breadcrumb-separator">&rarr;</span>
+      <span class="breadcrumb-current">CSS-24: Transitions & Curves</span>
+    </nav>
+
+    <section class="exp-header-card">
+      <div class="exp-meta-row">
+        <span class="exp-id-tag" style="background: #2563eb;">CSS-24</span>
+        <span class="exp-cat-tag">Effects</span>
+      </div>
+      <h1 class="exp-heading">CSS Transitions and Timing Acceleration Curves</h1>
+      <p class="exp-description">
+        Demonstrates the transition shorthand: transition-property, transition-duration, transition-timing-function (linear, ease, ease-in, ease-out, custom cubic-bezier), and transition-delay.
+      </p>
+      <div class="objective-box">
+        <div class="objective-title"><span>🎯</span> Practical Laboratory Objective</div>
+        <div class="objective-text">
+          Understand how timing curves dictate natural physical motion acceleration, and compare mathematical cubic-bezier curves versus uniform linear movement.
+        </div>
+      </div>
+    </section>
+
+    <!-- Live Demonstration -->
+    <section class="demo-section-wrapper">
+      <div class="demo-section-header">
+        <div class="demo-title"><span>⚡</span> Live Timing Race Track</div>
+        <span class="demo-live-badge">Working Demo</span>
+      </div>
+      <div class="demo-body" style="background: #ffffff;">
+        <div style="margin-bottom: 1.5rem; text-align: center;">
+          <button class="demo-btn" id="trigger-race">🏁 Trigger Transition Animation</button>
+        </div>
+
+        <div>
+          <label style="font-size: 0.85rem; font-weight: 600; color: #1e293b;">1. Linear (Uniform Speed): <code>transition: left 1.5s linear;</code></label>
+          <div class="transition-track">
+            <div class="track-runner" id="run-linear" style="background: #3b82f6; transition: left 1.5s linear;">1</div>
+          </div>
+
+          <label style="font-size: 0.85rem; font-weight: 600; color: #1e293b;">2. Ease (Default Natural Motion): <code>transition: left 1.5s ease;</code></label>
+          <div class="transition-track">
+            <div class="track-runner" id="run-ease" style="background: #10b981; transition: left 1.5s ease;">2</div>
+          </div>
+
+          <label style="font-size: 0.85rem; font-weight: 600; color: #1e293b;">3. Custom Cubic Bezier: <code>transition: left 1.5s cubic-bezier(0.68, -0.55, 0.27, 1.55);</code></label>
+          <div class="transition-track">
+            <div class="track-runner" id="run-bezier" style="background: #ef4444; transition: left 1.5s cubic-bezier(0.68, -0.55, 0.27, 1.55);">3</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Source Code Section -->
+    <section class="source-section-wrapper">
+      <div class="source-header">
+        <div class="source-tabs">
+          <button class="code-tab-btn active" data-tab="css">CSS Source Code</button>
+        </div>
+        <div class="source-actions">
+          <button class="copy-code-btn" type="button">Copy Code</button>
+          <button class="toggle-code-btn" type="button">Hide Code</button>
+        </div>
+      </div>
+      <div class="code-content-container">
+        <div class="code-pane active" data-tab="css">
+<pre>/* Transition Shorthand: property | duration | timing | delay */
+.button-animated {
+  background-color: #4f46e5;
+  transform: translateY(0);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.button-animated:hover {
+  background-color: #4338ca;
+  transform: translateY(-4px);
+  box-shadow: 0 10px 20px rgba(79, 70, 229, 0.3);
+}</pre>
+        </div>
+      </div>
+    </section>
+
+    <!-- Bottom Navigation -->
+    <nav class="exp-nav-bar">
+      <a href="css-23-filters.html" class="nav-btn nav-btn-prev">&larr; Previous (CSS-23)</a>
+      <a href="index.html" class="nav-btn nav-btn-hub">All CSS Programs</a>
+      <a href="css-25-2d-transforms.html" class="nav-btn nav-btn-next">Next (CSS-25) &rarr;</a>
+    </nav>
+  </main>
+
+  <script src="../assets/js/code-viewer.js"></script>
+  <script>
+    document.getElementById('trigger-race').addEventListener('click', () => {
+      document.querySelectorAll('.track-runner').forEach(el => {
+        el.classList.toggle('active');
+      });
+    });
+  </script>
+</body>
+</html>

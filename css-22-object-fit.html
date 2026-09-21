@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Object Fit & Object Position | CSS-22</title>
+  <link rel="stylesheet" href="../assets/css/style.css">
+  <link rel="stylesheet" href="../assets/css/program-viewer.css">
+  <style>
+    .fit-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 1.5rem;
+      margin-bottom: 2rem;
+    }
+    .fit-card {
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      overflow: hidden;
+      background: #fafafa;
+      text-align: center;
+      padding-bottom: 0.75rem;
+    }
+    .fit-img-container {
+      width: 100%;
+      height: 150px;
+      background: #0f172a;
+      overflow: hidden;
+    }
+    .fit-img {
+      width: 100%;
+      height: 100%;
+      display: block;
+    }
+  </style>
+</head>
+<body>
+  <header class="navbar">
+    <div class="nav-container">
+      <a href="../index.html" class="nav-brand">
+        <div class="brand-icon" style="background: linear-gradient(135deg, #2563eb, #3b82f6);">
+          <span>&lt;/&gt;</span>
+        </div>
+        <span>CSS Programs</span>
+      </a>
+      <nav>
+        <ul class="nav-links">
+          <li><a href="../index.html" class="nav-link">Home</a></li>
+          <li><a href="../html/index.html" class="nav-link">HTML</a></li>
+          <li><a href="index.html" class="nav-link active">CSS</a></li>
+          <li><a href="../javascript/index.html" class="nav-link">JavaScript</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main class="main-wrapper">
+    <nav class="breadcrumb-bar">
+      <a href="../index.html">Home</a>
+      <span class="breadcrumb-separator">&rarr;</span>
+      <a href="index.html">CSS Programs</a>
+      <span class="breadcrumb-separator">&rarr;</span>
+      <span class="breadcrumb-current">CSS-22: Object Fit & Position</span>
+    </nav>
+
+    <section class="exp-header-card">
+      <div class="exp-meta-row">
+        <span class="exp-id-tag" style="background: #2563eb;">CSS-22</span>
+        <span class="exp-cat-tag">Foundation</span>
+      </div>
+      <h1 class="exp-heading">Media Aspect Ratio Control with object-fit</h1>
+      <p class="exp-description">
+        Demonstrates how replaced media elements (&lt;img&gt; and &lt;video&gt;) respond when forced into fixed aspect ratio boxes using object-fit: fill, contain, cover, none, and scale-down.
+      </p>
+      <div class="objective-box">
+        <div class="objective-title"><span>🎯</span> Practical Laboratory Objective</div>
+        <div class="objective-text">
+          Understand why `object-fit: cover` is essential for avatar cards and responsive image grids, preserving aspect ratios without distortion or stretching.
+        </div>
+      </div>
+    </section>
+
+    <!-- Live Demonstration -->
+    <section class="demo-section-wrapper">
+      <div class="demo-section-header">
+        <div class="demo-title"><span>⚡</span> Live Aspect Ratio Behavior Matrix</div>
+        <span class="demo-live-badge">Working Demo</span>
+      </div>
+      <div class="demo-body" style="background: #ffffff;">
+        <div class="fit-grid">
+          <!-- 1. cover -->
+          <div class="fit-card">
+            <div class="fit-img-container">
+              <svg class="fit-img" style="object-fit: cover;" viewBox="0 0 200 100" xmlns="http://www.w3.org/2000/svg">
+                <rect width="200" height="100" fill="#4f46e5" />
+                <circle cx="100" cy="50" r="35" fill="#38bdf8" />
+                <text x="100" y="55" fill="#ffffff" font-size="14" text-anchor="middle">SVG Aspect</text>
+              </svg>
+            </div>
+            <strong style="display: block; margin-top: 0.5rem; color: #16a34a;">object-fit: cover</strong>
+            <small style="color: #64748b;">Fills box, crops excess</small>
+          </div>
+
+          <!-- 2. contain -->
+          <div class="fit-card">
+            <div class="fit-img-container">
+              <svg class="fit-img" style="object-fit: contain;" viewBox="0 0 200 100" xmlns="http://www.w3.org/2000/svg">
+                <rect width="200" height="100" fill="#4f46e5" />
+                <circle cx="100" cy="50" r="35" fill="#38bdf8" />
+                <text x="100" y="55" fill="#ffffff" font-size="14" text-anchor="middle">SVG Aspect</text>
+              </svg>
+            </div>
+            <strong style="display: block; margin-top: 0.5rem; color: #2563eb;">object-fit: contain</strong>
+            <small style="color: #64748b;">Fits whole image with letterbox</small>
+          </div>
+
+          <!-- 3. fill -->
+          <div class="fit-card">
+            <div class="fit-img-container">
+              <svg class="fit-img" style="object-fit: fill;" viewBox="0 0 200 100" xmlns="http://www.w3.org/2000/svg">
+                <rect width="200" height="100" fill="#4f46e5" />
+                <circle cx="100" cy="50" r="35" fill="#38bdf8" />
+                <text x="100" y="55" fill="#ffffff" font-size="14" text-anchor="middle">SVG Aspect</text>
+              </svg>
+            </div>
+            <strong style="display: block; margin-top: 0.5rem; color: #ef4444;">object-fit: fill</strong>
+            <small style="color: #64748b;">Stretches &amp; distorts</small>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Source Code Section -->
+    <section class="source-section-wrapper">
+      <div class="source-header">
+        <div class="source-tabs">
+          <button class="code-tab-btn active" data-tab="css">CSS Source Code</button>
+        </div>
+        <div class="source-actions">
+          <button class="copy-code-btn" type="button">Copy Code</button>
+          <button class="toggle-code-btn" type="button">Hide Code</button>
+        </div>
+      </div>
+      <div class="code-content-container">
+        <div class="code-pane active" data-tab="css">
+<pre>/* Avatar Image that never stretches */
+.profile-thumbnail {
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  object-fit: cover;
+  object-position: center top; /* Focuses crop towards top of face */
+}
+
+/* Product image showcase fitting complete packaging */
+.product-hero-image {
+  width: 100%;
+  height: 400px;
+  object-fit: contain;
+}</pre>
+        </div>
+      </div>
+    </section>
+
+    <!-- Bottom Navigation -->
+    <nav class="exp-nav-bar">
+      <a href="css-21-units.html" class="nav-btn nav-btn-prev">&larr; Previous (CSS-21)</a>
+      <a href="index.html" class="nav-btn nav-btn-hub">All CSS Programs</a>
+      <a href="css-23-filters.html" class="nav-btn nav-btn-next">Next (CSS-23) &rarr;</a>
+    </nav>
+  </main>
+
+  <script src="../assets/js/code-viewer.js"></script>
+</body>
+</html>

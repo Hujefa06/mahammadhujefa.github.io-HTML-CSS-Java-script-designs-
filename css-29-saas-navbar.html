@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SaaS Navigation Header | CSS-29</title>
+  <link rel="stylesheet" href="../assets/css/style.css">
+  <link rel="stylesheet" href="../assets/css/program-viewer.css">
+  <style>
+    .saas-header-mockup {
+      background: rgba(255, 255, 255, 0.85);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 0.85rem 1.5rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      box-shadow: var(--shadow-sm);
+      position: relative;
+    }
+    .saas-nav-list {
+      display: flex;
+      align-items: center;
+      gap: 1.5rem;
+      list-style: none;
+    }
+    .saas-dropdown-parent {
+      position: relative;
+    }
+    .saas-dropdown-menu {
+      position: absolute;
+      top: 100%;
+      left: 0;
+      margin-top: 0.75rem;
+      width: 220px;
+      background: #ffffff;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      box-shadow: var(--shadow-lg);
+      padding: 0.5rem;
+      display: none;
+      z-index: 50;
+    }
+    .saas-dropdown-parent:hover .saas-dropdown-menu {
+      display: block;
+      animation: fadeIn 0.2s ease;
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(6px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    .saas-menu-item {
+      display: flex;
+      flex-direction: column;
+      padding: 0.5rem 0.75rem;
+      border-radius: 6px;
+      text-decoration: none;
+      color: #0f172a;
+      transition: background 0.15s;
+    }
+    .saas-menu-item:hover {
+      background: #f1f5f9;
+    }
+    .saas-menu-item small {
+      color: #64748b;
+      font-size: 0.75rem;
+    }
+  </style>
+</head>
+<body>
+  <header class="navbar">
+    <div class="nav-container">
+      <a href="../index.html" class="nav-brand">
+        <div class="brand-icon" style="background: linear-gradient(135deg, #2563eb, #3b82f6);">
+          <span>&lt;/&gt;</span>
+        </div>
+        <span>CSS Programs</span>
+      </a>
+      <nav>
+        <ul class="nav-links">
+          <li><a href="../index.html" class="nav-link">Home</a></li>
+          <li><a href="../html/index.html" class="nav-link">HTML</a></li>
+          <li><a href="index.html" class="nav-link active">CSS</a></li>
+          <li><a href="../javascript/index.html" class="nav-link">JavaScript</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main class="main-wrapper">
+    <nav class="breadcrumb-bar">
+      <a href="../index.html">Home</a>
+      <span class="breadcrumb-separator">&rarr;</span>
+      <a href="index.html">CSS Programs</a>
+      <span class="breadcrumb-separator">&rarr;</span>
+      <span class="breadcrumb-current">CSS-29: SaaS Navigation Bar</span>
+    </nav>
+
+    <section class="exp-header-card">
+      <div class="exp-meta-row">
+        <span class="exp-id-tag" style="background: #2563eb;">CSS-29</span>
+        <span class="exp-cat-tag">SaaS UI</span>
+      </div>
+      <h1 class="exp-heading">Modern SaaS Navigation Bar with Glassmorphism</h1>
+      <p class="exp-description">
+        Demonstrates modern production-grade SaaS navigation components: sticky positioning, frosted glass backdrop blur, animated multi-tier dropdown menus, and responsive action button groups.
+      </p>
+      <div class="objective-box">
+        <div class="objective-title"><span>🎯</span> Practical Laboratory Objective</div>
+        <div class="objective-text">
+          Understand backdrop-filter browser compositing, create accessible dropdown flyouts without JavaScript dependencies, and implement subtle hover transitions.
+        </div>
+      </div>
+    </section>
+
+    <!-- Live Demonstration -->
+    <section class="demo-section-wrapper">
+      <div class="demo-section-header">
+        <div class="demo-title"><span>⚡</span> Live SaaS Navbar Component</div>
+        <span class="demo-live-badge">Working Demo</span>
+      </div>
+      <div class="demo-body" style="background: #f1f5f9; padding: 2.5rem 1.5rem;">
+        <!-- Mockup Navbar -->
+        <div class="saas-header-mockup">
+          <div style="display: flex; align-items: center; gap: 0.6rem; font-weight: 800; font-size: 1.15rem; color: #0f172a;">
+            <span style="width: 32px; height: 32px; border-radius: 8px; background: #4f46e5; color: #ffffff; display: flex; align-items: center; justify-content: center; font-size: 0.9rem;">⚡</span>
+            CloudFlow SaaS
+          </div>
+
+          <ul class="saas-nav-list">
+            <li class="saas-dropdown-parent">
+              <a href="#" style="color: #334155; font-weight: 600; font-size: 0.9rem; text-decoration: none; display: flex; align-items: center; gap: 0.3rem;">
+                Features ▾
+              </a>
+              <div class="saas-dropdown-menu">
+                <a href="#" class="saas-menu-item">
+                  <strong>Analytics Engine</strong>
+                  <small>Real-time data telemetry</small>
+                </a>
+                <a href="#" class="saas-menu-item">
+                  <strong>AI Copilot</strong>
+                  <small>Generative automation pipeline</small>
+                </a>
+                <a href="#" class="saas-menu-item">
+                  <strong>Team Collaboration</strong>
+                  <small>Role permissions &amp; audit</small>
+                </a>
+              </div>
+            </li>
+            <li><a href="#" style="color: #334155; font-weight: 600; font-size: 0.9rem; text-decoration: none;">Pricing</a></li>
+            <li><a href="#" style="color: #334155; font-weight: 600; font-size: 0.9rem; text-decoration: none;">Documentation</a></li>
+          </ul>
+
+          <div style="display: flex; gap: 0.5rem;">
+            <a href="#" class="demo-btn demo-btn-secondary" style="font-size: 0.85rem; padding: 0.45rem 0.85rem;">Sign In</a>
+            <a href="#" class="demo-btn" style="font-size: 0.85rem; padding: 0.45rem 0.85rem;">Start Free Trial</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Source Code Section -->
+    <section class="source-section-wrapper">
+      <div class="source-header">
+        <div class="source-tabs">
+          <button class="code-tab-btn active" data-tab="css">CSS Source Code</button>
+        </div>
+        <div class="source-actions">
+          <button class="copy-code-btn" type="button">Copy Code</button>
+          <button class="toggle-code-btn" type="button">Hide Code</button>
+        </div>
+      </div>
+      <div class="code-content-container">
+        <div class="code-pane active" data-tab="css">
+<pre>/* Glassmorphism Frosted Header */
+.saas-navbar {
+  position: sticky;
+  top: 0;
+  background: rgba(255, 255, 255, 0.85);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid #e2e8f0;
+}
+
+/* Hover-triggered Dropdown Menu */
+.nav-item-parent:hover .dropdown-menu {
+  display: block;
+  animation: slideDown 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+}</pre>
+        </div>
+      </div>
+    </section>
+
+    <!-- Bottom Navigation -->
+    <nav class="exp-nav-bar">
+      <a href="css-28-loading-spinner.html" class="nav-btn nav-btn-prev">&larr; Previous (CSS-28)</a>
+      <a href="index.html" class="nav-btn nav-btn-hub">All CSS Programs</a>
+      <a href="css-30-saas-hero.html" class="nav-btn nav-btn-next">Next (CSS-30) &rarr;</a>
+    </nav>
+  </main>
+
+  <script src="../assets/js/code-viewer.js"></script>
+</body>
+</html>

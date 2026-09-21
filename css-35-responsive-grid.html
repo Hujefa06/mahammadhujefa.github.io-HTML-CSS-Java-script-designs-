@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>12-Column Responsive CSS Grid | CSS-35</title>
+  <link rel="stylesheet" href="../assets/css/style.css">
+  <link rel="stylesheet" href="../assets/css/program-viewer.css">
+  <style>
+    .grid-12-demo {
+      display: grid;
+      grid-template-columns: repeat(12, 1fr);
+      gap: 12px;
+      background: #f8fafc;
+      padding: 1.5rem;
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      margin: 1.5rem 0;
+    }
+    .grid-col-cell {
+      background: #e0e7ff;
+      border: 1px solid #c7d2fe;
+      border-radius: 6px;
+      padding: 0.75rem 0.5rem;
+      text-align: center;
+      font-weight: 700;
+      color: #3730a3;
+      font-size: 0.85rem;
+    }
+    .span-12 { grid-column: span 12; background: #fee2e2; border-color: #fecaca; color: #991b1b; }
+    .span-6  { grid-column: span 6; background: #fef3c7; border-color: #fde68a; color: #92400e; }
+    .span-4  { grid-column: span 4; background: #dcfce7; border-color: #bbf7d0; color: #166534; }
+    .span-3  { grid-column: span 3; background: #e0e7ff; border-color: #c7d2fe; color: #3730a3; }
+    @media (max-width: 768px) {
+      .span-6, .span-4, .span-3 { grid-column: span 12; }
+    }
+  </style>
+</head>
+<body>
+  <header class="navbar">
+    <div class="nav-container">
+      <a href="../index.html" class="nav-brand">
+        <div class="brand-icon" style="background: linear-gradient(135deg, #2563eb, #3b82f6);">
+          <span>&lt;/&gt;</span>
+        </div>
+        <span>CSS Programs</span>
+      </a>
+      <nav>
+        <ul class="nav-links">
+          <li><a href="../index.html" class="nav-link">Home</a></li>
+          <li><a href="../html/index.html" class="nav-link">HTML</a></li>
+          <li><a href="index.html" class="nav-link active">CSS</a></li>
+          <li><a href="../javascript/index.html" class="nav-link">JavaScript</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main class="main-wrapper">
+    <nav class="breadcrumb-bar">
+      <a href="../index.html">Home</a>
+      <span class="breadcrumb-separator">&rarr;</span>
+      <a href="index.html">CSS Programs</a>
+      <span class="breadcrumb-separator">&rarr;</span>
+      <span class="breadcrumb-current">CSS-35: 12-Column Responsive Grid</span>
+    </nav>
+
+    <section class="exp-header-card">
+      <div class="exp-meta-row">
+        <span class="exp-id-tag" style="background: #2563eb;">CSS-35</span>
+        <span class="exp-cat-tag">Layout</span>
+      </div>
+      <h1 class="exp-heading">12-Column Responsive CSS Grid Architecture</h1>
+      <p class="exp-description">
+        Demonstrates modern CSS Grid layout design systems: 12-column track divisions using repeat(12, 1fr), fractional sizing, spanning column spans (span 12, span 6, span 4, span 3), and fluid auto-fitting.
+      </p>
+      <div class="objective-box">
+        <div class="objective-title"><span>🎯</span> Practical Laboratory Objective</div>
+        <div class="objective-text">
+          Understand how fractional `fr` units distribute available container space proportionally and replace complex float-based 12-column frameworks with native CSS Grid.
+        </div>
+      </div>
+    </section>
+
+    <!-- Live Demonstration -->
+    <section class="demo-section-wrapper">
+      <div class="demo-section-header">
+        <div class="demo-title"><span>⚡</span> Live 12-Column Grid Layout</div>
+        <span class="demo-live-badge">Working Demo</span>
+      </div>
+      <div class="demo-body" style="background: #ffffff;">
+        <div class="grid-12-demo">
+          <!-- Full Width Span 12 -->
+          <div class="grid-col-cell span-12">grid-column: span 12 (Full Width)</div>
+
+          <!-- Half Width Span 6 -->
+          <div class="grid-col-cell span-6">span 6 (50% Width)</div>
+          <div class="grid-col-cell span-6">span 6 (50% Width)</div>
+
+          <!-- Thirds Span 4 -->
+          <div class="grid-col-cell span-4">span 4 (1/3 Width)</div>
+          <div class="grid-col-cell span-4">span 4 (1/3 Width)</div>
+          <div class="grid-col-cell span-4">span 4 (1/3 Width)</div>
+
+          <!-- Fourths Span 3 -->
+          <div class="grid-col-cell span-3">span 3 (25%)</div>
+          <div class="grid-col-cell span-3">span 3 (25%)</div>
+          <div class="grid-col-cell span-3">span 3 (25%)</div>
+          <div class="grid-col-cell span-3">span 3 (25%)</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Source Code Section -->
+    <section class="source-section-wrapper">
+      <div class="source-header">
+        <div class="source-tabs">
+          <button class="code-tab-btn active" data-tab="css">CSS Source Code</button>
+        </div>
+        <div class="source-actions">
+          <button class="copy-code-btn" type="button">Copy Code</button>
+          <button class="toggle-code-btn" type="button">Hide Code</button>
+        </div>
+      </div>
+      <div class="code-content-container">
+        <div class="code-pane active" data-tab="css">
+<pre>/* Native 12-Column CSS Grid */
+.grid-container {
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  gap: 16px;
+}
+
+/* Column Spans */
+.col-12 { grid-column: span 12; }
+.col-6  { grid-column: span 6; }
+.col-4  { grid-column: span 4; }
+.col-3  { grid-column: span 3; }
+
+/* Responsive Auto-Collapse */
+@media (max-width: 768px) {
+  .col-6, .col-4, .col-3 {
+    grid-column: span 12;
+  }
+}</pre>
+        </div>
+      </div>
+    </section>
+
+    <!-- Bottom Navigation -->
+    <nav class="exp-nav-bar">
+      <a href="css-34-ai-chat-interface.html" class="nav-btn nav-btn-prev">&larr; Previous (CSS-34)</a>
+      <a href="index.html" class="nav-btn nav-btn-hub">All CSS Programs</a>
+      <a href="css-36-saas-landing-project.html" class="nav-btn nav-btn-next">Next (CSS-36) &rarr;</a>
+    </nav>
+  </main>
+
+  <script src="../assets/js/code-viewer.js"></script>
+</body>
+</html>

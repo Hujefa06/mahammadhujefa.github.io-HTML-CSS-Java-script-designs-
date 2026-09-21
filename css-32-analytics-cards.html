@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Analytics KPI Cards & Charts | CSS-32</title>
+  <link rel="stylesheet" href="../assets/css/style.css">
+  <link rel="stylesheet" href="../assets/css/program-viewer.css">
+  <style>
+    .kpi-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 1.5rem;
+      margin-bottom: 2rem;
+    }
+    .kpi-card {
+      background: #ffffff;
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 1.5rem;
+      box-shadow: var(--shadow-xs);
+    }
+    .kpi-title {
+      font-size: 0.85rem;
+      font-weight: 600;
+      color: #64748b;
+      text-transform: uppercase;
+      margin-bottom: 0.5rem;
+    }
+    .kpi-val {
+      font-size: 2rem;
+      font-weight: 800;
+      color: #0f172a;
+      line-height: 1.1;
+    }
+    .kpi-trend {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.25rem;
+      font-size: 0.8rem;
+      font-weight: 700;
+      margin-top: 0.5rem;
+    }
+    .trend-up { color: #10b981; }
+    .trend-down { color: #ef4444; }
+
+    /* CSS Bar Chart */
+    .css-chart {
+      display: flex;
+      align-items: flex-end;
+      gap: 12px;
+      height: 160px;
+      background: #f8fafc;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 1rem;
+      margin-top: 1.5rem;
+    }
+    .chart-bar-col {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      height: 100%;
+      justify-content: flex-end;
+    }
+    .chart-bar {
+      width: 100%;
+      border-radius: 4px 4px 0 0;
+      background: linear-gradient(180deg, #4f46e5, #818cf8);
+      transition: height 0.5s ease;
+    }
+    .chart-label {
+      font-size: 0.75rem;
+      color: #64748b;
+      margin-top: 0.5rem;
+      font-weight: 600;
+    }
+  </style>
+</head>
+<body>
+  <header class="navbar">
+    <div class="nav-container">
+      <a href="../index.html" class="nav-brand">
+        <div class="brand-icon" style="background: linear-gradient(135deg, #2563eb, #3b82f6);">
+          <span>&lt;/&gt;</span>
+        </div>
+        <span>CSS Programs</span>
+      </a>
+      <nav>
+        <ul class="nav-links">
+          <li><a href="../index.html" class="nav-link">Home</a></li>
+          <li><a href="../html/index.html" class="nav-link">HTML</a></li>
+          <li><a href="index.html" class="nav-link active">CSS</a></li>
+          <li><a href="../javascript/index.html" class="nav-link">JavaScript</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main class="main-wrapper">
+    <nav class="breadcrumb-bar">
+      <a href="../index.html">Home</a>
+      <span class="breadcrumb-separator">&rarr;</span>
+      <a href="index.html">CSS Programs</a>
+      <span class="breadcrumb-separator">&rarr;</span>
+      <span class="breadcrumb-current">CSS-32: Analytics KPI Cards</span>
+    </nav>
+
+    <section class="exp-header-card">
+      <div class="exp-meta-row">
+        <span class="exp-id-tag" style="background: #2563eb;">CSS-32</span>
+        <span class="exp-cat-tag">Dashboards</span>
+      </div>
+      <h1 class="exp-heading">Analytics KPI Metric Cards and Pure CSS Charts</h1>
+      <p class="exp-description">
+        Demonstrates executive dashboard metric components: high-contrast KPI cards, positive/negative growth delta trends, and responsive data visualizer bar graphs rendered purely with CSS flexbox and transitions.
+      </p>
+      <div class="objective-box">
+        <div class="objective-title"><span>🎯</span> Practical Laboratory Objective</div>
+        <div class="objective-text">
+          Understand how flexbox align-items: flex-end creates bar chart graphs without canvas or third-party charting libraries, and structure analytical telemetry widgets.
+        </div>
+      </div>
+    </section>
+
+    <!-- Live Demonstration -->
+    <section class="demo-section-wrapper">
+      <div class="demo-section-header">
+        <div class="demo-title"><span>⚡</span> Live Analytics Dashboard Preview</div>
+        <span class="demo-live-badge">Working Demo</span>
+      </div>
+      <div class="demo-body" style="background: #ffffff;">
+        <div class="kpi-grid">
+          <div class="kpi-card">
+            <div class="kpi-title">Active Laboratory Sessions</div>
+            <div class="kpi-val">1,482</div>
+            <div class="kpi-trend trend-up">
+              &uarr; +18.4% vs last week
+            </div>
+          </div>
+
+          <div class="kpi-card">
+            <div class="kpi-title">Completed Code Submissions</div>
+            <div class="kpi-val">94.6%</div>
+            <div class="kpi-trend trend-up">
+              &uarr; +4.2% completion rate
+            </div>
+          </div>
+
+          <div class="kpi-card">
+            <div class="kpi-title">Average Execution Latency</div>
+            <div class="kpi-val">42ms</div>
+            <div class="kpi-trend trend-up" style="color: #06b6d4;">
+              &check; Optimal Performance
+            </div>
+          </div>
+
+          <div class="kpi-card">
+            <div class="kpi-title">Pending Teacher Reviews</div>
+            <div class="kpi-val">12</div>
+            <div class="kpi-trend trend-down">
+              &darr; -8 items remaining
+            </div>
+          </div>
+        </div>
+
+        <h3 style="color: #0f172a; margin-top: 2rem; margin-bottom: 0.5rem; font-size: 1.1rem;">Pure CSS Weekly Traffic Bar Graph</h3>
+        <div class="css-chart">
+          <div class="chart-bar-col">
+            <div class="chart-bar" style="height: 45%;"></div>
+            <span class="chart-label">Mon</span>
+          </div>
+          <div class="chart-bar-col">
+            <div class="chart-bar" style="height: 65%;"></div>
+            <span class="chart-label">Tue</span>
+          </div>
+          <div class="chart-bar-col">
+            <div class="chart-bar" style="height: 85%;"></div>
+            <span class="chart-label">Wed</span>
+          </div>
+          <div class="chart-bar-col">
+            <div class="chart-bar" style="height: 55%;"></div>
+            <span class="chart-label">Thu</span>
+          </div>
+          <div class="chart-bar-col">
+            <div class="chart-bar" style="height: 95%;"></div>
+            <span class="chart-label">Fri</span>
+          </div>
+          <div class="chart-bar-col">
+            <div class="chart-bar" style="height: 30%;"></div>
+            <span class="chart-label">Sat</span>
+          </div>
+          <div class="chart-bar-col">
+            <div class="chart-bar" style="height: 20%;"></div>
+            <span class="chart-label">Sun</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Source Code Section -->
+    <section class="source-section-wrapper">
+      <div class="source-header">
+        <div class="source-tabs">
+          <button class="code-tab-btn active" data-tab="css">CSS Source Code</button>
+        </div>
+        <div class="source-actions">
+          <button class="copy-code-btn" type="button">Copy Code</button>
+          <button class="toggle-code-btn" type="button">Hide Code</button>
+        </div>
+      </div>
+      <div class="code-content-container">
+        <div class="code-pane active" data-tab="css">
+<pre>/* Pure CSS Bar Graph using Flexbox */
+.bar-chart-container {
+  display: flex;
+  align-items: flex-end; /* Anchors bars to bottom baseline */
+  gap: 12px;
+  height: 200px;
+}
+
+.bar {
+  flex: 1;
+  background: linear-gradient(180deg, #4f46e5, #818cf8);
+  border-radius: 4px 4px 0 0;
+  transition: height 0.4s ease;
+}</pre>
+        </div>
+      </div>
+    </section>
+
+    <!-- Bottom Navigation -->
+    <nav class="exp-nav-bar">
+      <a href="css-31-saas-pricing.html" class="nav-btn nav-btn-prev">&larr; Previous (CSS-31)</a>
+      <a href="index.html" class="nav-btn nav-btn-hub">All CSS Programs</a>
+      <a href="css-33-dashboard-layout.html" class="nav-btn nav-btn-next">Next (CSS-33) &rarr;</a>
+    </nav>
+  </main>
+
+  <script src="../assets/js/code-viewer.js"></script>
+</body>
+</html>

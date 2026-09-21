@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CSS Loading Spinners | CSS-28</title>
+  <link rel="stylesheet" href="../assets/css/style.css">
+  <link rel="stylesheet" href="../assets/css/program-viewer.css">
+  <style>
+    .loader-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 1.5rem;
+      margin: 1.5rem 0;
+    }
+    .loader-card {
+      background: #ffffff;
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 2rem 1rem;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 1rem;
+      box-shadow: var(--shadow-xs);
+    }
+    /* 1. Ring Spinner */
+    @keyframes spinRing {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
+    .spinner-ring {
+      width: 48px;
+      height: 48px;
+      border: 4px solid #e2e8f0;
+      border-top: 4px solid #4f46e5;
+      border-radius: 50%;
+      animation: spinRing 0.8s linear infinite;
+    }
+    /* 2. Bouncing Dots */
+    @keyframes bounceDot {
+      0%, 80%, 100% { transform: scale(0); opacity: 0.3; }
+      40% { transform: scale(1); opacity: 1; }
+    }
+    .dots-container {
+      display: flex;
+      gap: 8px;
+    }
+    .dot-item {
+      width: 14px;
+      height: 14px;
+      background: #06b6d4;
+      border-radius: 50%;
+      animation: bounceDot 1.4s infinite ease-in-out both;
+    }
+    .dot-item:nth-child(1) { animation-delay: -0.32s; }
+    .dot-item:nth-child(2) { animation-delay: -0.16s; }
+    /* 3. Skeleton Shimmer */
+    @keyframes shimmerMove {
+      0% { background-position: -200% 0; }
+      100% { background-position: 200% 0; }
+    }
+    .skeleton-bar {
+      width: 160px;
+      height: 14px;
+      border-radius: 4px;
+      background: linear-gradient(90deg, #e2e8f0 25%, #f1f5f9 50%, #e2e8f0 75%);
+      background-size: 200% 100%;
+      animation: shimmerMove 1.5s infinite;
+      margin: 4px 0;
+    }
+  </style>
+</head>
+<body>
+  <header class="navbar">
+    <div class="nav-container">
+      <a href="../index.html" class="nav-brand">
+        <div class="brand-icon" style="background: linear-gradient(135deg, #2563eb, #3b82f6);">
+          <span>&lt;/&gt;</span>
+        </div>
+        <span>CSS Programs</span>
+      </a>
+      <nav>
+        <ul class="nav-links">
+          <li><a href="../index.html" class="nav-link">Home</a></li>
+          <li><a href="../html/index.html" class="nav-link">HTML</a></li>
+          <li><a href="index.html" class="nav-link active">CSS</a></li>
+          <li><a href="../javascript/index.html" class="nav-link">JavaScript</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main class="main-wrapper">
+    <nav class="breadcrumb-bar">
+      <a href="../index.html">Home</a>
+      <span class="breadcrumb-separator">&rarr;</span>
+      <a href="index.html">CSS Programs</a>
+      <span class="breadcrumb-separator">&rarr;</span>
+      <span class="breadcrumb-current">CSS-28: Loading Spinners</span>
+    </nav>
+
+    <section class="exp-header-card">
+      <div class="exp-meta-row">
+        <span class="exp-id-tag" style="background: #2563eb;">CSS-28</span>
+        <span class="exp-cat-tag">Effects</span>
+      </div>
+      <h1 class="exp-heading">Modern Animated CSS Loading Spinners</h1>
+      <p class="exp-description">
+        Demonstrates the implementation of pure CSS asynchronous wait indicators: circular ring spinner with partial border coloring, staggered delay bouncing dots, and content placeholder shimmer skeletons.
+      </p>
+      <div class="objective-box">
+        <div class="objective-title"><span>🎯</span> Practical Laboratory Objective</div>
+        <div class="objective-text">
+          Master negative animation-delay for synchronizing multi-element wave patterns and implement content shimmer loaders for progressive web application loading states.
+        </div>
+      </div>
+    </section>
+
+    <!-- Live Demonstration -->
+    <section class="demo-section-wrapper">
+      <div class="demo-section-header">
+        <div class="demo-title"><span>⚡</span> Live Loader Component Suite</div>
+        <span class="demo-live-badge">Working Demo</span>
+      </div>
+      <div class="demo-body" style="background: #f8fafc;">
+        <div class="loader-grid">
+          <!-- Ring Spinner -->
+          <div class="loader-card">
+            <div class="spinner-ring"></div>
+            <strong style="color: #0f172a; font-size: 0.95rem;">Circular Ring Loader</strong>
+            <small style="color: #64748b;">border-top rotation</small>
+          </div>
+
+          <!-- Bouncing Dots -->
+          <div class="loader-card">
+            <div class="dots-container">
+              <div class="dot-item"></div>
+              <div class="dot-item"></div>
+              <div class="dot-item"></div>
+            </div>
+            <strong style="color: #0f172a; font-size: 0.95rem;">Bouncing 3-Dot Wave</strong>
+            <small style="color: #64748b;">Staggered animation-delay</small>
+          </div>
+
+          <!-- Shimmer Skeleton -->
+          <div class="loader-card">
+            <div style="display: flex; flex-direction: column; gap: 6px;">
+              <div class="skeleton-bar" style="width: 140px; height: 18px;"></div>
+              <div class="skeleton-bar" style="width: 180px;"></div>
+              <div class="skeleton-bar" style="width: 110px;"></div>
+            </div>
+            <strong style="color: #0f172a; font-size: 0.95rem;">Shimmer Skeleton Loader</strong>
+            <small style="color: #64748b;">Moving linear-gradient</small>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Source Code Section -->
+    <section class="source-section-wrapper">
+      <div class="source-header">
+        <div class="source-tabs">
+          <button class="code-tab-btn active" data-tab="css">CSS Source Code</button>
+        </div>
+        <div class="source-actions">
+          <button class="copy-code-btn" type="button">Copy Code</button>
+          <button class="toggle-code-btn" type="button">Hide Code</button>
+        </div>
+      </div>
+      <div class="code-content-container">
+        <div class="code-pane active" data-tab="css">
+<pre>/* Circular Spinner */
+.spinner {
+  width: 48px;
+  height: 48px;
+  border: 4px solid #e2e8f0;
+  border-top-color: #4f46e5;
+  border-radius: 50%;
+  animation: spin 0.8s linear infinite;
+}
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+/* Staggered Pulsing Dots */
+.dot:nth-child(1) { animation-delay: -0.32s; }
+.dot:nth-child(2) { animation-delay: -0.16s; }
+
+/* Shimmer Skeleton */
+.skeleton {
+  background: linear-gradient(90deg, #e2e8f0 25%, #f1f5f9 50%, #e2e8f0 75%);
+  background-size: 200% 100%;
+  animation: shimmer 1.5s infinite;
+}</pre>
+        </div>
+      </div>
+    </section>
+
+    <!-- Bottom Navigation -->
+    <nav class="exp-nav-bar">
+      <a href="css-27-animations.html" class="nav-btn nav-btn-prev">&larr; Previous (CSS-27)</a>
+      <a href="index.html" class="nav-btn nav-btn-hub">All CSS Programs</a>
+      <a href="css-29-saas-navbar.html" class="nav-btn nav-btn-next">Next (CSS-29) &rarr;</a>
+    </nav>
+  </main>
+
+  <script src="../assets/js/code-viewer.js"></script>
+</body>
+</html>

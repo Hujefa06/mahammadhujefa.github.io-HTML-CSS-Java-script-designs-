@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CSS Units (px, rem, em, %, vh, vw) | CSS-21</title>
+  <link rel="stylesheet" href="../assets/css/style.css">
+  <link rel="stylesheet" href="../assets/css/program-viewer.css">
+  <style>
+    .units-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 1.5rem 0;
+      font-size: 0.9rem;
+    }
+    .units-table th, .units-table td {
+      border: 1px solid #cbd5e1;
+      padding: 0.75rem 1rem;
+      text-align: left;
+    }
+    .units-table th { background: #1e293b; color: #ffffff; }
+  </style>
+</head>
+<body>
+  <header class="navbar">
+    <div class="nav-container">
+      <a href="../index.html" class="nav-brand">
+        <div class="brand-icon" style="background: linear-gradient(135deg, #2563eb, #3b82f6);">
+          <span>&lt;/&gt;</span>
+        </div>
+        <span>CSS Programs</span>
+      </a>
+      <nav>
+        <ul class="nav-links">
+          <li><a href="../index.html" class="nav-link">Home</a></li>
+          <li><a href="../html/index.html" class="nav-link">HTML</a></li>
+          <li><a href="index.html" class="nav-link active">CSS</a></li>
+          <li><a href="../javascript/index.html" class="nav-link">JavaScript</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main class="main-wrapper">
+    <nav class="breadcrumb-bar">
+      <a href="../index.html">Home</a>
+      <span class="breadcrumb-separator">&rarr;</span>
+      <a href="index.html">CSS Programs</a>
+      <span class="breadcrumb-separator">&rarr;</span>
+      <span class="breadcrumb-current">CSS-21: CSS Units</span>
+    </nav>
+
+    <section class="exp-header-card">
+      <div class="exp-meta-row">
+        <span class="exp-id-tag" style="background: #2563eb;">CSS-21</span>
+        <span class="exp-cat-tag">Foundation</span>
+      </div>
+      <h1 class="exp-heading">CSS Measurement Units: Absolute vs Relative</h1>
+      <p class="exp-description">
+        Demonstrates the distinction between absolute units (px) and relative scalable units: rem (relative to root html font size), em (relative to parent font size), % (percentage of parent container), and viewport units (vh, vw).
+      </p>
+      <div class="objective-box">
+        <div class="objective-title"><span>🎯</span> Practical Laboratory Objective</div>
+        <div class="objective-text">
+          Understand why `rem` units ensure user browser accessibility preferences (such as large font settings) are respected, unlike rigid hardcoded pixel values.
+        </div>
+      </div>
+    </section>
+
+    <!-- Live Demonstration -->
+    <section class="demo-section-wrapper">
+      <div class="demo-section-header">
+        <div class="demo-title"><span>⚡</span> Live Unit Comparison Matrix</div>
+        <span class="demo-live-badge">Working Demo</span>
+      </div>
+      <div class="demo-body" style="background: #ffffff; overflow-x: auto;">
+        <table class="units-table">
+          <thead>
+            <tr>
+              <th>Unit</th>
+              <th>Category</th>
+              <th>Reference Base</th>
+              <th>Primary Use Case</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><code>px</code></td>
+              <td>Absolute</td>
+              <td>1 device pixel dot</td>
+              <td>Fine border lines, fixed iconography</td>
+            </tr>
+            <tr style="background: #f0fdf4;">
+              <td><code>rem</code></td>
+              <td>Relative (Root)</td>
+              <td>Root <code>&lt;html&gt;</code> font size (usually 16px)</td>
+              <td>Typography, padding, margins, layout spacing</td>
+            </tr>
+            <tr style="background: #fefce8;">
+              <td><code>em</code></td>
+              <td>Relative (Local)</td>
+              <td>Immediate parent font size</td>
+              <td>Button icons scaling relative to button text</td>
+            </tr>
+            <tr>
+              <td><code>%</code></td>
+              <td>Relative (Parent)</td>
+              <td>Direct parent box dimension</td>
+              <td>Grid column widths, responsive images</td>
+            </tr>
+            <tr style="background: #eff6ff;">
+              <td><code>vw / vh</code></td>
+              <td>Viewport</td>
+              <td>1% of window width / height</td>
+              <td>Full screen hero banners, modal backdrops</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- Source Code Section -->
+    <section class="source-section-wrapper">
+      <div class="source-header">
+        <div class="source-tabs">
+          <button class="code-tab-btn active" data-tab="css">CSS Source Code</button>
+        </div>
+        <div class="source-actions">
+          <button class="copy-code-btn" type="button">Copy Code</button>
+          <button class="toggle-code-btn" type="button">Hide Code</button>
+        </div>
+      </div>
+      <div class="code-content-container">
+        <div class="code-pane active" data-tab="css">
+<pre>/* 1rem = 16px (Assuming default browser setting) */
+h1 {
+  font-size: 2rem;       /* 32px equivalent, but accessible */
+  margin-bottom: 1rem;   /* 16px vertical rhythm */
+}
+
+/* Viewport Full-Screen Section */
+.hero-fullscreen {
+  width: 100vw;
+  height: 100vh;
+}
+
+/* Button with em-scaled inner padding */
+.button {
+  font-size: 1.2rem;
+  padding: 0.5em 1em;    /* Automatically scales if font-size changes */
+}</pre>
+        </div>
+      </div>
+    </section>
+
+    <!-- Bottom Navigation -->
+    <nav class="exp-nav-bar">
+      <a href="css-20-cursor-outline.html" class="nav-btn nav-btn-prev">&larr; Previous (CSS-20)</a>
+      <a href="index.html" class="nav-btn nav-btn-hub">All CSS Programs</a>
+      <a href="css-22-object-fit.html" class="nav-btn nav-btn-next">Next (CSS-22) &rarr;</a>
+    </nav>
+  </main>
+
+  <script src="../assets/js/code-viewer.js"></script>
+</body>
+</html>

@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CloudSaaS Product Landing Page | CSS-36</title>
+  <link rel="stylesheet" href="../assets/css/style.css">
+  <link rel="stylesheet" href="../assets/css/program-viewer.css">
+  <style>
+    .saas-full-project {
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      overflow: hidden;
+      background: #ffffff;
+      box-shadow: var(--shadow-lg);
+    }
+    .project-navbar {
+      padding: 1rem 2rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border-bottom: 1px solid var(--border);
+      background: rgba(255,255,255,0.9);
+    }
+    .project-hero {
+      padding: 4rem 2rem;
+      text-align: center;
+      background: radial-gradient(circle at 50% 0%, #e0e7ff 0%, #ffffff 70%);
+    }
+    .project-features {
+      padding: 3rem 2rem;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 1.5rem;
+      background: #f8fafc;
+    }
+    .feature-card-item {
+      background: #ffffff;
+      padding: 1.5rem;
+      border-radius: 12px;
+      border: 1px solid var(--border);
+      box-shadow: var(--shadow-xs);
+    }
+    .project-footer {
+      padding: 2rem;
+      background: #0f172a;
+      color: #94a3b8;
+      text-align: center;
+      font-size: 0.85rem;
+    }
+  </style>
+</head>
+<body>
+  <header class="navbar">
+    <div class="nav-container">
+      <a href="../index.html" class="nav-brand">
+        <div class="brand-icon" style="background: linear-gradient(135deg, #2563eb, #3b82f6);">
+          <span>&lt;/&gt;</span>
+        </div>
+        <span>CSS Programs</span>
+      </a>
+      <nav>
+        <ul class="nav-links">
+          <li><a href="../index.html" class="nav-link">Home</a></li>
+          <li><a href="../html/index.html" class="nav-link">HTML</a></li>
+          <li><a href="index.html" class="nav-link active">CSS</a></li>
+          <li><a href="../javascript/index.html" class="nav-link">JavaScript</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main class="main-wrapper">
+    <nav class="breadcrumb-bar">
+      <a href="../index.html">Home</a>
+      <span class="breadcrumb-separator">&rarr;</span>
+      <a href="index.html">CSS Programs</a>
+      <span class="breadcrumb-separator">&rarr;</span>
+      <span class="breadcrumb-current">CSS-36: CloudSaaS Landing Page</span>
+    </nav>
+
+    <section class="exp-header-card">
+      <div class="exp-meta-row">
+        <span class="exp-id-tag" style="background: #2563eb;">CSS-36</span>
+        <span class="exp-cat-tag">Final Projects</span>
+      </div>
+      <h1 class="exp-heading">Complete CloudSaaS Landing Page Project</h1>
+      <p class="exp-description">
+        Consolidated master CSS capstone project integrating all CSS modules: semantic header, glassmorphic navbar, conversion hero, feature card grid with hover lifts, pricing callout, and dark footer.
+      </p>
+      <div class="objective-box">
+        <div class="objective-title"><span>🎯</span> Practical Laboratory Objective</div>
+        <div class="objective-text">
+          Assemble isolated CSS components into a harmonious, production-quality multi-section landing page ready for client deployment.
+        </div>
+      </div>
+    </section>
+
+    <!-- Live Demonstration -->
+    <section class="demo-section-wrapper">
+      <div class="demo-section-header">
+        <div class="demo-title"><span>⚡</span> Live Full Project Showcase</div>
+        <span class="demo-live-badge">Working Demo</span>
+      </div>
+      <div class="demo-body" style="background: #e2e8f0; padding: 1.5rem;">
+        <div class="saas-full-project">
+          <!-- Navbar -->
+          <nav class="project-navbar">
+            <div style="font-weight: 800; font-size: 1.2rem; color: #0f172a; display: flex; align-items: center; gap: 0.5rem;">
+              <span style="color: #4f46e5;">☁️</span> CloudSaaS
+            </div>
+            <div style="display: flex; gap: 1rem; align-items: center;">
+              <a href="#features" style="text-decoration: none; color: #475569; font-weight: 500; font-size: 0.9rem;">Platform</a>
+              <a href="#pricing" style="text-decoration: none; color: #475569; font-weight: 500; font-size: 0.9rem;">Pricing</a>
+              <button class="demo-btn" style="padding: 0.45rem 1rem; font-size: 0.85rem;">Get Started</button>
+            </div>
+          </nav>
+
+          <!-- Hero -->
+          <div class="project-hero">
+            <h2 style="font-size: 2.25rem; font-weight: 800; color: #0f172a; margin-bottom: 0.75rem;">
+              Next Generation Cloud Infrastructure
+            </h2>
+            <p style="color: #64748b; max-width: 520px; margin: 0 auto 1.5rem auto; font-size: 0.95rem;">
+              Deploy modern front-end applications with instant edge propagation, automatic SSL certificates, and real-time telemetry.
+            </p>
+            <button class="demo-btn" style="padding: 0.75rem 1.5rem;">Start 14-Day Free Trial &rarr;</button>
+          </div>
+
+          <!-- Features -->
+          <div class="project-features" id="features">
+            <div class="feature-card-item">
+              <div style="font-size: 1.8rem; margin-bottom: 0.5rem;">⚡</div>
+              <h4 style="color: #0f172a; margin-bottom: 0.25rem;">Global Edge Speed</h4>
+              <p style="font-size: 0.85rem; color: #64748b;">Sub-10ms response latencies distributed across 250+ points of presence worldwide.</p>
+            </div>
+            <div class="feature-card-item">
+              <div style="font-size: 1.8rem; margin-bottom: 0.5rem;">🔒</div>
+              <h4 style="color: #0f172a; margin-bottom: 0.25rem;">Enterprise Security</h4>
+              <p style="font-size: 0.85rem; color: #64748b;">SOC2 Type II certified with end-to-end data encryption at rest and in transit.</p>
+            </div>
+            <div class="feature-card-item">
+              <div style="font-size: 1.8rem; margin-bottom: 0.5rem;">📊</div>
+              <h4 style="color: #0f172a; margin-bottom: 0.25rem;">Deep Analytics</h4>
+              <p style="font-size: 0.85rem; color: #64748b;">Comprehensive monitoring dashboards with anomaly alerts and request logs.</p>
+            </div>
+          </div>
+
+          <!-- Footer -->
+          <footer class="project-footer">
+            <p>&copy; 2026 CloudSaaS Technologies Inc. Designed by Shaik Roshan for Web Practical Record.</p>
+          </footer>
+        </div>
+      </div>
+    </section>
+
+    <!-- Source Code Section -->
+    <section class="source-section-wrapper">
+      <div class="source-header">
+        <div class="source-tabs">
+          <button class="code-tab-btn active" data-tab="css">CSS Source Code</button>
+        </div>
+        <div class="source-actions">
+          <button class="copy-code-btn" type="button">Copy Code</button>
+          <button class="toggle-code-btn" type="button">Hide Code</button>
+        </div>
+      </div>
+      <div class="code-content-container">
+        <div class="code-pane active" data-tab="css">
+<pre>/* Complete Landing Architecture */
+.landing-shell {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+/* Fluid Hero Gradient */
+.hero-section {
+  background: radial-gradient(circle at 50% 0%, #e0e7ff 0%, #ffffff 70%);
+  padding: 5rem 2rem;
+  text-align: center;
+}
+
+/* Responsive Grid Cards */
+.feature-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 24px;
+}</pre>
+        </div>
+      </div>
+    </section>
+
+    <!-- Bottom Navigation -->
+    <nav class="exp-nav-bar">
+      <a href="css-35-responsive-grid.html" class="nav-btn nav-btn-prev">&larr; Previous (CSS-35)</a>
+      <a href="index.html" class="nav-btn nav-btn-hub">All CSS Programs</a>
+      <a href="../javascript/index.html" class="nav-btn nav-btn-next">Next Section: JavaScript Programs &rarr;</a>
+    </nav>
+  </main>
+
+  <script src="../assets/js/code-viewer.js"></script>
+</body>
+</html>

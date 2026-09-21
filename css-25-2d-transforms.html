@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>2D Transformations | CSS-25</title>
+  <link rel="stylesheet" href="../assets/css/style.css">
+  <link rel="stylesheet" href="../assets/css/program-viewer.css">
+  <style>
+    .transform-stage {
+      height: 260px;
+      background: #0f172a;
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 2rem;
+      overflow: hidden;
+    }
+    .transform-target {
+      width: 140px;
+      height: 140px;
+      background: linear-gradient(135deg, #6366f1, #06b6d4);
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #ffffff;
+      font-weight: 800;
+      font-size: 1.1rem;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.4);
+      transition: transform 0.1s ease;
+    }
+    .controls-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 1rem;
+      background: #f8fafc;
+      padding: 1.5rem;
+      border-radius: 8px;
+      border: 1px solid var(--border);
+    }
+  </style>
+</head>
+<body>
+  <header class="navbar">
+    <div class="nav-container">
+      <a href="../index.html" class="nav-brand">
+        <div class="brand-icon" style="background: linear-gradient(135deg, #2563eb, #3b82f6);">
+          <span>&lt;/&gt;</span>
+        </div>
+        <span>CSS Programs</span>
+      </a>
+      <nav>
+        <ul class="nav-links">
+          <li><a href="../index.html" class="nav-link">Home</a></li>
+          <li><a href="../html/index.html" class="nav-link">HTML</a></li>
+          <li><a href="index.html" class="nav-link active">CSS</a></li>
+          <li><a href="../javascript/index.html" class="nav-link">JavaScript</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main class="main-wrapper">
+    <nav class="breadcrumb-bar">
+      <a href="../index.html">Home</a>
+      <span class="breadcrumb-separator">&rarr;</span>
+      <a href="index.html">CSS Programs</a>
+      <span class="breadcrumb-separator">&rarr;</span>
+      <span class="breadcrumb-current">CSS-25: 2D Transforms</span>
+    </nav>
+
+    <section class="exp-header-card">
+      <div class="exp-meta-row">
+        <span class="exp-id-tag" style="background: #2563eb;">CSS-25</span>
+        <span class="exp-cat-tag">Effects</span>
+      </div>
+      <h1 class="exp-heading">2D Transformations: Translate, Rotate, Scale &amp; Skew</h1>
+      <p class="exp-description">
+        Demonstrates matrix coordinate manipulations in 2D space without distorting surrounding document geometry: translate(X, Y), rotate(deg), scale(ratio), and skewX/Y angle tilting.
+      </p>
+      <div class="objective-box">
+        <div class="objective-title"><span>🎯</span> Practical Laboratory Objective</div>
+        <div class="objective-text">
+          Understand why transform operations perform on GPU composite layers, allowing silky 60fps animations without triggering costly browser CPU reflows.
+        </div>
+      </div>
+    </section>
+
+    <!-- Live Demonstration -->
+    <section class="demo-section-wrapper">
+      <div class="demo-section-header">
+        <div class="demo-title"><span>⚡</span> Live 2D Transform Sandbox</div>
+        <span class="demo-live-badge">Working Demo</span>
+      </div>
+      <div class="demo-body" style="background: #ffffff;">
+        <div class="transform-stage">
+          <div class="transform-target" id="tf-target">
+            2D MATRIX
+          </div>
+        </div>
+        <div style="text-align: center; margin-bottom: 1.5rem;">
+          <code id="tf-code-output" style="color: #4f46e5; font-size: 1rem; font-weight: 700; font-family: var(--font-mono);">
+            transform: rotate(0deg) scale(1) translate(0px, 0px) skew(0deg);
+          </code>
+        </div>
+
+        <div class="controls-grid">
+          <div>
+            <label style="font-size: 0.85rem; font-weight: 600;">Rotate: <span id="val-rot">0&deg;</span></label>
+            <input type="range" id="rng-rot" min="-180" max="180" value="0" style="width: 100%;">
+          </div>
+          <div>
+            <label style="font-size: 0.85rem; font-weight: 600;">Scale: <span id="val-scale">1.0</span></label>
+            <input type="range" id="rng-scale" min="0.5" max="1.8" step="0.1" value="1.0" style="width: 100%;">
+          </div>
+          <div>
+            <label style="font-size: 0.85rem; font-weight: 600;">Translate X: <span id="val-tx">0px</span></label>
+            <input type="range" id="rng-tx" min="-80" max="80" value="0" style="width: 100%;">
+          </div>
+          <div>
+            <label style="font-size: 0.85rem; font-weight: 600;">Skew X: <span id="val-skew">0&deg;</span></label>
+            <input type="range" id="rng-skew" min="-30" max="30" value="0" style="width: 100%;">
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Source Code Section -->
+    <section class="source-section-wrapper">
+      <div class="source-header">
+        <div class="source-tabs">
+          <button class="code-tab-btn active" data-tab="css">CSS Source Code</button>
+        </div>
+        <div class="source-actions">
+          <button class="copy-code-btn" type="button">Copy Code</button>
+          <button class="toggle-code-btn" type="button">Hide Code</button>
+        </div>
+      </div>
+      <div class="code-content-container">
+        <div class="code-pane active" data-tab="css">
+<pre>/* Compound 2D Transformations */
+.transformed-box {
+  transform: rotate(15deg) 
+             scale(1.1) 
+             translate(20px, -10px) 
+             skewX(-5deg);
+  transform-origin: center center; /* Pivot point */
+  transition: transform 0.2s ease;
+}</pre>
+        </div>
+      </div>
+    </section>
+
+    <!-- Bottom Navigation -->
+    <nav class="exp-nav-bar">
+      <a href="css-24-transitions.html" class="nav-btn nav-btn-prev">&larr; Previous (CSS-24)</a>
+      <a href="index.html" class="nav-btn nav-btn-hub">All CSS Programs</a>
+      <a href="css-26-3d-transforms.html" class="nav-btn nav-btn-next">Next (CSS-26) &rarr;</a>
+    </nav>
+  </main>
+
+  <script src="../assets/js/code-viewer.js"></script>
+  <script>
+    const target = document.getElementById('tf-target');
+    const out = document.getElementById('tf-code-output');
+    const rot = document.getElementById('rng-rot');
+    const scale = document.getElementById('rng-scale');
+    const tx = document.getElementById('rng-tx');
+    const skew = document.getElementById('rng-skew');
+
+    function updateTransform() {
+      document.getElementById('val-rot').textContent = rot.value + 'deg';
+      document.getElementById('val-scale').textContent = scale.value;
+      document.getElementById('val-tx').textContent = tx.value + 'px';
+      document.getElementById('val-skew').textContent = skew.value + 'deg';
+      const css = `rotate(${rot.value}deg) scale(${scale.value}) translateX(${tx.value}px) skewX(${skew.value}deg)`;
+      target.style.transform = css;
+      out.textContent = `transform: ${css};`;
+    }
+    rot.addEventListener('input', updateTransform);
+    scale.addEventListener('input', updateTransform);
+    tx.addEventListener('input', updateTransform);
+    skew.addEventListener('input', updateTransform);
+  </script>
+</body>
+</html>

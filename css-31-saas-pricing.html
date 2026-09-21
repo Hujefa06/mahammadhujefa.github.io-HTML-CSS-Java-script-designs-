@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SaaS Pricing Table | CSS-31</title>
+  <link rel="stylesheet" href="../assets/css/style.css">
+  <link rel="stylesheet" href="../assets/css/program-viewer.css">
+  <style>
+    .pricing-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 1.5rem;
+      align-items: center;
+      margin: 2rem 0;
+    }
+    .pricing-card {
+      background: #ffffff;
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 2rem;
+      display: flex;
+      flex-direction: column;
+      box-shadow: var(--shadow-sm);
+      transition: all 0.3s ease;
+      position: relative;
+    }
+    .pricing-card.popular {
+      border: 2px solid #4f46e5;
+      box-shadow: 0 12px 30px -5px rgba(79, 70, 229, 0.2);
+      transform: scale(1.03);
+    }
+    .popular-pill {
+      position: absolute;
+      top: -12px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: #4f46e5;
+      color: #ffffff;
+      font-size: 0.75rem;
+      font-weight: 700;
+      padding: 0.25rem 0.75rem;
+      border-radius: 9999px;
+      letter-spacing: 0.05em;
+    }
+    .price-num {
+      font-size: 2.5rem;
+      font-weight: 800;
+      color: #0f172a;
+      line-height: 1;
+      margin: 1rem 0 0.5rem 0;
+    }
+    .price-features {
+      list-style: none;
+      margin: 1.5rem 0;
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+      font-size: 0.9rem;
+      color: #475569;
+    }
+    .price-features li::before {
+      content: "✓ ";
+      color: #10b981;
+      font-weight: 800;
+    }
+  </style>
+</head>
+<body>
+  <header class="navbar">
+    <div class="nav-container">
+      <a href="../index.html" class="nav-brand">
+        <div class="brand-icon" style="background: linear-gradient(135deg, #2563eb, #3b82f6);">
+          <span>&lt;/&gt;</span>
+        </div>
+        <span>CSS Programs</span>
+      </a>
+      <nav>
+        <ul class="nav-links">
+          <li><a href="../index.html" class="nav-link">Home</a></li>
+          <li><a href="../html/index.html" class="nav-link">HTML</a></li>
+          <li><a href="index.html" class="nav-link active">CSS</a></li>
+          <li><a href="../javascript/index.html" class="nav-link">JavaScript</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main class="main-wrapper">
+    <nav class="breadcrumb-bar">
+      <a href="../index.html">Home</a>
+      <span class="breadcrumb-separator">&rarr;</span>
+      <a href="index.html">CSS Programs</a>
+      <span class="breadcrumb-separator">&rarr;</span>
+      <span class="breadcrumb-current">CSS-31: SaaS Pricing Table</span>
+    </nav>
+
+    <section class="exp-header-card">
+      <div class="exp-meta-row">
+        <span class="exp-id-tag" style="background: #2563eb;">CSS-31</span>
+        <span class="exp-cat-tag">SaaS UI</span>
+      </div>
+      <h1 class="exp-heading">SaaS Pricing Matrix with Billing Frequency Toggle</h1>
+      <p class="exp-description">
+        Demonstrates a multi-tier SaaS commercial pricing table: visual tier hierarchy, featured "Most Popular" highlighted card, feature checklist styling, and an interactive Monthly / Annual billing switch.
+      </p>
+      <div class="objective-box">
+        <div class="objective-title"><span>🎯</span> Practical Laboratory Objective</div>
+        <div class="objective-text">
+          Master CSS card scaling, absolute badge placement for highlight ribbons, and price state transitions.
+        </div>
+      </div>
+    </section>
+
+    <!-- Live Demonstration -->
+    <section class="demo-section-wrapper">
+      <div class="demo-section-header">
+        <div class="demo-title"><span>⚡</span> Live SaaS Pricing Engine</div>
+        <span class="demo-live-badge">Working Demo</span>
+      </div>
+      <div class="demo-body" style="background: #f8fafc;">
+        <!-- Billing Toggle -->
+        <div style="display: flex; align-items: center; justify-content: center; gap: 1rem; margin-bottom: 2rem;">
+          <span id="label-monthly" style="font-weight: 700; color: #0f172a;">Monthly Billing</span>
+          <label style="position: relative; display: inline-block; width: 50px; height: 26px;">
+            <input type="checkbox" id="billing-toggle" style="opacity: 0; width: 0; height: 0;">
+            <span style="position: absolute; cursor: pointer; top: 0; left: 0; right: 0; bottom: 0; background-color: #cbd5e1; border-radius: 34px; transition: .3s;" id="toggle-slider"></span>
+          </label>
+          <span id="label-annual" style="font-weight: 500; color: #64748b;">Annual (Save 20%)</span>
+        </div>
+
+        <div class="pricing-grid">
+          <!-- Starter Plan -->
+          <div class="pricing-card">
+            <h3 style="color: #0f172a; font-size: 1.25rem;">Starter Plan</h3>
+            <p style="font-size: 0.85rem; color: #64748b;">For individual students and learners</p>
+            <div class="price-num" id="price-starter">$0</div>
+            <small style="color: #94a3b8;">Free forever</small>
+            <ul class="price-features">
+              <li>150 Practical Experiments</li>
+              <li>Live Code Viewers</li>
+              <li>Community Forum Access</li>
+            </ul>
+            <button class="demo-btn demo-btn-secondary" style="width: 100%; justify-content: center; margin-top: auto;">Get Started</button>
+          </div>
+
+          <!-- Pro Plan (Popular) -->
+          <div class="pricing-card popular">
+            <span class="popular-pill">MOST POPULAR</span>
+            <h3 style="color: #0f172a; font-size: 1.25rem;">Developer Pro</h3>
+            <p style="font-size: 0.85rem; color: #64748b;">For engineering labs and teams</p>
+            <div class="price-num" id="price-pro">$19</div>
+            <small style="color: #94a3b8;" id="period-pro">per user / month</small>
+            <ul class="price-features">
+              <li>All 150 Experiments + Solved Viva</li>
+              <li>PDF Practical Record Export</li>
+              <li>Priority Laboratory Support</li>
+              <li>Interactive Sandboxes</li>
+            </ul>
+            <button class="demo-btn" style="width: 100%; justify-content: center; margin-top: auto;">Upgrade to Pro &rarr;</button>
+          </div>
+
+          <!-- Enterprise Plan -->
+          <div class="pricing-card">
+            <h3 style="color: #0f172a; font-size: 1.25rem;">Institution</h3>
+            <p style="font-size: 0.85rem; color: #64748b;">For universities and colleges</p>
+            <div class="price-num" id="price-enterprise">$49</div>
+            <small style="color: #94a3b8;" id="period-ent">per department / month</small>
+            <ul class="price-features">
+              <li>Unlimited Student Enrollments</li>
+              <li>Custom Lab Evaluation Portal</li>
+              <li>Dedicated Account Manager</li>
+              <li>99.9% Uptime Guarantee</li>
+            </ul>
+            <button class="demo-btn demo-btn-secondary" style="width: 100%; justify-content: center; margin-top: auto;">Contact Campus Sales</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Source Code Section -->
+    <section class="source-section-wrapper">
+      <div class="source-header">
+        <div class="source-tabs">
+          <button class="code-tab-btn active" data-tab="css">CSS Source Code</button>
+        </div>
+        <div class="source-actions">
+          <button class="copy-code-btn" type="button">Copy Code</button>
+          <button class="toggle-code-btn" type="button">Hide Code</button>
+        </div>
+      </div>
+      <div class="code-content-container">
+        <div class="code-pane active" data-tab="css">
+<pre>/* Popular Pricing Card Highlight */
+.pricing-card.popular {
+  border: 2px solid #4f46e5;
+  box-shadow: 0 12px 30px -5px rgba(79, 70, 229, 0.2);
+  transform: scale(1.03); /* Elevation over adjacent cards */
+}
+
+/* Highlight Ribbon Badge */
+.ribbon-badge {
+  position: absolute;
+  top: -12px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: #4f46e5;
+  color: #ffffff;
+  border-radius: 9999px;
+}</pre>
+        </div>
+      </div>
+    </section>
+
+    <!-- Bottom Navigation -->
+    <nav class="exp-nav-bar">
+      <a href="css-30-saas-hero.html" class="nav-btn nav-btn-prev">&larr; Previous (CSS-30)</a>
+      <a href="index.html" class="nav-btn nav-btn-hub">All CSS Programs</a>
+      <a href="css-32-analytics-cards.html" class="nav-btn nav-btn-next">Next (CSS-32) &rarr;</a>
+    </nav>
+  </main>
+
+  <script src="../assets/js/code-viewer.js"></script>
+  <script>
+    const toggle = document.getElementById('billing-toggle');
+    const pro = document.getElementById('price-pro');
+    const ent = document.getElementById('price-enterprise');
+    const slider = document.getElementById('toggle-slider');
+
+    toggle.addEventListener('change', () => {
+      if (toggle.checked) {
+        slider.style.backgroundColor = '#4f46e5';
+        pro.textContent = '$15';
+        ent.textContent = '$39';
+        document.getElementById('label-annual').style.fontWeight = '700';
+        document.getElementById('label-annual').style.color = '#0f172a';
+        document.getElementById('label-monthly').style.fontWeight = '500';
+        document.getElementById('label-monthly').style.color = '#64748b';
+      } else {
+        slider.style.backgroundColor = '#cbd5e1';
+        pro.textContent = '$19';
+        ent.textContent = '$49';
+        document.getElementById('label-monthly').style.fontWeight = '700';
+        document.getElementById('label-monthly').style.color = '#0f172a';
+        document.getElementById('label-annual').style.fontWeight = '500';
+        document.getElementById('label-annual').style.color = '#64748b';
+      }
+    });
+  </script>
+</body>
+</html>
