@@ -1,0 +1,529 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Project 10: Expense & Budget Tracker - JavaScript Projects</title>
+  <link rel="stylesheet" href="../../assets/css/style.css">
+  <link rel="stylesheet" href="../../assets/css/program-viewer.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500;600&family=Inter:wght@400;500;600;700&family=Outfit:wght@500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    .tracker-card {
+      max-width: 700px;
+      margin: 0 auto;
+      background: var(--bg-card);
+      border-radius: var(--radius-lg);
+      border: 1px solid var(--border-color);
+      padding: 1.75rem;
+      box-shadow: var(--shadow-md);
+    }
+    .balance-summary {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 1rem;
+      margin-bottom: 1.5rem;
+    }
+    .summary-box {
+      padding: 1.25rem;
+      border-radius: var(--radius-md);
+      text-align: center;
+      border: 1px solid var(--border-color);
+    }
+    .summary-box.total { background: rgba(59, 130, 246, 0.08); border-color: rgba(59, 130, 246, 0.3); }
+    .summary-box.income { background: rgba(16, 185, 129, 0.08); border-color: rgba(16, 185, 129, 0.3); }
+    .summary-box.expense { background: rgba(239, 68, 68, 0.08); border-color: rgba(239, 68, 68, 0.3); }
+    .summary-box .label { font-size: 0.8rem; text-transform: uppercase; font-weight: 600; letter-spacing: 0.05em; color: var(--text-secondary); margin-bottom: 0.25rem; }
+    .summary-box .amount { font-size: 1.6rem; font-weight: 800; font-family: 'Outfit', sans-serif; }
+    .summary-box.total .amount { color: #3b82f6; }
+    .summary-box.income .amount { color: #10b981; }
+    .summary-box.expense .amount { color: #ef4444; }
+
+    .tracker-form {
+      display: grid;
+      grid-template-columns: 2fr 1fr 1fr auto;
+      gap: 0.75rem;
+      margin-bottom: 1.5rem;
+      background: var(--bg-main);
+      padding: 1rem;
+      border-radius: var(--radius-md);
+      border: 1px solid var(--border-color);
+    }
+    @media (max-width: 650px) {
+      .tracker-form { grid-template-columns: 1fr; }
+    }
+    .tracker-form input, .tracker-form select {
+      padding: 0.65rem 0.85rem;
+      border-radius: var(--radius-sm);
+      border: 1px solid var(--border-color);
+      background: var(--bg-card);
+      color: var(--text-main);
+      font-size: 0.9rem;
+    }
+    .tracker-form button {
+      padding: 0.65rem 1.25rem;
+      background: var(--primary);
+      color: #fff;
+      border: none;
+      border-radius: var(--radius-sm);
+      font-weight: 600;
+      cursor: pointer;
+      transition: background 0.2s ease;
+    }
+    .tracker-form button:hover { background: var(--primary-hover); }
+
+    .history-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 0.75rem;
+    }
+    .history-header h4 { font-size: 1rem; font-weight: 700; }
+    .history-list {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      max-height: 280px;
+      overflow-y: auto;
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+    }
+    .history-item {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 0.75rem 1rem;
+      background: var(--bg-main);
+      border-radius: var(--radius-sm);
+      border-left: 4px solid #3b82f6;
+      transition: transform 0.2s ease;
+    }
+    .history-item.income { border-left-color: #10b981; }
+    .history-item.expense { border-left-color: #ef4444; }
+    .history-item:hover { transform: translateX(2px); }
+    .item-info { display: flex; flex-direction: column; gap: 0.2rem; }
+    .item-desc { font-weight: 600; font-size: 0.95rem; }
+    .item-category { font-size: 0.75rem; color: var(--text-secondary); text-transform: uppercase; letter-spacing: 0.04em; }
+    .item-right { display: flex; align-items: center; gap: 0.75rem; }
+    .item-amount { font-weight: 700; font-family: 'Fira Code', monospace; }
+    .item-delete {
+      background: transparent;
+      border: none;
+      color: var(--text-secondary);
+      cursor: pointer;
+      font-size: 1.1rem;
+      line-height: 1;
+      padding: 0.2rem;
+      border-radius: 4px;
+    }
+    .item-delete:hover { color: #ef4444; background: rgba(239, 68, 68, 0.1); }
+    .empty-state {
+      text-align: center;
+      padding: 2rem 1rem;
+      color: var(--text-secondary);
+      font-size: 0.9rem;
+    }
+  </style>
+</head>
+<body>
+  <!-- Header -->
+  <header class="app-header">
+    <div class="header-container">
+      <a href="../../index.html" class="brand-logo">
+        <span class="logo-icon">&lt;/&gt;</span>
+        <span class="logo-text">WebLab<span class="logo-highlight">Studio</span></span>
+      </a>
+      <div class="header-student">
+        <span class="student-name">Shaik Roshan</span>
+        <span class="student-id">[TO BE FILLED BY STUDENT]</span>
+      </div>
+    </div>
+  </header>
+
+  <main class="viewer-main">
+    <!-- Breadcrumb -->
+    <nav class="breadcrumb-nav">
+      <a href="../../index.html">Home</a>
+      <span class="breadcrumb-separator">/</span>
+      <a href="../index.html">JavaScript</a>
+      <span class="breadcrumb-separator">/</span>
+      <a href="index.html">Projects</a>
+      <span class="breadcrumb-separator">/</span>
+      <span class="breadcrumb-current">Expense & Budget Tracker</span>
+    </nav>
+
+    <!-- Program Metadata Header -->
+    <section class="program-header-card">
+      <div class="program-badge">Project 10 of 16</div>
+      <h1 class="program-title">Personal Expense & Budget Tracker</h1>
+      <p class="program-description">
+        A financial ledger web app that calculates real-time total balance, monthly income, and expenditures with categorized item records and persistent localStorage state.
+      </p>
+      <div class="program-meta-chips">
+        <span class="meta-chip">Vanilla JS Array Methods</span>
+        <span class="meta-chip">DOM Dynamic Rendering</span>
+        <span class="meta-chip">localStorage JSON</span>
+        <span class="meta-chip">Math & Currency Formatting</span>
+      </div>
+    </section>
+
+    <!-- Objective Box -->
+    <div class="objective-box">
+      <h3>Educational Objective</h3>
+      <p>
+        Understand how to model financial transactions using an array of structured objects <code>{ id, text, amount, category, type }</code>. Master array calculation methods like <code>.reduce()</code> and <code>.filter()</code> to compute aggregated metrics on every mutation, while keeping data synced with the browser's <code>localStorage</code>.
+      </p>
+    </div>
+
+    <!-- Live Interactive Demo -->
+    <section class="demo-card">
+      <div class="demo-card-header">
+        <div class="demo-title-area">
+          <span class="live-dot"></span>
+          <h3>Live Interactive Ledger Demo</h3>
+        </div>
+        <span class="demo-tag">Production Demo</span>
+      </div>
+      <div class="demo-card-body">
+        <div class="tracker-card">
+          <!-- Summary Display -->
+          <div class="balance-summary">
+            <div class="summary-box total">
+              <div class="label">Net Balance</div>
+              <div class="amount" id="netBalance">$0.00</div>
+            </div>
+            <div class="summary-box income">
+              <div class="label">Total Income</div>
+              <div class="amount" id="totalIncome">+$0.00</div>
+            </div>
+            <div class="summary-box expense">
+              <div class="label">Total Expense</div>
+              <div class="amount" id="totalExpense">-$0.00</div>
+            </div>
+          </div>
+
+          <!-- Add Transaction Form -->
+          <form id="txForm" class="tracker-form" onsubmit="return false;">
+            <input type="text" id="txText" placeholder="Description (e.g. Groceries)" required>
+            <input type="number" id="txAmount" placeholder="Amount ($)" step="0.01" min="0.01" required>
+            <select id="txType">
+              <option value="expense">Expense</option>
+              <option value="income">Income</option>
+            </select>
+            <button type="submit" id="addBtn">+ Add</button>
+          </form>
+
+          <!-- History Section -->
+          <div class="history-header">
+            <h4>Transaction History</h4>
+            <button id="clearAllBtn" style="background:none; border:none; color:var(--text-secondary); font-size:0.8rem; cursor:pointer; text-decoration:underline;">Clear History</button>
+          </div>
+          <ul class="history-list" id="txList">
+            <!-- Dynamic elements will be inserted here -->
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- Source Code Viewer -->
+    <section class="code-viewer-section">
+      <div class="code-viewer-header">
+        <div class="code-tabs">
+          <button class="code-tab active" data-target="html-code">HTML Structure</button>
+          <button class="code-tab" data-target="css-code">CSS Styles</button>
+          <button class="code-tab" data-target="js-code">JavaScript Logic</button>
+        </div>
+        <div class="code-actions">
+          <button class="btn-toggle-code" id="btnToggleCode">Show/Hide Code</button>
+          <button class="btn-copy-code" id="btnCopyCode">Copy Source</button>
+        </div>
+      </div>
+
+      <div class="code-blocks-container" id="codeBlocksContainer">
+        <!-- HTML Code Block -->
+        <pre class="code-block active" id="html-code"><code>&lt;!-- Expense Tracker Layout --&gt;
+&lt;div class="tracker-card"&gt;
+  &lt;div class="balance-summary"&gt;
+    &lt;div class="summary-box total"&gt;
+      &lt;div class="label"&gt;Net Balance&lt;/div&gt;
+      &lt;div class="amount" id="netBalance"&gt;$0.00&lt;/div&gt;
+    &lt;/div&gt;
+    &lt;div class="summary-box income"&gt;
+      &lt;div class="label"&gt;Total Income&lt;/div&gt;
+      &lt;div class="amount" id="totalIncome"&gt;+$0.00&lt;/div&gt;
+    &lt;/div&gt;
+    &lt;div class="summary-box expense"&gt;
+      &lt;div class="label"&gt;Total Expense&lt;/div&gt;
+      &lt;div class="amount" id="totalExpense"&gt;-$0.00&lt;/div&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+
+  &lt;form id="txForm" class="tracker-form"&gt;
+    &lt;input type="text" id="txText" placeholder="Description" required&gt;
+    &lt;input type="number" id="txAmount" placeholder="Amount" step="0.01" required&gt;
+    &lt;select id="txType"&gt;
+      &lt;option value="expense"&gt;Expense&lt;/option&gt;
+      &lt;option value="income"&gt;Income&lt;/option&gt;
+    &lt;/select&gt;
+    &lt;button type="submit"&gt;+ Add&lt;/button&gt;
+  &lt;/form&gt;
+
+  &lt;ul class="history-list" id="txList"&gt;&lt;/ul&gt;
+&lt;/div&gt;</code></pre>
+
+        <!-- CSS Code Block -->
+        <pre class="code-block" id="css-code"><code>.tracker-card {
+  max-width: 700px;
+  margin: 0 auto;
+  padding: 1.75rem;
+  background: var(--bg-card);
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--border-color);
+}
+.balance-summary {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+}
+.summary-box {
+  padding: 1.25rem;
+  border-radius: var(--radius-md);
+  text-align: center;
+}
+.history-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.75rem 1rem;
+  background: var(--bg-main);
+  border-left: 4px solid #3b82f6;
+  border-radius: var(--radius-sm);
+  margin-bottom: 0.5rem;
+}
+.history-item.income { border-left-color: #10b981; }
+.history-item.expense { border-left-color: #ef4444; }</code></pre>
+
+        <!-- JS Code Block -->
+        <pre class="code-block" id="js-code"><code>// Expense Tracker Logic
+const txForm = document.getElementById('txForm');
+const txText = document.getElementById('txText');
+const txAmount = document.getElementById('txAmount');
+const txType = document.getElementById('txType');
+const txList = document.getElementById('txList');
+const netBalance = document.getElementById('netBalance');
+const totalIncome = document.getElementById('totalIncome');
+const totalExpense = document.getElementById('totalExpense');
+
+let transactions = JSON.parse(localStorage.getItem('weblab_expenses')) || [
+  { id: 1, text: 'Freelance Project', amount: 850.00, type: 'income' },
+  { id: 2, text: 'Grocery Store', amount: 64.50, type: 'expense' },
+  { id: 3, text: 'Coffee & Snacks', amount: 12.00, type: 'expense' }
+];
+
+function updateUI() {
+  txList.innerHTML = '';
+  
+  if (transactions.length === 0) {
+    txList.innerHTML = '&lt;li class="empty-state"&gt;No transactions logged yet.&lt;/li&gt;';
+  } else {
+    transactions.forEach(tx =&gt; {
+      const li = document.createElement('li');
+      li.className = `history-item ${tx.type}`;
+      li.innerHTML = `
+        &lt;div class="item-info"&gt;
+          &lt;span class="item-desc"&gt;${escapeHTML(tx.text)}&lt;/span&gt;
+          &lt;span class="item-category"&gt;${tx.type}&lt;/span&gt;
+        &lt;/div&gt;
+        &lt;div class="item-right"&gt;
+          &lt;span class="item-amount"&gt;${tx.type === 'income' ? '+' : '-'}$${tx.amount.toFixed(2)}&lt;/span&gt;
+          &lt;button class="item-delete" onclick="deleteTx(${tx.id})" title="Delete"&gt;&times;&lt;/button&gt;
+        &lt;/div&gt;
+      `;
+      txList.appendChild(li);
+    });
+  }
+
+  const income = transactions
+    .filter(t =&gt; t.type === 'income')
+    .reduce((acc, t) =&gt; acc + t.amount, 0);
+
+  const expense = transactions
+    .filter(t =&gt; t.type === 'expense')
+    .reduce((acc, t) =&gt; acc + t.amount, 0);
+
+  const balance = income - expense;
+
+  netBalance.textContent = (balance &gt;= 0 ? '$' : '-$') + Math.abs(balance).toFixed(2);
+  totalIncome.textContent = `+$${income.toFixed(2)}`;
+  totalExpense.textContent = `-$${expense.toFixed(2)}`;
+
+  localStorage.setItem('weblab_expenses', JSON.stringify(transactions));
+}
+
+txForm.addEventListener('submit', (e) =&gt; {
+  e.preventDefault();
+  const text = txText.value.trim();
+  const amount = parseFloat(txAmount.value);
+  if (!text || isNaN(amount) || amount &lt;= 0) return;
+
+  transactions.unshift({
+    id: Date.now(),
+    text,
+    amount,
+    type: txType.value
+  });
+
+  txText.value = '';
+  txAmount.value = '';
+  updateUI();
+});
+
+window.deleteTx = function(id) {
+  transactions = transactions.filter(t =&gt; t.id !== id);
+  updateUI();
+};
+
+document.getElementById('clearAllBtn').addEventListener('click', () =&gt; {
+  if (confirm('Are you sure you want to clear all transactions?')) {
+    transactions = [];
+    updateUI();
+  }
+});
+
+function escapeHTML(str) {
+  return str.replace(/&amp;/g, '&amp;amp;').replace(/&lt;/g, '&amp;lt;').replace(/&gt;/g, '&amp;gt;');
+}
+
+updateUI();</code></pre>
+      </div>
+    </section>
+
+    <!-- Navigation Footer -->
+    <nav class="program-page-nav">
+      <a href="tic-tac-toe.html" class="nav-btn prev-btn">
+        <span class="nav-icon">&larr;</span>
+        <div class="nav-text">
+          <span class="nav-sub">Previous Project</span>
+          <span class="nav-title">Tic-Tac-Toe Game</span>
+        </div>
+      </a>
+      <a href="grade-calculator-app.html" class="nav-btn next-btn">
+        <div class="nav-text">
+          <span class="nav-sub">Next Project</span>
+          <span class="nav-title">Grade & CGPA Calculator</span>
+        </div>
+        <span class="nav-icon">&rarr;</span>
+      </a>
+    </nav>
+  </main>
+
+  <footer class="app-footer">
+    <div class="footer-container">
+      <p>&copy; 2026 WebLab Studio &bull; Developed by <strong>Shaik Roshan</strong> (Dept. of CSE) &bull; Academic Laboratory Record</p>
+    </div>
+  </footer>
+
+  <div id="toastNotification" class="toast">Code copied to clipboard!</div>
+
+  <script src="../../assets/js/code-viewer.js"></script>
+  <script>
+    // Live Expense Tracker Implementation
+    (function() {
+      const txForm = document.getElementById('txForm');
+      const txText = document.getElementById('txText');
+      const txAmount = document.getElementById('txAmount');
+      const txType = document.getElementById('txType');
+      const txList = document.getElementById('txList');
+      const netBalance = document.getElementById('netBalance');
+      const totalIncome = document.getElementById('totalIncome');
+      const totalExpense = document.getElementById('totalExpense');
+      const clearAllBtn = document.getElementById('clearAllBtn');
+
+      let transactions = JSON.parse(localStorage.getItem('weblab_expenses')) || [
+        { id: 1, text: 'Freelance Web Design', amount: 850.00, type: 'income' },
+        { id: 2, text: 'Supermarket Grocery', amount: 64.50, type: 'expense' },
+        { id: 3, text: 'Coffee Shop Study', amount: 12.25, type: 'expense' }
+      ];
+
+      function escapeHTML(str) {
+        return str.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+      }
+
+      function updateUI() {
+        txList.innerHTML = '';
+
+        if (transactions.length === 0) {
+          txList.innerHTML = '<li class="empty-state">No transactions recorded. Add an income or expense above!</li>';
+        } else {
+          transactions.forEach(tx => {
+            const li = document.createElement('li');
+            li.className = `history-item ${tx.type}`;
+            li.innerHTML = `
+              <div class="item-info">
+                <span class="item-desc">${escapeHTML(tx.text)}</span>
+                <span class="item-category">${tx.type}</span>
+              </div>
+              <div class="item-right">
+                <span class="item-amount">${tx.type === 'income' ? '+' : '-'}$${tx.amount.toFixed(2)}</span>
+                <button class="item-delete" onclick="window.removeTransaction(${tx.id})" title="Delete entry">&times;</button>
+              </div>
+            `;
+            txList.appendChild(li);
+          });
+        }
+
+        const income = transactions
+          .filter(t => t.type === 'income')
+          .reduce((acc, t) => acc + t.amount, 0);
+
+        const expense = transactions
+          .filter(t => t.type === 'expense')
+          .reduce((acc, t) => acc + t.amount, 0);
+
+        const balance = income - expense;
+
+        netBalance.textContent = (balance >= 0 ? '$' : '-$') + Math.abs(balance).toFixed(2);
+        totalIncome.textContent = `+$${income.toFixed(2)}`;
+        totalExpense.textContent = `-$${expense.toFixed(2)}`;
+
+        localStorage.setItem('weblab_expenses', JSON.stringify(transactions));
+      }
+
+      txForm.addEventListener('submit', (e) => {
+        e.preventDefault();
+        const text = txText.value.trim();
+        const amount = parseFloat(txAmount.value);
+        if (!text || isNaN(amount) || amount <= 0) return;
+
+        transactions.unshift({
+          id: Date.now(),
+          text,
+          amount,
+          type: txType.value
+        });
+
+        txText.value = '';
+        txAmount.value = '';
+        updateUI();
+      });
+
+      window.removeTransaction = function(id) {
+        transactions = transactions.filter(t => t.id !== id);
+        updateUI();
+      };
+
+      clearAllBtn.addEventListener('click', () => {
+        if (confirm('Clear all transactions?')) {
+          transactions = [];
+          updateUI();
+        }
+      });
+
+      updateUI();
+    })();
+  </script>
+</body>
+</html>

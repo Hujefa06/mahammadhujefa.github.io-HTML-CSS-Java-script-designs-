@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Taj Mahal - Background Color</title>
+<style>
+body{
+    margin:0;
+    min-height:100vh;
+    font-family:Arial;
+    background:#eaf8ff;
+    color:#063b4c;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    text-align:center;
+}
+
+.card{
+    background:white;
+    padding:40px;
+    border-radius:16px;
+    box-shadow:0 5px 15px #b5d9e5;
+}
+
+button{
+    padding:12px 25px;
+    background:#075b73;
+    color:white;
+    border:0;
+    border-radius:8px;
+    cursor:pointer;
+}
+</style>
+</head>
+<body>
+
+<div class="card">
+<h1>🏛️ Island Colors</h1>
+<p>Click the button to change the background.</p>
+<button onclick="changeBackground()">Change Color</button>
+</div>
+
+<script>
+function changeBackground() {
+    document.body.style.background = "#b9e8f2";
+}
+</script>
+
+</body>
+</html>

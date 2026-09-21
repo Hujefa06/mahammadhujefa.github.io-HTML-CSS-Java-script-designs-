@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>EV 08 - HTML5 Drag & Drop Kanban | Web Tech Lab</title>
+  <link rel="stylesheet" href="../../assets/css/style.css">
+  <link rel="stylesheet" href="../../assets/css/program-viewer.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500&family=Inter:wght@400;500;600&family=Outfit:wght@600;700;800&display=swap" rel="stylesheet">
+  <style>
+    .kanban-board {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.25rem;
+    }
+    @media (max-width: 768px) {
+      .kanban-board {
+        grid-template-columns: 1fr;
+      }
+    }
+    .kanban-col {
+      background: #0f172a;
+      border: 1px solid #334155;
+      border-radius: 12px;
+      padding: 1.25rem;
+      display: flex;
+      flex-direction: column;
+    }
+    .col-header {
+      font-size: 0.95rem;
+      font-weight: 700;
+      color: #38bdf8;
+      margin-bottom: 1rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding-bottom: 0.5rem;
+      border-bottom: 1px solid #334155;
+    }
+    .drop-zone {
+      flex: 1;
+      min-height: 240px;
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+      padding: 0.5rem;
+      border-radius: 8px;
+      transition: background 0.2s, border-color 0.2s;
+      border: 2px dashed transparent;
+    }
+    .drop-zone.drag-over {
+      background: rgba(56, 189, 248, 0.08);
+      border-color: #38bdf8;
+    }
+    .task-card {
+      background: #1e293b;
+      border: 1px solid #475569;
+      border-radius: 8px;
+      padding: 1rem;
+      cursor: grab;
+      user-select: none;
+      transition: transform 0.15s, opacity 0.15s, box-shadow 0.15s;
+    }
+    .task-card:active {
+      cursor: grabbing;
+    }
+    .task-card.dragging {
+      opacity: 0.4;
+      transform: scale(0.96);
+      box-shadow: 0 10px 20px rgba(0,0,0,0.5);
+    }
+    .task-title {
+      font-size: 0.9rem;
+      font-weight: 600;
+      color: #f8fafc;
+      margin-bottom: 0.25rem;
+    }
+    .task-meta {
+      font-size: 0.75rem;
+      color: #94a3b8;
+    }
+  </style>
+</head>
+<body>
+  <!-- Navbar -->
+  <nav class="navbar">
+    <div class="nav-container">
+      <a href="../../index.html" class="logo">
+        <span class="logo-icon">&lt;/&gt;</span>
+        <span>WebTech<span class="highlight">Lab</span></span>
+      </a>
+      <div class="nav-links">
+        <a href="../../index.html">Dashboard</a>
+        <a href="../../html/index.html">HTML</a>
+        <a href="../../css/index.html">CSS</a>
+        <a href="../index.html" class="active">JavaScript</a>
+      </div>
+    </div>
+  </nav>
+
+  <main class="page-container">
+    <div class="breadcrumb">
+      <a href="../../index.html">Home</a> &rsaquo; 
+      <a href="../index.html">JavaScript</a> &rsaquo; 
+      <a href="index.html">Events</a> &rsaquo; 
+      <span>EV 08 - HTML5 Drag & Drop Kanban</span>
+    </div>
+
+    <div class="program-header">
+      <div class="program-badge">Event Handling • Program 08</div>
+      <h1>HTML5 Drag and Drop API (Kanban Board)</h1>
+      <p class="program-desc">
+        Implement drag-and-drop mechanics using native browser events: <code>dragstart</code>, 
+        <code>dragend</code>, <code>dragover</code>, <code>dragleave</code>, and <code>drop</code> with visual feedback.
+      </p>
+      <div class="student-pill">
+        <span>👨‍💻 Student: <strong>Shaik Roshan</strong></span>
+        <span>•</span>
+        <span>Reg No: <strong>[TO BE FILLED BY STUDENT]</strong></span>
+      </div>
+    </div>
+
+    <!-- Live Demo -->
+    <div class="demo-section">
+      <div class="demo-header">
+        <div class="demo-title">
+          <span>📋</span> Agile Sprint Task Board
+        </div>
+        <span class="badge badge-success">Interactive Drag & Drop</span>
+      </div>
+      <div class="demo-body">
+        
+        <div class="kanban-board">
+          <!-- Col 1 -->
+          <div class="kanban-col">
+            <div class="col-header">
+              <span>⏳ To Do</span>
+              <span class="badge badge-primary" id="countTodo">2</span>
+            </div>
+            <div class="drop-zone" id="zoneTodo" ondragover="handleDragOver(event)" ondragleave="handleDragLeave(event)" ondrop="handleDrop(event)">
+              <div class="task-card" draggable="true" id="task1">
+                <div class="task-title">Design Responsive Navbar</div>
+                <div class="task-meta">🏷️ CSS Layout • High</div>
+              </div>
+              <div class="task-card" draggable="true" id="task2">
+                <div class="task-title">Form Validation Script</div>
+                <div class="task-meta">🏷️ JavaScript • Med</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Col 2 -->
+          <div class="kanban-col">
+            <div class="col-header">
+              <span>⚡ In Progress</span>
+              <span class="badge badge-warning" id="countProgress">1</span>
+            </div>
+            <div class="drop-zone" id="zoneProgress" ondragover="handleDragOver(event)" ondragleave="handleDragLeave(event)" ondrop="handleDrop(event)">
+              <div class="task-card" draggable="true" id="task3">
+                <div class="task-title">Event Bubbling Experiment</div>
+                <div class="task-meta">🏷️ Core DOM • High</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Col 3 -->
+          <div class="kanban-col">
+            <div class="col-header">
+              <span>✅ Completed</span>
+              <span class="badge badge-success" id="countDone">1</span>
+            </div>
+            <div class="drop-zone" id="zoneDone" ondragover="handleDragOver(event)" ondragleave="handleDragLeave(event)" ondrop="handleDrop(event)">
+              <div class="task-card" draggable="true" id="task4">
+                <div class="task-title">HTML5 Semantic Setup</div>
+                <div class="task-meta">🏷️ Completed Lab Record</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- Source Code Viewer -->
+    <div class="code-viewer-section">
+      <div class="code-viewer-header">
+        <div class="code-tabs">
+          <button class="code-tab active" data-tab="js">JavaScript Implementation</button>
+        </div>
+        <div class="code-actions">
+          <button class="btn-secondary" id="copyCodeBtn">📋 Copy Code</button>
+        </div>
+      </div>
+      <div class="code-body">
+        <pre><code id="sourceCode">// 1. Draggable items setup
+const cards = document.querySelectorAll(".task-card");
+cards.forEach(card => {
+  card.addEventListener("dragstart", (e) => {
+    e.dataTransfer.setData("text/plain", e.target.id);
+    card.classList.add("dragging");
+  });
+
+  card.addEventListener("dragend", () => {
+    card.classList.remove("dragging");
+  });
+});
+
+// 2. Drop Zone handlers
+function handleDragOver(e) {
+  e.preventDefault(); // Necessary to allow drop
+  e.currentTarget.classList.add("drag-over");
+}
+
+function handleDrop(e) {
+  e.preventDefault();
+  const zone = e.currentTarget;
+  zone.classList.remove("drag-over");
+  
+  const cardId = e.dataTransfer.getData("text/plain");
+  const card = document.getElementById(cardId);
+  zone.appendChild(card);
+}</code></pre>
+      </div>
+    </div>
+
+    <!-- Navigation -->
+    <div class="program-nav">
+      <a href="mouse-tracker.html" class="nav-prev">&larr; EV 07: Mouse Tracker</a>
+      <a href="arrow-key-mover.html" class="nav-next">EV 09: Arrow Key Mover &rarr;</a>
+    </div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-content">
+      <p>&copy; 2026 Web Technology Practical Laboratory • Prepared by <strong>Shaik Roshan</strong></p>
+      <p class="subtext">Computer Science & Engineering Department</p>
+    </div>
+  </footer>
+
+  <script src="../../assets/js/code-viewer.js"></script>
+  <script>
+    function updateCounts() {
+      document.getElementById("countTodo").textContent = document.getElementById("zoneTodo").children.length;
+      document.getElementById("countProgress").textContent = document.getElementById("zoneProgress").children.length;
+      document.getElementById("countDone").textContent = document.getElementById("zoneDone").children.length;
+    }
+
+    const cards = document.querySelectorAll(".task-card");
+    cards.forEach(card => {
+      card.addEventListener("dragstart", (e) => {
+        e.dataTransfer.setData("text/plain", card.id);
+        card.classList.add("dragging");
+      });
+
+      card.addEventListener("dragend", () => {
+        card.classList.remove("dragging");
+        updateCounts();
+      });
+    });
+
+    function handleDragOver(e) {
+      e.preventDefault();
+      e.currentTarget.classList.add("drag-over");
+    }
+
+    function handleDragLeave(e) {
+      e.currentTarget.classList.remove("drag-over");
+    }
+
+    function handleDrop(e) {
+      e.preventDefault();
+      const zone = e.currentTarget;
+      zone.classList.remove("drag-over");
+
+      const id = e.dataTransfer.getData("text/plain");
+      const card = document.getElementById(id);
+      if (card) {
+        zone.appendChild(card);
+        updateCounts();
+      }
+    }
+
+    updateCounts();
+  </script>
+</body>
+</html>

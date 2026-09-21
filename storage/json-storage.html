@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ST 02 - Complex Objects in Storage (JSON) | Web Tech Lab</title>
+  <link rel="stylesheet" href="../../assets/css/style.css">
+  <link rel="stylesheet" href="../../assets/css/program-viewer.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500;700&family=Inter:wght@400;500;600&family=Outfit:wght@600;700;800&display=swap" rel="stylesheet">
+  <style>
+    .json-layout {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.5rem;
+    }
+    @media (max-width: 768px) {
+      .json-layout {
+        grid-template-columns: 1fr;
+      }
+    }
+    .panel {
+      background: #0f172a;
+      border: 1px solid #334155;
+      border-radius: 12px;
+      padding: 1.5rem;
+    }
+    .json-viewer {
+      background: #020617;
+      border: 1px solid #334155;
+      border-radius: 8px;
+      padding: 1rem;
+      font-family: 'Fira Code', monospace;
+      font-size: 0.85rem;
+      color: #38bdf8;
+      height: 280px;
+      overflow-y: auto;
+      white-space: pre-wrap;
+    }
+    .profile-card {
+      background: #1e293b;
+      border: 1px solid #475569;
+      border-radius: 8px;
+      padding: 1.25rem;
+      margin-top: 1rem;
+    }
+  </style>
+</head>
+<body>
+  <!-- Navbar -->
+  <nav class="navbar">
+    <div class="nav-container">
+      <a href="../../index.html" class="logo">
+        <span class="logo-icon">&lt;/&gt;</span>
+        <span>WebTech<span class="highlight">Lab</span></span>
+      </a>
+      <div class="nav-links">
+        <a href="../../index.html">Dashboard</a>
+        <a href="../../html/index.html">HTML</a>
+        <a href="../../css/index.html">CSS</a>
+        <a href="../index.html" class="active">JavaScript</a>
+      </div>
+    </div>
+  </nav>
+
+  <main class="page-container">
+    <div class="breadcrumb">
+      <a href="../../index.html">Home</a> &rsaquo; 
+      <a href="../index.html">JavaScript</a> &rsaquo; 
+      <a href="index.html">Storage</a> &rsaquo; 
+      <span>ST 02 - JSON Objects & Arrays</span>
+    </div>
+
+    <div class="program-header">
+      <div class="program-badge">Web Storage • Program 02</div>
+      <h1>Complex Objects & Arrays Storage via JSON</h1>
+      <p class="program-desc">
+        Since <code>localStorage</code> only accepts strings, learn how to serialize complex JavaScript 
+        objects and arrays using <code>JSON.stringify()</code> and deserialize with <code>JSON.parse()</code>.
+      </p>
+      <div class="student-pill">
+        <span>👨‍💻 Student: <strong>Shaik Roshan</strong></span>
+        <span>•</span>
+        <span>Reg No: <strong>[TO BE FILLED BY STUDENT]</strong></span>
+      </div>
+    </div>
+
+    <!-- Live Demo -->
+    <div class="demo-section">
+      <div class="demo-header">
+        <div class="demo-title">
+          <span>📦</span> Serialization & Deserialization Visualizer
+        </div>
+        <span class="badge badge-success">JSON Parsing</span>
+      </div>
+      <div class="demo-body">
+        
+        <div class="json-layout">
+          <!-- Left: Stored Raw String -->
+          <div class="panel">
+            <h4 style="color: #38bdf8; margin-bottom: 0.5rem;">1. Raw Serialized JSON in Storage:</h4>
+            <div id="rawJsonBox" class="json-viewer">Loading stored string...</div>
+            <div style="display: flex; gap: 0.5rem; margin-top: 1rem;">
+              <button class="btn btn-primary" onclick="addSkillToProfile()">Add Skill (Array Push)</button>
+              <button class="btn btn-secondary" onclick="resetProfile()">Reset Object</button>
+            </div>
+          </div>
+
+          <!-- Right: Parsed Object Representation -->
+          <div class="panel">
+            <h4 style="color: #38bdf8; margin-bottom: 0.5rem;">2. Deserialized Live JS Object:</h4>
+            <div id="parsedCard" class="profile-card">
+              <!-- Rendered via JS -->
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- Source Code Viewer -->
+    <div class="code-viewer-section">
+      <div class="code-viewer-header">
+        <div class="code-tabs">
+          <button class="code-tab active" data-tab="js">JavaScript Implementation</button>
+        </div>
+        <div class="code-actions">
+          <button class="btn-secondary" id="copyCodeBtn">📋 Copy Code</button>
+        </div>
+      </div>
+      <div class="code-body">
+        <pre><code id="sourceCode">const studentProfile = {
+  name: "Shaik Roshan",
+  roll: "22CS042",
+  department: "Computer Science",
+  skills: ["HTML5", "CSS3", "JavaScript"]
+};
+
+// 1. Serialize object to JSON string before storing
+localStorage.setItem("user_profile", JSON.stringify(studentProfile));
+
+// 2. Retrieve string and deserialize back to native object
+const storedString = localStorage.getItem("user_profile");
+const profileObj = JSON.parse(storedString);
+
+console.log(profileObj.name); // "Shaik Roshan"
+console.log(profileObj.skills[0]); // "HTML5"</code></pre>
+      </div>
+    </div>
+
+    <!-- Navigation -->
+    <div class="program-nav">
+      <a href="localstorage-crud.html" class="nav-prev">&larr; ST 01: Storage CRUD</a>
+      <a href="persistent-todo.html" class="nav-next">ST 03: Persistent Todo &rarr;</a>
+    </div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-content">
+      <p>&copy; 2026 Web Technology Practical Laboratory • Prepared by <strong>Shaik Roshan</strong></p>
+      <p class="subtext">Computer Science & Engineering Department</p>
+    </div>
+  </footer>
+
+  <script src="../../assets/js/code-viewer.js"></script>
+  <script>
+    const defaultProfile = {
+      name: "Shaik Roshan",
+      roll: "22CS042",
+      department: "Computer Science & Engineering",
+      semester: 6,
+      skills: ["HTML5", "CSS3", "JavaScript ES6"],
+      enrolled: true
+    };
+
+    function syncView() {
+      let data = localStorage.getItem("student_profile_json");
+      if (!data) {
+        localStorage.setItem("student_profile_json", JSON.stringify(defaultProfile, null, 2));
+        data = localStorage.getItem("student_profile_json");
+      }
+
+      document.getElementById("rawJsonBox").textContent = data;
+
+      try {
+        const obj = JSON.parse(data);
+        const card = document.getElementById("parsedCard");
+        card.innerHTML = `
+          <h3 style="color:#f8fafc; margin-bottom:0.25rem;">${obj.name}</h3>
+          <p style="color:#38bdf8; font-size:0.85rem; margin-bottom:0.75rem;">Roll: ${obj.roll} • ${obj.department}</p>
+          <div style="font-size:0.85rem; color:#cbd5e1; margin-bottom:0.5rem;"><strong>Semester:</strong> ${obj.semester}</div>
+          <div style="font-size:0.85rem; color:#cbd5e1; margin-bottom:0.5rem;"><strong>Skills Array:</strong></div>
+          <div style="display:flex; flex-wrap:wrap; gap:0.35rem;">
+            ${obj.skills.map(s => `<span class="badge badge-primary">${s}</span>`).join('')}
+          </div>
+        `;
+      } catch (e) {
+        document.getElementById("parsedCard").textContent = "Parsing Error: " + e.message;
+      }
+    }
+
+    function addSkillToProfile() {
+      const data = JSON.parse(localStorage.getItem("student_profile_json") || "{}");
+      const skillsPool = ["React", "Node.js", "MongoDB", "TypeScript", "Docker", "Python"];
+      const unused = skillsPool.filter(s => !(data.skills || []).includes(s));
+
+      if (unused.length === 0) {
+        alert("All demo skills already added!");
+        return;
+      }
+
+      data.skills.push(unused[0]);
+      localStorage.setItem("student_profile_json", JSON.stringify(data, null, 2));
+      syncView();
+    }
+
+    function resetProfile() {
+      localStorage.setItem("student_profile_json", JSON.stringify(defaultProfile, null, 2));
+      syncView();
+    }
+
+    syncView();
+  </script>
+</body>
+</html>

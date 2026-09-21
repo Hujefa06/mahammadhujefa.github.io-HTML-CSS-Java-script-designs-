@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Taj Mahal - To Do</title>
+<style>
+body{margin:0;font-family:Arial;background:#eaf8ff;padding:40px;color:#063b4c}
+.box{max-width:550px;margin:auto;background:white;padding:30px;border-radius:16px;box-shadow:0 5px 15px #b5d9e5}
+input{padding:12px;width:70%;border:1px solid #9bcbd8;border-radius:8px}
+button{padding:12px;background:#075b73;color:white;border:0;border-radius:8px}
+li{padding:12px;margin:8px;background:#eaf8ff;border-radius:8px}
+</style>
+</head>
+<body>
+
+<div class="box">
+<h1>🏛️ Island To-Do List</h1>
+
+<input id="task" placeholder="Enter task">
+<button onclick="addTask()">Add</button>
+
+<ul id="list"></ul>
+</div>
+
+<script>
+function addTask(){
+    let input=document.getElementById("task");
+
+    if(input.value.trim()==="") return;
+
+    let li=document.createElement("li");
+    li.textContent=input.value;
+
+    document.getElementById("list").appendChild(li);
+    input.value="";
+}
+</script>
+
+</body>
+</html>

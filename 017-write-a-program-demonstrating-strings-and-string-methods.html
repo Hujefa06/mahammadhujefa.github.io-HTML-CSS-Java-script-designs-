@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Taj Mahal - Strings</title>
+<style>
+body{margin:0;font-family:Arial;background:#eaf8ff;color:#063b4c;padding:40px;text-align:center}
+.card{max-width:650px;margin:auto;background:white;padding:30px;border-radius:16px;box-shadow:0 5px 15px #b5d9e5}
+.item{background:#eaf8ff;padding:10px;margin:8px;border-radius:8px}
+h1{color:#075b73}
+</style>
+</head>
+<body>
+
+<div class="card">
+<h1>🏛️ Island String Methods</h1>
+
+<div class="item" id="length"></div>
+<div class="item" id="upper"></div>
+<div class="item" id="lower"></div>
+<div class="item" id="slice"></div>
+<div class="item" id="replace"></div>
+</div>
+
+<script>
+let text = "Taj Mahal";
+
+document.getElementById("length").textContent =
+    "Length: " + text.length;
+
+document.getElementById("upper").textContent =
+    "Uppercase: " + text.toUpperCase();
+
+document.getElementById("lower").textContent =
+    "Lowercase: " + text.toLowerCase();
+
+document.getElementById("slice").textContent =
+    "Slice: " + text.slice(0, 6);
+
+document.getElementById("replace").textContent =
+    "Replace: " + text.replace("Taj", "Ancient");
+</script>
+
+</body>
+</html>

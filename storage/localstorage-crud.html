@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ST 01 - LocalStorage CRUD Operations | Web Tech Lab</title>
+  <link rel="stylesheet" href="../../assets/css/style.css">
+  <link rel="stylesheet" href="../../assets/css/program-viewer.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500;700&family=Inter:wght@400;500;600&family=Outfit:wght@600;700;800&display=swap" rel="stylesheet">
+  <style>
+    .storage-layout {
+      display: grid;
+      grid-template-columns: 340px 1fr;
+      gap: 1.5rem;
+    }
+    @media (max-width: 768px) {
+      .storage-layout {
+        grid-template-columns: 1fr;
+      }
+    }
+    .panel {
+      background: #0f172a;
+      border: 1px solid #334155;
+      border-radius: 12px;
+      padding: 1.5rem;
+    }
+    .form-ctrl {
+      margin-bottom: 1rem;
+    }
+    .form-ctrl label {
+      display: block;
+      font-size: 0.85rem;
+      color: #94a3b8;
+      margin-bottom: 0.35rem;
+    }
+    .form-ctrl input {
+      width: 100%;
+      background: #1e293b;
+      border: 1px solid #475569;
+      color: #f8fafc;
+      padding: 0.65rem 0.85rem;
+      border-radius: 6px;
+      font-family: 'Fira Code', monospace;
+    }
+    .table-storage {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.85rem;
+    }
+    .table-storage th {
+      background: #1e293b;
+      color: #38bdf8;
+      padding: 10px;
+      text-align: left;
+    }
+    .table-storage td {
+      padding: 10px;
+      border-bottom: 1px solid #1e293b;
+      color: #cbd5e1;
+      font-family: 'Fira Code', monospace;
+    }
+    .btn-del-key {
+      background: #ef4444;
+      border: none;
+      color: #fff;
+      padding: 2px 8px;
+      border-radius: 4px;
+      cursor: pointer;
+      font-size: 0.75rem;
+    }
+  </style>
+</head>
+<body>
+  <!-- Navbar -->
+  <nav class="navbar">
+    <div class="nav-container">
+      <a href="../../index.html" class="logo">
+        <span class="logo-icon">&lt;/&gt;</span>
+        <span>WebTech<span class="highlight">Lab</span></span>
+      </a>
+      <div class="nav-links">
+        <a href="../../index.html">Dashboard</a>
+        <a href="../../html/index.html">HTML</a>
+        <a href="../../css/index.html">CSS</a>
+        <a href="../index.html" class="active">JavaScript</a>
+      </div>
+    </div>
+  </nav>
+
+  <main class="page-container">
+    <div class="breadcrumb">
+      <a href="../../index.html">Home</a> &rsaquo; 
+      <a href="../index.html">JavaScript</a> &rsaquo; 
+      <a href="index.html">Storage</a> &rsaquo; 
+      <span>ST 01 - LocalStorage CRUD</span>
+    </div>
+
+    <div class="program-header">
+      <div class="program-badge">Web Storage • Program 01</div>
+      <h1>LocalStorage CRUD Key-Value Operations</h1>
+      <p class="program-desc">
+        Perform full Create, Read, Update, and Delete operations using the HTML5 
+        <code>localStorage</code> API: <code>setItem()</code>, <code>getItem()</code>, <code>removeItem()</code>, and <code>clear()</code>.
+      </p>
+      <div class="student-pill">
+        <span>👨‍💻 Student: <strong>Shaik Roshan</strong></span>
+        <span>•</span>
+        <span>Reg No: <strong>[TO BE FILLED BY STUDENT]</strong></span>
+      </div>
+    </div>
+
+    <!-- Live Demo -->
+    <div class="demo-section">
+      <div class="demo-header">
+        <div class="demo-title">
+          <span>💾</span> Key-Value Storage Manager
+        </div>
+        <span class="badge badge-success" id="countBadge">3 Keys Stored</span>
+      </div>
+      <div class="demo-body">
+        
+        <div class="storage-layout">
+          <!-- Editor Controls -->
+          <div class="panel">
+            <h4 style="color: #38bdf8; margin-bottom: 1rem;">Set / Update Item:</h4>
+            
+            <div class="form-ctrl">
+              <label>Storage Key Name:</label>
+              <input type="text" id="storageKey" placeholder="e.g. user_session">
+            </div>
+
+            <div class="form-ctrl">
+              <label>Storage Value (String):</label>
+              <input type="text" id="storageVal" placeholder="e.g. active_token_9942">
+            </div>
+
+            <div style="display: flex; gap: 0.5rem; flex-direction: column;">
+              <button class="btn btn-primary" onclick="saveItem()">Save to localStorage</button>
+              <button class="btn btn-secondary" onclick="readItem()">Query Specific Key</button>
+              <button class="btn btn-secondary" style="background:#ef4444; color:#fff;" onclick="clearAllStorage()">Clear All Keys</button>
+            </div>
+          </div>
+
+          <!-- Active Storage Table -->
+          <div class="panel">
+            <h4 style="color: #38bdf8; margin-bottom: 1rem;">Active localStorage Contents:</h4>
+            <div style="overflow-x: auto;">
+              <table class="table-storage">
+                <thead>
+                  <tr>
+                    <th>#</th>
+                    <th>Key</th>
+                    <th>Value</th>
+                    <th>Action</th>
+                  </tr>
+                </thead>
+                <tbody id="storageTbody">
+                  <!-- Injected via JS -->
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- Source Code Viewer -->
+    <div class="code-viewer-section">
+      <div class="code-viewer-header">
+        <div class="code-tabs">
+          <button class="code-tab active" data-tab="js">JavaScript Implementation</button>
+        </div>
+        <div class="code-actions">
+          <button class="btn-secondary" id="copyCodeBtn">📋 Copy Code</button>
+        </div>
+      </div>
+      <div class="code-body">
+        <pre><code id="sourceCode">// 1. Create or Update
+localStorage.setItem("username", "Shaik Roshan");
+
+// 2. Read
+const user = localStorage.getItem("username");
+console.log("Stored user:", user);
+
+// 3. Delete specific key
+localStorage.removeItem("username");
+
+// 4. Clear entire storage domain
+localStorage.clear();
+
+// 5. Iterate through all keys
+for (let i = 0; i < localStorage.length; i++) {
+  const key = localStorage.key(i);
+  const value = localStorage.getItem(key);
+  console.log(`${key} => ${value}`);
+}</code></pre>
+      </div>
+    </div>
+
+    <!-- Navigation -->
+    <div class="program-nav">
+      <a href="index.html" class="nav-prev">&larr; Storage Curriculum Index</a>
+      <a href="json-storage.html" class="nav-next">ST 02: JSON Storage &rarr;</a>
+    </div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-content">
+      <p>&copy; 2026 Web Technology Practical Laboratory • Prepared by <strong>Shaik Roshan</strong></p>
+      <p class="subtext">Computer Science & Engineering Department</p>
+    </div>
+  </footer>
+
+  <script src="../../assets/js/code-viewer.js"></script>
+  <script>
+    // Initialize sample data if empty
+    if (!localStorage.getItem("student_name")) {
+      localStorage.setItem("student_name", "Shaik Roshan");
+      localStorage.setItem("app_theme", "dark_cyber");
+      localStorage.setItem("lab_subject", "Web Technologies Lab");
+    }
+
+    function refreshTable() {
+      const tbody = document.getElementById("storageTbody");
+      const badge = document.getElementById("countBadge");
+      tbody.innerHTML = "";
+
+      const count = localStorage.length;
+      badge.textContent = `${count} Key${count === 1 ? '' : 's'} Stored`;
+
+      if (count === 0) {
+        tbody.innerHTML = `<tr><td colspan="4" style="text-align:center; color:#64748b; padding:2rem;">Storage is empty. Add a key on the left!</td></tr>`;
+        return;
+      }
+
+      for (let i = 0; i < count; i++) {
+        const key = localStorage.key(i);
+        const val = localStorage.getItem(key);
+        const tr = document.createElement("tr");
+        tr.innerHTML = `
+          <td>${i + 1}</td>
+          <td style="color: #38bdf8;"><strong>${key}</strong></td>
+          <td>${val}</td>
+          <td><button class="btn-del-key" onclick="deleteKey('${key}')">Delete</button></td>
+        `;
+        tbody.appendChild(tr);
+      }
+    }
+
+    function saveItem() {
+      const k = document.getElementById("storageKey").value.trim();
+      const v = document.getElementById("storageVal").value.trim();
+      if (!k) {
+        alert("Please enter a key name!");
+        return;
+      }
+      localStorage.setItem(k, v);
+      document.getElementById("storageKey").value = "";
+      document.getElementById("storageVal").value = "";
+      refreshTable();
+    }
+
+    function readItem() {
+      const k = document.getElementById("storageKey").value.trim();
+      if (!k) {
+        alert("Enter key name to query!");
+        return;
+      }
+      const val = localStorage.getItem(k);
+      if (val !== null) {
+        alert(`Found key '${k}':\n"${val}"`);
+      } else {
+        alert(`Key '${k}' does not exist in localStorage.`);
+      }
+    }
+
+    function deleteKey(key) {
+      localStorage.removeItem(key);
+      refreshTable();
+    }
+
+    function clearAllStorage() {
+      if (confirm("Are you sure you want to wipe all localStorage data?")) {
+        localStorage.clear();
+        refreshTable();
+      }
+    }
+
+    refreshTable();
+  </script>
+</body>
+</html>

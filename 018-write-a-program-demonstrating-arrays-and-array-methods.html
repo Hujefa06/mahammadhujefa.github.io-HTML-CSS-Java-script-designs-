@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Taj Mahal - Array Methods</title>
+<style>
+body{margin:0;font-family:Arial;background:#eaf8ff;color:#063b4c;text-align:center;padding:40px}
+.card{max-width:650px;margin:auto;background:white;padding:30px;border-radius:16px;box-shadow:0 5px 15px #b5d9e5}
+.item{background:#eaf8ff;padding:10px;margin:8px;border-radius:8px}
+h1{color:#075b73}
+</style>
+</head>
+<body>
+
+<div class="card">
+<h1>🏝️ Island Array Methods</h1>
+<div class="item" id="push"></div>
+<div class="item" id="pop"></div>
+<div class="item" id="join"></div>
+<div class="item" id="map"></div>
+</div>
+
+<script>
+let islands = ["Taj", "Poompuhar", "Madurai"];
+
+islands.push("Korkai");
+
+document.getElementById("push").textContent =
+    "After push: " + islands.join(", ");
+
+let removed = islands.pop();
+
+document.getElementById("pop").textContent =
+    "Removed: " + removed;
+
+document.getElementById("join").textContent =
+    "Joined: " + islands.join(" - ");
+
+let upper = islands.map(item => item.toUpperCase());
+
+document.getElementById("map").textContent =
+    "Map: " + upper.join(", ");
+</script>
+
+</body>
+</html>

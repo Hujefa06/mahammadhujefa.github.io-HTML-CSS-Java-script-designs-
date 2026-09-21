@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>EV 11 - Reaction Time Measurement | Web Tech Lab</title>
+  <link rel="stylesheet" href="../../assets/css/style.css">
+  <link rel="stylesheet" href="../../assets/css/program-viewer.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500&family=Inter:wght@400;500;600&family=Outfit:wght@600;700;800&display=swap" rel="stylesheet">
+  <style>
+    .reaction-board {
+      max-width: 600px;
+      margin: 0 auto;
+      text-align: center;
+    }
+    .reaction-target-box {
+      height: 260px;
+      border-radius: 16px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      user-select: none;
+      transition: background-color 0.15s ease, transform 0.05s ease;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.4);
+      padding: 1.5rem;
+    }
+    .reaction-target-box:active {
+      transform: scale(0.98);
+    }
+    /* States */
+    .state-idle {
+      background: #1e293b;
+      border: 3px solid #475569;
+      color: #cbd5e1;
+    }
+    .state-waiting {
+      background: #b91c1c;
+      border: 3px solid #ef4444;
+      color: #fff;
+    }
+    .state-ready {
+      background: #15803d;
+      border: 3px solid #22c55e;
+      color: #fff;
+    }
+    .state-result {
+      background: #0f172a;
+      border: 3px solid #38bdf8;
+      color: #38bdf8;
+    }
+    .reaction-time-display {
+      font-family: 'Fira Code', monospace;
+      font-size: 3rem;
+      font-weight: 800;
+      margin-top: 0.5rem;
+    }
+  </style>
+</head>
+<body>
+  <!-- Navbar -->
+  <nav class="navbar">
+    <div class="nav-container">
+      <a href="../../index.html" class="logo">
+        <span class="logo-icon">&lt;/&gt;</span>
+        <span>WebTech<span class="highlight">Lab</span></span>
+      </a>
+      <div class="nav-links">
+        <a href="../../index.html">Dashboard</a>
+        <a href="../../html/index.html">HTML</a>
+        <a href="../../css/index.html">CSS</a>
+        <a href="../index.html" class="active">JavaScript</a>
+      </div>
+    </div>
+  </nav>
+
+  <main class="page-container">
+    <div class="breadcrumb">
+      <a href="../../index.html">Home</a> &rsaquo; 
+      <a href="../index.html">JavaScript</a> &rsaquo; 
+      <a href="index.html">Events</a> &rsaquo; 
+      <span>EV 11 - Reaction Time Measurement</span>
+    </div>
+
+    <div class="program-header">
+      <div class="program-badge">Event Handling • Program 11</div>
+      <h1>Reaction Time Measurement Test</h1>
+      <p class="program-desc">
+        Benchmark human visual reaction reflexes in milliseconds using <code>performance.now()</code>. 
+        Detect early false starts and measure neural response times upon green visual state changes.
+      </p>
+      <div class="student-pill">
+        <span>👨‍💻 Student: <strong>Shaik Roshan</strong></span>
+        <span>•</span>
+        <span>Reg No: <strong>[TO BE FILLED BY STUDENT]</strong></span>
+      </div>
+    </div>
+
+    <!-- Live Demo -->
+    <div class="demo-section">
+      <div class="demo-header">
+        <div class="demo-title">
+          <span>⏱️</span> Visual Reflex Benchmark
+        </div>
+        <div style="font-size: 0.85rem; color: #94a3b8;">
+          Best Reflex: <strong id="bestScore" style="color: #10b981;">-- ms</strong>
+        </div>
+      </div>
+      <div class="demo-body">
+        
+        <div class="reaction-board">
+          <div id="targetBox" class="reaction-target-box state-idle" onclick="handleBoxClick()">
+            <div id="boxIcon" style="font-size: 3rem; margin-bottom: 0.5rem;">⚡</div>
+            <h2 id="boxTitle">Click Anywhere To Start</h2>
+            <p id="boxSubtitle" style="font-size: 0.9rem; opacity: 0.9; margin-top: 0.35rem;">
+              When the box turns GREEN, click as fast as you can!
+            </p>
+            <div id="reactionResult" class="reaction-time-display" style="display: none;">0 ms</div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- Source Code Viewer -->
+    <div class="code-viewer-section">
+      <div class="code-viewer-header">
+        <div class="code-tabs">
+          <button class="code-tab active" data-tab="js">JavaScript Implementation</button>
+        </div>
+        <div class="code-actions">
+          <button class="btn-secondary" id="copyCodeBtn">📋 Copy Code</button>
+        </div>
+      </div>
+      <div class="code-body">
+        <pre><code id="sourceCode">let state = "idle"; // "idle" | "waiting" | "ready" | "result"
+let startTime = 0;
+let timeoutId = null;
+
+function handleBoxClick() {
+  if (state === "idle" || state === "result") {
+    // Start test: turn red and wait random delay (2 to 5 seconds)
+    state = "waiting";
+    box.className = "reaction-target-box state-waiting";
+    box.innerText = "Wait for Green...";
+
+    const delay = Math.random() * 3000 + 2000;
+    timeoutId = setTimeout(() => {
+      state = "ready";
+      startTime = performance.now();
+      box.className = "reaction-target-box state-ready";
+      box.innerText = "CLICK NOW!";
+    }, delay);
+
+  } else if (state === "waiting") {
+    // Clicked too early!
+    clearTimeout(timeoutId);
+    state = "result";
+    box.innerText = "Too early! Click to try again.";
+  } else if (state === "ready") {
+    // Successful reaction click
+    const reactionTime = Math.round(performance.now() - startTime);
+    state = "result";
+    box.innerText = `${reactionTime} ms! Click to try again.`;
+  }
+}</code></pre>
+      </div>
+    </div>
+
+    <!-- Navigation -->
+    <div class="program-nav">
+      <a href="click-counters.html" class="nav-prev">&larr; EV 10: Click Speed Test</a>
+      <a href="typing-speed-test.html" class="nav-next">EV 12: Typing Speed Test &rarr;</a>
+    </div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-content">
+      <p>&copy; 2026 Web Technology Practical Laboratory • Prepared by <strong>Shaik Roshan</strong></p>
+      <p class="subtext">Computer Science & Engineering Department</p>
+    </div>
+  </footer>
+
+  <script src="../../assets/js/code-viewer.js"></script>
+  <script>
+    let state = "idle";
+    let startTime = 0;
+    let timeoutId = null;
+    let bestTime = Infinity;
+
+    const box = document.getElementById("targetBox");
+    const boxIcon = document.getElementById("boxIcon");
+    const boxTitle = document.getElementById("boxTitle");
+    const boxSub = document.getElementById("boxSubtitle");
+    const resultDisplay = document.getElementById("reactionResult");
+    const bestDisplay = document.getElementById("bestScore");
+
+    function setBoxState(newState, title, sub, icon = "⚡") {
+      state = newState;
+      box.className = `reaction-target-box state-${newState}`;
+      boxIcon.textContent = icon;
+      boxTitle.textContent = title;
+      boxSub.textContent = sub;
+      resultDisplay.style.display = "none";
+    }
+
+    function handleBoxClick() {
+      if (state === "idle" || state === "result") {
+        setBoxState("waiting", "Wait for Green...", "Do NOT click yet!", "🛑");
+        const delay = Math.floor(Math.random() * 3000 + 1500);
+
+        timeoutId = setTimeout(() => {
+          state = "ready";
+          startTime = performance.now();
+          box.className = "reaction-target-box state-ready";
+          boxIcon.textContent = "🟢";
+          boxTitle.textContent = "CLICK NOW!";
+          boxSub.textContent = "Click as fast as possible!";
+        }, delay);
+
+      } else if (state === "waiting") {
+        clearTimeout(timeoutId);
+        setBoxState("result", "Too Early! ⚠️", "You clicked before the screen turned green. Click to retry.", "❌");
+
+      } else if (state === "ready") {
+        const reactionMs = Math.round(performance.now() - startTime);
+        if (reactionMs < bestTime) {
+          bestTime = reactionMs;
+          bestDisplay.textContent = `${bestTime} ms`;
+        }
+
+        setBoxState("result", "Great Reflexes!", "Click anywhere to test again.", "🏆");
+        resultDisplay.textContent = `${reactionMs} ms`;
+        resultDisplay.style.display = "block";
+      }
+    }
+  </script>
+</body>
+</html>

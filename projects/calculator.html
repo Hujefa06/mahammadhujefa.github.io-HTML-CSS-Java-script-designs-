@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>PR 01 - Digital Calculator | Web Tech Lab</title>
+  <link rel="stylesheet" href="../../assets/css/style.css">
+  <link rel="stylesheet" href="../../assets/css/program-viewer.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500;700&family=Inter:wght@400;500;600&family=Outfit:wght@600;700;800&display=swap" rel="stylesheet">
+  <style>
+    .calc-container {
+      max-width: 380px;
+      margin: 0 auto;
+      background: #0f172a;
+      border: 1px solid #334155;
+      border-radius: 16px;
+      padding: 1.5rem;
+      box-shadow: 0 20px 40px rgba(0,0,0,0.5);
+    }
+    .screen-display {
+      background: #020617;
+      border: 1px solid #334155;
+      border-radius: 10px;
+      padding: 1rem 1.25rem;
+      margin-bottom: 1.25rem;
+      text-align: right;
+      min-height: 85px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+    .calc-history {
+      font-family: 'Fira Code', monospace;
+      font-size: 0.85rem;
+      color: #64748b;
+      min-height: 20px;
+    }
+    .calc-current {
+      font-family: 'Fira Code', monospace;
+      font-size: 2.2rem;
+      font-weight: 700;
+      color: #f8fafc;
+      overflow-x: auto;
+      white-space: nowrap;
+    }
+    .calc-buttons {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 0.65rem;
+    }
+    .calc-btn {
+      height: 55px;
+      border-radius: 10px;
+      border: 1px solid #334155;
+      background: #1e293b;
+      color: #f8fafc;
+      font-size: 1.25rem;
+      font-family: 'Fira Code', monospace;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.1s;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .calc-btn:hover {
+      background: #334155;
+    }
+    .calc-btn:active {
+      transform: scale(0.95);
+    }
+    .btn-op {
+      background: #1e3a5f;
+      color: #38bdf8;
+      border-color: #0284c7;
+    }
+    .btn-op:hover {
+      background: #0284c7;
+      color: #fff;
+    }
+    .btn-eq {
+      background: #38bdf8;
+      color: #020617;
+      border-color: #38bdf8;
+      font-weight: 800;
+    }
+    .btn-eq:hover {
+      background: #7dd3fc;
+    }
+    .btn-clear {
+      background: #7f1d1d;
+      color: #fca5a5;
+      border-color: #ef4444;
+    }
+    .btn-clear:hover {
+      background: #ef4444;
+      color: #fff;
+    }
+  </style>
+</head>
+<body>
+  <!-- Navbar -->
+  <nav class="navbar">
+    <div class="nav-container">
+      <a href="../../index.html" class="logo">
+        <span class="logo-icon">&lt;/&gt;</span>
+        <span>WebTech<span class="highlight">Lab</span></span>
+      </a>
+      <div class="nav-links">
+        <a href="../../index.html">Dashboard</a>
+        <a href="../../html/index.html">HTML</a>
+        <a href="../../css/index.html">CSS</a>
+        <a href="../index.html" class="active">JavaScript</a>
+      </div>
+    </div>
+  </nav>
+
+  <main class="page-container">
+    <div class="breadcrumb">
+      <a href="../../index.html">Home</a> &rsaquo; 
+      <a href="../index.html">JavaScript</a> &rsaquo; 
+      <a href="index.html">Projects</a> &rsaquo; 
+      <span>PR 01 - Digital Calculator</span>
+    </div>
+
+    <div class="program-header">
+      <div class="program-badge">Mini Project • Project 01</div>
+      <h1>Interactive Digital Calculator</h1>
+      <p class="program-desc">
+        A full-featured digital calculator supporting chained arithmetic calculations (+, -, *, /), 
+        percentage calculations, decimal handling, backspace, and physical keyboard event integration.
+      </p>
+      <div class="student-pill">
+        <span>👨‍💻 Student: <strong>Shaik Roshan</strong></span>
+        <span>•</span>
+        <span>Reg No: <strong>[TO BE FILLED BY STUDENT]</strong></span>
+      </div>
+    </div>
+
+    <!-- Live Demo -->
+    <div class="demo-section">
+      <div class="demo-header">
+        <div class="demo-title">
+          <span>🧮</span> Desktop Calculator Studio
+        </div>
+        <span class="badge badge-success">Keyboard Enabled</span>
+      </div>
+      <div class="demo-body">
+        
+        <div class="calc-container">
+          <div class="screen-display">
+            <div id="calcHistory" class="calc-history"></div>
+            <div id="calcScreen" class="calc-current">0</div>
+          </div>
+
+          <div class="calc-buttons">
+            <button class="calc-btn btn-clear" onclick="clearAll()">AC</button>
+            <button class="calc-btn" onclick="deleteChar()">⌫</button>
+            <button class="calc-btn btn-op" onclick="appendOperator('%')">%</button>
+            <button class="calc-btn btn-op" onclick="appendOperator('/')">÷</button>
+
+            <button class="calc-btn" onclick="appendNum('7')">7</button>
+            <button class="calc-btn" onclick="appendNum('8')">8</button>
+            <button class="calc-btn" onclick="appendNum('9')">9</button>
+            <button class="calc-btn btn-op" onclick="appendOperator('*')">×</button>
+
+            <button class="calc-btn" onclick="appendNum('4')">4</button>
+            <button class="calc-btn" onclick="appendNum('5')">5</button>
+            <button class="calc-btn" onclick="appendNum('6')">6</button>
+            <button class="calc-btn btn-op" onclick="appendOperator('-')">-</button>
+
+            <button class="calc-btn" onclick="appendNum('1')">1</button>
+            <button class="calc-btn" onclick="appendNum('2')">2</button>
+            <button class="calc-btn" onclick="appendNum('3')">3</button>
+            <button class="calc-btn btn-op" onclick="appendOperator('+')">+</button>
+
+            <button class="calc-btn" onclick="appendNum('0')" style="grid-column: span 2;">0</button>
+            <button class="calc-btn" onclick="appendDot()">.</button>
+            <button class="calc-btn btn-eq" onclick="calculateResult()">=</button>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- Source Code Viewer -->
+    <div class="code-viewer-section">
+      <div class="code-viewer-header">
+        <div class="code-tabs">
+          <button class="code-tab active" data-tab="js">JavaScript Implementation</button>
+        </div>
+        <div class="code-actions">
+          <button class="btn-secondary" id="copyCodeBtn">📋 Copy Code</button>
+        </div>
+      </div>
+      <div class="code-body">
+        <pre><code id="sourceCode">let currentInput = "0";
+let previousInput = "";
+let operation = null;
+
+function appendNum(num) {
+  if (currentInput === "0") currentInput = num;
+  else currentInput += num;
+  updateScreen();
+}
+
+function appendOperator(op) {
+  if (operation !== null) calculateResult();
+  previousInput = currentInput;
+  operation = op;
+  currentInput = "0";
+}
+
+function calculateResult() {
+  const prev = parseFloat(previousInput);
+  const curr = parseFloat(currentInput);
+  let result = 0;
+
+  switch (operation) {
+    case '+': result = prev + curr; break;
+    case '-': result = prev - curr; break;
+    case '*': result = prev * curr; break;
+    case '/': result = curr === 0 ? "Error" : prev / curr; break;
+    case '%': result = prev % curr; break;
+  }
+
+  currentInput = String(result);
+  operation = null;
+  updateScreen();
+}</code></pre>
+      </div>
+    </div>
+
+    <!-- Navigation -->
+    <div class="program-nav">
+      <a href="index.html" class="nav-prev">&larr; Projects Curriculum Index</a>
+      <a href="digital-clock-app.html" class="nav-next">PR 02: World Clock App &rarr;</a>
+    </div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-content">
+      <p>&copy; 2026 Web Technology Practical Laboratory • Prepared by <strong>Shaik Roshan</strong></p>
+      <p class="subtext">Computer Science & Engineering Department</p>
+    </div>
+  </footer>
+
+  <script src="../../assets/js/code-viewer.js"></script>
+  <script>
+    let currentInput = "0";
+    let previousInput = "";
+    let operation = null;
+
+    const screen = document.getElementById("calcScreen");
+    const history = document.getElementById("calcHistory");
+
+    function updateScreen() {
+      screen.textContent = currentInput;
+      if (operation) {
+        history.textContent = `${previousInput} ${operation}`;
+      } else {
+        history.textContent = "";
+      }
+    }
+
+    function appendNum(num) {
+      if (currentInput === "0" || currentInput === "Error") {
+        currentInput = num;
+      } else {
+        currentInput += num;
+      }
+      updateScreen();
+    }
+
+    function appendDot() {
+      if (!currentInput.includes(".")) {
+        currentInput += ".";
+        updateScreen();
+      }
+    }
+
+    function appendOperator(op) {
+      if (operation !== null && currentInput !== "0") {
+        calculateResult();
+      }
+      previousInput = currentInput;
+      operation = op;
+      currentInput = "0";
+      updateScreen();
+    }
+
+    function deleteChar() {
+      if (currentInput.length > 1) {
+        currentInput = currentInput.slice(0, -1);
+      } else {
+        currentInput = "0";
+      }
+      updateScreen();
+    }
+
+    function clearAll() {
+      currentInput = "0";
+      previousInput = "";
+      operation = null;
+      updateScreen();
+    }
+
+    function calculateResult() {
+      if (operation === null || previousInput === "") return;
+
+      const prev = parseFloat(previousInput);
+      const curr = parseFloat(currentInput);
+      let res = 0;
+
+      switch (operation) {
+        case '+': res = prev + curr; break;
+        case '-': res = prev - curr; break;
+        case '*': res = prev * curr; break;
+        case '/': res = (curr === 0) ? "Error" : prev / curr; break;
+        case '%': res = (prev * curr) / 100; break;
+      }
+
+      history.textContent = `${previousInput} ${operation} ${currentInput} =`;
+      currentInput = typeof res === "number" ? String(Math.round(res * 100000) / 100000) : res;
+      operation = null;
+      previousInput = "";
+      screen.textContent = currentInput;
+    }
+
+    // Keyboard support
+    window.addEventListener("keydown", (e) => {
+      if (e.key >= "0" && e.key <= "9") appendNum(e.key);
+      else if (e.key === ".") appendDot();
+      else if (["+", "-", "*", "/"].includes(e.key)) appendOperator(e.key);
+      else if (e.key === "Enter" || e.key === "=") calculateResult();
+      else if (e.key === "Backspace") deleteChar();
+      else if (e.key === "Escape") clearAll();
+    });
+  </script>
+</body>
+</html>

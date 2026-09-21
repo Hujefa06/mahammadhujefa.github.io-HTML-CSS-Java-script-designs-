@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Taj Mahal - Change Text</title>
+<style>
+body{margin:0;font-family:Arial;background:#eaf8ff;text-align:center;padding:50px;color:#063b4c}
+.card{max-width:500px;margin:auto;background:white;padding:35px;border-radius:16px;box-shadow:0 5px 15px #b5d9e5}
+button{padding:12px 25px;background:#075b73;color:white;border:0;border-radius:8px;cursor:pointer}
+h1{color:#075b73}
+</style>
+</head>
+<body>
+
+<div class="card">
+<h1>🏛️ Island Message</h1>
+
+<p id="message">Welcome to the island.</p>
+
+<button onclick="changeText()">Explore</button>
+</div>
+
+<script>
+function changeText() {
+    document.getElementById("message").textContent =
+        "Welcome to Taj Mahal!";
+}
+</script>
+
+</body>
+</html>

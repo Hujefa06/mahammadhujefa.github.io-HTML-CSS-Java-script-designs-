@@ -1,0 +1,451 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Project 16: Forex Currency Converter - JavaScript Projects</title>
+  <link rel="stylesheet" href="../../assets/css/style.css">
+  <link rel="stylesheet" href="../../assets/css/program-viewer.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500;600&family=Inter:wght@400;500;600;700&family=Outfit:wght@500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    .converter-card {
+      max-width: 600px;
+      margin: 0 auto;
+      background: var(--bg-card);
+      border-radius: var(--radius-lg);
+      border: 1px solid var(--border-color);
+      padding: 2rem;
+      box-shadow: var(--shadow-md);
+    }
+    .amount-input-group {
+      margin-bottom: 1.5rem;
+    }
+    .amount-input-group label {
+      display: block;
+      font-size: 0.85rem;
+      font-weight: 600;
+      color: var(--text-secondary);
+      margin-bottom: 0.5rem;
+    }
+    .amount-input-group input {
+      width: 100%;
+      padding: 0.85rem 1rem;
+      border-radius: var(--radius-sm);
+      border: 1px solid var(--border-color);
+      background: var(--bg-main);
+      color: var(--text-main);
+      font-size: 1.25rem;
+      font-family: 'Fira Code', monospace;
+      font-weight: 600;
+    }
+
+    .currency-select-row {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      margin-bottom: 1.75rem;
+    }
+    .currency-box {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      gap: 0.4rem;
+    }
+    .currency-box label {
+      font-size: 0.8rem;
+      font-weight: 600;
+      color: var(--text-secondary);
+    }
+    .currency-box select {
+      padding: 0.75rem;
+      border-radius: var(--radius-sm);
+      border: 1px solid var(--border-color);
+      background: var(--bg-main);
+      color: var(--text-main);
+      font-size: 0.95rem;
+      font-weight: 600;
+      cursor: pointer;
+    }
+    .btn-swap {
+      width: 44px;
+      height: 44px;
+      margin-top: 1.2rem;
+      border-radius: 50%;
+      border: 1px solid var(--border-color);
+      background: var(--bg-main);
+      color: var(--primary);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.25rem;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      flex-shrink: 0;
+    }
+    .btn-swap:hover {
+      background: var(--primary);
+      color: #fff;
+      transform: rotate(180deg);
+    }
+
+    .result-display-panel {
+      background: var(--bg-main);
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius-md);
+      padding: 1.5rem;
+      text-align: center;
+      margin-bottom: 1.5rem;
+    }
+    .result-sub {
+      font-size: 0.9rem;
+      color: var(--text-secondary);
+      margin-bottom: 0.5rem;
+    }
+    .result-main {
+      font-size: 2.2rem;
+      font-weight: 800;
+      font-family: 'Outfit', sans-serif;
+      color: var(--primary);
+      line-height: 1.2;
+    }
+    .exchange-rate-text {
+      font-size: 0.8rem;
+      color: var(--text-secondary);
+      margin-top: 0.5rem;
+    }
+
+    /* Popular Rates Table */
+    .rates-table-wrap {
+      margin-top: 1.5rem;
+      border-top: 1px solid var(--border-color);
+      padding-top: 1rem;
+    }
+    .rates-table-wrap h4 {
+      font-size: 0.95rem;
+      font-weight: 700;
+      margin-bottom: 0.75rem;
+    }
+    .rates-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.85rem;
+    }
+    .rates-table td {
+      padding: 0.5rem 0;
+      border-bottom: 1px solid var(--border-color);
+    }
+    .rates-table td:last-child {
+      text-align: right;
+      font-weight: 600;
+      font-family: 'Fira Code', monospace;
+    }
+  </style>
+</head>
+<body>
+  <!-- Header -->
+  <header class="app-header">
+    <div class="header-container">
+      <a href="../../index.html" class="brand-logo">
+        <span class="logo-icon">&lt;/&gt;</span>
+        <span class="logo-text">WebLab<span class="logo-highlight">Studio</span></span>
+      </a>
+      <div class="header-student">
+        <span class="student-name">Shaik Roshan</span>
+        <span class="student-id">[TO BE FILLED BY STUDENT]</span>
+      </div>
+    </div>
+  </header>
+
+  <main class="viewer-main">
+    <!-- Breadcrumb -->
+    <nav class="breadcrumb-nav">
+      <a href="../../index.html">Home</a>
+      <span class="breadcrumb-separator">/</span>
+      <a href="../index.html">JavaScript</a>
+      <span class="breadcrumb-separator">/</span>
+      <a href="index.html">Projects</a>
+      <span class="breadcrumb-separator">/</span>
+      <span class="breadcrumb-current">Forex Currency Converter</span>
+    </nav>
+
+    <!-- Program Metadata Header -->
+    <section class="program-header-card">
+      <div class="program-badge">Project 16 of 16 (Capstone)</div>
+      <h1 class="program-title">Forex Exchange & Currency Converter</h1>
+      <p class="program-description">
+        A financial currency converter providing instantaneous cross-rate foreign exchange calculations across major international currencies with dynamic one-click currency swapping and benchmark rate matrices.
+      </p>
+      <div class="program-meta-chips">
+        <span class="meta-chip">Exchange Rate Matrix</span>
+        <span class="meta-chip">Currency Swapping</span>
+        <span class="meta-chip">Number & Decimal Formatting</span>
+        <span class="meta-chip">Reactive Input Events</span>
+      </div>
+    </section>
+
+    <!-- Objective Box -->
+    <div class="objective-box">
+      <h3>Educational Objective</h3>
+      <p>
+        Understand triangular currency arbitrage and exchange rate mapping using a base currency anchor (USD). Master converting any source currency <em>A</em> to destination currency <em>B</em> via <code>Amount &times; (Rate[B] / Rate[A])</code>, implementing reactive event listeners for immediate recalculations.
+      </p>
+    </div>
+
+    <!-- Live Interactive Demo -->
+    <section class="demo-card">
+      <div class="demo-card-header">
+        <div class="demo-title-area">
+          <span class="live-dot"></span>
+          <h3>Live Forex Conversion Engine</h3>
+        </div>
+        <span class="demo-tag">Production Demo</span>
+      </div>
+      <div class="demo-card-body">
+        <div class="converter-card">
+          <!-- Amount Input -->
+          <div class="amount-input-group">
+            <label>Amount to Convert:</label>
+            <input type="number" id="inpAmount" value="100" min="0.01" step="any">
+          </div>
+
+          <!-- Selectors -->
+          <div class="currency-select-row">
+            <div class="currency-box">
+              <label>From Currency:</label>
+              <select id="selFrom">
+                <option value="USD" selected>USD - US Dollar ($)</option>
+                <option value="EUR">EUR - Euro (€)</option>
+                <option value="GBP">GBP - British Pound (£)</option>
+                <option value="INR">INR - Indian Rupee (₹)</option>
+                <option value="JPY">JPY - Japanese Yen (¥)</option>
+                <option value="CAD">CAD - Canadian Dollar ($)</option>
+                <option value="AUD">AUD - Australian Dollar ($)</option>
+              </select>
+            </div>
+
+            <button class="btn-swap" id="btnSwap" title="Swap currencies">⇄</button>
+
+            <div class="currency-box">
+              <label>To Currency:</label>
+              <select id="selTo">
+                <option value="USD">USD - US Dollar ($)</option>
+                <option value="EUR">EUR - Euro (€)</option>
+                <option value="GBP">GBP - British Pound (£)</option>
+                <option value="INR" selected>INR - Indian Rupee (₹)</option>
+                <option value="JPY">JPY - Japanese Yen (¥)</option>
+                <option value="CAD">CAD - Canadian Dollar ($)</option>
+                <option value="AUD">AUD - Australian Dollar ($)</option>
+              </select>
+            </div>
+          </div>
+
+          <!-- Result Panel -->
+          <div class="result-display-panel">
+            <div class="result-sub" id="dispFromSummary">100 USD =</div>
+            <div class="result-main" id="dispToResult">8,320.00 INR</div>
+            <div class="exchange-rate-text" id="dispRateNote">1 USD = 83.20 INR &bull; Mid-market rate</div>
+          </div>
+
+          <!-- Benchmark Matrix -->
+          <div class="rates-table-wrap">
+            <h4>Popular Benchmark Rates (Base: 1 USD)</h4>
+            <table class="rates-table">
+              <tbody>
+                <tr><td>Euro (EUR)</td><td>0.92 EUR</td></tr>
+                <tr><td>British Pound (GBP)</td><td>0.79 GBP</td></tr>
+                <tr><td>Indian Rupee (INR)</td><td>83.20 INR</td></tr>
+                <tr><td>Japanese Yen (JPY)</td><td>155.40 JPY</td></tr>
+                <tr><td>Canadian Dollar (CAD)</td><td>1.36 CAD</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Source Code Viewer -->
+    <section class="code-viewer-section">
+      <div class="code-viewer-header">
+        <div class="code-tabs">
+          <button class="code-tab active" data-target="html-code">HTML Structure</button>
+          <button class="code-tab" data-target="css-code">CSS Styles</button>
+          <button class="code-tab" data-target="js-code">JavaScript Logic</button>
+        </div>
+        <div class="code-actions">
+          <button class="btn-toggle-code" id="btnToggleCode">Show/Hide Code</button>
+          <button class="btn-copy-code" id="btnCopyCode">Copy Source</button>
+        </div>
+      </div>
+
+      <div class="code-blocks-container" id="codeBlocksContainer">
+        <!-- HTML Code Block -->
+        <pre class="code-block active" id="html-code"><code>&lt;div class="converter-card"&gt;
+  &lt;div class="amount-input-group"&gt;
+    &lt;label&gt;Amount:&lt;/label&gt;
+    &lt;input type="number" id="inpAmount" value="100"&gt;
+  &lt;/div&gt;
+
+  &lt;div class="currency-select-row"&gt;
+    &lt;select id="selFrom"&gt;
+      &lt;option value="USD" selected&gt;USD&lt;/option&gt;
+      &lt;option value="INR"&gt;INR&lt;/option&gt;
+    &lt;/select&gt;
+    &lt;button id="btnSwap"&gt;⇄&lt;/button&gt;
+    &lt;select id="selTo"&gt;
+      &lt;option value="INR" selected&gt;INR&lt;/option&gt;
+      &lt;option value="USD"&gt;USD&lt;/option&gt;
+    &lt;/select&gt;
+  &lt;/div&gt;
+
+  &lt;div class="result-display-panel"&gt;
+    &lt;div id="dispToResult"&gt;8,320.00 INR&lt;/div&gt;
+  &lt;/div&gt;
+&lt;/div&gt;</code></pre>
+
+        <!-- CSS Code Block -->
+        <pre class="code-block" id="css-code"><code>.converter-card {
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 2rem;
+  background: var(--bg-card);
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--border-color);
+}
+.currency-select-row {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+.btn-swap {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  border: 1px solid var(--border-color);
+  cursor: pointer;
+  transition: transform 0.2s ease;
+}</code></pre>
+
+        <!-- JS Code Block -->
+        <pre class="code-block" id="js-code"><code>// Currency Conversion Logic (Rates normalized to 1 USD)
+const exchangeRates = {
+  USD: 1.0,
+  EUR: 0.92,
+  GBP: 0.79,
+  INR: 83.20,
+  JPY: 155.40,
+  CAD: 1.36,
+  AUD: 1.52
+};
+
+function convertCurrency() {
+  const amount = parseFloat(document.getElementById('inpAmount').value) || 0;
+  const from = document.getElementById('selFrom').value;
+  const to = document.getElementById('selTo').value;
+
+  // Convert From -&gt; USD -&gt; To
+  const rateInUSD = 1 / exchangeRates[from];
+  const converted = amount * rateInUSD * exchangeRates[to];
+  const singleUnitRate = (1 * rateInUSD * exchangeRates[to]);
+
+  document.getElementById('dispFromSummary').textContent = `${amount.toLocaleString()} ${from} =`;
+  document.getElementById('dispToResult').textContent = `${converted.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })} ${to}`;
+  document.getElementById('dispRateNote').textContent = `1 ${from} = ${singleUnitRate.toFixed(4)} ${to} • Mid-market rate`;
+}
+
+document.getElementById('btnSwap').addEventListener('click', () =&gt; {
+  const selFrom = document.getElementById('selFrom');
+  const selTo = document.getElementById('selTo');
+  const temp = selFrom.value;
+  selFrom.value = selTo.value;
+  selTo.value = temp;
+  convertCurrency();
+});
+
+document.getElementById('inpAmount').addEventListener('input', convertCurrency);
+document.getElementById('selFrom').addEventListener('change', convertCurrency);
+document.getElementById('selTo').addEventListener('change', convertCurrency);
+
+convertCurrency();</code></pre>
+      </div>
+    </section>
+
+    <!-- Navigation Footer -->
+    <nav class="program-page-nav">
+      <a href="bmi-calculator.html" class="nav-btn prev-btn">
+        <span class="nav-icon">&larr;</span>
+        <div class="nav-text">
+          <span class="nav-sub">Previous Project</span>
+          <span class="nav-title">BMI Health Calculator</span>
+        </div>
+      </a>
+      <a href="index.html" class="nav-btn next-btn">
+        <div class="nav-text">
+          <span class="nav-sub">Curriculum Hub</span>
+          <span class="nav-title">Projects Category Index</span>
+        </div>
+        <span class="nav-icon">&uarr;</span>
+      </a>
+    </nav>
+  </main>
+
+  <footer class="app-footer">
+    <div class="footer-container">
+      <p>&copy; 2026 WebLab Studio &bull; Developed by <strong>Shaik Roshan</strong> (Dept. of CSE) &bull; Academic Laboratory Record</p>
+    </div>
+  </footer>
+
+  <div id="toastNotification" class="toast">Code copied to clipboard!</div>
+
+  <script src="../../assets/js/code-viewer.js"></script>
+  <script>
+    (function() {
+      const exchangeRates = {
+        USD: 1.0,
+        EUR: 0.92,
+        GBP: 0.79,
+        INR: 83.20,
+        JPY: 155.40,
+        CAD: 1.36,
+        AUD: 1.52
+      };
+
+      const inpAmount = document.getElementById('inpAmount');
+      const selFrom = document.getElementById('selFrom');
+      const selTo = document.getElementById('selTo');
+      const btnSwap = document.getElementById('btnSwap');
+      const dispFromSummary = document.getElementById('dispFromSummary');
+      const dispToResult = document.getElementById('dispToResult');
+      const dispRateNote = document.getElementById('dispRateNote');
+
+      function convert() {
+        const amount = parseFloat(inpAmount.value) || 0;
+        const from = selFrom.value;
+        const to = selTo.value;
+
+        const rateInUSD = 1 / exchangeRates[from];
+        const converted = amount * rateInUSD * exchangeRates[to];
+        const unitRate = (1 * rateInUSD * exchangeRates[to]);
+
+        dispFromSummary.textContent = `${amount.toLocaleString()} ${from} =`;
+        dispToResult.textContent = `${converted.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })} ${to}`;
+        dispRateNote.textContent = `1 ${from} = ${unitRate.toFixed(4)} ${to} • Mid-market exchange rate`;
+      }
+
+      btnSwap.addEventListener('click', () => {
+        const temp = selFrom.value;
+        selFrom.value = selTo.value;
+        selTo.value = temp;
+        convert();
+      });
+
+      inpAmount.addEventListener('input', convert);
+      selFrom.addEventListener('change', convert);
+      selTo.addEventListener('change', convert);
+
+      convert();
+    })();
+  </script>
+</body>
+</html>

@@ -1,0 +1,537 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Project 11: Academic Grade & CGPA Calculator - JavaScript Projects</title>
+  <link rel="stylesheet" href="../../assets/css/style.css">
+  <link rel="stylesheet" href="../../assets/css/program-viewer.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500;600&family=Inter:wght@400;500;600;700&family=Outfit:wght@500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    .calc-wrapper {
+      max-width: 800px;
+      margin: 0 auto;
+      background: var(--bg-card);
+      border-radius: var(--radius-lg);
+      border: 1px solid var(--border-color);
+      padding: 1.75rem;
+      box-shadow: var(--shadow-md);
+    }
+    .stats-banner {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 1rem;
+      margin-bottom: 1.5rem;
+    }
+    .stat-card {
+      padding: 1.25rem;
+      border-radius: var(--radius-md);
+      text-align: center;
+      background: var(--bg-main);
+      border: 1px solid var(--border-color);
+    }
+    .stat-card .label { font-size: 0.8rem; text-transform: uppercase; font-weight: 600; color: var(--text-secondary); margin-bottom: 0.25rem; }
+    .stat-card .val { font-size: 2rem; font-weight: 800; font-family: 'Outfit', sans-serif; color: var(--primary); }
+    .stat-card .desc { font-size: 0.8rem; color: var(--text-secondary); }
+
+    .course-table-wrapper {
+      overflow-x: auto;
+      margin-bottom: 1.25rem;
+    }
+    .course-table {
+      width: 100%;
+      border-collapse: collapse;
+      text-align: left;
+    }
+    .course-table th {
+      background: var(--bg-main);
+      padding: 0.75rem 1rem;
+      font-size: 0.85rem;
+      text-transform: uppercase;
+      color: var(--text-secondary);
+      border-bottom: 1px solid var(--border-color);
+    }
+    .course-table td {
+      padding: 0.75rem 1rem;
+      border-bottom: 1px solid var(--border-color);
+    }
+    .course-table input, .course-table select {
+      width: 100%;
+      padding: 0.55rem 0.75rem;
+      border-radius: var(--radius-sm);
+      border: 1px solid var(--border-color);
+      background: var(--bg-card);
+      color: var(--text-main);
+      font-size: 0.9rem;
+    }
+    .btn-action-row {
+      display: flex;
+      justify-content: space-between;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+    .btn-action-row button {
+      padding: 0.65rem 1.25rem;
+      border-radius: var(--radius-sm);
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+    .btn-add-row {
+      background: var(--bg-main);
+      color: var(--text-main);
+      border: 1px dashed var(--border-color);
+    }
+    .btn-add-row:hover {
+      border-color: var(--primary);
+      color: var(--primary);
+    }
+    .btn-calc {
+      background: var(--primary);
+      color: #fff;
+      border: none;
+    }
+    .btn-calc:hover { background: var(--primary-hover); }
+    .btn-delete-row {
+      background: transparent;
+      border: none;
+      color: #ef4444;
+      font-size: 1.2rem;
+      cursor: pointer;
+      padding: 0.2rem 0.5rem;
+      border-radius: 4px;
+    }
+    .btn-delete-row:hover { background: rgba(239, 68, 68, 0.1); }
+  </style>
+</head>
+<body>
+  <!-- Header -->
+  <header class="app-header">
+    <div class="header-container">
+      <a href="../../index.html" class="brand-logo">
+        <span class="logo-icon">&lt;/&gt;</span>
+        <span class="logo-text">WebLab<span class="logo-highlight">Studio</span></span>
+      </a>
+      <div class="header-student">
+        <span class="student-name">Shaik Roshan</span>
+        <span class="student-id">[TO BE FILLED BY STUDENT]</span>
+      </div>
+    </div>
+  </header>
+
+  <main class="viewer-main">
+    <!-- Breadcrumb -->
+    <nav class="breadcrumb-nav">
+      <a href="../../index.html">Home</a>
+      <span class="breadcrumb-separator">/</span>
+      <a href="../index.html">JavaScript</a>
+      <span class="breadcrumb-separator">/</span>
+      <a href="index.html">Projects</a>
+      <span class="breadcrumb-separator">/</span>
+      <span class="breadcrumb-current">Grade & CGPA Calculator</span>
+    </nav>
+
+    <!-- Program Metadata Header -->
+    <section class="program-header-card">
+      <div class="program-badge">Project 11 of 16</div>
+      <h1 class="program-title">Academic Semester SGPA & CGPA Calculator</h1>
+      <p class="program-description">
+        A university grade-point calculation engine that computes weighted semester grade point averages (SGPA) with dynamic course entries, credit multipliers, and academic honors classification.
+      </p>
+      <div class="program-meta-chips">
+        <span class="meta-chip">Weighted Average Math</span>
+        <span class="meta-chip">Dynamic Form Manipulation</span>
+        <span class="meta-chip">Academic Grading Scales</span>
+        <span class="meta-chip">DOM Calculations</span>
+      </div>
+    </section>
+
+    <!-- Objective Box -->
+    <div class="objective-box">
+      <h3>Educational Objective</h3>
+      <p>
+        Implement standard academic grading algorithms where <code>SGPA = &Sigma;(Credit &times; GradePoint) / &Sigma;(Credit)</code>. Learn to handle dynamic table rows, listen for input mutations, prevent zero-division errors, and classify cumulative performance according to university graduation classifications.
+      </p>
+    </div>
+
+    <!-- Live Interactive Demo -->
+    <section class="demo-card">
+      <div class="demo-card-header">
+        <div class="demo-title-area">
+          <span class="live-dot"></span>
+          <h3>Live Grade Point Average Engine</h3>
+        </div>
+        <span class="demo-tag">Production Demo</span>
+      </div>
+      <div class="demo-card-body">
+        <div class="calc-wrapper">
+          <!-- Summary Display -->
+          <div class="stats-banner">
+            <div class="stat-card">
+              <div class="label">Calculated SGPA</div>
+              <div class="val" id="dispSGPA">0.00</div>
+              <div class="desc" id="dispClassification">Awaiting calculation</div>
+            </div>
+            <div class="stat-card">
+              <div class="label">Total Credits</div>
+              <div class="val" id="dispCredits">0</div>
+              <div class="desc">Semester Registered</div>
+            </div>
+            <div class="stat-card">
+              <div class="label">Total Quality Points</div>
+              <div class="val" id="dispPoints">0.0</div>
+              <div class="desc">&Sigma;(Credits &times; Grade Point)</div>
+            </div>
+          </div>
+
+          <!-- Courses Table -->
+          <div class="course-table-wrapper">
+            <table class="course-table">
+              <thead>
+                <tr>
+                  <th style="width: 45%;">Course Title</th>
+                  <th style="width: 25%;">Credits</th>
+                  <th style="width: 25%;">Grade Earned</th>
+                  <th style="width: 5%;"></th>
+                </tr>
+              </thead>
+              <tbody id="courseBody">
+                <!-- Preset courses -->
+                <tr>
+                  <td><input type="text" class="c-name" value="Data Structures & Algorithms"></td>
+                  <td>
+                    <select class="c-credit">
+                      <option value="4" selected>4 Credits</option>
+                      <option value="3">3 Credits</option>
+                      <option value="2">2 Credits</option>
+                      <option value="1">1 Credit</option>
+                    </select>
+                  </td>
+                  <td>
+                    <select class="c-grade">
+                      <option value="10" selected>O (Outstanding - 10)</option>
+                      <option value="9">A+ (Excellent - 9)</option>
+                      <option value="8">A (Very Good - 8)</option>
+                      <option value="7">B+ (Good - 7)</option>
+                      <option value="6">B (Above Average - 6)</option>
+                      <option value="5">C (Pass - 5)</option>
+                      <option value="0">F (Fail - 0)</option>
+                    </select>
+                  </td>
+                  <td><button class="btn-delete-row" onclick="removeCourseRow(this)">&times;</button></td>
+                </tr>
+                <tr>
+                  <td><input type="text" class="c-name" value="Database Management Systems"></td>
+                  <td>
+                    <select class="c-credit">
+                      <option value="4">4 Credits</option>
+                      <option value="3" selected>3 Credits</option>
+                      <option value="2">2 Credits</option>
+                      <option value="1">1 Credit</option>
+                    </select>
+                  </td>
+                  <td>
+                    <select class="c-grade">
+                      <option value="10">O (Outstanding - 10)</option>
+                      <option value="9" selected>A+ (Excellent - 9)</option>
+                      <option value="8">A (Very Good - 8)</option>
+                      <option value="7">B+ (Good - 7)</option>
+                      <option value="6">B (Above Average - 6)</option>
+                      <option value="5">C (Pass - 5)</option>
+                      <option value="0">F (Fail - 0)</option>
+                    </select>
+                  </td>
+                  <td><button class="btn-delete-row" onclick="removeCourseRow(this)">&times;</button></td>
+                </tr>
+                <tr>
+                  <td><input type="text" class="c-name" value="Web Programming Lab"></td>
+                  <td>
+                    <select class="c-credit">
+                      <option value="4">4 Credits</option>
+                      <option value="3">3 Credits</option>
+                      <option value="2" selected>2 Credits</option>
+                      <option value="1">1 Credit</option>
+                    </select>
+                  </td>
+                  <td>
+                    <select class="c-grade">
+                      <option value="10" selected>O (Outstanding - 10)</option>
+                      <option value="9">A+ (Excellent - 9)</option>
+                      <option value="8">A (Very Good - 8)</option>
+                      <option value="7">B+ (Good - 7)</option>
+                      <option value="6">B (Above Average - 6)</option>
+                      <option value="5">C (Pass - 5)</option>
+                      <option value="0">F (Fail - 0)</option>
+                    </select>
+                  </td>
+                  <td><button class="btn-delete-row" onclick="removeCourseRow(this)">&times;</button></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <!-- Actions -->
+          <div class="btn-action-row">
+            <button class="btn-add-row" id="btnAddCourse">+ Add Another Course</button>
+            <button class="btn-calc" id="btnCalculate">Calculate Cumulative SGPA</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Source Code Viewer -->
+    <section class="code-viewer-section">
+      <div class="code-viewer-header">
+        <div class="code-tabs">
+          <button class="code-tab active" data-target="html-code">HTML Structure</button>
+          <button class="code-tab" data-target="css-code">CSS Styles</button>
+          <button class="code-tab" data-target="js-code">JavaScript Logic</button>
+        </div>
+        <div class="code-actions">
+          <button class="btn-toggle-code" id="btnToggleCode">Show/Hide Code</button>
+          <button class="btn-copy-code" id="btnCopyCode">Copy Source</button>
+        </div>
+      </div>
+
+      <div class="code-blocks-container" id="codeBlocksContainer">
+        <!-- HTML Code Block -->
+        <pre class="code-block active" id="html-code"><code>&lt;div class="calc-wrapper"&gt;
+  &lt;div class="stats-banner"&gt;
+    &lt;div class="stat-card"&gt;
+      &lt;div class="label"&gt;SGPA&lt;/div&gt;
+      &lt;div class="val" id="dispSGPA"&gt;0.00&lt;/div&gt;
+    &lt;/div&gt;
+    &lt;div class="stat-card"&gt;
+      &lt;div class="label"&gt;Credits&lt;/div&gt;
+      &lt;div class="val" id="dispCredits"&gt;0&lt;/div&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+
+  &lt;table class="course-table"&gt;
+    &lt;tbody id="courseBody"&gt;
+      &lt;tr&gt;
+        &lt;td&gt;&lt;input type="text" class="c-name" value="Data Structures"&gt;&lt;/td&gt;
+        &lt;td&gt;&lt;select class="c-credit"&gt;&lt;option value="4"&gt;4 Credits&lt;/option&gt;&lt;/select&gt;&lt;/td&gt;
+        &lt;td&gt;&lt;select class="c-grade"&gt;&lt;option value="10"&gt;O (10)&lt;/option&gt;&lt;/select&gt;&lt;/td&gt;
+        &lt;td&gt;&lt;button onclick="removeCourseRow(this)"&gt;&amp;times;&lt;/button&gt;&lt;/td&gt;
+      &lt;/tr&gt;
+    &lt;/tbody&gt;
+  &lt;/table&gt;
+
+  &lt;button id="btnAddCourse"&gt;+ Add Course&lt;/button&gt;
+  &lt;button id="btnCalculate"&gt;Calculate SGPA&lt;/button&gt;
+&lt;/div&gt;</code></pre>
+
+        <!-- CSS Code Block -->
+        <pre class="code-block" id="css-code"><code>.calc-wrapper {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 1.75rem;
+  background: var(--bg-card);
+  border-radius: var(--radius-lg);
+}
+.stats-banner {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 1rem;
+}
+.course-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+.course-table th, .course-table td {
+  padding: 0.75rem 1rem;
+  border-bottom: 1px solid var(--border-color);
+}</code></pre>
+
+        <!-- JS Code Block -->
+        <pre class="code-block" id="js-code"><code>// Grade and SGPA Calculation
+function calculateSGPA() {
+  const rows = document.querySelectorAll('#courseBody tr');
+  let totalCredits = 0;
+  let totalQualityPoints = 0;
+
+  rows.forEach(row =&gt; {
+    const credit = parseFloat(row.querySelector('.c-credit').value) || 0;
+    const grade = parseFloat(row.querySelector('.c-grade').value) || 0;
+    totalCredits += credit;
+    totalQualityPoints += (credit * grade);
+  });
+
+  const sgpa = totalCredits &gt; 0 ? (totalQualityPoints / totalCredits) : 0;
+  
+  document.getElementById('dispSGPA').textContent = sgpa.toFixed(2);
+  document.getElementById('dispCredits').textContent = totalCredits;
+  document.getElementById('dispPoints').textContent = totalQualityPoints.toFixed(1);
+
+  let honors = 'Pass';
+  if (sgpa &gt;= 9.0) honors = 'First Class with Distinction (Honors)';
+  else if (sgpa &gt;= 7.5) honors = 'First Class';
+  else if (sgpa &gt;= 6.0) honors = 'Second Class';
+  else if (sgpa &lt; 5.0 &amp;&amp; totalCredits &gt; 0) honors = 'Reappear Required';
+
+  document.getElementById('dispClassification').textContent = honors;
+}
+
+function addCourseRow() {
+  const tbody = document.getElementById('courseBody');
+  const tr = document.createElement('tr');
+  tr.innerHTML = `
+    &lt;td&gt;&lt;input type="text" class="c-name" placeholder="Course Name"&gt;&lt;/td&gt;
+    &lt;td&gt;
+      &lt;select class="c-credit"&gt;
+        &lt;option value="4"&gt;4 Credits&lt;/option&gt;
+        &lt;option value="3" selected&gt;3 Credits&lt;/option&gt;
+        &lt;option value="2"&gt;2 Credits&lt;/option&gt;
+        &lt;option value="1"&gt;1 Credit&lt;/option&gt;
+      &lt;/select&gt;
+    &lt;/td&gt;
+    &lt;td&gt;
+      &lt;select class="c-grade"&gt;
+        &lt;option value="10"&gt;O (Outstanding - 10)&lt;/option&gt;
+        &lt;option value="9"&gt;A+ (Excellent - 9)&lt;/option&gt;
+        &lt;option value="8" selected&gt;A (Very Good - 8)&lt;/option&gt;
+        &lt;option value="7"&gt;B+ (Good - 7)&lt;/option&gt;
+        &lt;option value="6"&gt;B (Above Average - 6)&lt;/option&gt;
+        &lt;option value="5"&gt;C (Pass - 5)&lt;/option&gt;
+        &lt;option value="0"&gt;F (Fail - 0)&lt;/option&gt;
+      &lt;/select&gt;
+    &lt;/td&gt;
+    &lt;td&gt;&lt;button class="btn-delete-row" onclick="removeCourseRow(this)"&gt;&amp;times;&lt;/button&gt;&lt;/td&gt;
+  `;
+  tbody.appendChild(tr);
+  calculateSGPA();
+}
+
+function removeCourseRow(btn) {
+  const tr = btn.closest('tr');
+  if (document.querySelectorAll('#courseBody tr').length &gt; 1) {
+    tr.remove();
+    calculateSGPA();
+  } else {
+    alert('At least one course is required.');
+  }
+}</code></pre>
+      </div>
+    </section>
+
+    <!-- Navigation Footer -->
+    <nav class="program-page-nav">
+      <a href="expense-tracker.html" class="nav-btn prev-btn">
+        <span class="nav-icon">&larr;</span>
+        <div class="nav-text">
+          <span class="nav-sub">Previous Project</span>
+          <span class="nav-title">Expense & Budget Tracker</span>
+        </div>
+      </a>
+      <a href="shopping-cart-app.html" class="nav-btn next-btn">
+        <div class="nav-text">
+          <span class="nav-sub">Next Project</span>
+          <span class="nav-title">Shopping Cart Engine</span>
+        </div>
+        <span class="nav-icon">&rarr;</span>
+      </a>
+    </nav>
+  </main>
+
+  <footer class="app-footer">
+    <div class="footer-container">
+      <p>&copy; 2026 WebLab Studio &bull; Developed by <strong>Shaik Roshan</strong> (Dept. of CSE) &bull; Academic Laboratory Record</p>
+    </div>
+  </footer>
+
+  <div id="toastNotification" class="toast">Code copied to clipboard!</div>
+
+  <script src="../../assets/js/code-viewer.js"></script>
+  <script>
+    (function() {
+      const btnAddCourse = document.getElementById('btnAddCourse');
+      const btnCalculate = document.getElementById('btnCalculate');
+      const courseBody = document.getElementById('courseBody');
+
+      function calculateSGPA() {
+        const rows = document.querySelectorAll('#courseBody tr');
+        let totalCredits = 0;
+        let totalQualityPoints = 0;
+
+        rows.forEach(row => {
+          const credit = parseFloat(row.querySelector('.c-credit').value) || 0;
+          const grade = parseFloat(row.querySelector('.c-grade').value) || 0;
+          totalCredits += credit;
+          totalQualityPoints += (credit * grade);
+        });
+
+        const sgpa = totalCredits > 0 ? (totalQualityPoints / totalCredits) : 0;
+        
+        document.getElementById('dispSGPA').textContent = sgpa.toFixed(2);
+        document.getElementById('dispCredits').textContent = totalCredits;
+        document.getElementById('dispPoints').textContent = totalQualityPoints.toFixed(1);
+
+        let honors = 'Awaiting calculation';
+        if (totalCredits > 0) {
+          if (sgpa >= 9.0) honors = 'First Class with Distinction';
+          else if (sgpa >= 7.5) honors = 'First Class';
+          else if (sgpa >= 6.0) honors = 'Second Class';
+          else if (sgpa >= 5.0) honors = 'Pass Division';
+          else honors = 'Reappear (Arrears)';
+        }
+
+        document.getElementById('dispClassification').textContent = honors;
+      }
+
+      function addCourseRow() {
+        const tr = document.createElement('tr');
+        tr.innerHTML = `
+          <td><input type="text" class="c-name" placeholder="Course Title"></td>
+          <td>
+            <select class="c-credit">
+              <option value="4">4 Credits</option>
+              <option value="3" selected>3 Credits</option>
+              <option value="2">2 Credits</option>
+              <option value="1">1 Credit</option>
+            </select>
+          </td>
+          <td>
+            <select class="c-grade">
+              <option value="10">O (Outstanding - 10)</option>
+              <option value="9">A+ (Excellent - 9)</option>
+              <option value="8" selected>A (Very Good - 8)</option>
+              <option value="7">B+ (Good - 7)</option>
+              <option value="6">B (Above Average - 6)</option>
+              <option value="5">C (Pass - 5)</option>
+              <option value="0">F (Fail - 0)</option>
+            </select>
+          </td>
+          <td><button class="btn-delete-row" onclick="removeCourseRow(this)">&times;</button></td>
+        `;
+        courseBody.appendChild(tr);
+
+        // bind change events
+        tr.querySelectorAll('select').forEach(s => s.addEventListener('change', calculateSGPA));
+        calculateSGPA();
+      }
+
+      window.removeCourseRow = function(btn) {
+        const tr = btn.closest('tr');
+        if (document.querySelectorAll('#courseBody tr').length > 1) {
+          tr.remove();
+          calculateSGPA();
+        } else {
+          alert('At least one course is required in semester record.');
+        }
+      };
+
+      btnAddCourse.addEventListener('click', addCourseRow);
+      btnCalculate.addEventListener('click', calculateSGPA);
+
+      // Auto calculate on any select dropdown change in initial rows
+      document.querySelectorAll('#courseBody select').forEach(s => s.addEventListener('change', calculateSGPA));
+
+      // Initial run
+      calculateSGPA();
+    })();
+  </script>
+</body>
+</html>

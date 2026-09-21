@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>JavaScript Event Handling Experiments | Web Tech Lab</title>
+  <link rel="stylesheet" href="../../assets/css/style.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500&family=Inter:wght@400;500;600&family=Outfit:wght@600;700;800&display=swap" rel="stylesheet">
+</head>
+<body>
+  <!-- Global Navbar -->
+  <nav class="navbar">
+    <div class="nav-container">
+      <a href="../../index.html" class="logo">
+        <span class="logo-icon">&lt;/&gt;</span>
+        <span>WebTech<span class="highlight">Lab</span></span>
+      </a>
+      <div class="nav-links">
+        <a href="../../index.html">Dashboard</a>
+        <a href="../../html/index.html">HTML</a>
+        <a href="../../css/index.html">CSS</a>
+        <a href="../index.html" class="active">JavaScript</a>
+      </div>
+    </div>
+  </nav>
+
+  <main class="page-container">
+    <div class="breadcrumb">
+      <a href="../../index.html">Home</a> &rsaquo; 
+      <a href="../index.html">JavaScript</a> &rsaquo; 
+      <span>Event Handling</span>
+    </div>
+
+    <header class="section-header">
+      <div class="badge badge-accent">Category: Event-Driven JavaScript</div>
+      <h1>Event Handling Experiments</h1>
+      <p class="section-subtitle">
+        Master asynchronous user interactions, mouse and keyboard triggers, drag-and-drop, 
+        event propagation (bubbling & capturing), event delegation, and interactive games.
+      </p>
+      <div class="student-pill">
+        <span>👨‍💻 Student: <strong>Shaik Roshan</strong></span>
+        <span>•</span>
+        <span>Reg No: <strong>[TO BE FILLED BY STUDENT]</strong></span>
+        <span>•</span>
+        <span>12 Practical Experiments</span>
+      </div>
+    </header>
+
+    <!-- Search & Filter Bar -->
+    <div class="search-filter-section">
+      <div class="search-box">
+        <span class="search-icon">🔍</span>
+        <input type="text" id="programSearch" placeholder="Search event experiments (e.g. mouse, keyboard, delegation, drag)...">
+      </div>
+      <div class="filter-pills">
+        <button class="filter-pill active" data-filter="all">All (12)</button>
+        <button class="filter-pill" data-filter="input">Mouse & Keyboard</button>
+        <button class="filter-pill" data-filter="advanced">Propagation & Delegation</button>
+        <button class="filter-pill" data-filter="games">Interactive Games</button>
+      </div>
+    </div>
+
+    <!-- Programs Grid -->
+    <div class="programs-grid" id="programsGrid">
+      
+      <!-- EV 01 -->
+      <a href="mouse-events.html" class="program-card" data-category="input">
+        <div class="card-top">
+          <span class="card-num">EV 01</span>
+          <span class="card-tag tag-primary">Mouse</span>
+        </div>
+        <h3 class="card-title">Mouse Events Playground</h3>
+        <p class="card-desc">Interactive detection of click, dblclick, contextmenu, mouseenter, mouseleave, and mousedown events.</p>
+        <div class="card-footer">
+          <span class="view-btn">Launch Demo &rarr;</span>
+        </div>
+      </a>
+
+      <!-- EV 02 -->
+      <a href="keyboard-events.html" class="program-card" data-category="input">
+        <div class="card-top">
+          <span class="card-num">EV 02</span>
+          <span class="card-tag tag-accent">Keyboard</span>
+        </div>
+        <h3 class="card-title">Keyboard Events & Keycode Visualizer</h3>
+        <p class="card-desc">Inspect keydown, keyup, e.key, e.code, and modifier keys with a real-time virtual keyboard readout.</p>
+        <div class="card-footer">
+          <span class="view-btn">Launch Demo &rarr;</span>
+        </div>
+      </a>
+
+      <!-- EV 03 -->
+      <a href="form-events.html" class="program-card" data-category="input">
+        <div class="card-top">
+          <span class="card-num">EV 03</span>
+          <span class="card-tag tag-secondary">Forms</span>
+        </div>
+        <h3 class="card-title">Form Events (focus, blur, change, input)</h3>
+        <p class="card-desc">Observe live lifecycle events during form field interactions, real-time input tracking, and submit hooks.</p>
+        <div class="card-footer">
+          <span class="view-btn">Launch Demo &rarr;</span>
+        </div>
+      </a>
+
+      <!-- EV 04 -->
+      <a href="event-listeners.html" class="program-card" data-category="advanced">
+        <div class="card-top">
+          <span class="card-num">EV 04</span>
+          <span class="card-tag tag-primary">Listeners</span>
+        </div>
+        <h3 class="card-title">addEventListener & removeEventListener</h3>
+        <p class="card-desc">Attach multiple listeners to elements, pass options ({once: true}), and cleanly remove handlers dynamically.</p>
+        <div class="card-footer">
+          <span class="view-btn">Launch Demo &rarr;</span>
+        </div>
+      </a>
+
+      <!-- EV 05 -->
+      <a href="event-bubbling-capturing.html" class="program-card" data-category="advanced">
+        <div class="card-top">
+          <span class="card-num">EV 05</span>
+          <span class="card-tag tag-warning">Propagation</span>
+        </div>
+        <h3 class="card-title">Event Bubbling vs Capturing</h3>
+        <p class="card-desc">Visual demonstration of the 3-phase DOM event lifecycle, stopPropagation(), and useCapture flags.</p>
+        <div class="card-footer">
+          <span class="view-btn">Launch Demo &rarr;</span>
+        </div>
+      </a>
+
+      <!-- EV 06 -->
+      <a href="event-delegation.html" class="program-card" data-category="advanced">
+        <div class="card-top">
+          <span class="card-num">EV 06</span>
+          <span class="card-tag tag-success">Delegation</span>
+        </div>
+        <h3 class="card-title">Event Delegation Pattern</h3>
+        <p class="card-desc">Leverage event bubbling to handle events on hundreds of dynamically generated elements with a single parent listener.</p>
+        <div class="card-footer">
+          <span class="view-btn">Launch Demo &rarr;</span>
+        </div>
+      </a>
+
+      <!-- EV 07 -->
+      <a href="mouse-tracker.html" class="program-card" data-category="input">
+        <div class="card-top">
+          <span class="card-num">EV 07</span>
+          <span class="card-tag tag-accent">Cursor</span>
+        </div>
+        <h3 class="card-title">Mouse Tracker & Coordinate Radar</h3>
+        <p class="card-desc">Track clientX, clientY, screenX, screenY coordinates with an animated interactive spotlight cursor effect.</p>
+        <div class="card-footer">
+          <span class="view-btn">Launch Demo &rarr;</span>
+        </div>
+      </a>
+
+      <!-- EV 08 -->
+      <a href="drag-and-drop.html" class="program-card" data-category="advanced">
+        <div class="card-top">
+          <span class="card-num">EV 08</span>
+          <span class="card-tag tag-secondary">Drag & Drop</span>
+        </div>
+        <h3 class="card-title">HTML5 Drag and Drop Kanban Board</h3>
+        <p class="card-desc">Drag tasks between 'To Do', 'In Progress', and 'Completed' columns using dragstart, dragover, and drop events.</p>
+        <div class="card-footer">
+          <span class="view-btn">Launch Demo &rarr;</span>
+        </div>
+      </a>
+
+      <!-- EV 09 -->
+      <a href="arrow-key-mover.html" class="program-card" data-category="games">
+        <div class="card-top">
+          <span class="card-num">EV 09</span>
+          <span class="card-tag tag-success">2D Canvas</span>
+        </div>
+        <h3 class="card-title">Keyboard Arrow & WASD Character Mover</h3>
+        <p class="card-desc">Move an avatar inside a 2D bounding box with obstacle collision detection and smooth position clamping.</p>
+        <div class="card-footer">
+          <span class="view-btn">Launch Demo &rarr;</span>
+        </div>
+      </a>
+
+      <!-- EV 10 -->
+      <a href="click-counters.html" class="program-card" data-category="games">
+        <div class="card-top">
+          <span class="card-num">EV 10</span>
+          <span class="card-tag tag-warning">Speed</span>
+        </div>
+        <h3 class="card-title">Click Speed Tester (CPS Meter)</h3>
+        <p class="card-desc">Test clicking speed (Clicks Per Second) within a 5-second countdown with high score tracking.</p>
+        <div class="card-footer">
+          <span class="view-btn">Launch Demo &rarr;</span>
+        </div>
+      </a>
+
+      <!-- EV 11 -->
+      <a href="reaction-time-game.html" class="program-card" data-category="games">
+        <div class="card-top">
+          <span class="card-num">EV 11</span>
+          <span class="card-tag tag-primary">Reaction</span>
+        </div>
+        <h3 class="card-title">Reaction Time Measurement Test</h3>
+        <p class="card-desc">Measure human reaction time in milliseconds: wait for the screen to turn green and click instantly!</p>
+        <div class="card-footer">
+          <span class="view-btn">Launch Demo &rarr;</span>
+        </div>
+      </a>
+
+      <!-- EV 12 -->
+      <a href="typing-speed-test.html" class="program-card" data-category="games">
+        <div class="card-top">
+          <span class="card-num">EV 12</span>
+          <span class="card-tag tag-accent">WPM Test</span>
+        </div>
+        <h3 class="card-title">Typing Speed Tester (WPM & Accuracy)</h3>
+        <p class="card-desc">Real-time typing test calculating Words Per Minute (WPM), net accuracy, character errors, and timer countdown.</p>
+        <div class="card-footer">
+          <span class="view-btn">Launch Demo &rarr;</span>
+        </div>
+      </a>
+
+    </div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-content">
+      <p>&copy; 2026 Web Technology Practical Laboratory • Prepared by <strong>Shaik Roshan</strong></p>
+      <p class="subtext">Computer Science & Engineering Department</p>
+    </div>
+  </footer>
+
+  <script src="../../assets/js/main.js"></script>
+</body>
+</html>

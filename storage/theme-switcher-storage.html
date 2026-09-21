@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ST 05 - Dark / Light Theme Persistence | Web Tech Lab</title>
+  <link rel="stylesheet" href="../../assets/css/style.css">
+  <link rel="stylesheet" href="../../assets/css/program-viewer.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500&family=Inter:wght@400;500;600&family=Outfit:wght@600;700;800&display=swap" rel="stylesheet">
+  <style>
+    .theme-playground-box {
+      border-radius: 12px;
+      padding: 2.5rem;
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      margin-bottom: 1.5rem;
+      border: 1px solid #334155;
+    }
+    /* Theme variants applied inside playground */
+    .theme-dark {
+      background: #0f172a;
+      color: #f8fafc;
+      border-color: #38bdf8;
+    }
+    .theme-light {
+      background: #f8fafc;
+      color: #0f172a;
+      border-color: #cbd5e1;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+    }
+    .theme-cyber {
+      background: #18002e;
+      color: #f0abfc;
+      border-color: #d946ef;
+      box-shadow: 0 0 25px rgba(217, 70, 239, 0.3);
+    }
+    .theme-pills {
+      display: flex;
+      gap: 0.75rem;
+      justify-content: center;
+      margin-top: 1.5rem;
+    }
+    .theme-pill-btn {
+      padding: 0.6rem 1.25rem;
+      border-radius: 50px;
+      border: 1px solid #475569;
+      background: #1e293b;
+      color: #cbd5e1;
+      cursor: pointer;
+      font-weight: 500;
+      transition: all 0.2s;
+    }
+    .theme-pill-btn.active {
+      background: #38bdf8;
+      color: #000;
+      border-color: #38bdf8;
+      font-weight: 700;
+    }
+  </style>
+</head>
+<body>
+  <!-- Navbar -->
+  <nav class="navbar">
+    <div class="nav-container">
+      <a href="../../index.html" class="logo">
+        <span class="logo-icon">&lt;/&gt;</span>
+        <span>WebTech<span class="highlight">Lab</span></span>
+      </a>
+      <div class="nav-links">
+        <a href="../../index.html">Dashboard</a>
+        <a href="../../html/index.html">HTML</a>
+        <a href="../../css/index.html">CSS</a>
+        <a href="../index.html" class="active">JavaScript</a>
+      </div>
+    </div>
+  </nav>
+
+  <main class="page-container">
+    <div class="breadcrumb">
+      <a href="../../index.html">Home</a> &rsaquo; 
+      <a href="../index.html">JavaScript</a> &rsaquo; 
+      <a href="index.html">Storage</a> &rsaquo; 
+      <span>ST 05 - Theme Persistence</span>
+    </div>
+
+    <div class="program-header">
+      <div class="program-badge">Web Storage • Program 05</div>
+      <h1>Dark / Light Theme Persistence with LocalStorage</h1>
+      <p class="program-desc">
+        Save user theme preferences (Dark Mode, Light Mode, Cyberpunk) in <code>localStorage</code> so the preferred aesthetic persists seamlessly upon page refresh and subsequent visits.
+      </p>
+      <div class="student-pill">
+        <span>👨‍💻 Student: <strong>Shaik Roshan</strong></span>
+        <span>•</span>
+        <span>Reg No: <strong>[TO BE FILLED BY STUDENT]</strong></span>
+      </div>
+    </div>
+
+    <!-- Live Demo -->
+    <div class="demo-section">
+      <div class="demo-header">
+        <div class="demo-title">
+          <span>🎨</span> Persistent Theme Switcher
+        </div>
+        <span class="badge badge-success" id="activeThemeBadge">Active: Dark</span>
+      </div>
+      <div class="demo-body">
+        
+        <div id="playground" class="theme-playground-box theme-dark">
+          <h2 style="margin-bottom: 0.5rem;" id="themeHeader">Dark Mode Active</h2>
+          <p style="opacity: 0.85; line-height: 1.6; max-width: 540px;">
+            This entire container state is synchronized with <code>localStorage.getItem("app_theme")</code>.
+            Switch themes below, then refresh your web browser (F5) to verify state persistence!
+          </p>
+
+          <div class="theme-pills">
+            <button class="theme-pill-btn active" id="btnThemeDark" onclick="applyTheme('dark')">🌙 Dark Theme</button>
+            <button class="theme-pill-btn" id="btnThemeLight" onclick="applyTheme('light')">☀️ Light Theme</button>
+            <button class="theme-pill-btn" id="btnThemeCyber" onclick="applyTheme('cyber')">👾 Cyberpunk</button>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- Source Code Viewer -->
+    <div class="code-viewer-section">
+      <div class="code-viewer-header">
+        <div class="code-tabs">
+          <button class="code-tab active" data-tab="js">JavaScript Implementation</button>
+        </div>
+        <div class="code-actions">
+          <button class="btn-secondary" id="copyCodeBtn">📋 Copy Code</button>
+        </div>
+      </div>
+      <div class="code-body">
+        <pre><code id="sourceCode">// 1. Apply theme and save preference to LocalStorage
+function applyTheme(themeName) {
+  // Update element class
+  container.className = `theme-playground-box theme-${themeName}`;
+  
+  // Persist choice to localStorage
+  localStorage.setItem("user_preferred_theme", themeName);
+}
+
+// 2. Load stored theme on initial page render
+window.addEventListener("DOMContentLoaded", () => {
+  const savedTheme = localStorage.getItem("user_preferred_theme") || "dark";
+  applyTheme(savedTheme);
+});</code></pre>
+      </div>
+    </div>
+
+    <!-- Navigation -->
+    <div class="program-nav">
+      <a href="notes-app-storage.html" class="nav-prev">&larr; ST 04: Sticky Notes</a>
+      <a href="font-size-preference.html" class="nav-next">ST 06: Font Size Preference &rarr;</a>
+    </div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-content">
+      <p>&copy; 2026 Web Technology Practical Laboratory • Prepared by <strong>Shaik Roshan</strong></p>
+      <p class="subtext">Computer Science & Engineering Department</p>
+    </div>
+  </footer>
+
+  <script src="../../assets/js/code-viewer.js"></script>
+  <script>
+    const playground = document.getElementById("playground");
+    const themeHeader = document.getElementById("themeHeader");
+    const badge = document.getElementById("activeThemeBadge");
+
+    function applyTheme(theme) {
+      playground.className = `theme-playground-box theme-${theme}`;
+      localStorage.setItem("lab_theme_pref", theme);
+
+      document.querySelectorAll(".theme-pill-btn").forEach(btn => btn.classList.remove("active"));
+      if (theme === "dark") {
+        document.getElementById("btnThemeDark").classList.add("active");
+        themeHeader.textContent = "🌙 Dark Mode Active";
+        badge.textContent = "Active: Dark";
+      } else if (theme === "light") {
+        document.getElementById("btnThemeLight").classList.add("active");
+        themeHeader.textContent = "☀️ Light Mode Active";
+        badge.textContent = "Active: Light";
+      } else if (theme === "cyber") {
+        document.getElementById("btnThemeCyber").classList.add("active");
+        themeHeader.textContent = "👾 Cyberpunk Neon Active";
+        badge.textContent = "Active: Cyberpunk";
+      }
+    }
+
+    // Load initial saved theme
+    const saved = localStorage.getItem("lab_theme_pref") || "dark";
+    applyTheme(saved);
+  </script>
+</body>
+</html>

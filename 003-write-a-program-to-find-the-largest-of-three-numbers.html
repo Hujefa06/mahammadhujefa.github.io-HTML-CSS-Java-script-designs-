@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Taj Mahal - Largest Number</title>
+
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial;
+            background: #eaf8ff;
+            color: #063b4c;
+            padding: 50px;
+            text-align: center;
+        }
+
+        .card {
+            max-width: 500px;
+            margin: auto;
+            background: white;
+            padding: 35px;
+            border-radius: 16px;
+            box-shadow: 0 5px 15px #b5d9e5;
+        }
+
+        h1 {
+            color: #075b73;
+        }
+
+        #result {
+            font-size: 24px;
+            font-weight: bold;
+            color: #075b73;
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="card">
+    <h1>🧭 Island Numbers</h1>
+    <p>Numbers: 25, 48, 36</p>
+    <p id="result"></p>
+</div>
+
+<script>
+    let a = 25;
+    let b = 48;
+    let c = 36;
+
+    let largest = Math.max(a, b, c);
+
+    document.getElementById("result").textContent =
+        "Largest number: " + largest;
+</script>
+
+</body>
+</html>

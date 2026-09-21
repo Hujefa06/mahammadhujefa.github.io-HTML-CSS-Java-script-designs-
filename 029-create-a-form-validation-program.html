@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Taj Mahal - Form Validation</title>
+<style>
+body{margin:0;font-family:Arial;background:#eaf8ff;padding:40px;color:#063b4c}
+form{max-width:500px;margin:auto;background:white;padding:30px;border-radius:16px;box-shadow:0 5px 15px #b5d9e5}
+input{width:100%;padding:12px;margin:7px 0 15px;box-sizing:border-box;border:1px solid #9bcbd8;border-radius:8px}
+button{width:100%;padding:12px;background:#075b73;color:white;border:0;border-radius:8px}
+#message{font-weight:bold;color:#075b73;text-align:center}
+</style>
+</head>
+<body>
+
+<form onsubmit="return validateForm()">
+
+<h1>🏛️ Explorer Registration</h1>
+
+<label>Name</label>
+<input type="text" id="name">
+
+<label>Email</label>
+<input type="email" id="email">
+
+<button type="submit">Register</button>
+
+<p id="message"></p>
+
+</form>
+
+<script>
+function validateForm() {
+    let name = document.getElementById("name").value.trim();
+    let email = document.getElementById("email").value.trim();
+
+    if (name === "" || email === "") {
+        document.getElementById("message").textContent =
+            "Please fill in all fields.";
+        return false;
+    }
+
+    document.getElementById("message").textContent =
+        "Registration successful!";
+
+    return false;
+}
+</script>
+
+</body>
+</html>

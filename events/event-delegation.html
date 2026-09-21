@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>EV 06 - Event Delegation Pattern | Web Tech Lab</title>
+  <link rel="stylesheet" href="../../assets/css/style.css">
+  <link rel="stylesheet" href="../../assets/css/program-viewer.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500&family=Inter:wght@400;500;600&family=Outfit:wght@600;700;800&display=swap" rel="stylesheet">
+  <style>
+    .delegation-card {
+      max-width: 600px;
+      margin: 0 auto;
+      background: #0f172a;
+      border: 1px solid #334155;
+      border-radius: 12px;
+      padding: 1.75rem;
+    }
+    .input-bar {
+      display: flex;
+      gap: 0.5rem;
+      margin-bottom: 1.5rem;
+    }
+    .input-bar input {
+      flex: 1;
+      background: #1e293b;
+      border: 1px solid #475569;
+      color: #f8fafc;
+      padding: 0.65rem 0.85rem;
+      border-radius: 6px;
+    }
+    .delegated-list {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+    }
+    .list-item-btn {
+      background: #1e293b;
+      border: 1px solid #334155;
+      padding: 0.75rem 1rem;
+      border-radius: 6px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      transition: background 0.2s;
+    }
+    .list-item-btn:hover {
+      background: #253347;
+    }
+    .item-badge {
+      background: #38bdf8;
+      color: #000;
+      font-size: 0.75rem;
+      padding: 2px 6px;
+      border-radius: 4px;
+      font-weight: 600;
+      margin-right: 0.5rem;
+    }
+    .btn-action-del {
+      background: #ef4444;
+      border: none;
+      color: white;
+      padding: 4px 8px;
+      border-radius: 4px;
+      cursor: pointer;
+      font-size: 0.75rem;
+    }
+    .btn-action-view {
+      background: #3b82f6;
+      border: none;
+      color: white;
+      padding: 4px 8px;
+      border-radius: 4px;
+      cursor: pointer;
+      font-size: 0.75rem;
+    }
+  </style>
+</head>
+<body>
+  <!-- Navbar -->
+  <nav class="navbar">
+    <div class="nav-container">
+      <a href="../../index.html" class="logo">
+        <span class="logo-icon">&lt;/&gt;</span>
+        <span>WebTech<span class="highlight">Lab</span></span>
+      </a>
+      <div class="nav-links">
+        <a href="../../index.html">Dashboard</a>
+        <a href="../../html/index.html">HTML</a>
+        <a href="../../css/index.html">CSS</a>
+        <a href="../index.html" class="active">JavaScript</a>
+      </div>
+    </div>
+  </nav>
+
+  <main class="page-container">
+    <div class="breadcrumb">
+      <a href="../../index.html">Home</a> &rsaquo; 
+      <a href="../index.html">JavaScript</a> &rsaquo; 
+      <a href="index.html">Events</a> &rsaquo; 
+      <span>EV 06 - Event Delegation Pattern</span>
+    </div>
+
+    <div class="program-header">
+      <div class="program-badge">Event Handling • Program 06</div>
+      <h1>Event Delegation Pattern using e.target.closest()</h1>
+      <p class="program-desc">
+        Bind a single event listener to a common parent element instead of attaching hundreds of separate 
+        listeners to dynamic children. Works seamlessly for newly created DOM nodes without re-binding.
+      </p>
+      <div class="student-pill">
+        <span>👨‍💻 Student: <strong>Shaik Roshan</strong></span>
+        <span>•</span>
+        <span>Reg No: <strong>[TO BE FILLED BY STUDENT]</strong></span>
+      </div>
+    </div>
+
+    <!-- Live Demo -->
+    <div class="demo-section">
+      <div class="demo-header">
+        <div class="demo-title">
+          <span>🎯</span> Delegated Action Board
+        </div>
+        <span class="badge badge-success">Single Listener on &lt;ul&gt;</span>
+      </div>
+      <div class="demo-body">
+        
+        <div class="delegation-card">
+          <div class="input-bar">
+            <input type="text" id="newItemTitle" placeholder="Add dynamic item (e.g. Experiment 12 Analysis)...">
+            <button class="btn btn-primary" onclick="addNewItem()">+ Add Item</button>
+          </div>
+
+          <div style="font-size: 0.85rem; color: #94a3b8; margin-bottom: 0.75rem;">
+            Notice: Parent &lt;ul id="delegatedList"&gt; has <strong>only ONE</strong> click listener handling all buttons!
+          </div>
+
+          <ul id="delegatedList" class="delegated-list">
+            <li class="list-item-btn" data-id="101">
+              <div>
+                <span class="item-badge">ID: 101</span>
+                <span>Algorithm Complexity Assignment</span>
+              </div>
+              <div style="display: flex; gap: 0.35rem;">
+                <button class="btn-action-view" data-action="view">View</button>
+                <button class="btn-action-del" data-action="delete">Delete</button>
+              </div>
+            </li>
+            <li class="list-item-btn" data-id="102">
+              <div>
+                <span class="item-badge">ID: 102</span>
+                <span>Database Schema Normalization</span>
+              </div>
+              <div style="display: flex; gap: 0.35rem;">
+                <button class="btn-action-view" data-action="view">View</button>
+                <button class="btn-action-del" data-action="delete">Delete</button>
+              </div>
+            </li>
+          </ul>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- Source Code Viewer -->
+    <div class="code-viewer-section">
+      <div class="code-viewer-header">
+        <div class="code-tabs">
+          <button class="code-tab active" data-tab="js">JavaScript Implementation</button>
+        </div>
+        <div class="code-actions">
+          <button class="btn-secondary" id="copyCodeBtn">📋 Copy Code</button>
+        </div>
+      </div>
+      <div class="code-body">
+        <pre><code id="sourceCode">const parentList = document.getElementById("delegatedList");
+
+// Single event listener on the PARENT container
+parentList.addEventListener("click", (event) => {
+  const target = event.target;
+  const action = target.getAttribute("data-action");
+  const row = target.closest(".list-item-btn");
+
+  if (!action || !row) return;
+
+  const itemId = row.getAttribute("data-id");
+
+  if (action === "delete") {
+    row.remove(); // Removes the clicked row
+    console.log(`Deleted item ${itemId}`);
+  } else if (action === "view") {
+    alert(`Viewing details for Item #${itemId}`);
+  }
+});</code></pre>
+      </div>
+    </div>
+
+    <!-- Navigation -->
+    <div class="program-nav">
+      <a href="event-bubbling-capturing.html" class="nav-prev">&larr; EV 05: Bubbling & Capturing</a>
+      <a href="mouse-tracker.html" class="nav-next">EV 07: Mouse Tracker &rarr;</a>
+    </div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-content">
+      <p>&copy; 2026 Web Technology Practical Laboratory • Prepared by <strong>Shaik Roshan</strong></p>
+      <p class="subtext">Computer Science & Engineering Department</p>
+    </div>
+  </footer>
+
+  <script src="../../assets/js/code-viewer.js"></script>
+  <script>
+    const parentList = document.getElementById("delegatedList");
+    const input = document.getElementById("newItemTitle");
+    let nextId = 103;
+
+    // Single Delegated Listener
+    parentList.addEventListener("click", (e) => {
+      const action = e.target.getAttribute("data-action");
+      const row = e.target.closest(".list-item-btn");
+
+      if (!action || !row) return;
+
+      const itemId = row.getAttribute("data-id");
+      const itemTitle = row.querySelector("span:not(.item-badge)").textContent;
+
+      if (action === "delete") {
+        row.remove();
+      } else if (action === "view") {
+        alert(`Details for Item ID: ${itemId}\nTitle: "${itemTitle}"`);
+      }
+    });
+
+    function addNewItem() {
+      const title = input.value.trim();
+      if (!title) return;
+
+      const li = document.createElement("li");
+      li.className = "list-item-btn";
+      li.setAttribute("data-id", nextId);
+      li.innerHTML = `
+        <div>
+          <span class="item-badge">ID: ${nextId++}</span>
+          <span>${title}</span>
+        </div>
+        <div style="display: flex; gap: 0.35rem;">
+          <button class="btn-action-view" data-action="view">View</button>
+          <button class="btn-action-del" data-action="delete">Delete</button>
+        </div>
+      `;
+      parentList.appendChild(li);
+      input.value = "";
+    }
+  </script>
+</body>
+</html>

@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Taj Mahal - Array Values</title>
+<style>
+body{margin:0;font-family:Arial;background:#eaf8ff;color:#063b4c;text-align:center;padding:50px}
+.card{max-width:600px;margin:auto;background:white;padding:35px;border-radius:16px;box-shadow:0 5px 15px #b5d9e5}
+h1{color:#075b73}
+.result{padding:12px;background:#eaf8ff;margin:10px;border-radius:8px;font-weight:bold}
+</style>
+</head>
+<body>
+
+<div class="card">
+<h1>🧭 Island Array</h1>
+<p>Array: 25, 8, 42, 15, 67, 12</p>
+<div class="result" id="largest"></div>
+<div class="result" id="smallest"></div>
+</div>
+
+<script>
+let numbers = [25, 8, 42, 15, 67, 12];
+
+let largest = Math.max(...numbers);
+let smallest = Math.min(...numbers);
+
+document.getElementById("largest").textContent =
+    "Largest: " + largest;
+
+document.getElementById("smallest").textContent =
+    "Smallest: " + smallest;
+</script>
+
+</body>
+</html>

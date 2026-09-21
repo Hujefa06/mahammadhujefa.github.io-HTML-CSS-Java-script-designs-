@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ST 06 - Reader Font-Size Preference Saver | Web Tech Lab</title>
+  <link rel="stylesheet" href="../../assets/css/style.css">
+  <link rel="stylesheet" href="../../assets/css/program-viewer.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500;700&family=Inter:wght@400;500;600&family=Outfit:wght@600;700;800&display=swap" rel="stylesheet">
+  <style>
+    .reader-card {
+      max-width: 680px;
+      margin: 0 auto;
+      background: #0f172a;
+      border: 1px solid #334155;
+      border-radius: 12px;
+      padding: 2rem;
+    }
+    .reader-toolbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: #1e293b;
+      padding: 0.75rem 1.25rem;
+      border-radius: 8px;
+      margin-bottom: 1.5rem;
+      flex-wrap: wrap;
+      gap: 0.75rem;
+    }
+    .font-btn-group {
+      display: flex;
+      gap: 0.5rem;
+      align-items: center;
+    }
+    .btn-font-size {
+      background: #0f172a;
+      border: 1px solid #475569;
+      color: #fff;
+      padding: 4px 12px;
+      border-radius: 6px;
+      cursor: pointer;
+      font-weight: 600;
+    }
+    .reading-content {
+      line-height: 1.7;
+      color: #cbd5e1;
+      transition: font-size 0.2s ease;
+    }
+  </style>
+</head>
+<body>
+  <!-- Navbar -->
+  <nav class="navbar">
+    <div class="nav-container">
+      <a href="../../index.html" class="logo">
+        <span class="logo-icon">&lt;/&gt;</span>
+        <span>WebTech<span class="highlight">Lab</span></span>
+      </a>
+      <div class="nav-links">
+        <a href="../../index.html">Dashboard</a>
+        <a href="../../html/index.html">HTML</a>
+        <a href="../../css/index.html">CSS</a>
+        <a href="../index.html" class="active">JavaScript</a>
+      </div>
+    </div>
+  </nav>
+
+  <main class="page-container">
+    <div class="breadcrumb">
+      <a href="../../index.html">Home</a> &rsaquo; 
+      <a href="../index.html">JavaScript</a> &rsaquo; 
+      <a href="index.html">Storage</a> &rsaquo; 
+      <span>ST 06 - Reader Font-Size Preference</span>
+    </div>
+
+    <div class="program-header">
+      <div class="program-badge">Web Storage • Program 06</div>
+      <h1>Reader Accessibility Font-Size Preference Saver</h1>
+      <p class="program-desc">
+        Allow readers to dynamically adjust reading font size (Small, Medium, Large, Extra Large). 
+        The chosen typography scaling is remembered via <code>localStorage</code> for future visits.
+      </p>
+      <div class="student-pill">
+        <span>👨‍💻 Student: <strong>Shaik Roshan</strong></span>
+        <span>•</span>
+        <span>Reg No: <strong>[TO BE FILLED BY STUDENT]</strong></span>
+      </div>
+    </div>
+
+    <!-- Live Demo -->
+    <div class="demo-section">
+      <div class="demo-header">
+        <div class="demo-title">
+          <span>📖</span> Accessible Article Reader
+        </div>
+        <span class="badge badge-success" id="sizeBadge">Size: 18px</span>
+      </div>
+      <div class="demo-body">
+        
+        <div class="reader-card">
+          <div class="reader-toolbar">
+            <span style="font-size: 0.85rem; color: #94a3b8;">Adjust Reading Font Size:</span>
+            <div class="font-btn-group">
+              <button class="btn-font-size" onclick="setFontSize(14)">A- (14px)</button>
+              <button class="btn-font-size" onclick="setFontSize(18)">A (18px)</button>
+              <button class="btn-font-size" onclick="setFontSize(22)">A+ (22px)</button>
+              <button class="btn-font-size" onclick="setFontSize(26)">A++ (26px)</button>
+            </div>
+          </div>
+
+          <article id="articleContent" class="reading-content" style="font-size: 18px;">
+            <h2 style="color: #38bdf8; margin-bottom: 0.75rem;">Web Technologies Laboratory Coursework</h2>
+            <p style="margin-bottom: 1rem;">
+              The Document Object Model (DOM) is an application programming interface for HTML and XML documents. It defines the logical structure of documents and the way a document is accessed and manipulated. With the Document Object Model, programmers can build documents, navigate their structure, and add, modify, or delete elements and content.
+            </p>
+            <p>
+              In modern web development, user preferences such as typography scaling, dark mode, and high-contrast color palettes are stored directly on the client machine using HTML5 Web Storage APIs. This ensures instantaneous page rendering tailored to individual accessibility requirements without unnecessary server overhead.
+            </p>
+          </article>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- Source Code Viewer -->
+    <div class="code-viewer-section">
+      <div class="code-viewer-header">
+        <div class="code-tabs">
+          <button class="code-tab active" data-tab="js">JavaScript Implementation</button>
+        </div>
+        <div class="code-actions">
+          <button class="btn-secondary" id="copyCodeBtn">📋 Copy Code</button>
+        </div>
+      </div>
+      <div class="code-body">
+        <pre><code id="sourceCode">const article = document.getElementById("articleContent");
+
+// 1. Set font size and save to localStorage
+function setFontSize(pxSize) {
+  article.style.fontSize = pxSize + "px";
+  localStorage.setItem("reader_font_size", pxSize);
+}
+
+// 2. Restore preference on load
+window.addEventListener("DOMContentLoaded", () => {
+  const savedSize = localStorage.getItem("reader_font_size") || 18;
+  setFontSize(savedSize);
+});</code></pre>
+      </div>
+    </div>
+
+    <!-- Navigation -->
+    <div class="program-nav">
+      <a href="theme-switcher-storage.html" class="nav-prev">&larr; ST 05: Theme Switcher</a>
+      <a href="visitor-counter.html" class="nav-next">ST 07: Visitor Counter &rarr;</a>
+    </div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-content">
+      <p>&copy; 2026 Web Technology Practical Laboratory • Prepared by <strong>Shaik Roshan</strong></p>
+      <p class="subtext">Computer Science & Engineering Department</p>
+    </div>
+  </footer>
+
+  <script src="../../assets/js/code-viewer.js"></script>
+  <script>
+    const article = document.getElementById("articleContent");
+    const badge = document.getElementById("sizeBadge");
+
+    function setFontSize(size) {
+      article.style.fontSize = `${size}px`;
+      badge.textContent = `Size: ${size}px`;
+      localStorage.setItem("lab_font_size_pref", size);
+    }
+
+    const savedSize = localStorage.getItem("lab_font_size_pref") || 18;
+    setFontSize(parseInt(savedSize));
+  </script>
+</body>
+</html>

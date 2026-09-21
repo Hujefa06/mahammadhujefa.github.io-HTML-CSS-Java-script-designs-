@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>EV 07 - Mouse Tracker & Coordinates | Web Tech Lab</title>
+  <link rel="stylesheet" href="../../assets/css/style.css">
+  <link rel="stylesheet" href="../../assets/css/program-viewer.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500&family=Inter:wght@400;500;600&family=Outfit:wght@600;700;800&display=swap" rel="stylesheet">
+  <style>
+    .radar-canvas {
+      position: relative;
+      height: 320px;
+      background: radial-gradient(circle at center, #1e293b 0%, #0f172a 100%);
+      border: 1px solid #334155;
+      border-radius: 12px;
+      overflow: hidden;
+      cursor: crosshair;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .crosshair-h, .crosshair-v {
+      position: absolute;
+      background: rgba(56, 189, 248, 0.25);
+      pointer-events: none;
+    }
+    .crosshair-h {
+      left: 0;
+      right: 0;
+      height: 1px;
+      top: 50%;
+    }
+    .crosshair-v {
+      top: 0;
+      bottom: 0;
+      width: 1px;
+      left: 50%;
+    }
+    .cursor-spotlight {
+      position: absolute;
+      width: 20px;
+      height: 20px;
+      border-radius: 50%;
+      border: 2px solid #38bdf8;
+      background: rgba(56, 189, 248, 0.2);
+      pointer-events: none;
+      transform: translate(-50%, -50%);
+      box-shadow: 0 0 15px rgba(56, 189, 248, 0.6);
+      transition: width 0.15s, height 0.15s;
+    }
+    .coord-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+      gap: 1rem;
+      margin-top: 1.5rem;
+    }
+    .coord-card {
+      background: #0f172a;
+      border: 1px solid #334155;
+      border-radius: 8px;
+      padding: 1rem;
+      text-align: center;
+    }
+    .coord-card label {
+      font-size: 0.75rem;
+      color: #94a3b8;
+      text-transform: uppercase;
+      display: block;
+      margin-bottom: 0.25rem;
+    }
+    .coord-val {
+      font-family: 'Fira Code', monospace;
+      font-size: 1.25rem;
+      color: #38bdf8;
+      font-weight: 600;
+    }
+  </style>
+</head>
+<body>
+  <!-- Navbar -->
+  <nav class="navbar">
+    <div class="nav-container">
+      <a href="../../index.html" class="logo">
+        <span class="logo-icon">&lt;/&gt;</span>
+        <span>WebTech<span class="highlight">Lab</span></span>
+      </a>
+      <div class="nav-links">
+        <a href="../../index.html">Dashboard</a>
+        <a href="../../html/index.html">HTML</a>
+        <a href="../../css/index.html">CSS</a>
+        <a href="../index.html" class="active">JavaScript</a>
+      </div>
+    </div>
+  </nav>
+
+  <main class="page-container">
+    <div class="breadcrumb">
+      <a href="../../index.html">Home</a> &rsaquo; 
+      <a href="../index.html">JavaScript</a> &rsaquo; 
+      <a href="index.html">Events</a> &rsaquo; 
+      <span>EV 07 - Mouse Tracker & Coordinates</span>
+    </div>
+
+    <div class="program-header">
+      <div class="program-badge">Event Handling • Program 07</div>
+      <h1>Mouse Coordinates Tracker & Cursor Radar</h1>
+      <p class="program-desc">
+        Track mouse movements continuously using <code>mousemove</code>. Compare coordinate coordinate frames: 
+        <code>offsetX/Y</code> (element relative), <code>clientX/Y</code> (viewport relative), 
+        and <code>pageX/Y</code> (entire document relative).
+      </p>
+      <div class="student-pill">
+        <span>👨‍💻 Student: <strong>Shaik Roshan</strong></span>
+        <span>•</span>
+        <span>Reg No: <strong>[TO BE FILLED BY STUDENT]</strong></span>
+      </div>
+    </div>
+
+    <!-- Live Demo -->
+    <div class="demo-section">
+      <div class="demo-header">
+        <div class="demo-title">
+          <span>📡</span> Interactive Radar Coordinate Board
+        </div>
+        <span class="badge badge-success">Move Cursor Below</span>
+      </div>
+      <div class="demo-body">
+        
+        <div id="radarBox" class="radar-canvas">
+          <div id="crossH" class="crosshair-h"></div>
+          <div id="crossV" class="crosshair-v"></div>
+          <div id="spotlight" class="cursor-spotlight"></div>
+          <span style="color: #64748b; font-size: 0.9rem; pointer-events: none; user-select: none;">Move cursor inside this tracking field</span>
+        </div>
+
+        <div class="coord-grid">
+          <div class="coord-card">
+            <label>offsetX / offsetY</label>
+            <div id="offsetCoord" class="coord-val">0, 0</div>
+          </div>
+          <div class="coord-card">
+            <label>clientX / clientY</label>
+            <div id="clientCoord" class="coord-val">0, 0</div>
+          </div>
+          <div class="coord-card">
+            <label>pageX / pageY</label>
+            <div id="pageCoord" class="coord-val">0, 0</div>
+          </div>
+          <div class="coord-card">
+            <label>screenX / screenY</label>
+            <div id="screenCoord" class="coord-val">0, 0</div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- Source Code Viewer -->
+    <div class="code-viewer-section">
+      <div class="code-viewer-header">
+        <div class="code-tabs">
+          <button class="code-tab active" data-tab="js">JavaScript Implementation</button>
+        </div>
+        <div class="code-actions">
+          <button class="btn-secondary" id="copyCodeBtn">📋 Copy Code</button>
+        </div>
+      </div>
+      <div class="code-body">
+        <pre><code id="sourceCode">const radar = document.getElementById("radarBox");
+const spotlight = document.getElementById("spotlight");
+
+radar.addEventListener("mousemove", (event) => {
+  // 1. Element relative
+  const ox = event.offsetX;
+  const oy = event.offsetY;
+
+  // 2. Viewport relative
+  const cx = event.clientX;
+  const cy = event.clientY;
+
+  // 3. Document page relative (includes scroll)
+  const px = event.pageX;
+  const py = event.pageY;
+
+  // Position spotlight
+  spotlight.style.left = `${ox}px`;
+  spotlight.style.top = `${oy}px`;
+});</code></pre>
+      </div>
+    </div>
+
+    <!-- Navigation -->
+    <div class="program-nav">
+      <a href="event-delegation.html" class="nav-prev">&larr; EV 06: Event Delegation</a>
+      <a href="drag-and-drop.html" class="nav-next">EV 08: HTML5 Drag & Drop &rarr;</a>
+    </div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-content">
+      <p>&copy; 2026 Web Technology Practical Laboratory • Prepared by <strong>Shaik Roshan</strong></p>
+      <p class="subtext">Computer Science & Engineering Department</p>
+    </div>
+  </footer>
+
+  <script src="../../assets/js/code-viewer.js"></script>
+  <script>
+    const radar = document.getElementById("radarBox");
+    const spotlight = document.getElementById("spotlight");
+    const crossH = document.getElementById("crossH");
+    const crossV = document.getElementById("crossV");
+
+    const offsetCoord = document.getElementById("offsetCoord");
+    const clientCoord = document.getElementById("clientCoord");
+    const pageCoord = document.getElementById("pageCoord");
+    const screenCoord = document.getElementById("screenCoord");
+
+    radar.addEventListener("mousemove", (e) => {
+      const ox = e.offsetX;
+      const oy = e.offsetY;
+
+      spotlight.style.left = `${ox}px`;
+      spotlight.style.top = `${oy}px`;
+      crossH.style.top = `${oy}px`;
+      crossV.style.left = `${ox}px`;
+
+      offsetCoord.textContent = `${ox}, ${oy}`;
+      clientCoord.textContent = `${e.clientX}, ${e.clientY}`;
+      pageCoord.textContent = `${e.pageX}, ${e.pageY}`;
+      screenCoord.textContent = `${e.screenX}, ${e.screenY}`;
+    });
+  </script>
+</body>
+</html>

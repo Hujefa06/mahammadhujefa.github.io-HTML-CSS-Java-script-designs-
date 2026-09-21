@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>JavaScript Web Storage & State | Web Tech Lab</title>
+  <link rel="stylesheet" href="../../assets/css/style.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500&family=Inter:wght@400;500;600&family=Outfit:wght@600;700;800&display=swap" rel="stylesheet">
+</head>
+<body>
+  <!-- Global Navbar -->
+  <nav class="navbar">
+    <div class="nav-container">
+      <a href="../../index.html" class="logo">
+        <span class="logo-icon">&lt;/&gt;</span>
+        <span>WebTech<span class="highlight">Lab</span></span>
+      </a>
+      <div class="nav-links">
+        <a href="../../index.html">Dashboard</a>
+        <a href="../../html/index.html">HTML</a>
+        <a href="../../css/index.html">CSS</a>
+        <a href="../index.html" class="active">JavaScript</a>
+      </div>
+    </div>
+  </nav>
+
+  <main class="page-container">
+    <div class="breadcrumb">
+      <a href="../../index.html">Home</a> &rsaquo; 
+      <a href="../index.html">JavaScript</a> &rsaquo; 
+      <span>Web Storage & State</span>
+    </div>
+
+    <header class="section-header">
+      <div class="badge badge-primary">Category: Client-Side Web Storage</div>
+      <h1>Web Storage & State Persistence</h1>
+      <p class="section-subtitle">
+        Persist data client-side across sessions and reloads using <code>localStorage</code>, <code>sessionStorage</code>, 
+        and JSON serialization. Build offline-first forms, persistent themes, notes, and carts.
+      </p>
+      <div class="student-pill">
+        <span>👨‍💻 Student: <strong>Shaik Roshan</strong></span>
+        <span>•</span>
+        <span>Reg No: <strong>[TO BE FILLED BY STUDENT]</strong></span>
+        <span>•</span>
+        <span>10 Practical Experiments</span>
+      </div>
+    </header>
+
+    <!-- Search & Filter Bar -->
+    <div class="search-filter-section">
+      <div class="search-box">
+        <span class="search-icon">🔍</span>
+        <input type="text" id="programSearch" placeholder="Search storage experiments (e.g. todo, notes, theme, cart)...">
+      </div>
+      <div class="filter-pills">
+        <button class="filter-pill active" data-filter="all">All (10)</button>
+        <button class="filter-pill" data-filter="core">Core CRUD & JSON</button>
+        <button class="filter-pill" data-filter="prefs">Preferences & Themes</button>
+        <button class="filter-pill" data-filter="apps">Persistent Apps</button>
+      </div>
+    </div>
+
+    <!-- Programs Grid -->
+    <div class="programs-grid" id="programsGrid">
+      
+      <!-- ST 01 -->
+      <a href="localstorage-crud.html" class="program-card" data-category="core">
+        <div class="card-top">
+          <span class="card-num">ST 01</span>
+          <span class="card-tag tag-primary">CRUD</span>
+        </div>
+        <h3 class="card-title">LocalStorage CRUD Operations</h3>
+        <p class="card-desc">Interactive key-value store manager: setItem, getItem, removeItem, clear, and key iteration viewer.</p>
+        <div class="card-footer">
+          <span class="view-btn">Launch Demo &rarr;</span>
+        </div>
+      </a>
+
+      <!-- ST 02 -->
+      <a href="json-storage.html" class="program-card" data-category="core">
+        <div class="card-top">
+          <span class="card-num">ST 02</span>
+          <span class="card-tag tag-accent">JSON</span>
+        </div>
+        <h3 class="card-title">JSON Objects & Arrays in Storage</h3>
+        <p class="card-desc">Serialize complex nested objects and arrays using JSON.stringify() and deserialize safely with JSON.parse().</p>
+        <div class="card-footer">
+          <span class="view-btn">Launch Demo &rarr;</span>
+        </div>
+      </a>
+
+      <!-- ST 03 -->
+      <a href="persistent-todo.html" class="program-card" data-category="apps">
+        <div class="card-top">
+          <span class="card-num">ST 03</span>
+          <span class="card-tag tag-success">Todo App</span>
+        </div>
+        <h3 class="card-title">Persistent Task List (LocalStorage)</h3>
+        <p class="card-desc">Full-featured todo app where added tasks, completion strike-throughs, and deletions survive browser refreshes.</p>
+        <div class="card-footer">
+          <span class="view-btn">Launch Demo &rarr;</span>
+        </div>
+      </a>
+
+      <!-- ST 04 -->
+      <a href="notes-app-storage.html" class="program-card" data-category="apps">
+        <div class="card-top">
+          <span class="card-num">ST 04</span>
+          <span class="card-tag tag-warning">Notes</span>
+        </div>
+        <h3 class="card-title">Sticky Notes App with Timestamp</h3>
+        <p class="card-desc">Create, edit, color-code, and delete sticky notes stored permanently in client-side storage.</p>
+        <div class="card-footer">
+          <span class="view-btn">Launch Demo &rarr;</span>
+        </div>
+      </a>
+
+      <!-- ST 05 -->
+      <a href="theme-switcher-storage.html" class="program-card" data-category="prefs">
+        <div class="card-top">
+          <span class="card-num">ST 05</span>
+          <span class="card-tag tag-accent">Theme</span>
+        </div>
+        <h3 class="card-title">Dark / Light Mode Theme Persistence</h3>
+        <p class="card-desc">Remember visitor color theme preference across browser reloads and sessions via stored theme flags.</p>
+        <div class="card-footer">
+          <span class="view-btn">Launch Demo &rarr;</span>
+        </div>
+      </a>
+
+      <!-- ST 06 -->
+      <a href="font-size-preference.html" class="program-card" data-category="prefs">
+        <div class="card-top">
+          <span class="card-num">ST 06</span>
+          <span class="card-tag tag-secondary">Accessibility</span>
+        </div>
+        <h3 class="card-title">Reader Font-Size Preference Saver</h3>
+        <p class="card-desc">Scale article font size smoothly with buttons or sliders and automatically restore user settings on return.</p>
+        <div class="card-footer">
+          <span class="view-btn">Launch Demo &rarr;</span>
+        </div>
+      </a>
+
+      <!-- ST 07 -->
+      <a href="visitor-counter.html" class="program-card" data-category="prefs">
+        <div class="card-top">
+          <span class="card-num">ST 07</span>
+          <span class="card-tag tag-primary">Analytics</span>
+        </div>
+        <h3 class="card-title">Page Visit Counter & Timestamp Logger</h3>
+        <p class="card-desc">Track cumulative visits count, first visit timestamp, and previous visit duration using stored data.</p>
+        <div class="card-footer">
+          <span class="view-btn">Launch Demo &rarr;</span>
+        </div>
+      </a>
+
+      <!-- ST 08 -->
+      <a href="storage-comparison.html" class="program-card" data-category="core">
+        <div class="card-top">
+          <span class="card-num">ST 08</span>
+          <span class="card-tag tag-warning">Comparison</span>
+        </div>
+        <h3 class="card-title">LocalStorage vs SessionStorage vs Cookies</h3>
+        <p class="card-desc">Side-by-side interactive comparison demonstrating lifespan, scope, capacities (5MB vs 4KB), and network transmission.</p>
+        <div class="card-footer">
+          <span class="view-btn">Launch Demo &rarr;</span>
+        </div>
+      </a>
+
+      <!-- ST 09 -->
+      <a href="auto-save-draft.html" class="program-card" data-category="apps">
+        <div class="card-top">
+          <span class="card-num">ST 09</span>
+          <span class="card-tag tag-success">Auto-Save</span>
+        </div>
+        <h3 class="card-title">Form Auto-Save Draft Engine</h3>
+        <p class="card-desc">Debounced real-time draft saving to prevent loss of work if the browser tab closes or crashes unexpectedly.</p>
+        <div class="card-footer">
+          <span class="view-btn">Launch Demo &rarr;</span>
+        </div>
+      </a>
+
+      <!-- ST 10 -->
+      <a href="persistent-cart.html" class="program-card" data-category="apps">
+        <div class="card-top">
+          <span class="card-num">ST 10</span>
+          <span class="card-tag tag-primary">E-Commerce</span>
+        </div>
+        <h3 class="card-title">Persistent E-Commerce Shopping Cart</h3>
+        <p class="card-desc">Add catalog items, increment/decrement quantities, compute cart subtotal, and maintain state on refresh.</p>
+        <div class="card-footer">
+          <span class="view-btn">Launch Demo &rarr;</span>
+        </div>
+      </a>
+
+    </div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-content">
+      <p>&copy; 2026 Web Technology Practical Laboratory • Prepared by <strong>Shaik Roshan</strong></p>
+      <p class="subtext">Computer Science & Engineering Department</p>
+    </div>
+  </footer>
+
+  <script src="../../assets/js/main.js"></script>
+</body>
+</html>

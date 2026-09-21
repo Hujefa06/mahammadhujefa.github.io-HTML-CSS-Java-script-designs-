@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>PR 09 - Tic Tac Toe Game | Web Tech Lab</title>
+  <link rel="stylesheet" href="../../assets/css/style.css">
+  <link rel="stylesheet" href="../../assets/css/program-viewer.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500;700&family=Inter:wght@400;500;600&family=Outfit:wght@600;700;800&display=swap" rel="stylesheet">
+  <style>
+    .ttt-container {
+      max-width: 440px;
+      margin: 0 auto;
+      background: #0f172a;
+      border: 1px solid #334155;
+      border-radius: 16px;
+      padding: 2rem 1.5rem;
+      text-align: center;
+    }
+    .game-status-banner {
+      font-size: 1.25rem;
+      font-weight: 700;
+      color: #38bdf8;
+      margin-bottom: 1.5rem;
+      min-height: 35px;
+    }
+    .board-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 10px;
+      margin-bottom: 1.5rem;
+    }
+    .cell-btn {
+      height: 95px;
+      background: #1e293b;
+      border: 2px solid #334155;
+      border-radius: 12px;
+      font-family: 'Fira Code', monospace;
+      font-size: 3rem;
+      font-weight: 800;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.15s ease;
+      color: #f8fafc;
+    }
+    .cell-btn:hover:not(:disabled) {
+      background: #253347;
+      border-color: #38bdf8;
+    }
+    .cell-btn.x-player { color: #38bdf8; }
+    .cell-btn.o-player { color: #f43f5e; }
+    .cell-btn.winner-cell {
+      background: #065f46 !important;
+      border-color: #10b981 !important;
+      animation: pulseWin 0.6s infinite alternate;
+    }
+    @keyframes pulseWin {
+      from { transform: scale(1); }
+      to { transform: scale(1.05); }
+    }
+    .scoreboard-row {
+      display: flex;
+      justify-content: space-around;
+      background: #1e293b;
+      padding: 0.75rem;
+      border-radius: 8px;
+      margin-bottom: 1.5rem;
+      font-size: 0.85rem;
+      color: #94a3b8;
+    }
+  </style>
+</head>
+<body>
+  <!-- Navbar -->
+  <nav class="navbar">
+    <div class="nav-container">
+      <a href="../../index.html" class="logo">
+        <span class="logo-icon">&lt;/&gt;</span>
+        <span>WebTech<span class="highlight">Lab</span></span>
+      </a>
+      <div class="nav-links">
+        <a href="../../index.html">Dashboard</a>
+        <a href="../../html/index.html">HTML</a>
+        <a href="../../css/index.html">CSS</a>
+        <a href="../index.html" class="active">JavaScript</a>
+      </div>
+    </div>
+  </nav>
+
+  <main class="page-container">
+    <div class="breadcrumb">
+      <a href="../../index.html">Home</a> &rsaquo; 
+      <a href="../index.html">JavaScript</a> &rsaquo; 
+      <a href="index.html">Projects</a> &rsaquo; 
+      <span>PR 09 - Tic Tac Toe</span>
+    </div>
+
+    <div class="program-header">
+      <div class="program-badge">Mini Project • Project 09</div>
+      <h1>Tic Tac Toe Game (2-Player & Smart AI Mode)</h1>
+      <p class="program-desc">
+        Classic 3x3 turn-based board game with win matrix checks across 8 combinations (rows, columns, diagonals), 
+        draw detection, score history, and computer AI integration.
+      </p>
+      <div class="student-pill">
+        <span>👨‍💻 Student: <strong>Shaik Roshan</strong></span>
+        <span>•</span>
+        <span>Reg No: <strong>[TO BE FILLED BY STUDENT]</strong></span>
+      </div>
+    </div>
+
+    <!-- Live Demo -->
+    <div class="demo-section">
+      <div class="demo-header">
+        <div class="demo-title">
+          <span>⚔️</span> 3x3 Battle Arena
+        </div>
+        <div style="display: flex; gap: 0.5rem; align-items: center;">
+          <label style="font-size: 0.8rem; color: #94a3b8; display: flex; align-items: center; gap: 0.35rem; cursor: pointer;">
+            <input type="checkbox" id="aiModeCheck" onchange="resetGame()">
+            <span>Play vs Computer AI</span>
+          </label>
+        </div>
+      </div>
+      <div class="demo-body">
+        
+        <div class="ttt-container">
+          <div class="scoreboard-row">
+            <span>Player X: <strong id="scoreX" style="color: #38bdf8;">0</strong></span>
+            <span>Ties: <strong id="scoreTies" style="color: #cbd5e1;">0</strong></span>
+            <span>Player O: <strong id="scoreO" style="color: #f43f5e;">0</strong></span>
+          </div>
+
+          <div id="gameStatus" class="game-status-banner">Player X's Turn</div>
+
+          <div class="board-grid" id="boardGrid">
+            <button class="cell-btn" data-idx="0" onclick="makeMove(0)"></button>
+            <button class="cell-btn" data-idx="1" onclick="makeMove(1)"></button>
+            <button class="cell-btn" data-idx="2" onclick="makeMove(2)"></button>
+            <button class="cell-btn" data-idx="3" onclick="makeMove(3)"></button>
+            <button class="cell-btn" data-idx="4" onclick="makeMove(4)"></button>
+            <button class="cell-btn" data-idx="5" onclick="makeMove(5)"></button>
+            <button class="cell-btn" data-idx="6" onclick="makeMove(6)"></button>
+            <button class="cell-btn" data-idx="7" onclick="makeMove(7)"></button>
+            <button class="cell-btn" data-idx="8" onclick="makeMove(8)"></button>
+          </div>
+
+          <button class="btn btn-primary" onclick="resetGame()">Restart Round</button>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- Source Code Viewer -->
+    <div class="code-viewer-section">
+      <div class="code-viewer-header">
+        <div class="code-tabs">
+          <button class="code-tab active" data-tab="js">JavaScript Implementation</button>
+        </div>
+        <div class="code-actions">
+          <button class="btn-secondary" id="copyCodeBtn">📋 Copy Code</button>
+        </div>
+      </div>
+      <div class="code-body">
+        <pre><code id="sourceCode">const winningPatterns = [
+  [0,1,2], [3,4,5], [6,7,8], // Rows
+  [0,3,6], [1,4,7], [2,5,8], // Columns
+  [0,4,8], [2,4,6]           // Diagonals
+];
+
+function checkWinner(board) {
+  for (const [a, b, c] of winningPatterns) {
+    if (board[a] && board[a] === board[b] && board[a] === board[c]) {
+      return { winner: board[a], pattern: [a, b, c] };
+    }
+  }
+  if (board.every(cell => cell !== "")) {
+    return { winner: "tie" };
+  }
+  return null;
+}</code></pre>
+      </div>
+    </div>
+
+    <!-- Navigation -->
+    <div class="program-nav">
+      <a href="number-guessing-game.html" class="nav-prev">&larr; PR 08: Number Guessing</a>
+      <a href="expense-tracker.html" class="nav-next">PR 10: Expense Tracker &rarr;</a>
+    </div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-content">
+      <p>&copy; 2026 Web Technology Practical Laboratory • Prepared by <strong>Shaik Roshan</strong></p>
+      <p class="subtext">Computer Science & Engineering Department</p>
+    </div>
+  </footer>
+
+  <script src="../../assets/js/code-viewer.js"></script>
+  <script>
+    let board = ["", "", "", "", "", "", "", "", ""];
+    let currentPlayer = "X";
+    let isGameOver = false;
+    let score = { X: 0, O: 0, ties: 0 };
+
+    const winPatterns = [
+      [0,1,2], [3,4,5], [6,7,8],
+      [0,3,6], [1,4,7], [2,5,8],
+      [0,4,8], [2,4,6]
+    ];
+
+    const statusBanner = document.getElementById("gameStatus");
+    const aiCheck = document.getElementById("aiModeCheck");
+
+    function makeMove(idx) {
+      if (board[idx] !== "" || isGameOver) return;
+
+      board[idx] = currentPlayer;
+      const btn = document.querySelector(`[data-idx="${idx}"]`);
+      btn.textContent = currentPlayer;
+      btn.classList.add(currentPlayer === "X" ? "x-player" : "o-player");
+      btn.disabled = true;
+
+      const winResult = checkWinner();
+      if (winResult) {
+        handleGameEnd(winResult);
+        return;
+      }
+
+      currentPlayer = currentPlayer === "X" ? "O" : "X";
+      statusBanner.textContent = `Player ${currentPlayer}'s Turn`;
+
+      if (aiCheck.checked && currentPlayer === "O" && !isGameOver) {
+        setTimeout(makeAiMove, 300);
+      }
+    }
+
+    function makeAiMove() {
+      // Find available empty indices
+      const available = [];
+      board.forEach((val, i) => { if (val === "") available.push(i); });
+      if (available.length === 0) return;
+
+      const choice = available[Math.floor(Math.random() * available.length)];
+      makeMove(choice);
+    }
+
+    function checkWinner() {
+      for (const [a, b, c] of winPatterns) {
+        if (board[a] && board[a] === board[b] && board[a] === board[c]) {
+          return { winner: board[a], pattern: [a, b, c] };
+        }
+      }
+      if (board.every(cell => cell !== "")) {
+        return { winner: "tie" };
+      }
+      return null;
+    }
+
+    function handleGameEnd(res) {
+      isGameOver = true;
+      if (res.winner === "tie") {
+        statusBanner.textContent = "🤝 It's a Drawn Tie!";
+        score.ties++;
+        document.getElementById("scoreTies").textContent = score.ties;
+      } else {
+        statusBanner.textContent = `🎉 Player ${res.winner} Wins!`;
+        score[res.winner]++;
+        document.getElementById(`score${res.winner}`).textContent = score[res.winner];
+        res.pattern.forEach(i => {
+          document.querySelector(`[data-idx="${i}"]`).classList.add("winner-cell");
+        });
+      }
+    }
+
+    function resetGame() {
+      board = ["", "", "", "", "", "", "", "", ""];
+      currentPlayer = "X";
+      isGameOver = false;
+      statusBanner.textContent = "Player X's Turn";
+
+      document.querySelectorAll(".cell-btn").forEach(btn => {
+        btn.textContent = "";
+        btn.disabled = false;
+        btn.className = "cell-btn";
+      });
+    }
+  </script>
+</body>
+</html>

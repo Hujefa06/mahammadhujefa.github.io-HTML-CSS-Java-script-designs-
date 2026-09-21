@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>FM 01 - Student Registration Form Validation | Web Tech Lab</title>
+  <link rel="stylesheet" href="../../assets/css/style.css">
+  <link rel="stylesheet" href="../../assets/css/program-viewer.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500&family=Inter:wght@400;500;600&family=Outfit:wght@600;700;800&display=swap" rel="stylesheet">
+  <style>
+    .reg-card {
+      max-width: 600px;
+      margin: 0 auto;
+      background: #0f172a;
+      border: 1px solid #334155;
+      border-radius: 12px;
+      padding: 2rem;
+    }
+    .form-group-item {
+      margin-bottom: 1.25rem;
+    }
+    .form-group-item label {
+      display: block;
+      font-size: 0.85rem;
+      font-weight: 500;
+      color: #94a3b8;
+      margin-bottom: 0.35rem;
+    }
+    .form-input {
+      width: 100%;
+      background: #1e293b;
+      border: 1px solid #475569;
+      color: #f8fafc;
+      padding: 0.75rem 1rem;
+      border-radius: 8px;
+      font-size: 0.95rem;
+      transition: border-color 0.2s, box-shadow 0.2s;
+    }
+    .form-input.is-invalid {
+      border-color: #ef4444 !important;
+      box-shadow: 0 0 0 2px rgba(239, 68, 68, 0.2);
+    }
+    .form-input.is-valid {
+      border-color: #10b981 !important;
+    }
+    .error-msg {
+      color: #ef4444;
+      font-size: 0.8rem;
+      margin-top: 0.25rem;
+      display: none;
+    }
+    .success-alert {
+      display: none;
+      background: rgba(16, 185, 129, 0.15);
+      border: 1px solid #10b981;
+      color: #34d399;
+      padding: 1rem;
+      border-radius: 8px;
+      margin-bottom: 1.5rem;
+      text-align: center;
+    }
+  </style>
+</head>
+<body>
+  <!-- Navbar -->
+  <nav class="navbar">
+    <div class="nav-container">
+      <a href="../../index.html" class="logo">
+        <span class="logo-icon">&lt;/&gt;</span>
+        <span>WebTech<span class="highlight">Lab</span></span>
+      </a>
+      <div class="nav-links">
+        <a href="../../index.html">Dashboard</a>
+        <a href="../../html/index.html">HTML</a>
+        <a href="../../css/index.html">CSS</a>
+        <a href="../index.html" class="active">JavaScript</a>
+      </div>
+    </div>
+  </nav>
+
+  <main class="page-container">
+    <div class="breadcrumb">
+      <a href="../../index.html">Home</a> &rsaquo; 
+      <a href="../index.html">JavaScript</a> &rsaquo; 
+      <a href="index.html">Forms</a> &rsaquo; 
+      <span>FM 01 - Registration Validation</span>
+    </div>
+
+    <div class="program-header">
+      <div class="program-badge">Form Validation • Program 01</div>
+      <h1>Student Registration Form Validation</h1>
+      <p class="program-desc">
+        Perform complete client-side form validation before dispatch: required check, regex email format, 
+        10-digit mobile number, matching passwords, and inline field error feedback.
+      </p>
+      <div class="student-pill">
+        <span>👨‍💻 Student: <strong>Shaik Roshan</strong></span>
+        <span>•</span>
+        <span>Reg No: <strong>[TO BE FILLED BY STUDENT]</strong></span>
+      </div>
+    </div>
+
+    <!-- Live Demo -->
+    <div class="demo-section">
+      <div class="demo-header">
+        <div class="demo-title">
+          <span>📝</span> Student Admission Portal
+        </div>
+        <span class="badge badge-success">Client-Side Validation</span>
+      </div>
+      <div class="demo-body">
+        
+        <div class="reg-card">
+          <div id="successBox" class="success-alert">
+            🎉 Registration successful! Data verified and submitted.
+          </div>
+
+          <form id="regForm" onsubmit="validateRegistration(event)" novalidate>
+            <div class="form-group-item">
+              <label>Full Name *</label>
+              <input type="text" id="regName" class="form-input" placeholder="e.g. Shaik Roshan">
+              <div id="errName" class="error-msg">Name must contain at least 3 alphabetic characters.</div>
+            </div>
+
+            <div class="form-group-item">
+              <label>College Email Address *</label>
+              <input type="email" id="regEmail" class="form-input" placeholder="e.g. roshan@university.edu">
+              <div id="errEmail" class="error-msg">Please enter a valid email address (e.g. name@domain.com).</div>
+            </div>
+
+            <div class="form-group-item">
+              <label>Mobile Number (10 digits) *</label>
+              <input type="tel" id="regPhone" class="form-input" placeholder="e.g. 9876543210" maxlength="10">
+              <div id="errPhone" class="error-msg">Enter a valid 10-digit Indian phone number starting with 6-9.</div>
+            </div>
+
+            <div class="form-group-item">
+              <label>Create Password *</label>
+              <input type="password" id="regPassword" class="form-input" placeholder="Min 6 characters">
+              <div id="errPassword" class="error-msg">Password must be at least 6 characters long.</div>
+            </div>
+
+            <div class="form-group-item">
+              <label>Confirm Password *</label>
+              <input type="password" id="regConfirm" class="form-input" placeholder="Re-enter password">
+              <div id="errConfirm" class="error-msg">Passwords do not match.</div>
+            </div>
+
+            <button type="submit" class="btn btn-primary" style="width: 100%; margin-top: 0.5rem;">Submit Registration</button>
+          </form>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- Source Code Viewer -->
+    <div class="code-viewer-section">
+      <div class="code-viewer-header">
+        <div class="code-tabs">
+          <button class="code-tab active" data-tab="js">JavaScript Implementation</button>
+        </div>
+        <div class="code-actions">
+          <button class="btn-secondary" id="copyCodeBtn">📋 Copy Code</button>
+        </div>
+      </div>
+      <div class="code-body">
+        <pre><code id="sourceCode">function validateRegistration(event) {
+  event.preventDefault(); // Stop default form submit
+  let isValid = true;
+
+  // 1. Name Check (Min 3 chars)
+  const name = document.getElementById("regName").value.trim();
+  if (name.length < 3) {
+    showError("regName", "errName");
+    isValid = false;
+  } else {
+    showSuccess("regName", "errName");
+  }
+
+  // 2. Email Regex Check
+  const email = document.getElementById("regEmail").value.trim();
+  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  if (!emailRegex.test(email)) {
+    showError("regEmail", "errEmail");
+    isValid = false;
+  } else {
+    showSuccess("regEmail", "errEmail");
+  }
+
+  // 3. Mobile (10-digit check starting with 6-9)
+  const phone = document.getElementById("regPhone").value.trim();
+  if (!/^[6-9]\d{9}$/.test(phone)) {
+    showError("regPhone", "errPhone");
+    isValid = false;
+  } else {
+    showSuccess("regPhone", "errPhone");
+  }
+
+  // 4. Password Match Check
+  const p1 = document.getElementById("regPassword").value;
+  const p2 = document.getElementById("regConfirm").value;
+  if (p1.length < 6 || p1 !== p2) {
+    showError("regConfirm", "errConfirm");
+    isValid = false;
+  } else {
+    showSuccess("regConfirm", "errConfirm");
+  }
+
+  if (isValid) {
+    document.getElementById("successBox").style.display = "block";
+  }
+}</code></pre>
+      </div>
+    </div>
+
+    <!-- Navigation -->
+    <div class="program-nav">
+      <a href="index.html" class="nav-prev">&larr; Forms Curriculum Index</a>
+      <a href="login-validation.html" class="nav-next">FM 02: Login Validation &rarr;</a>
+    </div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-content">
+      <p>&copy; 2026 Web Technology Practical Laboratory • Prepared by <strong>Shaik Roshan</strong></p>
+      <p class="subtext">Computer Science & Engineering Department</p>
+    </div>
+  </footer>
+
+  <script src="../../assets/js/code-viewer.js"></script>
+  <script>
+    function showError(inputId, errId) {
+      const inp = document.getElementById(inputId);
+      const err = document.getElementById(errId);
+      inp.classList.add("is-invalid");
+      inp.classList.remove("is-valid");
+      err.style.display = "block";
+    }
+
+    function showSuccess(inputId, errId) {
+      const inp = document.getElementById(inputId);
+      const err = document.getElementById(errId);
+      inp.classList.remove("is-invalid");
+      inp.classList.add("is-valid");
+      err.style.display = "none";
+    }
+
+    function validateRegistration(e) {
+      e.preventDefault();
+      let valid = true;
+
+      // Name
+      const name = document.getElementById("regName").value.trim();
+      if (!/^[A-Za-z\s]{3,}$/.test(name)) {
+        showError("regName", "errName");
+        valid = false;
+      } else {
+        showSuccess("regName", "errName");
+      }
+
+      // Email
+      const email = document.getElementById("regEmail").value.trim();
+      const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+      if (!emailRegex.test(email)) {
+        showError("regEmail", "errEmail");
+        valid = false;
+      } else {
+        showSuccess("regEmail", "errEmail");
+      }
+
+      // Phone
+      const phone = document.getElementById("regPhone").value.trim();
+      if (!/^[6-9]\d{9}$/.test(phone)) {
+        showError("regPhone", "errPhone");
+        valid = false;
+      } else {
+        showSuccess("regPhone", "errPhone");
+      }
+
+      // Password
+      const pwd = document.getElementById("regPassword").value;
+      if (pwd.length < 6) {
+        showError("regPassword", "errPassword");
+        valid = false;
+      } else {
+        showSuccess("regPassword", "errPassword");
+      }
+
+      // Confirm
+      const confirm = document.getElementById("regConfirm").value;
+      if (pwd !== confirm || confirm === "") {
+        showError("regConfirm", "errConfirm");
+        valid = false;
+      } else {
+        showSuccess("regConfirm", "errConfirm");
+      }
+
+      if (valid) {
+        const box = document.getElementById("successBox");
+        box.style.display = "block";
+        box.scrollIntoView({ behavior: "smooth" });
+      }
+    }
+  </script>
+</body>
+</html>

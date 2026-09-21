@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Taj Mahal - Arithmetic</title>
+
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial;
+            background: #eaf8ff;
+            color: #063b4c;
+            padding: 40px;
+        }
+
+        .card {
+            max-width: 500px;
+            margin: auto;
+            background: white;
+            padding: 30px;
+            border-radius: 16px;
+            box-shadow: 0 5px 15px #b5d9e5;
+        }
+
+        h1 {
+            color: #075b73;
+        }
+
+        .result {
+            padding: 12px;
+            margin: 8px 0;
+            background: #eaf8ff;
+            border-radius: 8px;
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="card">
+    <h1>🏛️ Island Arithmetic</h1>
+
+    <div class="result" id="add"></div>
+    <div class="result" id="sub"></div>
+    <div class="result" id="mul"></div>
+    <div class="result" id="div"></div>
+</div>
+
+<script>
+    let a = 20;
+    let b = 5;
+
+    document.getElementById("add").textContent = "Addition: " + (a + b);
+    document.getElementById("sub").textContent = "Subtraction: " + (a - b);
+    document.getElementById("mul").textContent = "Multiplication: " + (a * b);
+    document.getElementById("div").textContent = "Division: " + (a / b);
+</script>
+
+</body>
+</html>

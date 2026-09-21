@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>EV 01 - Mouse Events Playground | Web Tech Lab</title>
+  <link rel="stylesheet" href="../../assets/css/style.css">
+  <link rel="stylesheet" href="../../assets/css/program-viewer.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500&family=Inter:wght@400;500;600&family=Outfit:wght@600;700;800&display=swap" rel="stylesheet">
+  <style>
+    .events-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.5rem;
+    }
+    @media (max-width: 768px) {
+      .events-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+    .interactive-pad {
+      background: #1e293b;
+      border: 2px dashed #38bdf8;
+      border-radius: 12px;
+      padding: 3rem 1.5rem;
+      text-align: center;
+      cursor: crosshair;
+      user-select: none;
+      transition: background 0.2s, transform 0.1s;
+    }
+    .interactive-pad:active {
+      background: #0f172a;
+      transform: scale(0.98);
+    }
+    .event-log-box {
+      background: #090d16;
+      border: 1px solid #334155;
+      border-radius: 8px;
+      padding: 1rem;
+      height: 280px;
+      overflow-y: auto;
+      font-family: 'Fira Code', monospace;
+      font-size: 0.85rem;
+      display: flex;
+      flex-direction: column-reverse;
+      gap: 0.35rem;
+    }
+    .log-entry {
+      display: flex;
+      justify-content: space-between;
+      border-bottom: 1px solid #1e293b;
+      padding-bottom: 0.2rem;
+    }
+    .log-name {
+      color: #38bdf8;
+      font-weight: 500;
+    }
+    .log-detail {
+      color: #94a3b8;
+      font-size: 0.8rem;
+    }
+  </style>
+</head>
+<body>
+  <!-- Navbar -->
+  <nav class="navbar">
+    <div class="nav-container">
+      <a href="../../index.html" class="logo">
+        <span class="logo-icon">&lt;/&gt;</span>
+        <span>WebTech<span class="highlight">Lab</span></span>
+      </a>
+      <div class="nav-links">
+        <a href="../../index.html">Dashboard</a>
+        <a href="../../html/index.html">HTML</a>
+        <a href="../../css/index.html">CSS</a>
+        <a href="../index.html" class="active">JavaScript</a>
+      </div>
+    </div>
+  </nav>
+
+  <main class="page-container">
+    <div class="breadcrumb">
+      <a href="../../index.html">Home</a> &rsaquo; 
+      <a href="../index.html">JavaScript</a> &rsaquo; 
+      <a href="index.html">Events</a> &rsaquo; 
+      <span>EV 01 - Mouse Events Playground</span>
+    </div>
+
+    <div class="program-header">
+      <div class="program-badge">Event Handling • Program 01</div>
+      <h1>Mouse Events Playground</h1>
+      <p class="program-desc">
+        Explore mouse lifecycle interactions in real time: <code>click</code>, <code>dblclick</code>, 
+        <code>contextmenu</code> (right click), <code>mouseenter</code>, <code>mouseleave</code>, 
+        <code>mousedown</code>, and <code>mouseup</code>.
+      </p>
+      <div class="student-pill">
+        <span>👨‍💻 Student: <strong>Shaik Roshan</strong></span>
+        <span>•</span>
+        <span>Reg No: <strong>[TO BE FILLED BY STUDENT]</strong></span>
+      </div>
+    </div>
+
+    <!-- Live Demo -->
+    <div class="demo-section">
+      <div class="demo-header">
+        <div class="demo-title">
+          <span>🖱️</span> Interactive Mouse Event Sensor
+        </div>
+        <button class="btn btn-secondary" style="padding: 4px 10px; font-size: 0.8rem;" onclick="clearLog()">Clear Event Log</button>
+      </div>
+      <div class="demo-body">
+        
+        <div class="events-grid">
+          <!-- Sensor Box -->
+          <div>
+            <div id="mousePad" class="interactive-pad">
+              <div style="font-size: 2.5rem; margin-bottom: 0.5rem;">🎯</div>
+              <h3 id="currentEventText" style="color: #38bdf8; margin-bottom: 0.5rem;">Hover or Click Here</h3>
+              <p style="font-size: 0.85rem; color: #94a3b8;">
+                Try Left Click, Double Click, Right Click, or Dragging across this zone.
+              </p>
+            </div>
+            <div style="display: flex; gap: 0.5rem; margin-top: 1rem; justify-content: center;">
+              <span class="badge badge-primary">Button: <span id="mouseBtnVal">None</span></span>
+              <span class="badge badge-warning">X: <span id="posXVal">0</span>px</span>
+              <span class="badge badge-warning">Y: <span id="posYVal">0</span>px</span>
+            </div>
+          </div>
+
+          <!-- Live Log -->
+          <div>
+            <h4 style="margin-bottom: 0.5rem; color: #94a3b8; font-size: 0.85rem;">Live Event Stream:</h4>
+            <div id="eventLog" class="event-log-box">
+              <div class="log-entry"><span class="log-name">system_ready</span><span class="log-detail">Listening for mouse events...</span></div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- Source Code Viewer -->
+    <div class="code-viewer-section">
+      <div class="code-viewer-header">
+        <div class="code-tabs">
+          <button class="code-tab active" data-tab="js">JavaScript Implementation</button>
+        </div>
+        <div class="code-actions">
+          <button class="btn-secondary" id="copyCodeBtn">📋 Copy Code</button>
+        </div>
+      </div>
+      <div class="code-body">
+        <pre><code id="sourceCode">const pad = document.getElementById("mousePad");
+
+// 1. Single Click
+pad.addEventListener("click", (e) => logEvent("click", `Button: ${e.button}`));
+
+// 2. Double Click
+pad.addEventListener("dblclick", () => logEvent("dblclick", "Double Click detected"));
+
+// 3. Right Click (Context Menu)
+pad.addEventListener("contextmenu", (e) => {
+  e.preventDefault(); // Prevent standard browser context menu
+  logEvent("contextmenu", "Custom Right Click handled");
+});
+
+// 4. Hover lifecycle
+pad.addEventListener("mouseenter", () => logEvent("mouseenter", "Cursor entered target"));
+pad.addEventListener("mouseleave", () => logEvent("mouseleave", "Cursor left target"));
+pad.addEventListener("mousedown", () => logEvent("mousedown", "Mouse button pressed down"));
+pad.addEventListener("mouseup", () => logEvent("mouseup", "Mouse button released"));</code></pre>
+      </div>
+    </div>
+
+    <!-- Navigation -->
+    <div class="program-nav">
+      <a href="index.html" class="nav-prev">&larr; Events Curriculum Index</a>
+      <a href="keyboard-events.html" class="nav-next">EV 02: Keyboard Events &rarr;</a>
+    </div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-content">
+      <p>&copy; 2026 Web Technology Practical Laboratory • Prepared by <strong>Shaik Roshan</strong></p>
+      <p class="subtext">Computer Science & Engineering Department</p>
+    </div>
+  </footer>
+
+  <script src="../../assets/js/code-viewer.js"></script>
+  <script>
+    const pad = document.getElementById("mousePad");
+    const logBox = document.getElementById("eventLog");
+    const currentText = document.getElementById("currentEventText");
+    const btnVal = document.getElementById("mouseBtnVal");
+    const posX = document.getElementById("posXVal");
+    const posY = document.getElementById("posYVal");
+
+    function logEvent(type, detail) {
+      currentText.textContent = `Event: ${type}`;
+      const entry = document.createElement("div");
+      entry.className = "log-entry";
+      entry.innerHTML = `<span class="log-name">${type}</span><span class="log-detail">${detail}</span>`;
+      logBox.prepend(entry);
+    }
+
+    function clearLog() {
+      logBox.innerHTML = "";
+    }
+
+    pad.addEventListener("click", (e) => {
+      btnVal.textContent = "Left Click (0)";
+      logEvent("click", `Coordinates: (${e.offsetX}, ${e.offsetY})`);
+    });
+
+    pad.addEventListener("dblclick", () => {
+      logEvent("dblclick", "Rapid Double Click Triggered!");
+    });
+
+    pad.addEventListener("contextmenu", (e) => {
+      e.preventDefault();
+      btnVal.textContent = "Right Click (2)";
+      logEvent("contextmenu", "Right Click (Default Menu Suppressed)");
+    });
+
+    pad.addEventListener("mouseenter", () => logEvent("mouseenter", "Mouse pointer entered"));
+    pad.addEventListener("mouseleave", () => {
+      logEvent("mouseleave", "Mouse pointer exited");
+      btnVal.textContent = "None";
+    });
+
+    pad.addEventListener("mousedown", () => logEvent("mousedown", "Button pressed DOWN"));
+    pad.addEventListener("mouseup", () => logEvent("mouseup", "Button released UP"));
+
+    pad.addEventListener("mousemove", (e) => {
+      posX.textContent = e.offsetX;
+      posY.textContent = e.offsetY;
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ST 10 - Persistent E-Commerce Cart | Web Tech Lab</title>
+  <link rel="stylesheet" href="../../assets/css/style.css">
+  <link rel="stylesheet" href="../../assets/css/program-viewer.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500;700&family=Inter:wght@400;500;600&family=Outfit:wght@600;700;800&display=swap" rel="stylesheet">
+  <style>
+    .cart-layout {
+      display: grid;
+      grid-template-columns: 1fr 340px;
+      gap: 1.5rem;
+    }
+    @media (max-width: 850px) {
+      .cart-layout {
+        grid-template-columns: 1fr;
+      }
+    }
+    .panel {
+      background: #0f172a;
+      border: 1px solid #334155;
+      border-radius: 12px;
+      padding: 1.5rem;
+    }
+    .catalog-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+      gap: 1rem;
+    }
+    .product-card {
+      background: #1e293b;
+      border: 1px solid #334155;
+      border-radius: 8px;
+      padding: 1rem;
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+    .cart-items-list {
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+      margin-bottom: 1.5rem;
+    }
+    .cart-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 0.5rem 0;
+      border-bottom: 1px solid #1e293b;
+      font-size: 0.85rem;
+    }
+    .qty-ctrl-btn {
+      background: #334155;
+      border: none;
+      color: #fff;
+      width: 22px;
+      height: 22px;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+  <!-- Navbar -->
+  <nav class="navbar">
+    <div class="nav-container">
+      <a href="../../index.html" class="logo">
+        <span class="logo-icon">&lt;/&gt;</span>
+        <span>WebTech<span class="highlight">Lab</span></span>
+      </a>
+      <div class="nav-links">
+        <a href="../../index.html">Dashboard</a>
+        <a href="../../html/index.html">HTML</a>
+        <a href="../../css/index.html">CSS</a>
+        <a href="../index.html" class="active">JavaScript</a>
+      </div>
+    </div>
+  </nav>
+
+  <main class="page-container">
+    <div class="breadcrumb">
+      <a href="../../index.html">Home</a> &rsaquo; 
+      <a href="../index.html">JavaScript</a> &rsaquo; 
+      <a href="index.html">Storage</a> &rsaquo; 
+      <span>ST 10 - Persistent Cart</span>
+    </div>
+
+    <div class="program-header">
+      <div class="program-badge">Web Storage • Program 10</div>
+      <h1>Persistent E-Commerce Shopping Cart</h1>
+      <p class="program-desc">
+        A full shopping cart state machine: product catalog, dynamic quantity updates, automatic subtotal calculations, 
+        and persistence across browser reloads using serialized <code>localStorage</code> arrays.
+      </p>
+      <div class="student-pill">
+        <span>👨‍💻 Student: <strong>Shaik Roshan</strong></span>
+        <span>•</span>
+        <span>Reg No: <strong>[TO BE FILLED BY STUDENT]</strong></span>
+      </div>
+    </div>
+
+    <!-- Live Demo -->
+    <div class="demo-section">
+      <div class="demo-header">
+        <div class="demo-title">
+          <span>🛒</span> Campus Tech Gear Store
+        </div>
+        <span class="badge badge-success" id="cartCountBadge">0 Items in Cart</span>
+      </div>
+      <div class="demo-body">
+        
+        <div class="cart-layout">
+          <!-- Catalog -->
+          <div class="panel">
+            <h4 style="color: #38bdf8; margin-bottom: 1rem;">Available Products:</h4>
+            <div class="catalog-grid">
+              <div class="product-card">
+                <div style="font-size: 2rem; margin-bottom: 0.25rem;">🎧</div>
+                <strong style="color: #f8fafc; font-size: 0.9rem;">Wireless Headset</strong>
+                <p style="color: #38bdf8; margin: 0.25rem 0; font-family: 'Fira Code', monospace;">₹1,999</p>
+                <button class="btn btn-primary" style="padding: 4px 8px; font-size: 0.8rem; margin-top: 0.5rem;" onclick="addToCart(1, 'Wireless Headset', 1999)">+ Add to Cart</button>
+              </div>
+
+              <div class="product-card">
+                <div style="font-size: 2rem; margin-bottom: 0.25rem;">🖱️</div>
+                <strong style="color: #f8fafc; font-size: 0.9rem;">Gaming Mouse</strong>
+                <p style="color: #38bdf8; margin: 0.25rem 0; font-family: 'Fira Code', monospace;">₹899</p>
+                <button class="btn btn-primary" style="padding: 4px 8px; font-size: 0.8rem; margin-top: 0.5rem;" onclick="addToCart(2, 'Gaming Mouse', 899)">+ Add to Cart</button>
+              </div>
+
+              <div class="product-card">
+                <div style="font-size: 2rem; margin-bottom: 0.25rem;">⌨️</div>
+                <strong style="color: #f8fafc; font-size: 0.9rem;">Mechanical Keyboard</strong>
+                <p style="color: #38bdf8; margin: 0.25rem 0; font-family: 'Fira Code', monospace;">₹2,499</p>
+                <button class="btn btn-primary" style="padding: 4px 8px; font-size: 0.8rem; margin-top: 0.5rem;" onclick="addToCart(3, 'Mechanical Keyboard', 2499)">+ Add to Cart</button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Active Cart Sidebar -->
+          <div class="panel">
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem;">
+              <h4 style="color: #38bdf8; margin: 0;">Your Order Cart</h4>
+              <button class="btn btn-secondary" style="padding: 2px 8px; font-size: 0.75rem;" onclick="clearCart()">Clear</button>
+            </div>
+
+            <div id="cartList" class="cart-items-list">
+              <!-- Cart items rendered via JS -->
+            </div>
+
+            <div style="border-top: 1px solid #334155; padding-top: 1rem; display: flex; justify-content: space-between; font-weight: 700;">
+              <span>Total Amount:</span>
+              <span id="cartTotal" style="color: #38bdf8; font-family: 'Fira Code', monospace;">₹0</span>
+            </div>
+
+            <button class="btn btn-primary" style="width: 100%; margin-top: 1.25rem;" onclick="alert('Order placed successfully! State cleared.'); clearCart();">
+              Proceed to Checkout
+            </button>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- Source Code Viewer -->
+    <div class="code-viewer-section">
+      <div class="code-viewer-header">
+        <div class="code-tabs">
+          <button class="code-tab active" data-tab="js">JavaScript Implementation</button>
+        </div>
+        <div class="code-actions">
+          <button class="btn-secondary" id="copyCodeBtn">📋 Copy Code</button>
+        </div>
+      </div>
+      <div class="code-body">
+        <pre><code id="sourceCode">let cart = JSON.parse(localStorage.getItem("campus_cart") || "[]");
+
+function addToCart(id, name, price) {
+  const existing = cart.find(item => item.id === id);
+  if (existing) {
+    existing.qty++;
+  } else {
+    cart.push({ id, name, price, qty: 1 });
+  }
+  saveAndRender();
+}
+
+function updateQty(id, delta) {
+  const item = cart.find(i => i.id === id);
+  if (!item) return;
+
+  item.qty += delta;
+  if (item.qty <= 0) {
+    cart = cart.filter(i => i.id !== id);
+  }
+  saveAndRender();
+}
+
+function saveAndRender() {
+  localStorage.setItem("campus_cart", JSON.stringify(cart));
+  renderCart();
+}</code></pre>
+      </div>
+    </div>
+
+    <!-- Navigation -->
+    <div class="program-nav">
+      <a href="auto-save-draft.html" class="nav-prev">&larr; ST 09: Auto-Save Draft</a>
+      <a href="../projects/index.html" class="nav-next">Next Category: Mini Projects &rarr;</a>
+    </div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-content">
+      <p>&copy; 2026 Web Technology Practical Laboratory • Prepared by <strong>Shaik Roshan</strong></p>
+      <p class="subtext">Computer Science & Engineering Department</p>
+    </div>
+  </footer>
+
+  <script src="../../assets/js/code-viewer.js"></script>
+  <script>
+    let cart = JSON.parse(localStorage.getItem("lab_persistent_cart") || "null");
+
+    if (!cart) {
+      cart = [
+        { id: 1, name: "Wireless Headset", price: 1999, qty: 1 }
+      ];
+      localStorage.setItem("lab_persistent_cart", JSON.stringify(cart));
+    }
+
+    const cartList = document.getElementById("cartList");
+    const cartTotal = document.getElementById("cartTotal");
+    const badge = document.getElementById("cartCountBadge");
+
+    function saveAndRender() {
+      localStorage.setItem("lab_persistent_cart", JSON.stringify(cart));
+      render();
+    }
+
+    function render() {
+      cartList.innerHTML = "";
+      let total = 0;
+      let count = 0;
+
+      if (cart.length === 0) {
+        cartList.innerHTML = `<div style="text-align:center; color:#64748b; padding:1.5rem;">Cart is empty. Add items from the left!</div>`;
+      } else {
+        cart.forEach(item => {
+          total += item.price * item.qty;
+          count += item.qty;
+
+          const row = document.createElement("div");
+          row.className = "cart-row";
+          row.innerHTML = `
+            <div>
+              <div style="color:#f8fafc; font-weight:500;">${item.name}</div>
+              <div style="color:#94a3b8; font-size:0.75rem;">₹${item.price.toLocaleString()} × ${item.qty}</div>
+            </div>
+            <div style="display:flex; align-items:center; gap:0.4rem;">
+              <button class="qty-ctrl-btn" onclick="updateQty(${item.id}, -1)">-</button>
+              <span style="font-family:'Fira Code', monospace; min-width:18px; text-align:center;">${item.qty}</span>
+              <button class="qty-ctrl-btn" onclick="updateQty(${item.id}, 1)">+</button>
+            </div>
+          `;
+          cartList.appendChild(row);
+        });
+      }
+
+      badge.textContent = `${count} Item${count === 1 ? '' : 's'} in Cart`;
+      cartTotal.textContent = `₹${total.toLocaleString('en-IN')}`;
+    }
+
+    function addToCart(id, name, price) {
+      const existing = cart.find(i => i.id === id);
+      if (existing) {
+        existing.qty++;
+      } else {
+        cart.push({ id, name, price, qty: 1 });
+      }
+      saveAndRender();
+    }
+
+    function updateQty(id, delta) {
+      const item = cart.find(i => i.id === id);
+      if (!item) return;
+
+      item.qty += delta;
+      if (item.qty <= 0) {
+        cart = cart.filter(i => i.id !== id);
+      }
+      saveAndRender();
+    }
+
+    function clearCart() {
+      cart = [];
+      saveAndRender();
+    }
+
+    render();
+  </script>
+</body>
+</html>

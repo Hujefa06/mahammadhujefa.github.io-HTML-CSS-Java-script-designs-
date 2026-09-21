@@ -1,0 +1,621 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Project 12: E-Commerce Shopping Cart System - JavaScript Projects</title>
+  <link rel="stylesheet" href="../../assets/css/style.css">
+  <link rel="stylesheet" href="../../assets/css/program-viewer.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500;600&family=Inter:wght@400;500;600;700&family=Outfit:wght@500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    .store-layout {
+      display: grid;
+      grid-template-columns: 1.6fr 1fr;
+      gap: 1.5rem;
+    }
+    @media (max-width: 850px) {
+      .store-layout { grid-template-columns: 1fr; }
+    }
+    .catalog-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+      gap: 1rem;
+    }
+    .product-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius-md);
+      padding: 1.25rem;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+    .product-card:hover {
+      transform: translateY(-3px);
+      box-shadow: var(--shadow-sm);
+    }
+    .prod-emoji {
+      font-size: 3rem;
+      margin-bottom: 0.75rem;
+    }
+    .prod-title {
+      font-size: 1rem;
+      font-weight: 700;
+      margin-bottom: 0.25rem;
+    }
+    .prod-category {
+      font-size: 0.75rem;
+      color: var(--text-secondary);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      margin-bottom: 0.5rem;
+    }
+    .prod-price {
+      font-size: 1.25rem;
+      font-weight: 800;
+      color: var(--primary);
+      margin-bottom: 1rem;
+      font-family: 'Outfit', sans-serif;
+    }
+    .btn-add-cart {
+      width: 100%;
+      padding: 0.6rem;
+      background: var(--primary);
+      color: #fff;
+      border: none;
+      border-radius: var(--radius-sm);
+      font-weight: 600;
+      font-size: 0.85rem;
+      cursor: pointer;
+      transition: background 0.2s ease;
+    }
+    .btn-add-cart:hover { background: var(--primary-hover); }
+
+    /* Cart Panel */
+    .cart-panel {
+      background: var(--bg-card);
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius-lg);
+      padding: 1.5rem;
+      display: flex;
+      flex-direction: column;
+      height: fit-content;
+    }
+    .cart-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding-bottom: 1rem;
+      border-bottom: 1px solid var(--border-color);
+      margin-bottom: 1rem;
+    }
+    .cart-header h3 { font-size: 1.2rem; font-weight: 700; }
+    .cart-badge {
+      background: var(--primary);
+      color: #fff;
+      font-size: 0.8rem;
+      font-weight: 700;
+      padding: 0.2rem 0.6rem;
+      border-radius: 9999px;
+    }
+    .cart-items-list {
+      list-style: none;
+      padding: 0;
+      margin: 0 0 1.25rem 0;
+      max-height: 280px;
+      overflow-y: auto;
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+    }
+    .cart-item {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 0.6rem 0.8rem;
+      background: var(--bg-main);
+      border-radius: var(--radius-sm);
+      font-size: 0.9rem;
+    }
+    .qty-controls {
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+    }
+    .qty-btn {
+      width: 24px;
+      height: 24px;
+      border-radius: 4px;
+      border: 1px solid var(--border-color);
+      background: var(--bg-card);
+      color: var(--text-main);
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      font-weight: 700;
+    }
+    .qty-btn:hover { background: var(--border-color); }
+    .cart-summary-line {
+      display: flex;
+      justify-content: space-between;
+      font-size: 0.9rem;
+      color: var(--text-secondary);
+      margin-bottom: 0.5rem;
+    }
+    .cart-summary-total {
+      display: flex;
+      justify-content: space-between;
+      font-size: 1.2rem;
+      font-weight: 800;
+      color: var(--text-main);
+      padding-top: 0.75rem;
+      border-top: 1px solid var(--border-color);
+      margin-top: 0.5rem;
+      margin-bottom: 1.25rem;
+    }
+    .coupon-box {
+      display: flex;
+      gap: 0.5rem;
+      margin-bottom: 1rem;
+    }
+    .coupon-box input {
+      flex: 1;
+      padding: 0.5rem 0.75rem;
+      border-radius: var(--radius-sm);
+      border: 1px solid var(--border-color);
+      background: var(--bg-main);
+      color: var(--text-main);
+      font-size: 0.85rem;
+    }
+    .coupon-box button {
+      padding: 0.5rem 1rem;
+      background: var(--bg-main);
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius-sm);
+      color: var(--text-main);
+      font-weight: 600;
+      font-size: 0.85rem;
+      cursor: pointer;
+    }
+    .coupon-box button:hover { border-color: var(--primary); color: var(--primary); }
+    .btn-checkout {
+      width: 100%;
+      padding: 0.85rem;
+      background: #10b981;
+      color: #fff;
+      border: none;
+      border-radius: var(--radius-sm);
+      font-weight: 700;
+      font-size: 1rem;
+      cursor: pointer;
+      transition: background 0.2s ease;
+    }
+    .btn-checkout:hover { background: #059669; }
+    .empty-cart-msg {
+      text-align: center;
+      padding: 2rem 0;
+      color: var(--text-secondary);
+      font-size: 0.9rem;
+    }
+  </style>
+</head>
+<body>
+  <!-- Header -->
+  <header class="app-header">
+    <div class="header-container">
+      <a href="../../index.html" class="brand-logo">
+        <span class="logo-icon">&lt;/&gt;</span>
+        <span class="logo-text">WebLab<span class="logo-highlight">Studio</span></span>
+      </a>
+      <div class="header-student">
+        <span class="student-name">Shaik Roshan</span>
+        <span class="student-id">[TO BE FILLED BY STUDENT]</span>
+      </div>
+    </div>
+  </header>
+
+  <main class="viewer-main">
+    <!-- Breadcrumb -->
+    <nav class="breadcrumb-nav">
+      <a href="../../index.html">Home</a>
+      <span class="breadcrumb-separator">/</span>
+      <a href="../index.html">JavaScript</a>
+      <span class="breadcrumb-separator">/</span>
+      <a href="index.html">Projects</a>
+      <span class="breadcrumb-separator">/</span>
+      <span class="breadcrumb-current">Shopping Cart Engine</span>
+    </nav>
+
+    <!-- Program Metadata Header -->
+    <section class="program-header-card">
+      <div class="program-badge">Project 12 of 16</div>
+      <h1 class="program-title">Interactive E-Commerce Shopping Cart System</h1>
+      <p class="program-description">
+        A full-stack simulated digital storefront featuring dynamic catalog rendering, add/modify quantities, promo code discount computation, sales tax, and instant order checkout summary.
+      </p>
+      <div class="program-meta-chips">
+        <span class="meta-chip">Cart State Management</span>
+        <span class="meta-chip">Promo Discounts</span>
+        <span class="meta-chip">Tax Calculations</span>
+        <span class="meta-chip">Dynamic Quantity Increments</span>
+      </div>
+    </section>
+
+    <!-- Objective Box -->
+    <div class="objective-box">
+      <h3>Educational Objective</h3>
+      <p>
+        Design a robust state management system for e-commerce carts in client-side JavaScript. Learn to manage an array of cart line items, update quantity without mutating unrelated rows, calculate subtotal, promotional discounts (e.g. <code>SAVE20</code>), estimated tax, and aggregate total price.
+      </p>
+    </div>
+
+    <!-- Live Interactive Demo -->
+    <section class="demo-card">
+      <div class="demo-card-header">
+        <div class="demo-title-area">
+          <span class="live-dot"></span>
+          <h3>Live Digital Electronics Store</h3>
+        </div>
+        <span class="demo-tag">Production Demo</span>
+      </div>
+      <div class="demo-card-body">
+        <div class="store-layout">
+          <!-- Catalog Section -->
+          <div>
+            <h4 style="margin-bottom: 1rem; font-size: 1.1rem;">Available Products</h4>
+            <div class="catalog-grid" id="catalogGrid">
+              <!-- Rendered dynamically -->
+            </div>
+          </div>
+
+          <!-- Cart Sidebar -->
+          <div class="cart-panel">
+            <div class="cart-header">
+              <h3>Shopping Bag</h3>
+              <span class="cart-badge" id="cartCountBadge">0 items</span>
+            </div>
+
+            <ul class="cart-items-list" id="cartItemsList">
+              <li class="empty-cart-msg">Your shopping bag is empty.</li>
+            </ul>
+
+            <!-- Coupon Input -->
+            <div class="coupon-box">
+              <input type="text" id="couponCode" placeholder="Promo code (try: SAVE20)">
+              <button id="btnApplyCoupon">Apply</button>
+            </div>
+
+            <!-- Financial Calculations -->
+            <div class="cart-summary-line">
+              <span>Subtotal:</span>
+              <span id="summarySubtotal">$0.00</span>
+            </div>
+            <div class="cart-summary-line" id="discountRow" style="display:none; color:#10b981;">
+              <span>Discount (20%):</span>
+              <span id="summaryDiscount">-$0.00</span>
+            </div>
+            <div class="cart-summary-line">
+              <span>Estimated Tax (8%):</span>
+              <span id="summaryTax">$0.00</span>
+            </div>
+            <div class="cart-summary-total">
+              <span>Grand Total:</span>
+              <span id="summaryTotal">$0.00</span>
+            </div>
+
+            <button class="btn-checkout" id="btnCheckout">Proceed to Checkout</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Source Code Viewer -->
+    <section class="code-viewer-section">
+      <div class="code-viewer-header">
+        <div class="code-tabs">
+          <button class="code-tab active" data-target="html-code">HTML Structure</button>
+          <button class="code-tab" data-target="css-code">CSS Styles</button>
+          <button class="code-tab" data-target="js-code">JavaScript Logic</button>
+        </div>
+        <div class="code-actions">
+          <button class="btn-toggle-code" id="btnToggleCode">Show/Hide Code</button>
+          <button class="btn-copy-code" id="btnCopyCode">Copy Source</button>
+        </div>
+      </div>
+
+      <div class="code-blocks-container" id="codeBlocksContainer">
+        <!-- HTML Code Block -->
+        <pre class="code-block active" id="html-code"><code>&lt;div class="store-layout"&gt;
+  &lt;!-- Products Catalog --&gt;
+  &lt;div class="catalog-grid" id="catalogGrid"&gt;&lt;/div&gt;
+
+  &lt;!-- Cart Sidebar --&gt;
+  &lt;div class="cart-panel"&gt;
+    &lt;h3&gt;Shopping Bag (&lt;span id="cartCountBadge"&gt;0&lt;/span&gt;)&lt;/h3&gt;
+    &lt;ul class="cart-items-list" id="cartItemsList"&gt;&lt;/ul&gt;
+    
+    &lt;div class="coupon-box"&gt;
+      &lt;input type="text" id="couponCode" placeholder="Promo code"&gt;
+      &lt;button id="btnApplyCoupon"&gt;Apply&lt;/button&gt;
+    &lt;/div&gt;
+
+    &lt;div class="cart-summary-total"&gt;
+      &lt;span&gt;Total:&lt;/span&gt;
+      &lt;span id="summaryTotal"&gt;$0.00&lt;/span&gt;
+    &lt;/div&gt;
+    &lt;button class="btn-checkout" id="btnCheckout"&gt;Checkout&lt;/button&gt;
+  &lt;/div&gt;
+&lt;/div&gt;</code></pre>
+
+        <!-- CSS Code Block -->
+        <pre class="code-block" id="css-code"><code>.store-layout {
+  display: grid;
+  grid-template-columns: 1.6fr 1fr;
+  gap: 1.5rem;
+}
+.catalog-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 1rem;
+}
+.product-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border-color);
+  padding: 1.25rem;
+  text-align: center;
+  border-radius: var(--radius-md);
+}
+.cart-panel {
+  background: var(--bg-card);
+  border: 1px solid var(--border-color);
+  padding: 1.5rem;
+  border-radius: var(--radius-lg);
+}</code></pre>
+
+        <!-- JS Code Block -->
+        <pre class="code-block" id="js-code"><code>// Shopping Cart State & Logic
+const products = [
+  { id: 101, name: 'Mechanical Keyboard', price: 99.99, icon: '⌨️' },
+  { id: 102, name: 'Wireless Mouse', price: 49.99, icon: '🖱️' },
+  { id: 103, name: 'ANC Headphones', price: 149.99, icon: '🎧' },
+  { id: 104, name: 'Ultra-Wide Monitor', price: 329.99, icon: '🖥️' }
+];
+
+let cart = [];
+let discountRate = 0.0;
+
+function renderCatalog() {
+  const grid = document.getElementById('catalogGrid');
+  grid.innerHTML = products.map(p =&gt; `
+    &lt;div class="product-card"&gt;
+      &lt;div class="prod-emoji"&gt;${p.icon}&lt;/div&gt;
+      &lt;div class="prod-title"&gt;${p.name}&lt;/div&gt;
+      &lt;div class="prod-price"&gt;$${p.price.toFixed(2)}&lt;/div&gt;
+      &lt;button class="btn-add-cart" onclick="addToCart(${p.id})"&gt;Add to Bag&lt;/button&gt;
+    &lt;/div&gt;
+  `).join('');
+}
+
+function addToCart(id) {
+  const existing = cart.find(item =&gt; item.id === id);
+  if (existing) {
+    existing.qty++;
+  } else {
+    const prod = products.find(p =&gt; p.id === id);
+    cart.push({ ...prod, qty: 1 });
+  }
+  updateCart();
+}
+
+function updateQty(id, delta) {
+  const item = cart.find(i =&gt; i.id === id);
+  if (!item) return;
+  item.qty += delta;
+  if (item.qty &lt;= 0) {
+    cart = cart.filter(i =&gt; i.id !== id);
+  }
+  updateCart();
+}
+
+function updateCart() {
+  const list = document.getElementById('cartItemsList');
+  const countBadge = document.getElementById('cartCountBadge');
+  
+  const totalItems = cart.reduce((acc, i) =&gt; acc + i.qty, 0);
+  countBadge.textContent = `${totalItems} items`;
+
+  if (cart.length === 0) {
+    list.innerHTML = '&lt;li class="empty-cart-msg"&gt;Your shopping bag is empty.&lt;/li&gt;';
+  } else {
+    list.innerHTML = cart.map(i =&gt; `
+      &lt;li class="cart-item"&gt;
+        &lt;div&gt;
+          &lt;div style="font-weight:600;"&gt;${i.name}&lt;/div&gt;
+          &lt;div style="font-size:0.8rem; color:var(--text-secondary);"&gt;$${i.price.toFixed(2)} each&lt;/div&gt;
+        &lt;/div&gt;
+        &lt;div class="qty-controls"&gt;
+          &lt;button class="qty-btn" onclick="updateQty(${i.id}, -1)"&gt;-&lt;/button&gt;
+          &lt;span style="font-weight:700; width:20px; text-align:center;"&gt;${i.qty}&lt;/span&gt;
+          &lt;button class="qty-btn" onclick="updateQty(${i.id}, 1)"&gt;+&lt;/button&gt;
+        &lt;/div&gt;
+      &lt;/li&gt;
+    `).join('');
+  }
+
+  const subtotal = cart.reduce((acc, i) =&gt; acc + (i.price * i.qty), 0);
+  const discount = subtotal * discountRate;
+  const tax = (subtotal - discount) * 0.08;
+  const grandTotal = (subtotal - discount) + tax;
+
+  document.getElementById('summarySubtotal').textContent = `$${subtotal.toFixed(2)}`;
+  document.getElementById('summaryDiscount').textContent = `-$${discount.toFixed(2)}`;
+  document.getElementById('summaryTax').textContent = `$${tax.toFixed(2)}`;
+  document.getElementById('summaryTotal').textContent = `$${grandTotal.toFixed(2)}`;
+}
+
+document.getElementById('btnApplyCoupon').addEventListener('click', () =&gt; {
+  const code = document.getElementById('couponCode').value.trim().toUpperCase();
+  if (code === 'SAVE20') {
+    discountRate = 0.20;
+    document.getElementById('discountRow').style.display = 'flex';
+    alert('Coupon SAVE20 applied: 20% Discount applied!');
+  } else {
+    alert('Invalid Coupon Code. Try: SAVE20');
+  }
+  updateCart();
+});
+
+renderCatalog();
+updateCart();</code></pre>
+      </div>
+    </section>
+
+    <!-- Navigation Footer -->
+    <nav class="program-page-nav">
+      <a href="grade-calculator-app.html" class="nav-btn prev-btn">
+        <span class="nav-icon">&larr;</span>
+        <div class="nav-text">
+          <span class="nav-sub">Previous Project</span>
+          <span class="nav-title">Grade & CGPA Calculator</span>
+        </div>
+      </a>
+      <a href="notes-app.html" class="nav-btn next-btn">
+        <div class="nav-text">
+          <span class="nav-sub">Next Project</span>
+          <span class="nav-title">Interactive Sticky Notes App</span>
+        </div>
+        <span class="nav-icon">&rarr;</span>
+      </a>
+    </nav>
+  </main>
+
+  <footer class="app-footer">
+    <div class="footer-container">
+      <p>&copy; 2026 WebLab Studio &bull; Developed by <strong>Shaik Roshan</strong> (Dept. of CSE) &bull; Academic Laboratory Record</p>
+    </div>
+  </footer>
+
+  <div id="toastNotification" class="toast">Code copied to clipboard!</div>
+
+  <script src="../../assets/js/code-viewer.js"></script>
+  <script>
+    (function() {
+      const products = [
+        { id: 101, name: 'Mechanical Keyboard', price: 99.99, icon: '⌨️', category: 'Peripherals' },
+        { id: 102, name: 'Ergonomic Mouse', price: 49.99, icon: '🖱️', category: 'Peripherals' },
+        { id: 103, name: 'Noise-Canceling Pro', price: 149.99, icon: '🎧', category: 'Audio' },
+        { id: 104, name: 'Curved 4K Display', price: 349.99, icon: '🖥️', category: 'Displays' }
+      ];
+
+      let cart = [
+        { id: 101, name: 'Mechanical Keyboard', price: 99.99, icon: '⌨️', qty: 1 }
+      ];
+      let discountRate = 0.0;
+
+      function renderCatalog() {
+        const grid = document.getElementById('catalogGrid');
+        grid.innerHTML = products.map(p => `
+          <div class="product-card">
+            <div class="prod-emoji">${p.icon}</div>
+            <div class="prod-category">${p.category}</div>
+            <div class="prod-title">${p.name}</div>
+            <div class="prod-price">$${p.price.toFixed(2)}</div>
+            <button class="btn-add-cart" onclick="window.addToCart(${p.id})">Add to Bag</button>
+          </div>
+        `).join('');
+      }
+
+      window.addToCart = function(id) {
+        const existing = cart.find(item => item.id === id);
+        if (existing) {
+          existing.qty++;
+        } else {
+          const prod = products.find(p => p.id === id);
+          cart.push({ ...prod, qty: 1 });
+        }
+        updateCart();
+      };
+
+      window.updateQty = function(id, delta) {
+        const item = cart.find(i => i.id === id);
+        if (!item) return;
+        item.qty += delta;
+        if (item.qty <= 0) {
+          cart = cart.filter(i => i.id !== id);
+        }
+        updateCart();
+      };
+
+      function updateCart() {
+        const list = document.getElementById('cartItemsList');
+        const countBadge = document.getElementById('cartCountBadge');
+        
+        const totalItems = cart.reduce((acc, i) => acc + i.qty, 0);
+        countBadge.textContent = `${totalItems} items`;
+
+        if (cart.length === 0) {
+          list.innerHTML = '<li class="empty-cart-msg">Your shopping bag is empty.</li>';
+        } else {
+          list.innerHTML = cart.map(i => `
+            <li class="cart-item">
+              <div>
+                <div style="font-weight:600;">${i.name}</div>
+                <div style="font-size:0.8rem; color:var(--text-secondary);">$${i.price.toFixed(2)} each</div>
+              </div>
+              <div class="qty-controls">
+                <button class="qty-btn" onclick="window.updateQty(${i.id}, -1)">&minus;</button>
+                <span style="font-weight:700; width:22px; text-align:center;">${i.qty}</span>
+                <button class="qty-btn" onclick="window.updateQty(${i.id}, 1)">&plus;</button>
+              </div>
+            </li>
+          `).join('');
+        }
+
+        const subtotal = cart.reduce((acc, i) => acc + (i.price * i.qty), 0);
+        const discount = subtotal * discountRate;
+        const tax = (subtotal - discount) * 0.08;
+        const grandTotal = (subtotal - discount) + tax;
+
+        document.getElementById('summarySubtotal').textContent = `$${subtotal.toFixed(2)}`;
+        document.getElementById('summaryDiscount').textContent = `-$${discount.toFixed(2)}`;
+        document.getElementById('summaryTax').textContent = `$${tax.toFixed(2)}`;
+        document.getElementById('summaryTotal').textContent = `$${grandTotal.toFixed(2)}`;
+      }
+
+      document.getElementById('btnApplyCoupon').addEventListener('click', () => {
+        const code = document.getElementById('couponCode').value.trim().toUpperCase();
+        if (code === 'SAVE20') {
+          discountRate = 0.20;
+          document.getElementById('discountRow').style.display = 'flex';
+          alert('Coupon SAVE20 applied: 20% Discount applied!');
+        } else {
+          alert('Invalid promo code. Please enter: SAVE20');
+        }
+        updateCart();
+      });
+
+      document.getElementById('btnCheckout').addEventListener('click', () => {
+        if (cart.length === 0) {
+          alert('Your shopping bag is empty! Add products to checkout.');
+          return;
+        }
+        const total = document.getElementById('summaryTotal').textContent;
+        alert(`Order successfully processed for ${total}!\nThank you for shopping with WebLab Studio.`);
+        cart = [];
+        discountRate = 0.0;
+        document.getElementById('discountRow').style.display = 'none';
+        document.getElementById('couponCode').value = '';
+        updateCart();
+      });
+
+      renderCatalog();
+      updateCart();
+    })();
+  </script>
+</body>
+</html>

@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>FM 06 - Radio & Checkbox Validation | Web Tech Lab</title>
+  <link rel="stylesheet" href="../../assets/css/style.css">
+  <link rel="stylesheet" href="../../assets/css/program-viewer.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500&family=Inter:wght@400;500;600&family=Outfit:wght@600;700;800&display=swap" rel="stylesheet">
+  <style>
+    .options-card {
+      max-width: 580px;
+      margin: 0 auto;
+      background: #0f172a;
+      border: 1px solid #334155;
+      border-radius: 12px;
+      padding: 2rem;
+    }
+    .field-block {
+      margin-bottom: 1.5rem;
+      padding-bottom: 1.25rem;
+      border-bottom: 1px solid #1e293b;
+    }
+    .field-legend {
+      font-size: 0.95rem;
+      font-weight: 600;
+      color: #38bdf8;
+      margin-bottom: 0.75rem;
+      display: block;
+    }
+    .opt-group {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+    .opt-label {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-size: 0.9rem;
+      color: #cbd5e1;
+      cursor: pointer;
+    }
+    .opt-label input {
+      accent-color: #38bdf8;
+      width: 16px;
+      height: 16px;
+    }
+    .validation-alert {
+      color: #ef4444;
+      font-size: 0.8rem;
+      margin-top: 0.4rem;
+      display: none;
+    }
+  </style>
+</head>
+<body>
+  <!-- Navbar -->
+  <nav class="navbar">
+    <div class="nav-container">
+      <a href="../../index.html" class="logo">
+        <span class="logo-icon">&lt;/&gt;</span>
+        <span>WebTech<span class="highlight">Lab</span></span>
+      </a>
+      <div class="nav-links">
+        <a href="../../index.html">Dashboard</a>
+        <a href="../../html/index.html">HTML</a>
+        <a href="../../css/index.html">CSS</a>
+        <a href="../index.html" class="active">JavaScript</a>
+      </div>
+    </div>
+  </nav>
+
+  <main class="page-container">
+    <div class="breadcrumb">
+      <a href="../../index.html">Home</a> &rsaquo; 
+      <a href="../index.html">JavaScript</a> &rsaquo; 
+      <a href="index.html">Forms</a> &rsaquo; 
+      <span>FM 06 - Radio & Checkbox Validation</span>
+    </div>
+
+    <div class="program-header">
+      <div class="program-badge">Form Validation • Program 06</div>
+      <h1>Radio Buttons & Checkbox Group Validation</h1>
+      <p class="program-desc">
+        Validate choice groups in HTML: ensure at least one radio button in a name group is selected, 
+        enforce a minimum selection count for checkboxes (e.g. at least 2 technical skills), and require terms agreement.
+      </p>
+      <div class="student-pill">
+        <span>👨‍💻 Student: <strong>Shaik Roshan</strong></span>
+        <span>•</span>
+        <span>Reg No: <strong>[TO BE FILLED BY STUDENT]</strong></span>
+      </div>
+    </div>
+
+    <!-- Live Demo -->
+    <div class="demo-section">
+      <div class="demo-header">
+        <div class="demo-title">
+          <span>🔘</span> Electives & Preferences Form
+        </div>
+        <span class="badge badge-success">Group Constraints</span>
+      </div>
+      <div class="demo-body">
+        
+        <div class="options-card">
+          <form id="prefForm" onsubmit="validateSelections(event)">
+            
+            <!-- Radio Group -->
+            <div class="field-block">
+              <span class="field-legend">1. Degree Specialization Track (Mandatory 1):</span>
+              <div class="opt-group">
+                <label class="opt-label"><input type="radio" name="track" value="AI"> Artificial Intelligence</label>
+                <label class="opt-label"><input type="radio" name="track" value="Cloud"> Cloud Computing</label>
+                <label class="opt-label"><input type="radio" name="track" value="Cyber"> Cyber Security</label>
+              </div>
+              <div id="errTrack" class="validation-alert">Please select one specialization track.</div>
+            </div>
+
+            <!-- Checkbox Group -->
+            <div class="field-block">
+              <span class="field-legend">2. Programming Languages (Select minimum 2):</span>
+              <div class="opt-group">
+                <label class="opt-label"><input type="checkbox" name="skills" value="JS"> JavaScript</label>
+                <label class="opt-label"><input type="checkbox" name="skills" value="Python"> Python</label>
+                <label class="opt-label"><input type="checkbox" name="skills" value="Java"> Java</label>
+                <label class="opt-label"><input type="checkbox" name="skills" value="Cpp"> C++</label>
+              </div>
+              <div id="errSkills" class="validation-alert">You must choose at least 2 programming languages.</div>
+            </div>
+
+            <!-- Single Checkbox Agreement -->
+            <div class="field-block" style="border-bottom: none;">
+              <label class="opt-label">
+                <input type="checkbox" id="termsCheck">
+                <span>I agree to the college laboratory examination code of conduct.</span>
+              </label>
+              <div id="errTerms" class="validation-alert">You must accept the terms to proceed.</div>
+            </div>
+
+            <button type="submit" class="btn btn-primary" style="width: 100%;">Verify & Submit Choices</button>
+          </form>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- Source Code Viewer -->
+    <div class="code-viewer-section">
+      <div class="code-viewer-header">
+        <div class="code-tabs">
+          <button class="code-tab active" data-tab="js">JavaScript Implementation</button>
+        </div>
+        <div class="code-actions">
+          <button class="btn-secondary" id="copyCodeBtn">📋 Copy Code</button>
+        </div>
+      </div>
+      <div class="code-body">
+        <pre><code id="sourceCode">function validateForm() {
+  // 1. Radio check (returns null if none checked)
+  const selectedRadio = document.querySelector('input[name="track"]:checked');
+  if (!selectedRadio) {
+    alert("Please select a track!");
+    return false;
+  }
+
+  // 2. Multiple Checkbox check (query all matching)
+  const checkedBoxes = document.querySelectorAll('input[name="skills"]:checked');
+  if (checkedBoxes.length < 2) {
+    alert("Please select at least 2 skills!");
+    return false;
+  }
+
+  // 3. Single checkbox boolean property
+  const termsAgreed = document.getElementById("termsCheck").checked;
+  if (!termsAgreed) {
+    alert("Please accept the terms!");
+    return false;
+  }
+
+  return true;
+}</code></pre>
+      </div>
+    </div>
+
+    <!-- Navigation -->
+    <div class="program-nav">
+      <a href="password-strength-meter.html" class="nav-prev">&larr; FM 05: Password Strength</a>
+      <a href="regex-tester.html" class="nav-next">FM 07: RegEx Tester &rarr;</a>
+    </div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-content">
+      <p>&copy; 2026 Web Technology Practical Laboratory • Prepared by <strong>Shaik Roshan</strong></p>
+      <p class="subtext">Computer Science & Engineering Department</p>
+    </div>
+  </footer>
+
+  <script src="../../assets/js/code-viewer.js"></script>
+  <script>
+    function validateSelections(e) {
+      e.preventDefault();
+      let valid = true;
+
+      // 1. Radio check
+      const radio = document.querySelector('input[name="track"]:checked');
+      const errTrack = document.getElementById("errTrack");
+      if (!radio) {
+        errTrack.style.display = "block";
+        valid = false;
+      } else {
+        errTrack.style.display = "none";
+      }
+
+      // 2. Checkboxes check (min 2)
+      const skills = document.querySelectorAll('input[name="skills"]:checked');
+      const errSkills = document.getElementById("errSkills");
+      if (skills.length < 2) {
+        errSkills.style.display = "block";
+        valid = false;
+      } else {
+        errSkills.style.display = "none";
+      }
+
+      // 3. Terms
+      const terms = document.getElementById("termsCheck");
+      const errTerms = document.getElementById("errTerms");
+      if (!terms.checked) {
+        errTerms.style.display = "block";
+        valid = false;
+      } else {
+        errTerms.style.display = "none";
+      }
+
+      if (valid) {
+        const skillList = Array.from(skills).map(s => s.value).join(", ");
+        alert(`✔ Selections Verified!\nTrack: ${radio.value}\nLanguages: ${skillList}`);
+      }
+    }
+  </script>
+</body>
+</html>

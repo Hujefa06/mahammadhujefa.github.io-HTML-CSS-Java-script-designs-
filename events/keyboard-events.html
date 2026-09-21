@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>EV 02 - Keyboard Events & Keycode Visualizer | Web Tech Lab</title>
+  <link rel="stylesheet" href="../../assets/css/style.css">
+  <link rel="stylesheet" href="../../assets/css/program-viewer.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500&family=Inter:wght@400;500;600&family=Outfit:wght@600;700;800&display=swap" rel="stylesheet">
+  <style>
+    .key-hero {
+      text-align: center;
+      background: #0f172a;
+      border: 1px solid #334155;
+      border-radius: 12px;
+      padding: 2.5rem;
+      margin-bottom: 1.5rem;
+    }
+    .big-key-char {
+      font-family: 'Fira Code', monospace;
+      font-size: 4rem;
+      font-weight: 800;
+      color: #38bdf8;
+      display: inline-block;
+      min-width: 100px;
+      min-height: 90px;
+      line-height: 90px;
+      background: #1e293b;
+      border: 2px solid #38bdf8;
+      border-radius: 12px;
+      box-shadow: 0 10px 25px rgba(56, 189, 248, 0.2);
+      margin-bottom: 1rem;
+    }
+    .meta-cards-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 1rem;
+    }
+    .meta-card {
+      background: #1e293b;
+      border: 1px solid #334155;
+      border-radius: 8px;
+      padding: 1rem;
+      text-align: center;
+    }
+    .meta-card label {
+      display: block;
+      font-size: 0.75rem;
+      color: #94a3b8;
+      text-transform: uppercase;
+      margin-bottom: 0.25rem;
+    }
+    .meta-val {
+      font-family: 'Fira Code', monospace;
+      font-size: 1.25rem;
+      color: #f8fafc;
+      font-weight: 600;
+    }
+    .modifier-pills {
+      display: flex;
+      justify-content: center;
+      gap: 0.75rem;
+      margin-top: 1rem;
+    }
+    .mod-pill {
+      background: #1e293b;
+      border: 1px solid #475569;
+      padding: 0.35rem 0.85rem;
+      border-radius: 50px;
+      font-size: 0.8rem;
+      color: #94a3b8;
+      transition: all 0.2s;
+    }
+    .mod-pill.active {
+      background: #10b981;
+      color: #fff;
+      border-color: #10b981;
+    }
+  </style>
+</head>
+<body>
+  <!-- Navbar -->
+  <nav class="navbar">
+    <div class="nav-container">
+      <a href="../../index.html" class="logo">
+        <span class="logo-icon">&lt;/&gt;</span>
+        <span>WebTech<span class="highlight">Lab</span></span>
+      </a>
+      <div class="nav-links">
+        <a href="../../index.html">Dashboard</a>
+        <a href="../../html/index.html">HTML</a>
+        <a href="../../css/index.html">CSS</a>
+        <a href="../index.html" class="active">JavaScript</a>
+      </div>
+    </div>
+  </nav>
+
+  <main class="page-container">
+    <div class="breadcrumb">
+      <a href="../../index.html">Home</a> &rsaquo; 
+      <a href="../index.html">JavaScript</a> &rsaquo; 
+      <a href="index.html">Events</a> &rsaquo; 
+      <span>EV 02 - Keyboard Events Visualizer</span>
+    </div>
+
+    <div class="program-header">
+      <div class="program-badge">Event Handling • Program 02</div>
+      <h1>Keyboard Events & Keycode Visualizer</h1>
+      <p class="program-desc">
+        Capture physical and virtual keyboard strokes in real-time. Inspect modern <code>event.key</code>, 
+        <code>event.code</code>, <code>event.which</code>, and modifier keys (Ctrl, Shift, Alt, Meta).
+      </p>
+      <div class="student-pill">
+        <span>👨‍💻 Student: <strong>Shaik Roshan</strong></span>
+        <span>•</span>
+        <span>Reg No: <strong>[TO BE FILLED BY STUDENT]</strong></span>
+      </div>
+    </div>
+
+    <!-- Live Demo -->
+    <div class="demo-section">
+      <div class="demo-header">
+        <div class="demo-title">
+          <span>⌨️</span> Live Keystroke Radar
+        </div>
+        <span class="badge badge-success">Press Any Key</span>
+      </div>
+      <div class="demo-body">
+        
+        <div class="key-hero">
+          <div id="bigKeyDisplay" class="big-key-char">Space</div>
+          <h3 id="heroStatusText" style="color: #cbd5e1; font-weight: normal;">Press any key on your keyboard to inspect its properties</h3>
+
+          <div class="modifier-pills">
+            <span id="pillCtrl" class="mod-pill">Ctrl</span>
+            <span id="pillShift" class="mod-pill">Shift</span>
+            <span id="pillAlt" class="mod-pill">Alt</span>
+            <span id="pillMeta" class="mod-pill">Meta / Cmd</span>
+          </div>
+        </div>
+
+        <div class="meta-cards-grid">
+          <div class="meta-card">
+            <label>event.key</label>
+            <div id="valKey" class="meta-val">" "</div>
+          </div>
+          <div class="meta-card">
+            <label>event.code</label>
+            <div id="valCode" class="meta-val">Space</div>
+          </div>
+          <div class="meta-card">
+            <label>event.which / keyCode</label>
+            <div id="valWhich" class="meta-val">32</div>
+          </div>
+          <div class="meta-card">
+            <label>event.location</label>
+            <div id="valLoc" class="meta-val">Standard (0)</div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- Source Code Viewer -->
+    <div class="code-viewer-section">
+      <div class="code-viewer-header">
+        <div class="code-tabs">
+          <button class="code-tab active" data-tab="js">JavaScript Implementation</button>
+        </div>
+        <div class="code-actions">
+          <button class="btn-secondary" id="copyCodeBtn">📋 Copy Code</button>
+        </div>
+      </div>
+      <div class="code-body">
+        <pre><code id="sourceCode">window.addEventListener("keydown", (event) => {
+  // 1. Modern string representation of key value
+  const key = event.key;
+
+  // 2. Physical key on the keyboard hardware
+  const code = event.code;
+
+  // 3. Numeric keyCode (deprecated in modern web, but useful in legacy code)
+  const keyCode = event.which || event.keyCode;
+
+  // 4. Modifier keys
+  const isCtrl = event.ctrlKey;
+  const isShift = event.shiftKey;
+  const isAlt = event.altKey;
+
+  console.log({ key, code, keyCode, isCtrl, isShift, isAlt });
+});</code></pre>
+      </div>
+    </div>
+
+    <!-- Navigation -->
+    <div class="program-nav">
+      <a href="mouse-events.html" class="nav-prev">&larr; EV 01: Mouse Events</a>
+      <a href="form-events.html" class="nav-next">EV 03: Form Events &rarr;</a>
+    </div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-content">
+      <p>&copy; 2026 Web Technology Practical Laboratory • Prepared by <strong>Shaik Roshan</strong></p>
+      <p class="subtext">Computer Science & Engineering Department</p>
+    </div>
+  </footer>
+
+  <script src="../../assets/js/code-viewer.js"></script>
+  <script>
+    const bigKey = document.getElementById("bigKeyDisplay");
+    const valKey = document.getElementById("valKey");
+    const valCode = document.getElementById("valCode");
+    const valWhich = document.getElementById("valWhich");
+    const valLoc = document.getElementById("valLoc");
+
+    const pillCtrl = document.getElementById("pillCtrl");
+    const pillShift = document.getElementById("pillShift");
+    const pillAlt = document.getElementById("pillAlt");
+    const pillMeta = document.getElementById("pillMeta");
+
+    const locNames = ["Standard (0)", "Left (1)", "Right (2)", "Numpad (3)"];
+
+    window.addEventListener("keydown", (e) => {
+      // Prevent browser default scrolling on space or arrows during experiment
+      if (["Space", "ArrowUp", "ArrowDown"].includes(e.code)) {
+        e.preventDefault();
+      }
+
+      bigKey.textContent = e.key === " " ? "Space" : e.key;
+      valKey.textContent = `"${e.key}"`;
+      valCode.textContent = e.code;
+      valWhich.textContent = e.which || e.keyCode;
+      valLoc.textContent = locNames[e.location] || e.location;
+
+      pillCtrl.classList.toggle("active", e.ctrlKey);
+      pillShift.classList.toggle("active", e.shiftKey);
+      pillAlt.classList.toggle("active", e.altKey);
+      pillMeta.classList.toggle("active", e.metaKey);
+    });
+
+    window.addEventListener("keyup", (e) => {
+      pillCtrl.classList.toggle("active", e.ctrlKey);
+      pillShift.classList.toggle("active", e.shiftKey);
+      pillAlt.classList.toggle("active", e.altKey);
+      pillMeta.classList.toggle("active", e.metaKey);
+    });
+  </script>
+</body>
+</html>

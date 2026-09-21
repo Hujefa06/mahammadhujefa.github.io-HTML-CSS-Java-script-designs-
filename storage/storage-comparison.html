@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ST 08 - Storage Comparison | Web Tech Lab</title>
+  <link rel="stylesheet" href="../../assets/css/style.css">
+  <link rel="stylesheet" href="../../assets/css/program-viewer.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500;700&family=Inter:wght@400;500;600&family=Outfit:wght@600;700;800&display=swap" rel="stylesheet">
+  <style>
+    .comparison-table-wrap {
+      background: #0f172a;
+      border: 1px solid #334155;
+      border-radius: 12px;
+      overflow-x: auto;
+      margin-bottom: 1.5rem;
+    }
+    .comp-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.9rem;
+    }
+    .comp-table th {
+      background: #1e293b;
+      color: #38bdf8;
+      padding: 12px 14px;
+      text-align: left;
+    }
+    .comp-table td {
+      padding: 12px 14px;
+      border-top: 1px solid #1e293b;
+      color: #cbd5e1;
+    }
+    .demo-interactive-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.5rem;
+    }
+    @media (max-width: 768px) {
+      .demo-interactive-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+    .demo-storage-panel {
+      background: #0f172a;
+      border: 1px solid #334155;
+      border-radius: 10px;
+      padding: 1.5rem;
+    }
+  </style>
+</head>
+<body>
+  <!-- Navbar -->
+  <nav class="navbar">
+    <div class="nav-container">
+      <a href="../../index.html" class="logo">
+        <span class="logo-icon">&lt;/&gt;</span>
+        <span>WebTech<span class="highlight">Lab</span></span>
+      </a>
+      <div class="nav-links">
+        <a href="../../index.html">Dashboard</a>
+        <a href="../../html/index.html">HTML</a>
+        <a href="../../css/index.html">CSS</a>
+        <a href="../index.html" class="active">JavaScript</a>
+      </div>
+    </div>
+  </nav>
+
+  <main class="page-container">
+    <div class="breadcrumb">
+      <a href="../../index.html">Home</a> &rsaquo; 
+      <a href="../index.html">JavaScript</a> &rsaquo; 
+      <a href="index.html">Storage</a> &rsaquo; 
+      <span>ST 08 - Storage Comparison</span>
+    </div>
+
+    <div class="program-header">
+      <div class="program-badge">Web Storage • Program 08</div>
+      <h1>LocalStorage vs SessionStorage vs HTTP Cookies</h1>
+      <p class="program-desc">
+        A direct technical comparison examining storage capacities (~5MB vs 4KB), expiration lifecycles, 
+        tab boundaries, and HTTP server transmission.
+      </p>
+      <div class="student-pill">
+        <span>👨‍💻 Student: <strong>Shaik Roshan</strong></span>
+        <span>•</span>
+        <span>Reg No: <strong>[TO BE FILLED BY STUDENT]</strong></span>
+      </div>
+    </div>
+
+    <!-- Live Demo -->
+    <div class="demo-section">
+      <div class="demo-header">
+        <div class="demo-title">
+          <span>⚖️</span> Comparative Specification Matrix
+        </div>
+        <span class="badge badge-success">Academic Matrix</span>
+      </div>
+      <div class="demo-body">
+        
+        <div class="comparison-table-wrap">
+          <table class="comp-table">
+            <thead>
+              <tr>
+                <th>Feature Property</th>
+                <th>localStorage</th>
+                <th>sessionStorage</th>
+                <th>HTTP Cookies</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><strong>Capacity</strong></td>
+                <td>~5MB - 10MB per origin</td>
+                <td>~5MB per origin</td>
+                <td>4KB (very small)</td>
+              </tr>
+              <tr>
+                <td><strong>Lifespan</strong></td>
+                <td>Never expires until cleared</td>
+                <td>Expires when browser tab closes</td>
+                <td>Configured via <code>Expires</code> or <code>Max-Age</code></td>
+              </tr>
+              <tr>
+                <td><strong>Tab Boundary</strong></td>
+                <td>Shared across all same-origin tabs</td>
+                <td>Scoped strictly to active tab only</td>
+                <td>Shared across same-origin tabs/windows</td>
+              </tr>
+              <tr>
+                <td><strong>Network Overhead</strong></td>
+                <td>Never sent to server with HTTP requests</td>
+                <td>Never sent to server with HTTP requests</td>
+                <td>Sent with EVERY HTTP request headers</td>
+              </tr>
+              <tr>
+                <td><strong>Common Use Case</strong></td>
+                <td>Themes, user preferences, cached data</td>
+                <td>Single checkout sessions, wizards</td>
+                <td>Server session tokens, auth tracking</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="demo-interactive-grid">
+          <!-- LocalStorage Test -->
+          <div class="demo-storage-panel">
+            <h4 style="color: #38bdf8; margin-bottom: 0.5rem;">localStorage Live Probe</h4>
+            <p style="font-size: 0.8rem; color: #94a3b8; margin-bottom: 0.75rem;">Persists even after closing this browser tab!</p>
+            <input type="text" id="testLocal" placeholder="Type text..." style="width: 100%; background: #1e293b; border: 1px solid #475569; color: #fff; padding: 0.5rem; border-radius: 6px; margin-bottom: 0.5rem;" oninput="saveLocal(this.value)">
+            <div style="font-size: 0.8rem; color: #cbd5e1;">Stored: <strong id="valLocal">--</strong></div>
+          </div>
+
+          <!-- SessionStorage Test -->
+          <div class="demo-storage-panel">
+            <h4 style="color: #f59e0b; margin-bottom: 0.5rem;">sessionStorage Live Probe</h4>
+            <p style="font-size: 0.8rem; color: #94a3b8; margin-bottom: 0.75rem;">Will be completely erased once you close this tab!</p>
+            <input type="text" id="testSession" placeholder="Type text..." style="width: 100%; background: #1e293b; border: 1px solid #475569; color: #fff; padding: 0.5rem; border-radius: 6px; margin-bottom: 0.5rem;" oninput="saveSession(this.value)">
+            <div style="font-size: 0.8rem; color: #cbd5e1;">Stored: <strong id="valSession">--</strong></div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- Source Code Viewer -->
+    <div class="code-viewer-section">
+      <div class="code-viewer-header">
+        <div class="code-tabs">
+          <button class="code-tab active" data-tab="js">JavaScript Implementation</button>
+        </div>
+        <div class="code-actions">
+          <button class="btn-secondary" id="copyCodeBtn">📋 Copy Code</button>
+        </div>
+      </div>
+      <div class="code-body">
+        <pre><code id="sourceCode">// 1. localStorage: persists indefinitely across tabs
+localStorage.setItem("key_local", "Permanent Data");
+console.log(localStorage.getItem("key_local"));
+
+// 2. sessionStorage: dies immediately when browser tab is closed
+sessionStorage.setItem("key_session", "Temporary Session Data");
+console.log(sessionStorage.getItem("key_session"));
+
+// 3. Document Cookies: transmitted automatically with HTTP requests
+document.cookie = "username=ShaikRoshan; max-age=3600; path=/";</code></pre>
+      </div>
+    </div>
+
+    <!-- Navigation -->
+    <div class="program-nav">
+      <a href="visitor-counter.html" class="nav-prev">&larr; ST 07: Visit Counter</a>
+      <a href="auto-save-draft.html" class="nav-next">ST 09: Auto-Save Draft &rarr;</a>
+    </div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-content">
+      <p>&copy; 2026 Web Technology Practical Laboratory • Prepared by <strong>Shaik Roshan</strong></p>
+      <p class="subtext">Computer Science & Engineering Department</p>
+    </div>
+  </footer>
+
+  <script src="../../assets/js/code-viewer.js"></script>
+  <script>
+    function saveLocal(val) {
+      localStorage.setItem("probe_local", val);
+      document.getElementById("valLocal").textContent = val;
+    }
+
+    function saveSession(val) {
+      sessionStorage.setItem("probe_session", val);
+      document.getElementById("valSession").textContent = val;
+    }
+
+    // Restore on load
+    const loc = localStorage.getItem("probe_local") || "";
+    const ses = sessionStorage.getItem("probe_session") || "";
+
+    document.getElementById("testLocal").value = loc;
+    document.getElementById("valLocal").textContent = loc || "(none)";
+
+    document.getElementById("testSession").value = ses;
+    document.getElementById("valSession").textContent = ses || "(none)";
+  </script>
+</body>
+</html>

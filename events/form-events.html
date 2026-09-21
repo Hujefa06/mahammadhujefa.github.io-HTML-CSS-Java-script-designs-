@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>EV 03 - Form Events Lifecycle | Web Tech Lab</title>
+  <link rel="stylesheet" href="../../assets/css/style.css">
+  <link rel="stylesheet" href="../../assets/css/program-viewer.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500&family=Inter:wght@400;500;600&family=Outfit:wght@600;700;800&display=swap" rel="stylesheet">
+  <style>
+    .form-events-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.5rem;
+    }
+    @media (max-width: 768px) {
+      .form-events-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+    .form-box {
+      background: #0f172a;
+      border: 1px solid #334155;
+      border-radius: 12px;
+      padding: 1.5rem;
+    }
+    .input-grp {
+      margin-bottom: 1.2rem;
+    }
+    .input-grp label {
+      display: block;
+      font-size: 0.85rem;
+      color: #94a3b8;
+      margin-bottom: 0.35rem;
+    }
+    .form-control-styled {
+      width: 100%;
+      background: #1e293b;
+      border: 1px solid #475569;
+      color: #f8fafc;
+      padding: 0.65rem 0.85rem;
+      border-radius: 6px;
+      transition: border-color 0.2s, box-shadow 0.2s;
+    }
+    .form-control-styled:focus {
+      outline: none;
+      border-color: #38bdf8;
+      box-shadow: 0 0 0 2px rgba(56, 189, 248, 0.2);
+    }
+    .stream-box {
+      background: #090d16;
+      border: 1px solid #334155;
+      border-radius: 8px;
+      padding: 1rem;
+      height: 320px;
+      overflow-y: auto;
+      font-family: 'Fira Code', monospace;
+      font-size: 0.85rem;
+      display: flex;
+      flex-direction: column-reverse;
+      gap: 0.4rem;
+    }
+    .stream-item {
+      padding: 4px 8px;
+      border-radius: 4px;
+      background: #1e293b;
+      display: flex;
+      justify-content: space-between;
+    }
+    .tag-focus { color: #38bdf8; }
+    .tag-blur { color: #f59e0b; }
+    .tag-input { color: #10b981; }
+    .tag-change { color: #a855f7; }
+    .tag-submit { color: #ec4899; }
+  </style>
+</head>
+<body>
+  <!-- Navbar -->
+  <nav class="navbar">
+    <div class="nav-container">
+      <a href="../../index.html" class="logo">
+        <span class="logo-icon">&lt;/&gt;</span>
+        <span>WebTech<span class="highlight">Lab</span></span>
+      </a>
+      <div class="nav-links">
+        <a href="../../index.html">Dashboard</a>
+        <a href="../../html/index.html">HTML</a>
+        <a href="../../css/index.html">CSS</a>
+        <a href="../index.html" class="active">JavaScript</a>
+      </div>
+    </div>
+  </nav>
+
+  <main class="page-container">
+    <div class="breadcrumb">
+      <a href="../../index.html">Home</a> &rsaquo; 
+      <a href="../index.html">JavaScript</a> &rsaquo; 
+      <a href="index.html">Events</a> &rsaquo; 
+      <span>EV 03 - Form Events Lifecycle</span>
+    </div>
+
+    <div class="program-header">
+      <div class="program-badge">Event Handling • Program 03</div>
+      <h1>Form Events Lifecycle (focus, blur, change, input, submit)</h1>
+      <p class="program-desc">
+        Observe the real-time event pipeline of HTML forms: <code>focus</code> (gaining cursor), 
+        <code>blur</code> (losing focus), <code>input</code> (keystroke mutations), <code>change</code> (committing changes), 
+        and <code>submit</code> (form dispatch).
+      </p>
+      <div class="student-pill">
+        <span>👨‍💻 Student: <strong>Shaik Roshan</strong></span>
+        <span>•</span>
+        <span>Reg No: <strong>[TO BE FILLED BY STUDENT]</strong></span>
+      </div>
+    </div>
+
+    <!-- Live Demo -->
+    <div class="demo-section">
+      <div class="demo-header">
+        <div class="demo-title">
+          <span>📝</span> Interactive Form Event Monitor
+        </div>
+        <button class="btn btn-secondary" style="padding: 4px 10px; font-size: 0.8rem;" onclick="clearStream()">Clear Log</button>
+      </div>
+      <div class="demo-body">
+        
+        <div class="form-events-grid">
+          <!-- Interactive Form -->
+          <div class="form-box">
+            <form id="sampleForm" onsubmit="handleFormSubmit(event)">
+              <div class="input-grp">
+                <label>Student Full Name (Tracks: focus, blur, input):</label>
+                <input type="text" id="fieldName" class="form-control-styled" placeholder="e.g. Shaik Roshan">
+              </div>
+
+              <div class="input-grp">
+                <label>Branch Selection (Tracks: change):</label>
+                <select id="fieldBranch" class="form-control-styled">
+                  <option value="">-- Choose Branch --</option>
+                  <option value="CSE">Computer Science</option>
+                  <option value="ECE">Electronics & Comm.</option>
+                  <option value="IT">Information Tech.</option>
+                </select>
+              </div>
+
+              <div class="input-grp">
+                <label>Feedback Notes (Tracks: input, blur):</label>
+                <textarea id="fieldNotes" class="form-control-styled" rows="2" placeholder="Type here..."></textarea>
+              </div>
+
+              <div style="display: flex; gap: 0.5rem;">
+                <button type="submit" class="btn btn-primary" style="flex: 1;">Submit Form</button>
+                <button type="reset" class="btn btn-secondary" onclick="logStream('reset', 'Form reset triggered')">Reset</button>
+              </div>
+            </form>
+          </div>
+
+          <!-- Live Event Log -->
+          <div>
+            <h4 style="margin-bottom: 0.5rem; color: #94a3b8; font-size: 0.85rem;">Event Dispatch Log:</h4>
+            <div id="eventStream" class="stream-box">
+              <div class="stream-item"><span class="tag-focus">ready</span><span>Form loaded</span></div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- Source Code Viewer -->
+    <div class="code-viewer-section">
+      <div class="code-viewer-header">
+        <div class="code-tabs">
+          <button class="code-tab active" data-tab="js">JavaScript Implementation</button>
+        </div>
+        <div class="code-actions">
+          <button class="btn-secondary" id="copyCodeBtn">📋 Copy Code</button>
+        </div>
+      </div>
+      <div class="code-body">
+        <pre><code id="sourceCode">const input = document.getElementById("fieldName");
+const select = document.getElementById("fieldBranch");
+const form = document.getElementById("sampleForm");
+
+// 1. Focus & Blur
+input.addEventListener("focus", () => console.log("Field focused"));
+input.addEventListener("blur", () => console.log("Field lost focus"));
+
+// 2. Real-time Input
+input.addEventListener("input", (e) => console.log("Value:", e.target.value));
+
+// 3. Committed Value Change
+select.addEventListener("change", (e) => console.log("Branch changed:", e.target.value));
+
+// 4. Submit Event with preventDefault
+form.addEventListener("submit", (e) => {
+  e.preventDefault(); // Prevents page reload
+  console.log("Form submitted successfully!");
+});</code></pre>
+      </div>
+    </div>
+
+    <!-- Navigation -->
+    <div class="program-nav">
+      <a href="keyboard-events.html" class="nav-prev">&larr; EV 02: Keyboard Events</a>
+      <a href="event-listeners.html" class="nav-next">EV 04: Event Listeners &rarr;</a>
+    </div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-content">
+      <p>&copy; 2026 Web Technology Practical Laboratory • Prepared by <strong>Shaik Roshan</strong></p>
+      <p class="subtext">Computer Science & Engineering Department</p>
+    </div>
+  </footer>
+
+  <script src="../../assets/js/code-viewer.js"></script>
+  <script>
+    const stream = document.getElementById("eventStream");
+    const nameInp = document.getElementById("fieldName");
+    const branchSel = document.getElementById("fieldBranch");
+    const notesInp = document.getElementById("fieldNotes");
+
+    function logStream(type, desc) {
+      const row = document.createElement("div");
+      row.className = "stream-item";
+      row.innerHTML = `<span class="tag-${type}">[${type.toUpperCase()}]</span><span>${desc}</span>`;
+      stream.prepend(row);
+    }
+
+    function clearStream() {
+      stream.innerHTML = "";
+    }
+
+    [nameInp, notesInp].forEach(el => {
+      el.addEventListener("focus", () => logStream("focus", `Focus gained on #${el.id}`));
+      el.addEventListener("blur", () => logStream("blur", `Blur (lost focus) on #${el.id}`));
+      el.addEventListener("input", (e) => logStream("input", `Input: "${e.target.value}"`));
+    });
+
+    branchSel.addEventListener("change", (e) => {
+      logStream("change", `Branch selected: "${e.target.value}"`);
+    });
+
+    function handleFormSubmit(e) {
+      e.preventDefault();
+      logStream("submit", "e.preventDefault() called; Simulated submission complete!");
+    }
+  </script>
+</body>
+</html>

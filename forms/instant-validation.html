@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>FM 08 - Instant On-The-Fly Validation | Web Tech Lab</title>
+  <link rel="stylesheet" href="../../assets/css/style.css">
+  <link rel="stylesheet" href="../../assets/css/program-viewer.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500&family=Inter:wght@400;500;600&family=Outfit:wght@600;700;800&display=swap" rel="stylesheet">
+  <style>
+    .instant-card {
+      max-width: 540px;
+      margin: 0 auto;
+      background: #0f172a;
+      border: 1px solid #334155;
+      border-radius: 12px;
+      padding: 2rem;
+    }
+    .field-row {
+      position: relative;
+      margin-bottom: 1.5rem;
+    }
+    .field-row label {
+      display: block;
+      font-size: 0.85rem;
+      color: #94a3b8;
+      margin-bottom: 0.35rem;
+    }
+    .input-wrapper {
+      position: relative;
+    }
+    .field-row input {
+      width: 100%;
+      background: #1e293b;
+      border: 2px solid #334155;
+      color: #f8fafc;
+      padding: 0.75rem 2.8rem 0.75rem 1rem;
+      border-radius: 8px;
+      font-size: 0.95rem;
+      transition: all 0.2s;
+    }
+    .field-row input:focus {
+      outline: none;
+      border-color: #38bdf8;
+    }
+    .input-status-icon {
+      position: absolute;
+      right: 12px;
+      top: 50%;
+      transform: translateY(-50%);
+      font-size: 1.1rem;
+      pointer-events: none;
+    }
+    .field-row.valid input {
+      border-color: #10b981 !important;
+      background: rgba(16, 185, 129, 0.05);
+    }
+    .field-row.invalid input {
+      border-color: #ef4444 !important;
+      background: rgba(239, 68, 68, 0.05);
+    }
+    .field-hint {
+      font-size: 0.75rem;
+      color: #94a3b8;
+      margin-top: 0.3rem;
+      transition: color 0.2s;
+    }
+    .field-row.invalid .field-hint {
+      color: #ef4444;
+    }
+    .field-row.valid .field-hint {
+      color: #10b981;
+    }
+  </style>
+</head>
+<body>
+  <!-- Navbar -->
+  <nav class="navbar">
+    <div class="nav-container">
+      <a href="../../index.html" class="logo">
+        <span class="logo-icon">&lt;/&gt;</span>
+        <span>WebTech<span class="highlight">Lab</span></span>
+      </a>
+      <div class="nav-links">
+        <a href="../../index.html">Dashboard</a>
+        <a href="../../html/index.html">HTML</a>
+        <a href="../../css/index.html">CSS</a>
+        <a href="../index.html" class="active">JavaScript</a>
+      </div>
+    </div>
+  </nav>
+
+  <main class="page-container">
+    <div class="breadcrumb">
+      <a href="../../index.html">Home</a> &rsaquo; 
+      <a href="../index.html">JavaScript</a> &rsaquo; 
+      <a href="index.html">Forms</a> &rsaquo; 
+      <span>FM 08 - Instant Validation</span>
+    </div>
+
+    <div class="program-header">
+      <div class="program-badge">Form Validation • Program 08</div>
+      <h1>Instant On-The-Fly Input Validation</h1>
+      <p class="program-desc">
+        Provide immediate visual feedback as the user types using <code>input</code> and <code>blur</code> events. 
+        Dynamic border colors, status checkmarks/crosses, and contextual hints guide the user before submission.
+      </p>
+      <div class="student-pill">
+        <span>👨‍💻 Student: <strong>Shaik Roshan</strong></span>
+        <span>•</span>
+        <span>Reg No: <strong>[TO BE FILLED BY STUDENT]</strong></span>
+      </div>
+    </div>
+
+    <!-- Live Demo -->
+    <div class="demo-section">
+      <div class="demo-header">
+        <div class="demo-title">
+          <span>⚡</span> Live Real-Time Interactive Fields
+        </div>
+        <span class="badge badge-success">No Submit Required</span>
+      </div>
+      <div class="demo-body">
+        
+        <div class="instant-card">
+          <!-- Field 1 -->
+          <div class="field-row" id="rowUsername">
+            <label>Choose Username:</label>
+            <div class="input-wrapper">
+              <input type="text" id="inpUsername" placeholder="e.g. roshan_dev" oninput="validateUser(this)">
+              <span class="input-status-icon" id="iconUsername"></span>
+            </div>
+            <div class="field-hint" id="hintUsername">Letters, numbers, underscores only (4-16 chars).</div>
+          </div>
+
+          <!-- Field 2 -->
+          <div class="field-row" id="rowEmail">
+            <label>Email Address:</label>
+            <div class="input-wrapper">
+              <input type="email" id="inpEmail" placeholder="e.g. shaik.roshan@lab.edu" oninput="validateEmailField(this)">
+              <span class="input-status-icon" id="iconEmail"></span>
+            </div>
+            <div class="field-hint" id="hintEmail">Must be a valid email format.</div>
+          </div>
+
+          <!-- Field 3 -->
+          <div class="field-row" id="rowPin">
+            <label>6-Digit Security PIN:</label>
+            <div class="input-wrapper">
+              <input type="text" id="inpPin" placeholder="e.g. 500084" maxlength="6" oninput="validatePinField(this)">
+              <span class="input-status-icon" id="iconPin"></span>
+            </div>
+            <div class="field-hint" id="hintPin">Exactly 6 numeric digits.</div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- Source Code Viewer -->
+    <div class="code-viewer-section">
+      <div class="code-viewer-header">
+        <div class="code-tabs">
+          <button class="code-tab active" data-tab="js">JavaScript Implementation</button>
+        </div>
+        <div class="code-actions">
+          <button class="btn-secondary" id="copyCodeBtn">📋 Copy Code</button>
+        </div>
+      </div>
+      <div class="code-body">
+        <pre><code id="sourceCode">function updateFieldVisuals(rowId, iconId, hintId, isValid, successMsg, failMsg) {
+  const row = document.getElementById(rowId);
+  const icon = document.getElementById(iconId);
+  const hint = document.getElementById(hintId);
+
+  if (isValid) {
+    row.className = "field-row valid";
+    icon.textContent = "✔";
+    icon.style.color = "#10b981";
+    hint.textContent = successMsg;
+  } else {
+    row.className = "field-row invalid";
+    icon.textContent = "✖";
+    icon.style.color = "#ef4444";
+    hint.textContent = failMsg;
+  }
+}</code></pre>
+      </div>
+    </div>
+
+    <!-- Navigation -->
+    <div class="program-nav">
+      <a href="regex-tester.html" class="nav-prev">&larr; FM 07: RegEx Tester</a>
+      <a href="multi-step-form.html" class="nav-next">FM 09: Multi-Step Form &rarr;</a>
+    </div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-content">
+      <p>&copy; 2026 Web Technology Practical Laboratory • Prepared by <strong>Shaik Roshan</strong></p>
+      <p class="subtext">Computer Science & Engineering Department</p>
+    </div>
+  </footer>
+
+  <script src="../../assets/js/code-viewer.js"></script>
+  <script>
+    function updateField(rowId, iconId, hintId, ok, goodText, badText) {
+      const row = document.getElementById(rowId);
+      const icon = document.getElementById(iconId);
+      const hint = document.getElementById(hintId);
+
+      if (ok) {
+        row.className = "field-row valid";
+        icon.textContent = "✔";
+        icon.style.color = "#10b981";
+        hint.textContent = goodText;
+      } else {
+        row.className = "field-row invalid";
+        icon.textContent = "✖";
+        icon.style.color = "#ef4444";
+        hint.textContent = badText;
+      }
+    }
+
+    function validateUser(input) {
+      const val = input.value.trim();
+      const ok = /^[a-zA-Z0-9_]{4,16}$/.test(val);
+      updateField("rowUsername", "iconUsername", "hintUsername", ok, "Username is available!", "Must be 4-16 alphanumeric characters or _");
+    }
+
+    function validateEmailField(input) {
+      const val = input.value.trim();
+      const ok = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(val);
+      updateField("rowEmail", "iconEmail", "hintEmail", ok, "Email syntax verified!", "Invalid email format (e.g. name@domain.com)");
+    }
+
+    function validatePinField(input) {
+      const val = input.value.trim();
+      const ok = /^\d{6}$/.test(val);
+      updateField("rowPin", "iconPin", "hintPin", ok, "6-digit PIN accepted!", "Must be exactly 6 numeric digits");
+    }
+  </script>
+</body>
+</html>

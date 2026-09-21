@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Taj Mahal - Even Odd</title>
+
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial;
+            background: #eaf8ff;
+            color: #063b4c;
+            text-align: center;
+            padding: 50px;
+        }
+
+        .card {
+            max-width: 500px;
+            margin: auto;
+            background: white;
+            padding: 35px;
+            border-radius: 16px;
+            box-shadow: 0 5px 15px #b5d9e5;
+        }
+
+        h1 {
+            color: #075b73;
+        }
+
+        #result {
+            font-size: 25px;
+            font-weight: bold;
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="card">
+    <h1>🏛️ Island Number Check</h1>
+    <p>Number: 48</p>
+    <p id="result"></p>
+</div>
+
+<script>
+    let number = 48;
+
+    if (number % 2 === 0) {
+        document.getElementById("result").textContent = "The number is Even.";
+    } else {
+        document.getElementById("result").textContent = "The number is Odd.";
+    }
+</script>
+
+</body>
+</html>

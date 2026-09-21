@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>JavaScript Form Validation & Calculators | Web Tech Lab</title>
+  <link rel="stylesheet" href="../../assets/css/style.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500&family=Inter:wght@400;500;600&family=Outfit:wght@600;700;800&display=swap" rel="stylesheet">
+</head>
+<body>
+  <!-- Global Navbar -->
+  <nav class="navbar">
+    <div class="nav-container">
+      <a href="../../index.html" class="logo">
+        <span class="logo-icon">&lt;/&gt;</span>
+        <span>WebTech<span class="highlight">Lab</span></span>
+      </a>
+      <div class="nav-links">
+        <a href="../../index.html">Dashboard</a>
+        <a href="../../html/index.html">HTML</a>
+        <a href="../../css/index.html">CSS</a>
+        <a href="../index.html" class="active">JavaScript</a>
+      </div>
+    </div>
+  </nav>
+
+  <main class="page-container">
+    <div class="breadcrumb">
+      <a href="../../index.html">Home</a> &rsaquo; 
+      <a href="../index.html">JavaScript</a> &rsaquo; 
+      <span>Forms & Calculators</span>
+    </div>
+
+    <header class="section-header">
+      <div class="badge badge-success">Category: Forms & Business Logic</div>
+      <h1>Form Validation & Calculators</h1>
+      <p class="section-subtitle">
+        Validate user inputs client-side, sanitize data with regular expressions (Regex), 
+        design multi-step registration wizards, and implement real-world business calculators.
+      </p>
+      <div class="student-pill">
+        <span>👨‍💻 Student: <strong>Shaik Roshan</strong></span>
+        <span>•</span>
+        <span>Reg No: <strong>[TO BE FILLED BY STUDENT]</strong></span>
+        <span>•</span>
+        <span>14 Practical Experiments</span>
+      </div>
+    </header>
+
+    <!-- Search & Filter Bar -->
+    <div class="search-filter-section">
+      <div class="search-box">
+        <span class="search-icon">🔍</span>
+        <input type="text" id="programSearch" placeholder="Search form experiments (e.g. password, regex, multi-step, grade)...">
+      </div>
+      <div class="filter-pills">
+        <button class="filter-pill active" data-filter="all">All (14)</button>
+        <button class="filter-pill" data-filter="validation">Validation</button>
+        <button class="filter-pill" data-filter="wizards">UX & Multi-Step</button>
+        <button class="filter-pill" data-filter="calculators">Calculators</button>
+      </div>
+    </div>
+
+    <!-- Programs Grid -->
+    <div class="programs-grid" id="programsGrid">
+      
+      <!-- FM 01 -->
+      <a href="registration-validation.html" class="program-card" data-category="validation">
+        <div class="card-top">
+          <span class="card-num">FM 01</span>
+          <span class="card-tag tag-primary">Validation</span>
+        </div>
+        <h3 class="card-title">Student Registration Form Validation</h3>
+        <p class="card-desc">Comprehensive client-side validation ensuring non-empty fields, email formatting, phone digits, and error badges.</p>
+        <div class="card-footer">
+          <span class="view-btn">Launch Demo &rarr;</span>
+        </div>
+      </a>
+
+      <!-- FM 02 -->
+      <a href="login-validation.html" class="program-card" data-category="validation">
+        <div class="card-top">
+          <span class="card-num">FM 02</span>
+          <span class="card-tag tag-secondary">Auth</span>
+        </div>
+        <h3 class="card-title">Login Authentication Form Validation</h3>
+        <p class="card-desc">Email format regex checking, password non-empty rule, show/hide password toggle, and loading feedback.</p>
+        <div class="card-footer">
+          <span class="view-btn">Launch Demo &rarr;</span>
+        </div>
+      </a>
+
+      <!-- FM 03 -->
+      <a href="field-validators.html" class="program-card" data-category="validation">
+        <div class="card-top">
+          <span class="card-num">FM 03</span>
+          <span class="card-tag tag-primary">Fields</span>
+        </div>
+        <h3 class="card-title">Field Specific Rule Validators</h3>
+        <p class="card-desc">Alphanumeric name checks, 10-digit Indian mobile validation, age range clamp (18-60), and email syntax.</p>
+        <div class="card-footer">
+          <span class="view-btn">Launch Demo &rarr;</span>
+        </div>
+      </a>
+
+      <!-- FM 04 -->
+      <a href="strong-password-validator.html" class="program-card" data-category="validation">
+        <div class="card-top">
+          <span class="card-num">FM 04</span>
+          <span class="card-tag tag-warning">Security</span>
+        </div>
+        <h3 class="card-title">Strong Password Checklist Validator</h3>
+        <p class="card-desc">Real-time dynamic checklist ensuring 8+ characters, uppercase letter, lowercase letter, number, and special character.</p>
+        <div class="card-footer">
+          <span class="view-btn">Launch Demo &rarr;</span>
+        </div>
+      </a>
+
+      <!-- FM 05 -->
+      <a href="password-strength-meter.html" class="program-card" data-category="validation">
+        <div class="card-top">
+          <span class="card-num">FM 05</span>
+          <span class="card-tag tag-warning">Entropy</span>
+        </div>
+        <h3 class="card-title">Password Entropy & Strength Meter</h3>
+        <p class="card-desc">Color-coded animated progress bar grading password strength from Weak, Fair, Good to Very Strong.</p>
+        <div class="card-footer">
+          <span class="view-btn">Launch Demo &rarr;</span>
+        </div>
+      </a>
+
+      <!-- FM 06 -->
+      <a href="radio-checkbox-validation.html" class="program-card" data-category="validation">
+        <div class="card-top">
+          <span class="card-num">FM 06</span>
+          <span class="card-tag tag-secondary">Inputs</span>
+        </div>
+        <h3 class="card-title">Radio & Checkbox Group Validation</h3>
+        <p class="card-desc">Ensure mandatory radio button selection, minimum checkbox selections (e.g. skills), and terms acceptance.</p>
+        <div class="card-footer">
+          <span class="view-btn">Launch Demo &rarr;</span>
+        </div>
+      </a>
+
+      <!-- FM 07 -->
+      <a href="regex-tester.html" class="program-card" data-category="validation">
+        <div class="card-top">
+          <span class="card-num">FM 07</span>
+          <span class="card-tag tag-accent">RegEx</span>
+        </div>
+        <h3 class="card-title">Interactive Regular Expression Tester</h3>
+        <p class="card-desc">Test custom regex patterns with live syntax highlighting, flag toggles (g, i, m), and capture group inspection.</p>
+        <div class="card-footer">
+          <span class="view-btn">Launch Demo &rarr;</span>
+        </div>
+      </a>
+
+      <!-- FM 08 -->
+      <a href="instant-validation.html" class="program-card" data-category="wizards">
+        <div class="card-top">
+          <span class="card-num">FM 08</span>
+          <span class="card-tag tag-success">Live UX</span>
+        </div>
+        <h3 class="card-title">Instant On-the-Fly Input Validation</h3>
+        <p class="card-desc">Real-time green checkmarks and red alerts updating instantly as the user types without requiring form submission.</p>
+        <div class="card-footer">
+          <span class="view-btn">Launch Demo &rarr;</span>
+        </div>
+      </a>
+
+      <!-- FM 09 -->
+      <a href="multi-step-form.html" class="program-card" data-category="wizards">
+        <div class="card-top">
+          <span class="card-num">FM 09</span>
+          <span class="card-tag tag-primary">Wizard</span>
+        </div>
+        <h3 class="card-title">Multi-Step Form Wizard with Indicators</h3>
+        <p class="card-desc">3-step progress wizard: Account &rarr; Personal &rarr; Confirmation with per-step validation barriers.</p>
+        <div class="card-footer">
+          <span class="view-btn">Launch Demo &rarr;</span>
+        </div>
+      </a>
+
+      <!-- FM 10 -->
+      <a href="age-calculator.html" class="program-card" data-category="calculators">
+        <div class="card-top">
+          <span class="card-num">FM 10</span>
+          <span class="card-tag tag-accent">Date</span>
+        </div>
+        <h3 class="card-title">Precise Age Calculator from Date of Birth</h3>
+        <p class="card-desc">Calculate exact age in years, months, and days from HTML5 date picker with day-of-week birth analysis.</p>
+        <div class="card-footer">
+          <span class="view-btn">Launch Demo &rarr;</span>
+        </div>
+      </a>
+
+      <!-- FM 11 -->
+      <a href="student-grade-calculator.html" class="program-card" data-category="calculators">
+        <div class="card-top">
+          <span class="card-num">FM 11</span>
+          <span class="card-tag tag-success">Grades</span>
+        </div>
+        <h3 class="card-title">Student Semester Marks & GPA Calculator</h3>
+        <p class="card-desc">Compute total marks, percentage, 10-point GPA, letter grade (O, A+, A, B), and pass/fail distinction.</p>
+        <div class="card-footer">
+          <span class="view-btn">Launch Demo &rarr;</span>
+        </div>
+      </a>
+
+      <!-- FM 12 -->
+      <a href="salary-calculator.html" class="program-card" data-category="calculators">
+        <div class="card-top">
+          <span class="card-num">FM 12</span>
+          <span class="card-tag tag-warning">Finance</span>
+        </div>
+        <h3 class="card-title">Employee Salary & Payslip Calculator</h3>
+        <p class="card-desc">Calculate Basic Pay, Dearness Allowance (DA), HRA (20%), Provident Fund (PF 12%), Gross and Net Take-home.</p>
+        <div class="card-footer">
+          <span class="view-btn">Launch Demo &rarr;</span>
+        </div>
+      </a>
+
+      <!-- FM 13 -->
+      <a href="shopping-bill-calculator.html" class="program-card" data-category="calculators">
+        <div class="card-top">
+          <span class="card-num">FM 13</span>
+          <span class="card-tag tag-accent">Invoice</span>
+        </div>
+        <h3 class="card-title">Retail Invoice & GST Bill Calculator</h3>
+        <p class="card-desc">Compute subtotal, percentage discounts, GST tax (18%), and generate formatted printable invoice bills.</p>
+        <div class="card-footer">
+          <span class="view-btn">Launch Demo &rarr;</span>
+        </div>
+      </a>
+
+      <!-- FM 14 -->
+      <a href="dynamic-form-fields.html" class="program-card" data-category="wizards">
+        <div class="card-top">
+          <span class="card-num">FM 14</span>
+          <span class="card-tag tag-primary">Dynamic</span>
+        </div>
+        <h3 class="card-title">Dynamic Form Field Repeater</h3>
+        <p class="card-desc">Add and remove multiple qualification rows (Degree, College, Year, % Marks) dynamically before form payload dispatch.</p>
+        <div class="card-footer">
+          <span class="view-btn">Launch Demo &rarr;</span>
+        </div>
+      </a>
+
+    </div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-content">
+      <p>&copy; 2026 Web Technology Practical Laboratory • Prepared by <strong>Shaik Roshan</strong></p>
+      <p class="subtext">Computer Science & Engineering Department</p>
+    </div>
+  </footer>
+
+  <script src="../../assets/js/main.js"></script>
+</body>
+</html>

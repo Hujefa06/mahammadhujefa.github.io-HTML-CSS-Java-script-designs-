@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>EV 10 - Click Speed Test (CPS Meter) | Web Tech Lab</title>
+  <link rel="stylesheet" href="../../assets/css/style.css">
+  <link rel="stylesheet" href="../../assets/css/program-viewer.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500&family=Inter:wght@400;500;600&family=Outfit:wght@600;700;800&display=swap" rel="stylesheet">
+  <style>
+    .cps-card {
+      max-width: 580px;
+      margin: 0 auto;
+      background: #0f172a;
+      border: 1px solid #334155;
+      border-radius: 12px;
+      padding: 2rem;
+      text-align: center;
+    }
+    .click-target-btn {
+      width: 100%;
+      height: 180px;
+      background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%);
+      border: 3px solid #38bdf8;
+      border-radius: 16px;
+      color: #fff;
+      font-size: 1.5rem;
+      font-weight: 700;
+      cursor: pointer;
+      user-select: none;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
+      box-shadow: 0 10px 25px rgba(56, 189, 248, 0.2);
+      transition: transform 0.05s ease, background 0.1s;
+    }
+    .click-target-btn:active {
+      transform: scale(0.97);
+      background: #1e3a5f;
+    }
+    .stats-scoreboard {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1rem;
+      margin-top: 1.5rem;
+    }
+    .stat-box {
+      background: #1e293b;
+      border: 1px solid #334155;
+      border-radius: 8px;
+      padding: 1rem;
+    }
+    .stat-val {
+      font-family: 'Fira Code', monospace;
+      font-size: 1.75rem;
+      font-weight: 700;
+      color: #38bdf8;
+    }
+    .stat-lbl {
+      font-size: 0.75rem;
+      color: #94a3b8;
+      text-transform: uppercase;
+      margin-top: 0.25rem;
+    }
+  </style>
+</head>
+<body>
+  <!-- Navbar -->
+  <nav class="navbar">
+    <div class="nav-container">
+      <a href="../../index.html" class="logo">
+        <span class="logo-icon">&lt;/&gt;</span>
+        <span>WebTech<span class="highlight">Lab</span></span>
+      </a>
+      <div class="nav-links">
+        <a href="../../index.html">Dashboard</a>
+        <a href="../../html/index.html">HTML</a>
+        <a href="../../css/index.html">CSS</a>
+        <a href="../index.html" class="active">JavaScript</a>
+      </div>
+    </div>
+  </nav>
+
+  <main class="page-container">
+    <div class="breadcrumb">
+      <a href="../../index.html">Home</a> &rsaquo; 
+      <a href="../index.html">JavaScript</a> &rsaquo; 
+      <a href="index.html">Events</a> &rsaquo; 
+      <span>EV 10 - Click Speed Test</span>
+    </div>
+
+    <div class="program-header">
+      <div class="program-badge">Event Handling • Program 10</div>
+      <h1>Click Speed Test (CPS Meter with Countdown Timer)</h1>
+      <p class="program-desc">
+        Calculate rapid clicking frequency (Clicks Per Second) using high precision timestamps 
+        and interval countdown timers, demonstrating stateful event handling.
+      </p>
+      <div class="student-pill">
+        <span>👨‍💻 Student: <strong>Shaik Roshan</strong></span>
+        <span>•</span>
+        <span>Reg No: <strong>[TO BE FILLED BY STUDENT]</strong></span>
+      </div>
+    </div>
+
+    <!-- Live Demo -->
+    <div class="demo-section">
+      <div class="demo-header">
+        <div class="demo-title">
+          <span>⚡</span> 5-Second Click Speed Challenge
+        </div>
+        <button class="btn btn-secondary" style="padding: 4px 10px; font-size: 0.8rem;" onclick="resetTest()">Reset Test</button>
+      </div>
+      <div class="demo-body">
+        
+        <div class="cps-card">
+          <button id="clickArea" class="click-target-btn" onclick="handleClick()">
+            <span style="font-size: 2.2rem;">👆</span>
+            <span id="clickPrompt">Click here to start test!</span>
+          </button>
+
+          <div class="stats-scoreboard">
+            <div class="stat-box">
+              <div id="timeRemaining" class="stat-val">5.0s</div>
+              <div class="stat-lbl">Time Left</div>
+            </div>
+            <div class="stat-box">
+              <div id="totalClicks" class="stat-val">0</div>
+              <div class="stat-lbl">Total Clicks</div>
+            </div>
+            <div class="stat-box">
+              <div id="cpsScore" class="stat-val" style="color: #10b981;">0.0</div>
+              <div class="stat-lbl">CPS (Clicks / Sec)</div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- Source Code Viewer -->
+    <div class="code-viewer-section">
+      <div class="code-viewer-header">
+        <div class="code-tabs">
+          <button class="code-tab active" data-tab="js">JavaScript Implementation</button>
+        </div>
+        <div class="code-actions">
+          <button class="btn-secondary" id="copyCodeBtn">📋 Copy Code</button>
+        </div>
+      </div>
+      <div class="code-body">
+        <pre><code id="sourceCode">let clicks = 0;
+let timeLeft = 5;
+let timer = null;
+let isRunning = false;
+
+function handleClick() {
+  if (!isRunning && timeLeft === 5) {
+    isRunning = true;
+    startTimer();
+  }
+
+  if (isRunning) {
+    clicks++;
+    clicksEl.textContent = clicks;
+  }
+}
+
+function startTimer() {
+  timer = setInterval(() => {
+    timeLeft -= 0.1;
+    timerEl.textContent = timeLeft.toFixed(1) + "s";
+
+    if (timeLeft <= 0) {
+      clearInterval(timer);
+      isRunning = false;
+      const cps = (clicks / 5).toFixed(2);
+      alert(`Test Complete! Your CPS is: ${cps}`);
+    }
+  }, 100);
+}</code></pre>
+      </div>
+    </div>
+
+    <!-- Navigation -->
+    <div class="program-nav">
+      <a href="arrow-key-mover.html" class="nav-prev">&larr; EV 09: Arrow Key Mover</a>
+      <a href="reaction-time-game.html" class="nav-next">EV 11: Reaction Time &rarr;</a>
+    </div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-content">
+      <p>&copy; 2026 Web Technology Practical Laboratory • Prepared by <strong>Shaik Roshan</strong></p>
+      <p class="subtext">Computer Science & Engineering Department</p>
+    </div>
+  </footer>
+
+  <script src="../../assets/js/code-viewer.js"></script>
+  <script>
+    let clicks = 0;
+    let timeLeft = 5.0;
+    let timer = null;
+    let isRunning = false;
+
+    const clickArea = document.getElementById("clickArea");
+    const clickPrompt = document.getElementById("clickPrompt");
+    const timeEl = document.getElementById("timeRemaining");
+    const clicksEl = document.getElementById("totalClicks");
+    const cpsEl = document.getElementById("cpsScore");
+
+    function handleClick() {
+      if (!isRunning && timeLeft === 5.0) {
+        isRunning = true;
+        clickPrompt.textContent = "Click as fast as you can!";
+        startTimer();
+      }
+
+      if (isRunning) {
+        clicks++;
+        clicksEl.textContent = clicks;
+        const elapsed = 5.0 - timeLeft;
+        if (elapsed > 0) {
+          cpsEl.textContent = (clicks / elapsed).toFixed(1);
+        }
+      }
+    }
+
+    function startTimer() {
+      timer = setInterval(() => {
+        timeLeft -= 0.1;
+        if (timeLeft <= 0) {
+          timeLeft = 0;
+          clearInterval(timer);
+          isRunning = false;
+          timeEl.textContent = "0.0s";
+          clickPrompt.textContent = `Completed! ${clicks} Clicks`;
+          clickArea.disabled = true;
+          cpsEl.textContent = (clicks / 5.0).toFixed(2);
+          return;
+        }
+        timeEl.textContent = `${timeLeft.toFixed(1)}s`;
+      }, 100);
+    }
+
+    function resetTest() {
+      clearInterval(timer);
+      timer = null;
+      isRunning = false;
+      clicks = 0;
+      timeLeft = 5.0;
+      clickArea.disabled = false;
+      clickPrompt.textContent = "Click here to start test!";
+      timeEl.textContent = "5.0s";
+      clicksEl.textContent = "0";
+      cpsEl.textContent = "0.0";
+    }
+  </script>
+</body>
+</html>

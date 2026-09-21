@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ST 07 - Visit Counter & Timestamp Logger | Web Tech Lab</title>
+  <link rel="stylesheet" href="../../assets/css/style.css">
+  <link rel="stylesheet" href="../../assets/css/program-viewer.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500;700&family=Inter:wght@400;500;600&family=Outfit:wght@600;700;800&display=swap" rel="stylesheet">
+  <style>
+    .counter-hero {
+      max-width: 580px;
+      margin: 0 auto;
+      background: #0f172a;
+      border: 1px solid #334155;
+      border-radius: 12px;
+      padding: 2.5rem 1.5rem;
+      text-align: center;
+    }
+    .big-visit-number {
+      font-family: 'Fira Code', monospace;
+      font-size: 4.5rem;
+      font-weight: 800;
+      color: #38bdf8;
+      line-height: 1;
+      margin: 1rem 0;
+      text-shadow: 0 0 25px rgba(56, 189, 248, 0.4);
+    }
+    .analytics-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 1.5rem;
+      font-size: 0.85rem;
+      text-align: left;
+    }
+    .analytics-table td {
+      padding: 8px 12px;
+      border-bottom: 1px solid #1e293b;
+    }
+    .analytics-label {
+      color: #94a3b8;
+    }
+    .analytics-val {
+      color: #f8fafc;
+      font-family: 'Fira Code', monospace;
+      text-align: right;
+    }
+  </style>
+</head>
+<body>
+  <!-- Navbar -->
+  <nav class="navbar">
+    <div class="nav-container">
+      <a href="../../index.html" class="logo">
+        <span class="logo-icon">&lt;/&gt;</span>
+        <span>WebTech<span class="highlight">Lab</span></span>
+      </a>
+      <div class="nav-links">
+        <a href="../../index.html">Dashboard</a>
+        <a href="../../html/index.html">HTML</a>
+        <a href="../../css/index.html">CSS</a>
+        <a href="../index.html" class="active">JavaScript</a>
+      </div>
+    </div>
+  </nav>
+
+  <main class="page-container">
+    <div class="breadcrumb">
+      <a href="../../index.html">Home</a> &rsaquo; 
+      <a href="../index.html">JavaScript</a> &rsaquo; 
+      <a href="index.html">Storage</a> &rsaquo; 
+      <span>ST 07 - Visit Counter</span>
+    </div>
+
+    <div class="program-header">
+      <div class="program-badge">Web Storage • Program 07</div>
+      <h1>Page Visit Counter & Timestamp Logger</h1>
+      <p class="program-desc">
+        Track cumulative page visits, first recorded visit date, and previous visit timestamp 
+        using persistent integers and Date ISO strings inside <code>localStorage</code>.
+      </p>
+      <div class="student-pill">
+        <span>👨‍💻 Student: <strong>Shaik Roshan</strong></span>
+        <span>•</span>
+        <span>Reg No: <strong>[TO BE FILLED BY STUDENT]</strong></span>
+      </div>
+    </div>
+
+    <!-- Live Demo -->
+    <div class="demo-section">
+      <div class="demo-header">
+        <div class="demo-title">
+          <span>📊</span> Visitor Analytics Logger
+        </div>
+        <button class="btn btn-secondary" style="padding: 4px 10px; font-size: 0.8rem;" onclick="resetAnalytics()">Reset Counter</button>
+      </div>
+      <div class="demo-body">
+        
+        <div class="counter-hero">
+          <div style="font-size: 0.85rem; color: #94a3b8; text-transform: uppercase;">You Have Visited This Lab Experiment:</div>
+          <div id="visitCountDisplay" class="big-visit-number">1</div>
+          <div style="font-size: 1rem; color: #cbd5e1;">Times on this Web Browser</div>
+
+          <table class="analytics-table">
+            <tr>
+              <td class="analytics-label">First Recorded Visit:</td>
+              <td class="analytics-val" id="firstVisit">--</td>
+            </tr>
+            <tr>
+              <td class="analytics-label">Previous Visit Timestamp:</td>
+              <td class="analytics-val" id="prevVisit">--</td>
+            </tr>
+            <tr>
+              <td class="analytics-label">Current Session Time:</td>
+              <td class="analytics-val" id="currentSession">--</td>
+            </tr>
+          </table>
+
+          <div style="margin-top: 1.5rem;">
+            <button class="btn btn-primary" onclick="simulateReload()">Simulate Return Visit (+1)</button>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- Source Code Viewer -->
+    <div class="code-viewer-section">
+      <div class="code-viewer-header">
+        <div class="code-tabs">
+          <button class="code-tab active" data-tab="js">JavaScript Implementation</button>
+        </div>
+        <div class="code-actions">
+          <button class="btn-secondary" id="copyCodeBtn">📋 Copy Code</button>
+        </div>
+      </div>
+      <div class="code-body">
+        <pre><code id="sourceCode">// 1. Retrieve existing count and parse as integer
+let count = parseInt(localStorage.getItem("total_page_visits") || "0");
+count++;
+
+// 2. Save updated count
+localStorage.setItem("total_page_visits", count);
+
+// 3. First visit date
+if (!localStorage.getItem("first_visit_date")) {
+  localStorage.setItem("first_visit_date", new Date().toLocaleString());
+}
+
+// 4. Update last visit timestamp
+const previousVisit = localStorage.getItem("last_visit_date") || "First time visiting!";
+localStorage.setItem("last_visit_date", new Date().toLocaleString());</code></pre>
+      </div>
+    </div>
+
+    <!-- Navigation -->
+    <div class="program-nav">
+      <a href="font-size-preference.html" class="nav-prev">&larr; ST 06: Font Preference</a>
+      <a href="storage-comparison.html" class="nav-next">ST 08: Storage Comparison &rarr;</a>
+    </div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-content">
+      <p>&copy; 2026 Web Technology Practical Laboratory • Prepared by <strong>Shaik Roshan</strong></p>
+      <p class="subtext">Computer Science & Engineering Department</p>
+    </div>
+  </footer>
+
+  <script src="../../assets/js/code-viewer.js"></script>
+  <script>
+    function updateAnalytics() {
+      let count = parseInt(localStorage.getItem("lab_visit_counter") || "0");
+      count++;
+      localStorage.setItem("lab_visit_counter", count);
+
+      const now = new Date().toLocaleString();
+      let first = localStorage.getItem("lab_first_visit");
+      if (!first) {
+        first = now;
+        localStorage.setItem("lab_first_visit", first);
+      }
+
+      const prev = localStorage.getItem("lab_last_visit") || "First time opening this page!";
+      localStorage.setItem("lab_last_visit", now);
+
+      document.getElementById("visitCountDisplay").textContent = count;
+      document.getElementById("firstVisit").textContent = first;
+      document.getElementById("prevVisit").textContent = prev;
+      document.getElementById("currentSession").textContent = now;
+    }
+
+    function simulateReload() {
+      updateAnalytics();
+    }
+
+    function resetAnalytics() {
+      localStorage.removeItem("lab_visit_counter");
+      localStorage.removeItem("lab_first_visit");
+      localStorage.removeItem("lab_last_visit");
+      updateAnalytics();
+    }
+
+    updateAnalytics();
+  </script>
+</body>
+</html>

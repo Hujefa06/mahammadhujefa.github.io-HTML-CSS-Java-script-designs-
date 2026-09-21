@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>FM 10 - Precise Age Calculator | Web Tech Lab</title>
+  <link rel="stylesheet" href="../../assets/css/style.css">
+  <link rel="stylesheet" href="../../assets/css/program-viewer.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500&family=Inter:wght@400;500;600&family=Outfit:wght@600;700;800&display=swap" rel="stylesheet">
+  <style>
+    .calc-card {
+      max-width: 580px;
+      margin: 0 auto;
+      background: #0f172a;
+      border: 1px solid #334155;
+      border-radius: 12px;
+      padding: 2rem;
+      text-align: center;
+    }
+    .date-input-wrap {
+      display: flex;
+      gap: 0.75rem;
+      justify-content: center;
+      margin: 1.5rem 0;
+    }
+    .date-input-wrap input[type="date"] {
+      background: #1e293b;
+      border: 1px solid #475569;
+      color: #f8fafc;
+      padding: 0.75rem 1rem;
+      border-radius: 8px;
+      font-size: 1rem;
+      color-scheme: dark;
+    }
+    .breakdown-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1rem;
+      margin-top: 1.5rem;
+    }
+    .breakdown-box {
+      background: #1e293b;
+      border: 1px solid #334155;
+      border-radius: 10px;
+      padding: 1.25rem 0.5rem;
+    }
+    .breakdown-num {
+      font-family: 'Fira Code', monospace;
+      font-size: 2.25rem;
+      font-weight: 800;
+      color: #38bdf8;
+    }
+    .breakdown-lbl {
+      font-size: 0.8rem;
+      color: #94a3b8;
+      text-transform: uppercase;
+      margin-top: 0.25rem;
+    }
+    .extra-facts {
+      margin-top: 1.5rem;
+      background: #090d16;
+      border: 1px solid #1e293b;
+      border-radius: 8px;
+      padding: 1rem;
+      font-size: 0.85rem;
+      color: #cbd5e1;
+      text-align: left;
+      line-height: 1.6;
+    }
+  </style>
+</head>
+<body>
+  <!-- Navbar -->
+  <nav class="navbar">
+    <div class="nav-container">
+      <a href="../../index.html" class="logo">
+        <span class="logo-icon">&lt;/&gt;</span>
+        <span>WebTech<span class="highlight">Lab</span></span>
+      </a>
+      <div class="nav-links">
+        <a href="../../index.html">Dashboard</a>
+        <a href="../../html/index.html">HTML</a>
+        <a href="../../css/index.html">CSS</a>
+        <a href="../index.html" class="active">JavaScript</a>
+      </div>
+    </div>
+  </nav>
+
+  <main class="page-container">
+    <div class="breadcrumb">
+      <a href="../../index.html">Home</a> &rsaquo; 
+      <a href="../index.html">JavaScript</a> &rsaquo; 
+      <a href="index.html">Forms</a> &rsaquo; 
+      <span>FM 10 - Precise Age Calculator</span>
+    </div>
+
+    <div class="program-header">
+      <div class="program-badge">Form Validation • Program 10</div>
+      <h1>Precise Age Calculator from Date of Birth</h1>
+      <p class="program-desc">
+        Calculate exact chronological age in years, months, and days using the JavaScript <code>Date</code> object, 
+        accounting for leap years and varying month days.
+      </p>
+      <div class="student-pill">
+        <span>👨‍💻 Student: <strong>Shaik Roshan</strong></span>
+        <span>•</span>
+        <span>Reg No: <strong>[TO BE FILLED BY STUDENT]</strong></span>
+      </div>
+    </div>
+
+    <!-- Live Demo -->
+    <div class="demo-section">
+      <div class="demo-header">
+        <div class="demo-title">
+          <span>🎂</span> Chronological Age Engine
+        </div>
+        <span class="badge badge-success">Date Object Math</span>
+      </div>
+      <div class="demo-body">
+        
+        <div class="calc-card">
+          <label style="color: #94a3b8; font-size: 0.9rem;">Select Your Date of Birth (DOB):</label>
+          <div class="date-input-wrap">
+            <input type="date" id="dobInput" value="2004-05-15">
+            <button class="btn btn-primary" onclick="calculateAge()">Calculate Age</button>
+          </div>
+
+          <div class="breakdown-grid">
+            <div class="breakdown-box">
+              <div id="resYears" class="breakdown-num">21</div>
+              <div class="breakdown-lbl">Years</div>
+            </div>
+            <div class="breakdown-box">
+              <div id="resMonths" class="breakdown-num">4</div>
+              <div class="breakdown-lbl">Months</div>
+            </div>
+            <div class="breakdown-box">
+              <div id="resDays" class="breakdown-num">6</div>
+              <div class="breakdown-lbl">Days</div>
+            </div>
+          </div>
+
+          <div id="extraFacts" class="extra-facts">
+            📅 <strong>Total Days Lived:</strong> ~7,798 days<br>
+            ⏳ <strong>Next Birthday:</strong> in 7 months, 24 days
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- Source Code Viewer -->
+    <div class="code-viewer-section">
+      <div class="code-viewer-header">
+        <div class="code-tabs">
+          <button class="code-tab active" data-tab="js">JavaScript Implementation</button>
+        </div>
+        <div class="code-actions">
+          <button class="btn-secondary" id="copyCodeBtn">📋 Copy Code</button>
+        </div>
+      </div>
+      <div class="code-body">
+        <pre><code id="sourceCode">function calculateAge(birthDateString) {
+  const birthDate = new Date(birthDateString);
+  const today = new Date();
+
+  let years = today.getFullYear() - birthDate.getFullYear();
+  let months = today.getMonth() - birthDate.getMonth();
+  let days = today.getDate() - birthDate.getDate();
+
+  // Day borrow logic
+  if (days < 0) {
+    months--;
+    const prevMonthDays = new Date(today.getFullYear(), today.getMonth(), 0).getDate();
+    days += prevMonthDays;
+  }
+
+  // Month borrow logic
+  if (months < 0) {
+    years--;
+    months += 12;
+  }
+
+  return { years, months, days };
+}</code></pre>
+      </div>
+    </div>
+
+    <!-- Navigation -->
+    <div class="program-nav">
+      <a href="multi-step-form.html" class="nav-prev">&larr; FM 09: Multi-Step Form</a>
+      <a href="student-grade-calculator.html" class="nav-next">FM 11: Grade Calculator &rarr;</a>
+    </div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-content">
+      <p>&copy; 2026 Web Technology Practical Laboratory • Prepared by <strong>Shaik Roshan</strong></p>
+      <p class="subtext">Computer Science & Engineering Department</p>
+    </div>
+  </footer>
+
+  <script src="../../assets/js/code-viewer.js"></script>
+  <script>
+    function calculateAge() {
+      const val = document.getElementById("dobInput").value;
+      if (!val) return;
+
+      const birth = new Date(val);
+      const today = new Date();
+
+      if (birth > today) {
+        alert("Date of birth cannot be in the future!");
+        return;
+      }
+
+      let years = today.getFullYear() - birth.getFullYear();
+      let months = today.getMonth() - birth.getMonth();
+      let days = today.getDate() - birth.getDate();
+
+      if (days < 0) {
+        months--;
+        const prevMonth = new Date(today.getFullYear(), today.getMonth(), 0);
+        days += prevMonth.getDate();
+      }
+
+      if (months < 0) {
+        years--;
+        months += 12;
+      }
+
+      document.getElementById("resYears").textContent = years;
+      document.getElementById("resMonths").textContent = months;
+      document.getElementById("resDays").textContent = days;
+
+      const diffMs = today - birth;
+      const totalDays = Math.floor(diffMs / (1000 * 60 * 60 * 24));
+      const hours = totalDays * 24;
+
+      document.getElementById("extraFacts").innerHTML = `
+        📅 <strong>Total Days Lived:</strong> ${totalDays.toLocaleString()} days (${hours.toLocaleString()} hours)<br>
+        🎉 <strong>Day Born:</strong> ${birth.toLocaleDateString('en-US', { weekday: 'long' })}
+      `;
+    }
+
+    calculateAge();
+  </script>
+</body>
+</html>

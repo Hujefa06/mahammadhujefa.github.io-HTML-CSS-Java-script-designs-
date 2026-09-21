@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Taj Mahal - Reverse Number</title>
+
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial;
+            background: #eaf8ff;
+            color: #063b4c;
+            text-align: center;
+            padding: 50px;
+        }
+
+        .card {
+            max-width: 500px;
+            margin: auto;
+            background: white;
+            padding: 35px;
+            border-radius: 16px;
+            box-shadow: 0 5px 15px #b5d9e5;
+        }
+
+        h1 {
+            color: #075b73;
+        }
+
+        #result {
+            font-size: 25px;
+            font-weight: bold;
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="card">
+    <h1>🧭 Reverse the Voyage</h1>
+    <p>Number: 12345</p>
+    <p id="result"></p>
+</div>
+
+<script>
+    let number = 12345;
+    let original = number;
+    let reversed = 0;
+
+    while (number > 0) {
+        let digit = number % 10;
+        reversed = reversed * 10 + digit;
+        number = Math.floor(number / 10);
+    }
+
+    document.getElementById("result").textContent =
+        "Reverse of " + original + " = " + reversed;
+</script>
+
+</body>
+</html>

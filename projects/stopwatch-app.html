@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>PR 03 - Sports Stopwatch App | Web Tech Lab</title>
+  <link rel="stylesheet" href="../../assets/css/style.css">
+  <link rel="stylesheet" href="../../assets/css/program-viewer.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500;700&family=Inter:wght@400;500;600&family=Outfit:wght@600;700;800&display=swap" rel="stylesheet">
+  <style>
+    .stopwatch-app-card {
+      max-width: 580px;
+      margin: 0 auto;
+      background: #0f172a;
+      border: 1px solid #334155;
+      border-radius: 16px;
+      padding: 2.25rem;
+      text-align: center;
+    }
+    .timer-ring-display {
+      width: 220px;
+      height: 220px;
+      margin: 0 auto 1.5rem;
+      border-radius: 50%;
+      border: 6px solid #1e293b;
+      border-top-color: #38bdf8;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 0 30px rgba(56, 189, 248, 0.15);
+    }
+    .sw-main-digits {
+      font-family: 'Fira Code', monospace;
+      font-size: 2.75rem;
+      font-weight: 800;
+      color: #f8fafc;
+    }
+    .sw-sub-millis {
+      font-family: 'Fira Code', monospace;
+      font-size: 1.5rem;
+      color: #38bdf8;
+      font-weight: 600;
+    }
+    .btn-action-row {
+      display: flex;
+      justify-content: center;
+      gap: 0.75rem;
+      margin-bottom: 1.5rem;
+    }
+    .laps-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.85rem;
+      max-height: 200px;
+      text-align: left;
+    }
+    .laps-table th {
+      color: #94a3b8;
+      padding: 8px 12px;
+      border-bottom: 1px solid #334155;
+    }
+    .laps-table td {
+      padding: 8px 12px;
+      border-bottom: 1px solid #1e293b;
+      font-family: 'Fira Code', monospace;
+      color: #cbd5e1;
+    }
+  </style>
+</head>
+<body>
+  <!-- Navbar -->
+  <nav class="navbar">
+    <div class="nav-container">
+      <a href="../../index.html" class="logo">
+        <span class="logo-icon">&lt;/&gt;</span>
+        <span>WebTech<span class="highlight">Lab</span></span>
+      </a>
+      <div class="nav-links">
+        <a href="../../index.html">Dashboard</a>
+        <a href="../../html/index.html">HTML</a>
+        <a href="../../css/index.html">CSS</a>
+        <a href="../index.html" class="active">JavaScript</a>
+      </div>
+    </div>
+  </nav>
+
+  <main class="page-container">
+    <div class="breadcrumb">
+      <a href="../../index.html">Home</a> &rsaquo; 
+      <a href="../index.html">JavaScript</a> &rsaquo; 
+      <a href="index.html">Projects</a> &rsaquo; 
+      <span>PR 03 - Sports Stopwatch App</span>
+    </div>
+
+    <div class="program-header">
+      <div class="program-badge">Mini Project • Project 03</div>
+      <h1>High Precision Athletic Stopwatch & Lap Splitter</h1>
+      <p class="program-desc">
+        Sports lap timer capable of millisecond tracking, delta split calculations, lap history tables, 
+        and export capabilities for athletics coaching.
+      </p>
+      <div class="student-pill">
+        <span>👨‍💻 Student: <strong>Shaik Roshan</strong></span>
+        <span>•</span>
+        <span>Reg No: <strong>[TO BE FILLED BY STUDENT]</strong></span>
+      </div>
+    </div>
+
+    <!-- Live Demo -->
+    <div class="demo-section">
+      <div class="demo-header">
+        <div class="demo-title">
+          <span>⏱️</span> Track & Field Stopwatch
+        </div>
+        <span class="badge badge-success" id="timerBadge">Ready</span>
+      </div>
+      <div class="demo-body">
+        
+        <div class="stopwatch-app-card">
+          <div class="timer-ring-display" id="ringBox">
+            <div class="sw-main-digits" id="swTime">00:00</div>
+            <div class="sw-sub-millis" id="swMs">.00</div>
+          </div>
+
+          <div class="btn-action-row">
+            <button class="btn btn-primary" id="btnStart" onclick="handleStartStop()">Start</button>
+            <button class="btn btn-secondary" id="btnLap" onclick="handleLap()" disabled>Lap</button>
+            <button class="btn btn-secondary" onclick="handleReset()">Reset</button>
+          </div>
+
+          <div style="background: #020617; border-radius: 8px; border: 1px solid #1e293b; max-height: 180px; overflow-y: auto;">
+            <table class="laps-table">
+              <thead>
+                <tr>
+                  <th>Lap #</th>
+                  <th>Lap Split</th>
+                  <th>Overall Elapsed</th>
+                </tr>
+              </thead>
+              <tbody id="lapsBody">
+                <tr><td colspan="3" style="text-align: center; color: #64748b; padding: 1.5rem;">No laps recorded yet.</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- Source Code Viewer -->
+    <div class="code-viewer-section">
+      <div class="code-viewer-header">
+        <div class="code-tabs">
+          <button class="code-tab active" data-tab="js">JavaScript Implementation</button>
+        </div>
+        <div class="code-actions">
+          <button class="btn-secondary" id="copyCodeBtn">📋 Copy Code</button>
+        </div>
+      </div>
+      <div class="code-body">
+        <pre><code id="sourceCode">let startTime = 0;
+let accumulatedTime = 0;
+let lastLapTime = 0;
+let timerId = null;
+
+function recordLap() {
+  const currentTotal = accumulatedTime;
+  const split = currentTotal - lastLapTime;
+  lastLapTime = currentTotal;
+
+  const row = document.createElement("tr");
+  row.innerHTML = `
+    &lt;td&gt;Lap ${lapsCount++}&lt;/td&gt;
+    &lt;td&gt;+${formatTime(split)}&lt;/td&gt;
+    &lt;td&gt;${formatTime(currentTotal)}&lt;/td&gt;
+  `;
+  lapsBody.prepend(row);
+}</code></pre>
+      </div>
+    </div>
+
+    <!-- Navigation -->
+    <div class="program-nav">
+      <a href="digital-clock-app.html" class="nav-prev">&larr; PR 02: World Clock</a>
+      <a href="timer-app.html" class="nav-next">PR 04: Pomodoro Timer &rarr;</a>
+    </div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-content">
+      <p>&copy; 2026 Web Technology Practical Laboratory • Prepared by <strong>Shaik Roshan</strong></p>
+      <p class="subtext">Computer Science & Engineering Department</p>
+    </div>
+  </footer>
+
+  <script src="../../assets/js/code-viewer.js"></script>
+  <script>
+    let isRunning = false;
+    let startTime = 0;
+    let elapsed = 0;
+    let lastLap = 0;
+    let timer = null;
+    let lapIndex = 0;
+
+    const timeEl = document.getElementById("swTime");
+    const msEl = document.getElementById("swMs");
+    const btnStart = document.getElementById("btnStart");
+    const btnLap = document.getElementById("btnLap");
+    const badge = document.getElementById("timerBadge");
+    const lapsBody = document.getElementById("lapsBody");
+    const ring = document.getElementById("ringBox");
+
+    function formatTime(ms) {
+      const m = String(Math.floor(ms / 60000)).padStart(2, '0');
+      const s = String(Math.floor((ms % 60000) / 1000)).padStart(2, '0');
+      const cs = String(Math.floor((ms % 1000) / 10)).padStart(2, '0');
+      return { m, s, cs, full: `${m}:${s}.${cs}` };
+    }
+
+    function handleStartStop() {
+      if (!isRunning) {
+        isRunning = true;
+        startTime = Date.now() - elapsed;
+        timer = setInterval(() => {
+          elapsed = Date.now() - startTime;
+          const t = formatTime(elapsed);
+          timeEl.textContent = `${t.m}:${t.s}`;
+          msEl.textContent = `.${t.cs}`;
+        }, 10);
+
+        btnStart.textContent = "Stop";
+        btnStart.className = "btn btn-secondary";
+        btnStart.style.background = "#ef4444";
+        btnStart.style.color = "#fff";
+        btnLap.disabled = false;
+        badge.textContent = "Running";
+        badge.className = "badge badge-primary";
+        ring.style.borderTopColor = "#10b981";
+      } else {
+        isRunning = false;
+        clearInterval(timer);
+        btnStart.textContent = "Resume";
+        btnStart.className = "btn btn-primary";
+        btnStart.style.background = "";
+        btnLap.disabled = true;
+        badge.textContent = "Stopped";
+        badge.className = "badge badge-warning";
+        ring.style.borderTopColor = "#f59e0b";
+      }
+    }
+
+    function handleLap() {
+      if (!isRunning) return;
+      lapIndex++;
+      if (lapIndex === 1) lapsBody.innerHTML = "";
+
+      const splitMs = elapsed - lastLap;
+      lastLap = elapsed;
+
+      const total = formatTime(elapsed);
+      const split = formatTime(splitMs);
+
+      const tr = document.createElement("tr");
+      tr.innerHTML = `
+        <td><strong>#${lapIndex}</strong></td>
+        <td style="color: #38bdf8;">+${split.m}:${split.s}.${split.cs}</td>
+        <td>${total.m}:${total.s}.${total.cs}</td>
+      `;
+      lapsBody.prepend(tr);
+    }
+
+    function handleReset() {
+      isRunning = false;
+      clearInterval(timer);
+      elapsed = 0;
+      lastLap = 0;
+      lapIndex = 0;
+
+      timeEl.textContent = "00:00";
+      msEl.textContent = ".00";
+      btnStart.textContent = "Start";
+      btnStart.className = "btn btn-primary";
+      btnStart.style.background = "";
+      btnLap.disabled = true;
+      badge.textContent = "Ready";
+      badge.className = "badge badge-success";
+      ring.style.borderTopColor = "#38bdf8";
+      lapsBody.innerHTML = `<tr><td colspan="3" style="text-align: center; color: #64748b; padding: 1.5rem;">No laps recorded yet.</td></tr>`;
+    }
+  </script>
+</body>
+</html>

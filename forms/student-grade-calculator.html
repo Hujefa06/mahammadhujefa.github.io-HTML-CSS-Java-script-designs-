@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>FM 11 - Student Marks & GPA Calculator | Web Tech Lab</title>
+  <link rel="stylesheet" href="../../assets/css/style.css">
+  <link rel="stylesheet" href="../../assets/css/program-viewer.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500&family=Inter:wght@400;500;600&family=Outfit:wght@600;700;800&display=swap" rel="stylesheet">
+  <style>
+    .grade-layout {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.5rem;
+    }
+    @media (max-width: 768px) {
+      .grade-layout {
+        grid-template-columns: 1fr;
+      }
+    }
+    .panel {
+      background: #0f172a;
+      border: 1px solid #334155;
+      border-radius: 12px;
+      padding: 1.5rem;
+    }
+    .sub-input-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 0.75rem;
+    }
+    .sub-input-row label {
+      font-size: 0.9rem;
+      color: #cbd5e1;
+    }
+    .sub-input-row input {
+      width: 90px;
+      background: #1e293b;
+      border: 1px solid #475569;
+      color: #f8fafc;
+      padding: 0.4rem 0.6rem;
+      border-radius: 6px;
+      text-align: center;
+      font-family: 'Fira Code', monospace;
+      font-weight: 600;
+    }
+    .result-pill-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0.75rem;
+      margin-top: 1rem;
+    }
+    .res-pill {
+      background: #1e293b;
+      border: 1px solid #334155;
+      border-radius: 8px;
+      padding: 0.85rem;
+      text-align: center;
+    }
+    .res-val {
+      font-family: 'Fira Code', monospace;
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: #38bdf8;
+    }
+    .res-lbl {
+      font-size: 0.75rem;
+      color: #94a3b8;
+      text-transform: uppercase;
+      margin-top: 0.2rem;
+    }
+  </style>
+</head>
+<body>
+  <!-- Navbar -->
+  <nav class="navbar">
+    <div class="nav-container">
+      <a href="../../index.html" class="logo">
+        <span class="logo-icon">&lt;/&gt;</span>
+        <span>WebTech<span class="highlight">Lab</span></span>
+      </a>
+      <div class="nav-links">
+        <a href="../../index.html">Dashboard</a>
+        <a href="../../html/index.html">HTML</a>
+        <a href="../../css/index.html">CSS</a>
+        <a href="../index.html" class="active">JavaScript</a>
+      </div>
+    </div>
+  </nav>
+
+  <main class="page-container">
+    <div class="breadcrumb">
+      <a href="../../index.html">Home</a> &rsaquo; 
+      <a href="../index.html">JavaScript</a> &rsaquo; 
+      <a href="index.html">Forms</a> &rsaquo; 
+      <span>FM 11 - Student Marks & GPA Calculator</span>
+    </div>
+
+    <div class="program-header">
+      <div class="program-badge">Form Validation • Program 11</div>
+      <h1>Semester Marks, Percentage & GPA Calculator</h1>
+      <p class="program-desc">
+        Calculate total marks (out of 500), percentage, 10-point SGPA, and assigned letter grade 
+        (O, A+, A, B, C, F) with automated pass/fail distinction across 5 academic subjects.
+      </p>
+      <div class="student-pill">
+        <span>👨‍💻 Student: <strong>Shaik Roshan</strong></span>
+        <span>•</span>
+        <span>Reg No: <strong>[TO BE FILLED BY STUDENT]</strong></span>
+      </div>
+    </div>
+
+    <!-- Live Demo -->
+    <div class="demo-section">
+      <div class="demo-header">
+        <div class="demo-title">
+          <span>📊</span> Academic Grading Matrix
+        </div>
+        <span class="badge badge-success">Automated Calculation</span>
+      </div>
+      <div class="demo-body">
+        
+        <div class="grade-layout">
+          <!-- Subject Inputs -->
+          <div class="panel">
+            <h4 style="color: #38bdf8; margin-bottom: 1rem;">Enter Marks (Max 100 per Subject):</h4>
+            
+            <div class="sub-input-row">
+              <label>Web Technologies (WT):</label>
+              <input type="number" class="mark-inp" min="0" max="100" value="95" oninput="computeGrades()">
+            </div>
+            <div class="sub-input-row">
+              <label>Database Management (DBMS):</label>
+              <input type="number" class="mark-inp" min="0" max="100" value="88" oninput="computeGrades()">
+            </div>
+            <div class="sub-input-row">
+              <label>Operating Systems (OS):</label>
+              <input type="number" class="mark-inp" min="0" max="100" value="91" oninput="computeGrades()">
+            </div>
+            <div class="sub-input-row">
+              <label>Computer Networks (CN):</label>
+              <input type="number" class="mark-inp" min="0" max="100" value="84" oninput="computeGrades()">
+            </div>
+            <div class="sub-input-row">
+              <label>Software Engineering (SE):</label>
+              <input type="number" class="mark-inp" min="0" max="100" value="92" oninput="computeGrades()">
+            </div>
+
+            <button class="btn btn-secondary" style="width: 100%; margin-top: 0.5rem;" onclick="resetMarks()">Reset Marks</button>
+          </div>
+
+          <!-- Grade Summary -->
+          <div class="panel" style="display: flex; flex-direction: column; justify-content: space-between;">
+            <div>
+              <h4 style="color: #38bdf8; margin-bottom: 0.5rem;">Academic Performance Evaluation</h4>
+              <p style="font-size: 0.85rem; color: #94a3b8;">Student: <strong>Shaik Roshan</strong></p>
+            </div>
+
+            <div class="result-pill-grid">
+              <div class="res-pill">
+                <div id="totMarks" class="res-val">450</div>
+                <div class="res-lbl">Total Marks (500)</div>
+              </div>
+              <div class="res-pill">
+                <div id="percentVal" class="res-val" style="color: #10b981;">90.0%</div>
+                <div class="res-lbl">Percentage</div>
+              </div>
+              <div class="res-pill">
+                <div id="gpaVal" class="res-val">9.5</div>
+                <div class="res-lbl">Semester SGPA</div>
+              </div>
+              <div class="res-pill">
+                <div id="letterGrade" class="res-val" style="color: #f59e0b;">O</div>
+                <div class="res-lbl">Grade Letter</div>
+              </div>
+            </div>
+
+            <div id="finalStatus" style="margin-top: 1rem; padding: 0.75rem; border-radius: 6px; text-align: center; background: #065f46; color: #34d399; font-weight: bold;">
+              PASSED WITH OUTSTANDING DISTINCTION
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- Source Code Viewer -->
+    <div class="code-viewer-section">
+      <div class="code-viewer-header">
+        <div class="code-tabs">
+          <button class="code-tab active" data-tab="js">JavaScript Implementation</button>
+        </div>
+        <div class="code-actions">
+          <button class="btn-secondary" id="copyCodeBtn">📋 Copy Code</button>
+        </div>
+      </div>
+      <div class="code-body">
+        <pre><code id="sourceCode">function calculateAcademicGrade(marksArray) {
+  const total = marksArray.reduce((acc, val) => acc + val, 0);
+  const percentage = (total / (marksArray.length * 100)) * 100;
+  const sgpa = (percentage / 10).toFixed(2);
+
+  // Grade classification
+  let grade = "F";
+  if (percentage >= 90) grade = "O (Outstanding)";
+  else if (percentage >= 80) grade = "A+ (Excellent)";
+  else if (percentage >= 70) grade = "A (Very Good)";
+  else if (percentage >= 60) grade = "B+ (Good)";
+  else if (percentage >= 50) grade = "B (Above Average)";
+  else if (percentage >= 40) grade = "C (Pass)";
+
+  const isFailed = marksArray.some(m => m < 40);
+  return { total, percentage, sgpa, grade, isFailed };
+}</code></pre>
+      </div>
+    </div>
+
+    <!-- Navigation -->
+    <div class="program-nav">
+      <a href="age-calculator.html" class="nav-prev">&larr; FM 10: Age Calculator</a>
+      <a href="salary-calculator.html" class="nav-next">FM 12: Salary Calculator &rarr;</a>
+    </div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-content">
+      <p>&copy; 2026 Web Technology Practical Laboratory • Prepared by <strong>Shaik Roshan</strong></p>
+      <p class="subtext">Computer Science & Engineering Department</p>
+    </div>
+  </footer>
+
+  <script src="../../assets/js/code-viewer.js"></script>
+  <script>
+    function computeGrades() {
+      const inputs = document.querySelectorAll(".mark-inp");
+      let total = 0;
+      let hasFailed = false;
+
+      inputs.forEach(inp => {
+        let val = parseFloat(inp.value) || 0;
+        val = Math.max(0, Math.min(100, val));
+        total += val;
+        if (val < 40) hasFailed = true;
+      });
+
+      const percent = (total / (inputs.length * 100)) * 100;
+      const gpa = (percent / 9.5).toFixed(1);
+
+      document.getElementById("totMarks").textContent = total;
+      document.getElementById("percentVal").textContent = `${percent.toFixed(1)}%`;
+      document.getElementById("gpaVal").textContent = gpa;
+
+      const gradeEl = document.getElementById("letterGrade");
+      const statusBox = document.getElementById("finalStatus");
+
+      let grade = "F";
+      if (hasFailed) {
+        grade = "F";
+        statusBox.textContent = "RESULT: FAILED IN ONE OR MORE SUBJECTS";
+        statusBox.style.background = "#7f1d1d";
+        statusBox.style.color = "#fca5a5";
+      } else if (percent >= 90) {
+        grade = "O";
+        statusBox.textContent = "PASSED WITH OUTSTANDING DISTINCTION";
+        statusBox.style.background = "#065f46";
+        statusBox.style.color = "#34d399";
+      } else if (percent >= 80) {
+        grade = "A+";
+        statusBox.textContent = "PASSED WITH FIRST CLASS DISTINCTION";
+        statusBox.style.background = "#065f46";
+        statusBox.style.color = "#34d399";
+      } else if (percent >= 60) {
+        grade = "B+";
+        statusBox.textContent = "PASSED IN FIRST CLASS";
+        statusBox.style.background = "#1e3a5f";
+        statusBox.style.color = "#38bdf8";
+      } else {
+        grade = "C";
+        statusBox.textContent = "PASSED IN PASS CLASS";
+        statusBox.style.background = "#78350f";
+        statusBox.style.color = "#fcd34d";
+      }
+
+      gradeEl.textContent = grade;
+    }
+
+    function resetMarks() {
+      document.querySelectorAll(".mark-inp").forEach(inp => inp.value = 85);
+      computeGrades();
+    }
+
+    computeGrades();
+  </script>
+</body>
+</html>

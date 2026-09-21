@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ST 09 - Form Auto-Save Draft Engine | Web Tech Lab</title>
+  <link rel="stylesheet" href="../../assets/css/style.css">
+  <link rel="stylesheet" href="../../assets/css/program-viewer.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500;700&family=Inter:wght@400;500;600&family=Outfit:wght@600;700;800&display=swap" rel="stylesheet">
+  <style>
+    .draft-card {
+      max-width: 640px;
+      margin: 0 auto;
+      background: #0f172a;
+      border: 1px solid #334155;
+      border-radius: 12px;
+      padding: 2rem;
+    }
+    .draft-title-input {
+      width: 100%;
+      background: #1e293b;
+      border: 1px solid #475569;
+      color: #f8fafc;
+      padding: 0.75rem 1rem;
+      border-radius: 8px;
+      font-size: 1.1rem;
+      font-weight: 600;
+      margin-bottom: 1rem;
+    }
+    .draft-textarea {
+      width: 100%;
+      height: 180px;
+      background: #1e293b;
+      border: 1px solid #475569;
+      color: #f8fafc;
+      padding: 1rem;
+      border-radius: 8px;
+      font-size: 0.95rem;
+      line-height: 1.6;
+      resize: vertical;
+      margin-bottom: 1rem;
+    }
+    .draft-status-bar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 0.85rem;
+      color: #94a3b8;
+    }
+    .save-indicator {
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+      font-weight: 500;
+    }
+  </style>
+</head>
+<body>
+  <!-- Navbar -->
+  <nav class="navbar">
+    <div class="nav-container">
+      <a href="../../index.html" class="logo">
+        <span class="logo-icon">&lt;/&gt;</span>
+        <span>WebTech<span class="highlight">Lab</span></span>
+      </a>
+      <div class="nav-links">
+        <a href="../../index.html">Dashboard</a>
+        <a href="../../html/index.html">HTML</a>
+        <a href="../../css/index.html">CSS</a>
+        <a href="../index.html" class="active">JavaScript</a>
+      </div>
+    </div>
+  </nav>
+
+  <main class="page-container">
+    <div class="breadcrumb">
+      <a href="../../index.html">Home</a> &rsaquo; 
+      <a href="../index.html">JavaScript</a> &rsaquo; 
+      <a href="index.html">Storage</a> &rsaquo; 
+      <span>ST 09 - Auto-Save Draft Engine</span>
+    </div>
+
+    <div class="program-header">
+      <div class="program-badge">Web Storage • Program 09</div>
+      <h1>Form Auto-Save Draft with Debounce</h1>
+      <p class="program-desc">
+        Automatically serialize and save form articles to <code>localStorage</code> 500ms after the user stops typing (debouncing). 
+        Guarantees zero data loss if the browser unexpectedly closes or crashes.
+      </p>
+      <div class="student-pill">
+        <span>👨‍💻 Student: <strong>Shaik Roshan</strong></span>
+        <span>•</span>
+        <span>Reg No: <strong>[TO BE FILLED BY STUDENT]</strong></span>
+      </div>
+    </div>
+
+    <!-- Live Demo -->
+    <div class="demo-section">
+      <div class="demo-header">
+        <div class="demo-title">
+          <span>✍️</span> Lab Assignment Editor
+        </div>
+        <span class="badge badge-success" id="syncBadge">Auto-Save Enabled</span>
+      </div>
+      <div class="demo-body">
+        
+        <div class="draft-card">
+          <input type="text" id="draftTitle" class="draft-title-input" placeholder="Assignment Title (e.g. DOM Traversal Analysis)" oninput="queueAutoSave()">
+          <textarea id="draftBody" class="draft-textarea" placeholder="Start writing your lab report... notice the auto-save indicator below as you type!" oninput="queueAutoSave()"></textarea>
+
+          <div class="draft-status-bar">
+            <div class="save-indicator">
+              <span id="saveDot" style="color: #10b981;">●</span>
+              <span id="saveStatus">Draft saved to LocalStorage</span>
+            </div>
+
+            <div style="display: flex; gap: 0.5rem;">
+              <button class="btn btn-primary" onclick="publishReport()">Publish Report</button>
+              <button class="btn btn-secondary" onclick="discardDraft()">Discard Draft</button>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- Source Code Viewer -->
+    <div class="code-viewer-section">
+      <div class="code-viewer-header">
+        <div class="code-tabs">
+          <button class="code-tab active" data-tab="js">JavaScript Implementation</button>
+        </div>
+        <div class="code-actions">
+          <button class="btn-secondary" id="copyCodeBtn">📋 Copy Code</button>
+        </div>
+      </div>
+      <div class="code-body">
+        <pre><code id="sourceCode">let debounceTimer = null;
+
+function queueAutoSave() {
+  saveStatus.textContent = "Saving changes...";
+  saveDot.style.color = "#f59e0b"; // yellow while typing
+
+  // Debounce: Wait 500ms after last keystroke before writing to disk
+  clearTimeout(debounceTimer);
+  debounceTimer = setTimeout(saveToStorage, 500);
+}
+
+function saveToStorage() {
+  const draft = {
+    title: titleInput.value,
+    body: bodyInput.value,
+    updatedAt: new Date().toLocaleTimeString()
+  };
+
+  localStorage.setItem("lab_assignment_draft", JSON.stringify(draft));
+  saveStatus.textContent = `Draft saved at ${draft.updatedAt}`;
+  saveDot.style.color = "#10b981"; // green
+}</code></pre>
+      </div>
+    </div>
+
+    <!-- Navigation -->
+    <div class="program-nav">
+      <a href="storage-comparison.html" class="nav-prev">&larr; ST 08: Storage Comparison</a>
+      <a href="persistent-cart.html" class="nav-next">ST 10: Persistent Shopping Cart &rarr;</a>
+    </div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-content">
+      <p>&copy; 2026 Web Technology Practical Laboratory • Prepared by <strong>Shaik Roshan</strong></p>
+      <p class="subtext">Computer Science & Engineering Department</p>
+    </div>
+  </footer>
+
+  <script src="../../assets/js/code-viewer.js"></script>
+  <script>
+    let debounceTimer = null;
+    const titleInp = document.getElementById("draftTitle");
+    const bodyInp = document.getElementById("draftBody");
+    const saveStatus = document.getElementById("saveStatus");
+    const saveDot = document.getElementById("saveDot");
+
+    function queueAutoSave() {
+      saveStatus.textContent = "Saving draft...";
+      saveDot.style.color = "#f59e0b";
+
+      clearTimeout(debounceTimer);
+      debounceTimer = setTimeout(executeSave, 600);
+    }
+
+    function executeSave() {
+      const data = {
+        title: titleInp.value,
+        body: bodyInp.value,
+        timestamp: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit', second: '2-digit' })
+      };
+
+      localStorage.setItem("lab_editor_draft", JSON.stringify(data));
+      saveStatus.textContent = `Draft auto-saved at ${data.timestamp}`;
+      saveDot.style.color = "#10b981";
+    }
+
+    function restoreDraft() {
+      const saved = localStorage.getItem("lab_editor_draft");
+      if (saved) {
+        try {
+          const obj = JSON.parse(saved);
+          titleInp.value = obj.title || "";
+          bodyInp.value = obj.body || "";
+          saveStatus.textContent = `Draft restored from ${obj.timestamp || 'previous session'}`;
+        } catch (e) {}
+      } else {
+        titleInp.value = "Experiment 12: JavaScript Web Storage Architecture";
+        bodyInp.value = "Web Storage APIs allow web applications to store data locally within the user's browser. Unlike cookies, the storage limit is substantially larger and information is never transferred to the server.";
+        executeSave();
+      }
+    }
+
+    function discardDraft() {
+      if (confirm("Discard this draft permanently?")) {
+        localStorage.removeItem("lab_editor_draft");
+        titleInp.value = "";
+        bodyInp.value = "";
+        saveStatus.textContent = "Draft discarded";
+        saveDot.style.color = "#94a3b8";
+      }
+    }
+
+    function publishReport() {
+      alert("🎉 Assignment report published successfully!");
+    }
+
+    restoreDraft();
+  </script>
+</body>
+</html>

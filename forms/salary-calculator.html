@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>FM 12 - Employee Salary & Payslip Calculator | Web Tech Lab</title>
+  <link rel="stylesheet" href="../../assets/css/style.css">
+  <link rel="stylesheet" href="../../assets/css/program-viewer.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500&family=Inter:wght@400;500;600&family=Outfit:wght@600;700;800&display=swap" rel="stylesheet">
+  <style>
+    .salary-layout {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.5rem;
+    }
+    @media (max-width: 768px) {
+      .salary-layout {
+        grid-template-columns: 1fr;
+      }
+    }
+    .panel {
+      background: #0f172a;
+      border: 1px solid #334155;
+      border-radius: 12px;
+      padding: 1.5rem;
+    }
+    .sal-input-group {
+      margin-bottom: 1rem;
+    }
+    .sal-input-group label {
+      display: block;
+      font-size: 0.85rem;
+      color: #94a3b8;
+      margin-bottom: 0.35rem;
+    }
+    .sal-input-group input {
+      width: 100%;
+      background: #1e293b;
+      border: 1px solid #475569;
+      color: #f8fafc;
+      padding: 0.65rem 0.85rem;
+      border-radius: 6px;
+      font-family: 'Fira Code', monospace;
+    }
+    .payslip-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.9rem;
+    }
+    .payslip-table td {
+      padding: 8px 0;
+      border-bottom: 1px solid #1e293b;
+    }
+    .val-positive { color: #10b981; font-family: 'Fira Code', monospace; text-align: right; }
+    .val-negative { color: #ef4444; font-family: 'Fira Code', monospace; text-align: right; }
+    .take-home-card {
+      background: linear-gradient(135deg, #1e3a5f 0%, #0f172a 100%);
+      border: 1px solid #38bdf8;
+      padding: 1.25rem;
+      border-radius: 8px;
+      margin-top: 1.25rem;
+      text-align: center;
+    }
+  </style>
+</head>
+<body>
+  <!-- Navbar -->
+  <nav class="navbar">
+    <div class="nav-container">
+      <a href="../../index.html" class="logo">
+        <span class="logo-icon">&lt;/&gt;</span>
+        <span>WebTech<span class="highlight">Lab</span></span>
+      </a>
+      <div class="nav-links">
+        <a href="../../index.html">Dashboard</a>
+        <a href="../../html/index.html">HTML</a>
+        <a href="../../css/index.html">CSS</a>
+        <a href="../index.html" class="active">JavaScript</a>
+      </div>
+    </div>
+  </nav>
+
+  <main class="page-container">
+    <div class="breadcrumb">
+      <a href="../../index.html">Home</a> &rsaquo; 
+      <a href="../index.html">JavaScript</a> &rsaquo; 
+      <a href="index.html">Forms</a> &rsaquo; 
+      <span>FM 12 - Employee Salary Calculator</span>
+    </div>
+
+    <div class="program-header">
+      <div class="program-badge">Form Validation • Program 12</div>
+      <h1>Employee Salary & Monthly Payslip Calculator</h1>
+      <p class="program-desc">
+        Calculate corporate compensation breakdown: Basic Pay, Dearness Allowance (DA), House Rent Allowance (HRA), 
+        Provident Fund deduction (PF 12%), Professional Tax, Gross and Net In-Hand Salary.
+      </p>
+      <div class="student-pill">
+        <span>👨‍💻 Student: <strong>Shaik Roshan</strong></span>
+        <span>•</span>
+        <span>Reg No: <strong>[TO BE FILLED BY STUDENT]</strong></span>
+      </div>
+    </div>
+
+    <!-- Live Demo -->
+    <div class="demo-section">
+      <div class="demo-header">
+        <div class="demo-title">
+          <span>💼</span> Payroll & Salary Slip Engine
+        </div>
+        <span class="badge badge-success">Automated Tax & PF</span>
+      </div>
+      <div class="demo-body">
+        
+        <div class="salary-layout">
+          <!-- Input Form -->
+          <div class="panel">
+            <h4 style="color: #38bdf8; margin-bottom: 1rem;">Salary Parameters:</h4>
+
+            <div class="sal-input-group">
+              <label>Employee Name:</label>
+              <input type="text" id="empName" value="Shaik Roshan">
+            </div>
+
+            <div class="sal-input-group">
+              <label>Monthly Basic Pay (₹):</label>
+              <input type="number" id="empBasic" value="50000" oninput="calculatePayroll()">
+            </div>
+
+            <div class="sal-input-group">
+              <label>Dearness Allowance (DA %):</label>
+              <input type="number" id="empDa" value="25" oninput="calculatePayroll()">
+            </div>
+
+            <div class="sal-input-group">
+              <label>House Rent Allowance (HRA %):</label>
+              <input type="number" id="empHra" value="20" oninput="calculatePayroll()">
+            </div>
+
+            <div class="sal-input-group">
+              <label>Performance Incentive (₹):</label>
+              <input type="number" id="empBonus" value="5000" oninput="calculatePayroll()">
+            </div>
+          </div>
+
+          <!-- Payslip Breakdown -->
+          <div class="panel">
+            <h4 style="color: #38bdf8; margin-bottom: 1rem;">Monthly Earnings & Deductions:</h4>
+
+            <table class="payslip-table">
+              <tr>
+                <td>Basic Salary</td>
+                <td id="slipBasic" class="val-positive">₹50,000</td>
+              </tr>
+              <tr>
+                <td>Dearness Allowance (DA)</td>
+                <td id="slipDa" class="val-positive">₹12,500</td>
+              </tr>
+              <tr>
+                <td>House Rent Allowance (HRA)</td>
+                <td id="slipHra" class="val-positive">₹10,000</td>
+              </tr>
+              <tr>
+                <td>Performance Incentive</td>
+                <td id="slipBonus" class="val-positive">₹5,000</td>
+              </tr>
+              <tr>
+                <td><strong>Gross Salary</strong></td>
+                <td id="slipGross" class="val-positive" style="font-weight:bold;">₹77,500</td>
+              </tr>
+              <tr>
+                <td>Provident Fund (PF - 12%)</td>
+                <td id="slipPf" class="val-negative">- ₹6,000</td>
+              </tr>
+              <tr>
+                <td>Professional Tax (PT)</td>
+                <td id="slipPt" class="val-negative">- ₹200</td>
+              </tr>
+            </table>
+
+            <div class="take-home-card">
+              <div style="font-size: 0.85rem; color: #94a3b8; text-transform: uppercase;">Net Take-Home Salary:</div>
+              <div id="slipNet" style="font-family: 'Fira Code', monospace; font-size: 2rem; font-weight: 800; color: #38bdf8; margin-top: 0.3rem;">
+                ₹71,300
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- Source Code Viewer -->
+    <div class="code-viewer-section">
+      <div class="code-viewer-header">
+        <div class="code-tabs">
+          <button class="code-tab active" data-tab="js">JavaScript Implementation</button>
+        </div>
+        <div class="code-actions">
+          <button class="btn-secondary" id="copyCodeBtn">📋 Copy Code</button>
+        </div>
+      </div>
+      <div class="code-body">
+        <pre><code id="sourceCode">function calculateSalary(basic, daPercent, hraPercent, bonus) {
+  // 1. Earnings
+  const da = (basic * daPercent) / 100;
+  const hra = (basic * hraPercent) / 100;
+  const gross = basic + da + hra + bonus;
+
+  // 2. Deductions
+  const pf = (basic * 12) / 100; // standard 12% PF
+  const pt = 200; // Professional Tax
+  const totalDeductions = pf + pt;
+
+  // 3. Net In-Hand
+  const netSalary = gross - totalDeductions;
+
+  return { gross, netSalary, da, hra, pf, pt };
+}</code></pre>
+      </div>
+    </div>
+
+    <!-- Navigation -->
+    <div class="program-nav">
+      <a href="student-grade-calculator.html" class="nav-prev">&larr; FM 11: Grade Calculator</a>
+      <a href="shopping-bill-calculator.html" class="nav-next">FM 13: Shopping Bill &rarr;</a>
+    </div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-content">
+      <p>&copy; 2026 Web Technology Practical Laboratory • Prepared by <strong>Shaik Roshan</strong></p>
+      <p class="subtext">Computer Science & Engineering Department</p>
+    </div>
+  </footer>
+
+  <script src="../../assets/js/code-viewer.js"></script>
+  <script>
+    function calculatePayroll() {
+      const basic = parseFloat(document.getElementById("empBasic").value) || 0;
+      const daPct = parseFloat(document.getElementById("empDa").value) || 0;
+      const hraPct = parseFloat(document.getElementById("empHra").value) || 0;
+      const bonus = parseFloat(document.getElementById("empBonus").value) || 0;
+
+      const da = (basic * daPct) / 100;
+      const hra = (basic * hraPct) / 100;
+      const gross = basic + da + hra + bonus;
+
+      const pf = (basic * 12) / 100;
+      const pt = 200;
+      const net = gross - (pf + pt);
+
+      const fmt = (n) => "₹" + Math.round(n).toLocaleString('en-IN');
+
+      document.getElementById("slipBasic").textContent = fmt(basic);
+      document.getElementById("slipDa").textContent = fmt(da);
+      document.getElementById("slipHra").textContent = fmt(hra);
+      document.getElementById("slipBonus").textContent = fmt(bonus);
+      document.getElementById("slipGross").textContent = fmt(gross);
+      document.getElementById("slipPf").textContent = "- " + fmt(pf);
+      document.getElementById("slipPt").textContent = "- " + fmt(pt);
+      document.getElementById("slipNet").textContent = fmt(net);
+    }
+
+    calculatePayroll();
+  </script>
+</body>
+</html>

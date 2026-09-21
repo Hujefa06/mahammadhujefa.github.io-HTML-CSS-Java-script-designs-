@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>EV 12 - Typing Speed Test (WPM) | Web Tech Lab</title>
+  <link rel="stylesheet" href="../../assets/css/style.css">
+  <link rel="stylesheet" href="../../assets/css/program-viewer.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500&family=Inter:wght@400;500;600&family=Outfit:wght@600;700;800&display=swap" rel="stylesheet">
+  <style>
+    .typing-card {
+      max-width: 720px;
+      margin: 0 auto;
+      background: #0f172a;
+      border: 1px solid #334155;
+      border-radius: 12px;
+      padding: 2rem;
+    }
+    .quote-display {
+      background: #1e293b;
+      border: 1px solid #475569;
+      padding: 1.5rem;
+      border-radius: 10px;
+      font-size: 1.15rem;
+      line-height: 1.8;
+      letter-spacing: 0.5px;
+      margin-bottom: 1.5rem;
+      user-select: none;
+    }
+    .char-correct { color: #10b981; }
+    .char-incorrect { color: #ef4444; background: rgba(239, 68, 68, 0.2); border-radius: 2px; }
+    .char-current { border-bottom: 2px solid #38bdf8; }
+    .type-input {
+      width: 100%;
+      height: 100px;
+      background: #020617;
+      border: 2px solid #334155;
+      color: #f8fafc;
+      padding: 1rem;
+      border-radius: 8px;
+      font-size: 1.1rem;
+      font-family: inherit;
+      resize: none;
+      transition: border-color 0.2s;
+    }
+    .type-input:focus {
+      outline: none;
+      border-color: #38bdf8;
+    }
+    .wpm-stats-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1rem;
+      margin-top: 1.5rem;
+    }
+    @media (max-width: 600px) {
+      .wpm-stats-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+    .wpm-box {
+      background: #1e293b;
+      border: 1px solid #334155;
+      border-radius: 8px;
+      padding: 1rem;
+      text-align: center;
+    }
+    .wpm-num {
+      font-family: 'Fira Code', monospace;
+      font-size: 1.75rem;
+      font-weight: 700;
+      color: #38bdf8;
+    }
+    .wpm-lbl {
+      font-size: 0.75rem;
+      color: #94a3b8;
+      text-transform: uppercase;
+      margin-top: 0.25rem;
+    }
+  </style>
+</head>
+<body>
+  <!-- Navbar -->
+  <nav class="navbar">
+    <div class="nav-container">
+      <a href="../../index.html" class="logo">
+        <span class="logo-icon">&lt;/&gt;</span>
+        <span>WebTech<span class="highlight">Lab</span></span>
+      </a>
+      <div class="nav-links">
+        <a href="../../index.html">Dashboard</a>
+        <a href="../../html/index.html">HTML</a>
+        <a href="../../css/index.html">CSS</a>
+        <a href="../index.html" class="active">JavaScript</a>
+      </div>
+    </div>
+  </nav>
+
+  <main class="page-container">
+    <div class="breadcrumb">
+      <a href="../../index.html">Home</a> &rsaquo; 
+      <a href="../index.html">JavaScript</a> &rsaquo; 
+      <a href="index.html">Events</a> &rsaquo; 
+      <span>EV 12 - Typing Speed Test</span>
+    </div>
+
+    <div class="program-header">
+      <div class="program-badge">Event Handling • Program 12</div>
+      <h1>Typing Speed Test (WPM & Accuracy Engine)</h1>
+      <p class="program-desc">
+        Calculate Words Per Minute (WPM), character accuracy, and keystroke mistakes in real-time 
+        with input event analysis and automated countdown timer tracking.
+      </p>
+      <div class="student-pill">
+        <span>👨‍💻 Student: <strong>Shaik Roshan</strong></span>
+        <span>•</span>
+        <span>Reg No: <strong>[TO BE FILLED BY STUDENT]</strong></span>
+      </div>
+    </div>
+
+    <!-- Live Demo -->
+    <div class="demo-section">
+      <div class="demo-header">
+        <div class="demo-title">
+          <span>⌨️</span> 60-Second Speed Typing Challenge
+        </div>
+        <button class="btn btn-secondary" style="padding: 4px 10px; font-size: 0.8rem;" onclick="resetTypingTest()">New Passage</button>
+      </div>
+      <div class="demo-body">
+        
+        <div class="typing-card">
+          <div id="quoteDisplay" class="quote-display">
+            <!-- Injected dynamically with per-character spans -->
+          </div>
+
+          <textarea id="typingInput" class="type-input" placeholder="Start typing the passage above to trigger the timer..." oninput="processInput()"></textarea>
+
+          <div class="wpm-stats-grid">
+            <div class="wpm-box">
+              <div id="statWpm" class="wpm-num">0</div>
+              <div class="wpm-lbl">Net WPM</div>
+            </div>
+            <div class="wpm-box">
+              <div id="statAccuracy" class="wpm-num" style="color: #10b981;">100%</div>
+              <div class="wpm-lbl">Accuracy</div>
+            </div>
+            <div class="wpm-box">
+              <div id="statTime" class="wpm-num">60s</div>
+              <div class="wpm-lbl">Time Left</div>
+            </div>
+            <div class="wpm-box">
+              <div id="statErrors" class="wpm-num" style="color: #ef4444;">0</div>
+              <div class="wpm-lbl">Errors</div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- Source Code Viewer -->
+    <div class="code-viewer-section">
+      <div class="code-viewer-header">
+        <div class="code-tabs">
+          <button class="code-tab active" data-tab="js">JavaScript Implementation</button>
+        </div>
+        <div class="code-actions">
+          <button class="btn-secondary" id="copyCodeBtn">📋 Copy Code</button>
+        </div>
+      </div>
+      <div class="code-body">
+        <pre><code id="sourceCode">function calculateMetrics(typedChars, totalErrors, timeElapsedMinutes) {
+  // Gross Words = total characters / 5
+  const grossWPM = (typedChars / 5) / timeElapsedMinutes;
+  
+  // Net WPM = (total characters / 5 - errors) / timeElapsedMinutes
+  const netWPM = Math.max(0, Math.round(((typedChars / 5) - totalErrors) / timeElapsedMinutes));
+
+  // Accuracy Percentage
+  const accuracy = Math.round(((typedChars - totalErrors) / typedChars) * 100);
+
+  return { netWPM, accuracy };
+}</code></pre>
+      </div>
+    </div>
+
+    <!-- Navigation -->
+    <div class="program-nav">
+      <a href="reaction-time-game.html" class="nav-prev">&larr; EV 11: Reaction Time</a>
+      <a href="../forms/index.html" class="nav-next">Next Category: Form Validation &rarr;</a>
+    </div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-content">
+      <p>&copy; 2026 Web Technology Practical Laboratory • Prepared by <strong>Shaik Roshan</strong></p>
+      <p class="subtext">Computer Science & Engineering Department</p>
+    </div>
+  </footer>
+
+  <script src="../../assets/js/code-viewer.js"></script>
+  <script>
+    const samplePassages = [
+      "JavaScript is a high-level, just-in-time compiled language conforming to the ECMAScript specification.",
+      "The Document Object Model represents the web page as nodes that can be modified dynamically with code.",
+      "Asynchronous programming with promises and async await patterns makes web apps responsive and scalable."
+    ];
+
+    let currentPassage = "";
+    let timeLeft = 60;
+    let timer = null;
+    let started = false;
+    let totalErrors = 0;
+
+    const quoteEl = document.getElementById("quoteDisplay");
+    const inputEl = document.getElementById("typingInput");
+    const wpmEl = document.getElementById("statWpm");
+    const accEl = document.getElementById("statAccuracy");
+    const timeEl = document.getElementById("statTime");
+    const errEl = document.getElementById("statErrors");
+
+    function setupPassage() {
+      currentPassage = samplePassages[Math.floor(Math.random() * samplePassages.length)];
+      quoteEl.innerHTML = "";
+      currentPassage.split("").forEach((char, i) => {
+        const span = document.createElement("span");
+        span.textContent = char;
+        if (i === 0) span.className = "char-current";
+        quoteEl.appendChild(span);
+      });
+    }
+
+    function processInput() {
+      if (!started) {
+        started = true;
+        startTimer();
+      }
+
+      const inputVal = inputEl.value;
+      const spans = quoteEl.querySelectorAll("span");
+      let errors = 0;
+
+      spans.forEach((span, i) => {
+        const char = inputVal[i];
+        span.className = "";
+
+        if (char == null) {
+          if (i === inputVal.length) span.className = "char-current";
+        } else if (char === span.textContent) {
+          span.className = "char-correct";
+        } else {
+          span.className = "char-incorrect";
+          errors++;
+        }
+      });
+
+      totalErrors = errors;
+      errEl.textContent = errors;
+
+      const typedCount = inputVal.length;
+      const elapsedMins = (60 - timeLeft) / 60 || 0.01;
+      const wpm = Math.max(0, Math.round(((typedCount / 5) - errors) / elapsedMins));
+      wpmEl.textContent = wpm;
+
+      const accuracy = typedCount > 0 ? Math.max(0, Math.round(((typedCount - errors) / typedCount) * 100)) : 100;
+      accEl.textContent = `${accuracy}%`;
+
+      if (inputVal.length === currentPassage.length) {
+        clearInterval(timer);
+        inputEl.disabled = true;
+      }
+    }
+
+    function startTimer() {
+      timer = setInterval(() => {
+        timeLeft--;
+        timeEl.textContent = `${timeLeft}s`;
+        if (timeLeft <= 0) {
+          clearInterval(timer);
+          inputEl.disabled = true;
+        }
+      }, 1000);
+    }
+
+    function resetTypingTest() {
+      clearInterval(timer);
+      timer = null;
+      started = false;
+      timeLeft = 60;
+      inputEl.value = "";
+      inputEl.disabled = false;
+      timeEl.textContent = "60s";
+      wpmEl.textContent = "0";
+      accEl.textContent = "100%";
+      errEl.textContent = "0";
+      setupPassage();
+    }
+
+    setupPassage();
+  </script>
+</body>
+</html>

@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>JavaScript Mini Projects Showcase | Web Tech Lab</title>
+  <link rel="stylesheet" href="../../assets/css/style.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500&family=Inter:wght@400;500;600&family=Outfit:wght@600;700;800&display=swap" rel="stylesheet">
+</head>
+<body>
+  <!-- Global Navbar -->
+  <nav class="navbar">
+    <div class="nav-container">
+      <a href="../../index.html" class="logo">
+        <span class="logo-icon">&lt;/&gt;</span>
+        <span>WebTech<span class="highlight">Lab</span></span>
+      </a>
+      <div class="nav-links">
+        <a href="../../index.html">Dashboard</a>
+        <a href="../../html/index.html">HTML</a>
+        <a href="../../css/index.html">CSS</a>
+        <a href="../index.html" class="active">JavaScript</a>
+      </div>
+    </div>
+  </nav>
+
+  <main class="page-container">
+    <div class="breadcrumb">
+      <a href="../../index.html">Home</a> &rsaquo; 
+      <a href="../index.html">JavaScript</a> &rsaquo; 
+      <span>Interactive Mini Projects</span>
+    </div>
+
+    <header class="section-header">
+      <div class="badge badge-accent">Category: Capstone Mini Projects</div>
+      <h1>JavaScript Interactive Mini Projects Showcase</h1>
+      <p class="section-subtitle">
+        Comprehensive student portfolio projects combining HTML5 semantic structures, 
+        responsive CSS3 styling, DOM programming, event handling, and state management.
+      </p>
+      <div class="student-pill">
+        <span>👨‍💻 Student: <strong>Shaik Roshan</strong></span>
+        <span>•</span>
+        <span>Reg No: <strong>[TO BE FILLED BY STUDENT]</strong></span>
+        <span>•</span>
+        <span>16 Practical Web Applications</span>
+      </div>
+    </header>
+
+    <!-- Search & Filter Bar -->
+    <div class="search-filter-section">
+      <div class="search-box">
+        <span class="search-icon">🔍</span>
+        <input type="text" id="programSearch" placeholder="Search projects (e.g. calculator, quiz, tic-tac-toe, weather)...">
+      </div>
+      <div class="filter-pills">
+        <button class="filter-pill active" data-filter="all">All (16)</button>
+        <button class="filter-pill" data-filter="tools">Productivity Tools</button>
+        <button class="filter-pill" data-filter="games">Games & Quizzes</button>
+        <button class="filter-pill" data-filter="calculators">Health & Finance</button>
+      </div>
+    </div>
+
+    <!-- Programs Grid -->
+    <div class="programs-grid" id="programsGrid">
+      
+      <!-- PR 01 -->
+      <a href="calculator.html" class="program-card" data-category="tools">
+        <div class="card-top">
+          <span class="card-num">PR 01</span>
+          <span class="card-tag tag-primary">Utility</span>
+        </div>
+        <h3 class="card-title">Digital Calculator</h3>
+        <p class="card-desc">Standard mathematical calculator supporting arithmetic operators, decimal precision, backspace, and keyboard inputs.</p>
+        <div class="card-footer">
+          <span class="view-btn">Launch Project &rarr;</span>
+        </div>
+      </a>
+
+      <!-- PR 02 -->
+      <a href="digital-clock-app.html" class="program-card" data-category="tools">
+        <div class="card-top">
+          <span class="card-num">PR 02</span>
+          <span class="card-tag tag-accent">World Time</span>
+        </div>
+        <h3 class="card-title">World Timezone Clock App</h3>
+        <p class="card-desc">Multi-timezone digital clock displaying live synchronized clocks for New York, London, Tokyo, and New Delhi.</p>
+        <div class="card-footer">
+          <span class="view-btn">Launch Project &rarr;</span>
+        </div>
+      </a>
+
+      <!-- PR 03 -->
+      <a href="stopwatch-app.html" class="program-card" data-category="tools">
+        <div class="card-top">
+          <span class="card-num">PR 03</span>
+          <span class="card-tag tag-secondary">Sports</span>
+        </div>
+        <h3 class="card-title">Sports Stopwatch & Lap Recorder</h3>
+        <p class="card-desc">High precision digital stopwatch with millisecond readout, lap split recording table, and best/worst lap highlights.</p>
+        <div class="card-footer">
+          <span class="view-btn">Launch Project &rarr;</span>
+        </div>
+      </a>
+
+      <!-- PR 04 -->
+      <a href="timer-app.html" class="program-card" data-category="tools">
+        <div class="card-top">
+          <span class="card-num">PR 04</span>
+          <span class="card-tag tag-warning">Productivity</span>
+        </div>
+        <h3 class="card-title">Pomodoro Productivity Timer</h3>
+        <p class="card-desc">Study workflow timer: 25-minute focused work intervals followed by 5-minute rejuvenation breaks with progress ring.</p>
+        <div class="card-footer">
+          <span class="view-btn">Launch Project &rarr;</span>
+        </div>
+      </a>
+
+      <!-- PR 05 -->
+      <a href="todo-app.html" class="program-card" data-category="tools">
+        <div class="card-top">
+          <span class="card-num">PR 05</span>
+          <span class="card-tag tag-success">Tasks</span>
+        </div>
+        <h3 class="card-title">Feature-Rich Todo Application</h3>
+        <p class="card-desc">Advanced task tracker with priority labels (High, Medium, Low), category tabs, localStorage persistence, and search.</p>
+        <div class="card-footer">
+          <span class="view-btn">Launch Project &rarr;</span>
+        </div>
+      </a>
+
+      <!-- PR 06 -->
+      <a href="weather-app.html" class="program-card" data-category="tools">
+        <div class="card-top">
+          <span class="card-num">PR 06</span>
+          <span class="card-tag tag-accent">Weather</span>
+        </div>
+        <h3 class="card-title">Live Meteorological Weather App</h3>
+        <p class="card-desc">Search world cities to inspect temperature, humidity, wind speeds, air quality, and 5-day weather forecasts.</p>
+        <div class="card-footer">
+          <span class="view-btn">Launch Project &rarr;</span>
+        </div>
+      </a>
+
+      <!-- PR 07 -->
+      <a href="quiz-app.html" class="program-card" data-category="games">
+        <div class="card-top">
+          <span class="card-num">PR 07</span>
+          <span class="card-tag tag-primary">Quiz</span>
+        </div>
+        <h3 class="card-title">Interactive MCQ Quiz Engine</h3>
+        <p class="card-desc">Timed multiple-choice exam system with immediate explanation feedback, progress indicator, and final scorecard.</p>
+        <div class="card-footer">
+          <span class="view-btn">Launch Project &rarr;</span>
+        </div>
+      </a>
+
+      <!-- PR 08 -->
+      <a href="number-guessing-game.html" class="program-card" data-category="games">
+        <div class="card-top">
+          <span class="card-num">PR 08</span>
+          <span class="card-tag tag-warning">Game</span>
+        </div>
+        <h3 class="card-title">Number Guessing Game</h3>
+        <p class="card-desc">Guess the secret number between 1 and 100 within 7 tries. Interactive hints guide you 'Too High' or 'Too Low'.</p>
+        <div class="card-footer">
+          <span class="view-btn">Launch Project &rarr;</span>
+        </div>
+      </a>
+
+      <!-- PR 09 -->
+      <a href="tic-tac-toe.html" class="program-card" data-category="games">
+        <div class="card-top">
+          <span class="card-num">PR 09</span>
+          <span class="card-tag tag-success">Game</span>
+        </div>
+        <h3 class="card-title">Tic Tac Toe (2-Player & Smart AI)</h3>
+        <p class="card-desc">Play classic 3x3 grid games against a friend locally or challenge an AI engine with win line animations.</p>
+        <div class="card-footer">
+          <span class="view-btn">Launch Project &rarr;</span>
+        </div>
+      </a>
+
+      <!-- PR 10 -->
+      <a href="expense-tracker.html" class="program-card" data-category="calculators">
+        <div class="card-top">
+          <span class="card-num">PR 10</span>
+          <span class="card-tag tag-accent">Finance</span>
+        </div>
+        <h3 class="card-title">Personal Expense & Budget Tracker</h3>
+        <p class="card-desc">Log income and expenses, view categorical budget distributions, remaining net balance, and transaction history.</p>
+        <div class="card-footer">
+          <span class="view-btn">Launch Project &rarr;</span>
+        </div>
+      </a>
+
+      <!-- PR 11 -->
+      <a href="grade-calculator-app.html" class="program-card" data-category="calculators">
+        <div class="card-top">
+          <span class="card-num">PR 11</span>
+          <span class="card-tag tag-primary">Academics</span>
+        </div>
+        <h3 class="card-title">Multi-Semester CGPA Calculator</h3>
+        <p class="card-desc">Calculate cumulative Grade Point Average (CGPA) across up to 8 engineering semesters with credit weightage.</p>
+        <div class="card-footer">
+          <span class="view-btn">Launch Project &rarr;</span>
+        </div>
+      </a>
+
+      <!-- PR 12 -->
+      <a href="shopping-cart-app.html" class="program-card" data-category="tools">
+        <div class="card-top">
+          <span class="card-num">PR 12</span>
+          <span class="card-tag tag-secondary">E-Commerce</span>
+        </div>
+        <h3 class="card-title">E-Commerce Storefront & Checkout</h3>
+        <p class="card-desc">Browse electronics catalog, apply coupon codes, filter by price range, adjust cart quantities, and simulate order placement.</p>
+        <div class="card-footer">
+          <span class="view-btn">Launch Project &rarr;</span>
+        </div>
+      </a>
+
+      <!-- PR 13 -->
+      <a href="notes-app.html" class="program-card" data-category="tools">
+        <div class="card-top">
+          <span class="card-num">PR 13</span>
+          <span class="card-tag tag-warning">Notes</span>
+        </div>
+        <h3 class="card-title">Markdown Notes Organizer</h3>
+        <p class="card-desc">Clean student notepad with live markdown rendering, search filter, tag categorization, and local persistence.</p>
+        <div class="card-footer">
+          <span class="view-btn">Launch Project &rarr;</span>
+        </div>
+      </a>
+
+      <!-- PR 14 -->
+      <a href="password-generator.html" class="program-card" data-category="tools">
+        <div class="card-top">
+          <span class="card-num">PR 14</span>
+          <span class="card-tag tag-success">Security</span>
+        </div>
+        <h3 class="card-title">Random Password Generator</h3>
+        <p class="card-desc">Generate cryptographically secure passwords with custom length sliders, character inclusion toggles, and 1-click copy.</p>
+        <div class="card-footer">
+          <span class="view-btn">Launch Project &rarr;</span>
+        </div>
+      </a>
+
+      <!-- PR 15 -->
+      <a href="bmi-calculator.html" class="program-card" data-category="calculators">
+        <div class="card-top">
+          <span class="card-num">PR 15</span>
+          <span class="card-tag tag-accent">Health</span>
+        </div>
+        <h3 class="card-title">Body Mass Index (BMI) Calculator</h3>
+        <p class="card-desc">Calculate body mass index with Metric (kg/cm) and Imperial (lbs/in) units, healthy weight range gauge, and health tips.</p>
+        <div class="card-footer">
+          <span class="view-btn">Launch Project &rarr;</span>
+        </div>
+      </a>
+
+      <!-- PR 16 -->
+      <a href="currency-converter.html" class="program-card" data-category="calculators">
+        <div class="card-top">
+          <span class="card-num">PR 16</span>
+          <span class="card-tag tag-primary">Forex</span>
+        </div>
+        <h3 class="card-title">Global Currency Converter</h3>
+        <p class="card-desc">Convert between world fiat currencies (USD, INR, EUR, GBP, JPY, CAD) with live swap button and conversion rates table.</p>
+        <div class="card-footer">
+          <span class="view-btn">Launch Project &rarr;</span>
+        </div>
+      </a>
+
+    </div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-content">
+      <p>&copy; 2026 Web Technology Practical Laboratory • Prepared by <strong>Shaik Roshan</strong></p>
+      <p class="subtext">Computer Science & Engineering Department</p>
+    </div>
+  </footer>
+
+  <script src="../../assets/js/main.js"></script>
+</body>
+</html>

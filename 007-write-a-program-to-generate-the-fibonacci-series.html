@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Taj Mahal - Fibonacci</title>
+
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial;
+            background: #eaf8ff;
+            color: #063b4c;
+            text-align: center;
+            padding: 50px;
+        }
+
+        .card {
+            max-width: 600px;
+            margin: auto;
+            background: white;
+            padding: 35px;
+            border-radius: 16px;
+            box-shadow: 0 5px 15px #b5d9e5;
+        }
+
+        h1 {
+            color: #075b73;
+        }
+
+        #result {
+            font-size: 20px;
+            line-height: 2;
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="card">
+    <h1>🏛️ Fibonacci Waves</h1>
+    <p id="result"></p>
+</div>
+
+<script>
+    let n = 10;
+    let a = 0;
+    let b = 1;
+    let series = [];
+
+    for (let i = 0; i < n; i++) {
+        series.push(a);
+
+        let next = a + b;
+        a = b;
+        b = next;
+    }
+
+    document.getElementById("result").textContent =
+        "Fibonacci Series: " + series.join(", ");
+</script>
+
+</body>
+</html>

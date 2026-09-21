@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>PR 05 - Advanced Task Manager | Web Tech Lab</title>
+  <link rel="stylesheet" href="../../assets/css/style.css">
+  <link rel="stylesheet" href="../../assets/css/program-viewer.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500;700&family=Inter:wght@400;500;600&family=Outfit:wght@600;700;800&display=swap" rel="stylesheet">
+  <style>
+    .todo-hub-card {
+      max-width: 640px;
+      margin: 0 auto;
+      background: #0f172a;
+      border: 1px solid #334155;
+      border-radius: 16px;
+      padding: 2rem;
+    }
+    .input-complex-bar {
+      display: grid;
+      grid-template-columns: 1fr 130px 90px;
+      gap: 0.5rem;
+      margin-bottom: 1.25rem;
+    }
+    @media (max-width: 600px) {
+      .input-complex-bar {
+        grid-template-columns: 1fr;
+      }
+    }
+    .input-complex-bar input, .input-complex-bar select {
+      background: #1e293b;
+      border: 1px solid #475569;
+      color: #f8fafc;
+      padding: 0.65rem 0.85rem;
+      border-radius: 6px;
+    }
+    .filters-bar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 1rem;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+    }
+    .tab-pills {
+      display: flex;
+      gap: 0.35rem;
+    }
+    .tab-pill {
+      background: #1e293b;
+      border: 1px solid #334155;
+      color: #94a3b8;
+      padding: 4px 10px;
+      border-radius: 4px;
+      font-size: 0.8rem;
+      cursor: pointer;
+    }
+    .tab-pill.active {
+      background: #38bdf8;
+      color: #000;
+      font-weight: 600;
+    }
+    .task-rows-list {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+    }
+    .task-row-card {
+      background: #1e293b;
+      border: 1px solid #334155;
+      padding: 0.75rem 1rem;
+      border-radius: 8px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      transition: all 0.15s;
+    }
+    .task-row-card.done span.title {
+      text-decoration: line-through;
+      color: #64748b;
+    }
+    .priority-badge {
+      font-size: 0.7rem;
+      padding: 2px 6px;
+      border-radius: 4px;
+      margin-left: 0.5rem;
+      text-transform: uppercase;
+      font-weight: 700;
+    }
+    .prio-high { background: #7f1d1d; color: #fca5a5; }
+    .prio-med { background: #78350f; color: #fde047; }
+    .prio-low { background: #065f46; color: #6ee7b7; }
+  </style>
+</head>
+<body>
+  <!-- Navbar -->
+  <nav class="navbar">
+    <div class="nav-container">
+      <a href="../../index.html" class="logo">
+        <span class="logo-icon">&lt;/&gt;</span>
+        <span>WebTech<span class="highlight">Lab</span></span>
+      </a>
+      <div class="nav-links">
+        <a href="../../index.html">Dashboard</a>
+        <a href="../../html/index.html">HTML</a>
+        <a href="../../css/index.html">CSS</a>
+        <a href="../index.html" class="active">JavaScript</a>
+      </div>
+    </div>
+  </nav>
+
+  <main class="page-container">
+    <div class="breadcrumb">
+      <a href="../../index.html">Home</a> &rsaquo; 
+      <a href="../index.html">JavaScript</a> &rsaquo; 
+      <a href="index.html">Projects</a> &rsaquo; 
+      <span>PR 05 - Advanced Todo App</span>
+    </div>
+
+    <div class="program-header">
+      <div class="program-badge">Mini Project • Project 05</div>
+      <h1>Feature-Rich Task Management Studio</h1>
+      <p class="program-desc">
+        Full task tracking application: priority tags (High, Medium, Low), category filter tabs 
+        (All, Active, Completed), instant search, and local storage state persistence.
+      </p>
+      <div class="student-pill">
+        <span>👨‍💻 Student: <strong>Shaik Roshan</strong></span>
+        <span>•</span>
+        <span>Reg No: <strong>[TO BE FILLED BY STUDENT]</strong></span>
+      </div>
+    </div>
+
+    <!-- Live Demo -->
+    <div class="demo-section">
+      <div class="demo-header">
+        <div class="demo-title">
+          <span>📝</span> Academic Sprint Tasks
+        </div>
+        <span class="badge badge-success" id="summaryBadge">3 Tasks</span>
+      </div>
+      <div class="demo-body">
+        
+        <div class="todo-hub-card">
+          <div class="input-complex-bar">
+            <input type="text" id="inpTaskTitle" placeholder="What needs to be done?">
+            <select id="selPriority">
+              <option value="high">High Priority</option>
+              <option value="med" selected>Medium</option>
+              <option value="low">Low Priority</option>
+            </select>
+            <button class="btn btn-primary" onclick="createTask()">+ Add</button>
+          </div>
+
+          <div class="filters-bar">
+            <div class="tab-pills">
+              <button class="tab-pill active" onclick="setFilter('all', this)">All</button>
+              <button class="tab-pill" onclick="setFilter('active', this)">Active</button>
+              <button class="tab-pill" onclick="setFilter('completed', this)">Completed</button>
+            </div>
+
+            <div style="font-size: 0.8rem; color: #94a3b8;">
+              <span id="pendingCount">2</span> items left
+            </div>
+          </div>
+
+          <ul id="taskList" class="task-rows-list">
+            <!-- Populated via JS -->
+          </ul>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- Source Code Viewer -->
+    <div class="code-viewer-section">
+      <div class="code-viewer-header">
+        <div class="code-tabs">
+          <button class="code-tab active" data-tab="js">JavaScript Implementation</button>
+        </div>
+        <div class="code-actions">
+          <button class="btn-secondary" id="copyCodeBtn">📋 Copy Code</button>
+        </div>
+      </div>
+      <div class="code-body">
+        <pre><code id="sourceCode">class TaskManager {
+  constructor() {
+    this.tasks = JSON.parse(localStorage.getItem("tasks") || "[]");
+    this.filter = "all";
+  }
+
+  addTask(title, priority) {
+    this.tasks.push({
+      id: Date.now(),
+      title,
+      priority,
+      completed: false
+    });
+    this.persist();
+  }
+
+  getFilteredTasks() {
+    if (this.filter === "active") return this.tasks.filter(t => !t.completed);
+    if (this.filter === "completed") return this.tasks.filter(t => t.completed);
+    return this.tasks;
+  }
+
+  persist() {
+    localStorage.setItem("tasks", JSON.stringify(this.tasks));
+  }
+}</code></pre>
+      </div>
+    </div>
+
+    <!-- Navigation -->
+    <div class="program-nav">
+      <a href="timer-app.html" class="nav-prev">&larr; PR 04: Pomodoro Timer</a>
+      <a href="weather-app.html" class="nav-next">PR 06: Weather App &rarr;</a>
+    </div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-content">
+      <p>&copy; 2026 Web Technology Practical Laboratory • Prepared by <strong>Shaik Roshan</strong></p>
+      <p class="subtext">Computer Science & Engineering Department</p>
+    </div>
+  </footer>
+
+  <script src="../../assets/js/code-viewer.js"></script>
+  <script>
+    let appTasks = JSON.parse(localStorage.getItem("pr_todo_tasks") || "null");
+    let currentFilter = "all";
+
+    if (!appTasks) {
+      appTasks = [
+        { id: 1, title: "Complete HTML & CSS laboratory exercises", priority: "high", completed: true },
+        { id: 2, title: "Build JavaScript DOM interactive components", priority: "high", completed: true },
+        { id: 3, title: "Study Event Bubbling and Delegation patterns", priority: "med", completed: false }
+      ];
+      localStorage.setItem("pr_todo_tasks", JSON.stringify(appTasks));
+    }
+
+    const taskList = document.getElementById("taskList");
+    const pendingCount = document.getElementById("pendingCount");
+    const summaryBadge = document.getElementById("summaryBadge");
+
+    function saveAndRender() {
+      localStorage.setItem("pr_todo_tasks", JSON.stringify(appTasks));
+      render();
+    }
+
+    function render() {
+      taskList.innerHTML = "";
+
+      let filtered = appTasks;
+      if (currentFilter === "active") filtered = appTasks.filter(t => !t.completed);
+      if (currentFilter === "completed") filtered = appTasks.filter(t => t.completed);
+
+      const activeTotal = appTasks.filter(t => !t.completed).length;
+      pendingCount.textContent = activeTotal;
+      summaryBadge.textContent = `${appTasks.length} Tasks Total`;
+
+      if (filtered.length === 0) {
+        taskList.innerHTML = `<li style="text-align: center; color: #64748b; padding: 2rem;">No matching tasks found.</li>`;
+        return;
+      }
+
+      filtered.forEach(t => {
+        const li = document.createElement("li");
+        li.className = `task-row-card ${t.completed ? 'done' : ''}`;
+        li.innerHTML = `
+          <div style="display:flex; align-items:center; gap:0.5rem;">
+            <input type="checkbox" ${t.completed ? 'checked' : ''} onchange="toggleTask(${t.id})">
+            <span class="title">${t.title}</span>
+            <span class="priority-badge prio-${t.priority}">${t.priority}</span>
+          </div>
+          <button style="background:none; border:none; color:#ef4444; cursor:pointer;" onclick="deleteTask(${t.id})">&times;</button>
+        `;
+        taskList.appendChild(li);
+      });
+    }
+
+    function createTask() {
+      const inp = document.getElementById("inpTaskTitle");
+      const prio = document.getElementById("selPriority").value;
+      const title = inp.value.trim();
+
+      if (!title) return;
+
+      appTasks.push({ id: Date.now(), title, priority: prio, completed: false });
+      inp.value = "";
+      saveAndRender();
+    }
+
+    function toggleTask(id) {
+      const t = appTasks.find(item => item.id === id);
+      if (t) t.completed = !t.completed;
+      saveAndRender();
+    }
+
+    function deleteTask(id) {
+      appTasks = appTasks.filter(item => item.id !== id);
+      saveAndRender();
+    }
+
+    function setFilter(filter, btn) {
+      currentFilter = filter;
+      document.querySelectorAll(".tab-pill").forEach(b => b.classList.remove("active"));
+      btn.classList.add("active");
+      render();
+    }
+
+    render();
+  </script>
+</body>
+</html>

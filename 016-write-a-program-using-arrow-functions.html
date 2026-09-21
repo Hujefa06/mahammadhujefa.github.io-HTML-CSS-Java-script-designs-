@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Taj Mahal - Arrow Function</title>
+<style>
+body{margin:0;font-family:Arial;background:#eaf8ff;color:#063b4c;text-align:center;padding:50px}
+.card{max-width:500px;margin:auto;background:white;padding:35px;border-radius:16px;box-shadow:0 5px 15px #b5d9e5}
+h1{color:#075b73}
+#result{font-size:24px;font-weight:bold}
+</style>
+</head>
+<body>
+
+<div class="card">
+<h1>🧭 Arrow Function</h1>
+<p id="result"></p>
+</div>
+
+<script>
+const add = (a, b) => a + b;
+
+let result = add(25, 15);
+
+document.getElementById("result").textContent =
+    "25 + 15 = " + result;
+</script>
+
+</body>
+</html>

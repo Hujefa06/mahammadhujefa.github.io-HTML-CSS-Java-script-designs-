@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Taj Mahal - Digital Clock</title>
+<style>
+body{
+    margin:0;
+    min-height:100vh;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    font-family:Arial;
+    background:#063b4c;
+    color:white;
+}
+
+.clock{
+    text-align:center;
+    padding:40px;
+}
+
+#time{
+    font-size:clamp(3rem,10vw,6rem);
+    font-weight:bold;
+    color:#8ed7e8;
+}
+</style>
+</head>
+<body>
+
+<div class="clock">
+<h1>🏛️ Island Time</h1>
+<div id="time"></div>
+</div>
+
+<script>
+function updateClock() {
+    let now = new Date();
+
+    let hours = String(now.getHours()).padStart(2, "0");
+    let minutes = String(now.getMinutes()).padStart(2, "0");
+    let seconds = String(now.getSeconds()).padStart(2, "0");
+
+    document.getElementById("time").textContent =
+        hours + ":" + minutes + ":" + seconds;
+}
+
+setInterval(updateClock, 1000);
+updateClock();
+</script>
+
+</body>
+</html>

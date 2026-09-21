@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Taj Mahal - Calculator</title>
+<style>
+body{margin:0;font-family:Arial;background:#eaf8ff;text-align:center;padding:40px;color:#063b4c}
+.calculator{max-width:350px;margin:auto;background:white;padding:25px;border-radius:16px;box-shadow:0 5px 15px #b5d9e5}
+input{width:100%;padding:12px;margin:8px 0;box-sizing:border-box;border:1px solid #9bcbd8;border-radius:8px}
+button{padding:12px 18px;margin:5px;background:#075b73;color:white;border:0;border-radius:8px}
+#result{font-size:22px;font-weight:bold}
+</style>
+</head>
+<body>
+
+<div class="calculator">
+<h1>🧮 Island Calculator</h1>
+
+<input type="number" id="a" placeholder="First number">
+<input type="number" id="b" placeholder="Second number">
+
+<button onclick="calculate('+')">+</button>
+<button onclick="calculate('-')">−</button>
+<button onclick="calculate('*')">×</button>
+<button onclick="calculate('/')">÷</button>
+
+<p id="result"></p>
+</div>
+
+<script>
+function calculate(operator) {
+    let a = Number(document.getElementById("a").value);
+    let b = Number(document.getElementById("b").value);
+    let result;
+
+    if (operator === "+") result = a + b;
+    if (operator === "-") result = a - b;
+    if (operator === "*") result = a * b;
+    if (operator === "/") result = b !== 0 ? a / b : "Cannot divide by zero";
+
+    document.getElementById("result").textContent =
+        "Result: " + result;
+}
+</script>
+
+</body>
+</html>

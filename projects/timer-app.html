@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>PR 04 - Pomodoro Productivity Timer | Web Tech Lab</title>
+  <link rel="stylesheet" href="../../assets/css/style.css">
+  <link rel="stylesheet" href="../../assets/css/program-viewer.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500;700&family=Inter:wght@400;500;600&family=Outfit:wght@600;700;800&display=swap" rel="stylesheet">
+  <style>
+    .pomo-card {
+      max-width: 520px;
+      margin: 0 auto;
+      background: #0f172a;
+      border: 1px solid #334155;
+      border-radius: 16px;
+      padding: 2.5rem 1.5rem;
+      text-align: center;
+    }
+    .mode-tab-bar {
+      display: flex;
+      justify-content: center;
+      gap: 0.5rem;
+      background: #1e293b;
+      padding: 0.4rem;
+      border-radius: 50px;
+      margin-bottom: 2rem;
+    }
+    .pomo-mode-btn {
+      padding: 0.5rem 1.25rem;
+      border-radius: 50px;
+      border: none;
+      background: none;
+      color: #94a3b8;
+      font-weight: 600;
+      font-size: 0.85rem;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+    .pomo-mode-btn.active {
+      background: #38bdf8;
+      color: #0f172a;
+    }
+    .pomo-timer-display {
+      font-family: 'Fira Code', monospace;
+      font-size: 4.5rem;
+      font-weight: 800;
+      color: #f8fafc;
+      letter-spacing: 2px;
+      margin: 1.5rem 0;
+    }
+    .cycle-counter {
+      font-size: 0.85rem;
+      color: #94a3b8;
+      margin-top: 1rem;
+    }
+  </style>
+</head>
+<body>
+  <!-- Navbar -->
+  <nav class="navbar">
+    <div class="nav-container">
+      <a href="../../index.html" class="logo">
+        <span class="logo-icon">&lt;/&gt;</span>
+        <span>WebTech<span class="highlight">Lab</span></span>
+      </a>
+      <div class="nav-links">
+        <a href="../../index.html">Dashboard</a>
+        <a href="../../html/index.html">HTML</a>
+        <a href="../../css/index.html">CSS</a>
+        <a href="../index.html" class="active">JavaScript</a>
+      </div>
+    </div>
+  </nav>
+
+  <main class="page-container">
+    <div class="breadcrumb">
+      <a href="../../index.html">Home</a> &rsaquo; 
+      <a href="../index.html">JavaScript</a> &rsaquo; 
+      <a href="index.html">Projects</a> &rsaquo; 
+      <span>PR 04 - Pomodoro Timer</span>
+    </div>
+
+    <div class="program-header">
+      <div class="program-badge">Mini Project • Project 04</div>
+      <h1>Pomodoro Productivity Study Timer</h1>
+      <p class="program-desc">
+        A productivity timer based on the Pomodoro Technique: 25-minute focused study sessions, 
+        5-minute short breaks, 15-minute long breaks, and completed cycle counting.
+      </p>
+      <div class="student-pill">
+        <span>👨‍💻 Student: <strong>Shaik Roshan</strong></span>
+        <span>•</span>
+        <span>Reg No: <strong>[TO BE FILLED BY STUDENT]</strong></span>
+      </div>
+    </div>
+
+    <!-- Live Demo -->
+    <div class="demo-section">
+      <div class="demo-header">
+        <div class="demo-title">
+          <span>🍅</span> Deep Work Pomodoro Engine
+        </div>
+        <span class="badge badge-success" id="sessionBadge">Work Session</span>
+      </div>
+      <div class="demo-body">
+        
+        <div class="pomo-card">
+          <div class="mode-tab-bar">
+            <button class="pomo-mode-btn active" onclick="setMode(25, 'Work Session')">Pomodoro (25m)</button>
+            <button class="pomo-mode-btn" onclick="setMode(5, 'Short Break')">Short Break (5m)</button>
+            <button class="pomo-mode-btn" onclick="setMode(15, 'Long Break')">Long Break (15m)</button>
+          </div>
+
+          <div id="pomoDisplay" class="pomo-timer-display">25:00</div>
+
+          <div style="display: flex; justify-content: center; gap: 0.75rem;">
+            <button class="btn btn-primary" id="btnPomoStart" style="padding: 0.75rem 2rem; font-size: 1.1rem;" onclick="togglePomo()">Start Focus</button>
+            <button class="btn btn-secondary" onclick="resetPomo()">Reset</button>
+          </div>
+
+          <div class="cycle-counter">
+            🏆 Completed Pomodoros Today: <strong id="completedCount" style="color: #38bdf8;">0</strong>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- Source Code Viewer -->
+    <div class="code-viewer-section">
+      <div class="code-viewer-header">
+        <div class="code-tabs">
+          <button class="code-tab active" data-tab="js">JavaScript Implementation</button>
+        </div>
+        <div class="code-actions">
+          <button class="btn-secondary" id="copyCodeBtn">📋 Copy Code</button>
+        </div>
+      </div>
+      <div class="code-body">
+        <pre><code id="sourceCode">let durationSeconds = 25 * 60;
+let isRunning = false;
+let pomoInterval = null;
+
+function toggleTimer() {
+  if (!isRunning) {
+    isRunning = true;
+    pomoInterval = setInterval(() => {
+      if (durationSeconds <= 0) {
+        clearInterval(pomoInterval);
+        isRunning = false;
+        alert("Session completed! Take a break.");
+        return;
+      }
+      durationSeconds--;
+      updatePomoDisplay();
+    }, 1000);
+  } else {
+    clearInterval(pomoInterval);
+    isRunning = false;
+  }
+}</code></pre>
+      </div>
+    </div>
+
+    <!-- Navigation -->
+    <div class="program-nav">
+      <a href="stopwatch-app.html" class="nav-prev">&larr; PR 03: Stopwatch</a>
+      <a href="todo-app.html" class="nav-next">PR 05: Todo Application &rarr;</a>
+    </div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-content">
+      <p>&copy; 2026 Web Technology Practical Laboratory • Prepared by <strong>Shaik Roshan</strong></p>
+      <p class="subtext">Computer Science & Engineering Department</p>
+    </div>
+  </footer>
+
+  <script src="../../assets/js/code-viewer.js"></script>
+  <script>
+    let totalSecs = 25 * 60;
+    let initialSecs = 25 * 60;
+    let isRunning = false;
+    let timer = null;
+    let cycles = 0;
+
+    const display = document.getElementById("pomoDisplay");
+    const btnStart = document.getElementById("btnPomoStart");
+    const badge = document.getElementById("sessionBadge");
+    const completedEl = document.getElementById("completedCount");
+
+    function renderDisplay() {
+      const m = String(Math.floor(totalSecs / 60)).padStart(2, '0');
+      const s = String(totalSecs % 60).padStart(2, '0');
+      display.textContent = `${m}:${s}`;
+    }
+
+    function setMode(mins, label) {
+      clearInterval(timer);
+      isRunning = false;
+      initialSecs = mins * 60;
+      totalSecs = initialSecs;
+      badge.textContent = label;
+      btnStart.textContent = "Start " + (mins === 25 ? "Focus" : "Break");
+
+      document.querySelectorAll(".pomo-mode-btn").forEach(b => {
+        b.classList.toggle("active", b.textContent.includes(`${mins}m`));
+      });
+
+      renderDisplay();
+    }
+
+    function togglePomo() {
+      if (!isRunning) {
+        isRunning = true;
+        btnStart.textContent = "Pause";
+        btnStart.className = "btn btn-secondary";
+
+        timer = setInterval(() => {
+          if (totalSecs <= 0) {
+            clearInterval(timer);
+            isRunning = false;
+            btnStart.textContent = "Start";
+            btnStart.className = "btn btn-primary";
+            if (initialSecs === 25 * 60) {
+              cycles++;
+              completedEl.textContent = cycles;
+              alert("🎉 Excellent focus! 25-minute Pomodoro finished. Enjoy a 5-minute break!");
+              setMode(5, "Short Break");
+            } else {
+              alert("☕ Break time over! Back to focused study.");
+              setMode(25, "Work Session");
+            }
+            return;
+          }
+          totalSecs--;
+          renderDisplay();
+        }, 1000);
+      } else {
+        clearInterval(timer);
+        isRunning = false;
+        btnStart.textContent = "Resume";
+        btnStart.className = "btn btn-primary";
+      }
+    }
+
+    function resetPomo() {
+      clearInterval(timer);
+      isRunning = false;
+      totalSecs = initialSecs;
+      btnStart.textContent = "Start";
+      btnStart.className = "btn btn-primary";
+      renderDisplay();
+    }
+
+    renderDisplay();
+  </script>
+</body>
+</html>

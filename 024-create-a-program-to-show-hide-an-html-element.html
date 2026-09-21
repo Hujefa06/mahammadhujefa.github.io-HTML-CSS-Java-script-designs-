@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Taj Mahal - Show Hide</title>
+<style>
+body{margin:0;font-family:Arial;background:#eaf8ff;text-align:center;padding:50px;color:#063b4c}
+.card{max-width:500px;margin:auto;background:white;padding:35px;border-radius:16px;box-shadow:0 5px 15px #b5d9e5}
+button{padding:11px 20px;margin:5px;background:#075b73;color:white;border:0;border-radius:8px}
+#secret{padding:20px;background:#eaf8ff;border-radius:10px;margin:20px}
+</style>
+</head>
+<body>
+
+<div class="card">
+<h1>🏛️ Hidden Island</h1>
+
+<div id="secret">
+🏝️ The ancient island has been discovered!
+</div>
+
+<button onclick="showContent()">Show</button>
+<button onclick="hideContent()">Hide</button>
+</div>
+
+<script>
+function showContent() {
+    document.getElementById("secret").style.display = "block";
+}
+
+function hideContent() {
+    document.getElementById("secret").style.display = "none";
+}
+</script>
+
+</body>
+</html>

@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>EV 04 - addEventListener vs removeEventListener | Web Tech Lab</title>
+  <link rel="stylesheet" href="../../assets/css/style.css">
+  <link rel="stylesheet" href="../../assets/css/program-viewer.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500&family=Inter:wght@400;500;600&family=Outfit:wght@600;700;800&display=swap" rel="stylesheet">
+  <style>
+    .listener-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.5rem;
+    }
+    @media (max-width: 768px) {
+      .listener-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+    .panel-card {
+      background: #0f172a;
+      border: 1px solid #334155;
+      border-radius: 12px;
+      padding: 1.5rem;
+    }
+    .trigger-target {
+      background: #1e293b;
+      border: 2px dashed #6366f1;
+      border-radius: 10px;
+      padding: 2.5rem;
+      text-align: center;
+      cursor: pointer;
+      user-select: none;
+      transition: all 0.2s;
+      margin-bottom: 1.25rem;
+    }
+    .trigger-target:hover {
+      background: #283548;
+    }
+    .trigger-target:active {
+      transform: scale(0.98);
+    }
+    .status-badge {
+      display: inline-block;
+      padding: 0.35rem 0.85rem;
+      border-radius: 50px;
+      font-size: 0.85rem;
+      font-weight: 600;
+    }
+    .status-active { background: #065f46; color: #34d399; }
+    .status-inactive { background: #7f1d1d; color: #fca5a5; }
+    .history-log {
+      background: #090d16;
+      border: 1px solid #334155;
+      border-radius: 8px;
+      padding: 1rem;
+      height: 250px;
+      overflow-y: auto;
+      font-family: 'Fira Code', monospace;
+      font-size: 0.85rem;
+      color: #cbd5e1;
+    }
+  </style>
+</head>
+<body>
+  <!-- Navbar -->
+  <nav class="navbar">
+    <div class="nav-container">
+      <a href="../../index.html" class="logo">
+        <span class="logo-icon">&lt;/&gt;</span>
+        <span>WebTech<span class="highlight">Lab</span></span>
+      </a>
+      <div class="nav-links">
+        <a href="../../index.html">Dashboard</a>
+        <a href="../../html/index.html">HTML</a>
+        <a href="../../css/index.html">CSS</a>
+        <a href="../index.html" class="active">JavaScript</a>
+      </div>
+    </div>
+  </nav>
+
+  <main class="page-container">
+    <div class="breadcrumb">
+      <a href="../../index.html">Home</a> &rsaquo; 
+      <a href="../index.html">JavaScript</a> &rsaquo; 
+      <a href="index.html">Events</a> &rsaquo; 
+      <span>EV 04 - addEventListener & removeEventListener</span>
+    </div>
+
+    <div class="program-header">
+      <div class="program-badge">Event Handling • Program 04</div>
+      <h1>addEventListener vs removeEventListener & Options</h1>
+      <p class="program-desc">
+        Manage event handlers dynamically: attaching multiple named functions, detaching listeners cleanly 
+        using <code>removeEventListener</code>, and passing options such as <code>{ once: true }</code>.
+      </p>
+      <div class="student-pill">
+        <span>👨‍💻 Student: <strong>Shaik Roshan</strong></span>
+        <span>•</span>
+        <span>Reg No: <strong>[TO BE FILLED BY STUDENT]</strong></span>
+      </div>
+    </div>
+
+    <!-- Live Demo -->
+    <div class="demo-section">
+      <div class="demo-header">
+        <div class="demo-title">
+          <span>🎛️</span> Dynamic Event Listener Control Board
+        </div>
+        <span class="badge badge-success">Interactive Demo</span>
+      </div>
+      <div class="demo-body">
+        
+        <div class="listener-grid">
+          <div class="panel-card">
+            <div id="targetBtn" class="trigger-target">
+              <div style="font-size: 2rem; margin-bottom: 0.25rem;">⚡</div>
+              <h3 style="color: #6366f1;">Click This Interactive Target</h3>
+              <p style="font-size: 0.85rem; color: #94a3b8; margin-top: 0.5rem;">
+                Handlers currently attached: <span id="listenerStatus" class="status-badge status-active">2 Active</span>
+              </p>
+            </div>
+
+            <div style="display: flex; flex-direction: column; gap: 0.6rem;">
+              <div style="display: flex; justify-content: space-between; align-items: center; background: #1e293b; padding: 0.6rem 1rem; border-radius: 6px;">
+                <span style="font-size: 0.9rem;">Handler 1: Sound Beep & Visual Flash</span>
+                <button class="btn btn-secondary" id="btnToggleH1" style="padding: 4px 10px; font-size: 0.8rem;" onclick="toggleHandler1()">Remove</button>
+              </div>
+              <div style="display: flex; justify-content: space-between; align-items: center; background: #1e293b; padding: 0.6rem 1rem; border-radius: 6px;">
+                <span style="font-size: 0.9rem;">Handler 2: Counter Increment</span>
+                <button class="btn btn-secondary" id="btnToggleH2" style="padding: 4px 10px; font-size: 0.8rem;" onclick="toggleHandler2()">Remove</button>
+              </div>
+              <div style="display: flex; justify-content: space-between; align-items: center; background: #1e293b; padding: 0.6rem 1rem; border-radius: 6px;">
+                <span style="font-size: 0.9rem;">Attach One-Time Handler ({ once: true })</span>
+                <button class="btn btn-primary" style="padding: 4px 10px; font-size: 0.8rem;" onclick="attachOnceHandler()">Attach Once</button>
+              </div>
+            </div>
+          </div>
+
+          <div class="panel-card">
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.75rem;">
+              <h4 style="color: #38bdf8; font-size: 0.9rem;">Execution Log Stream:</h4>
+              <button class="btn btn-secondary" style="padding: 2px 8px; font-size: 0.75rem;" onclick="clearHistory()">Clear</button>
+            </div>
+            <div id="historyLog" class="history-log">
+              <div>[Ready] Handlers initialized on target element.</div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- Source Code Viewer -->
+    <div class="code-viewer-section">
+      <div class="code-viewer-header">
+        <div class="code-tabs">
+          <button class="code-tab active" data-tab="js">JavaScript Implementation</button>
+        </div>
+        <div class="code-actions">
+          <button class="btn-secondary" id="copyCodeBtn">📋 Copy Code</button>
+        </div>
+      </div>
+      <div class="code-body">
+        <pre><code id="sourceCode">const btn = document.getElementById("targetBtn");
+
+// Named handler functions (required for removeEventListener)
+function flashHandler() {
+  console.log("Flash handler fired");
+}
+
+function counterHandler() {
+  console.log("Counter incremented");
+}
+
+// 1. Adding multiple listeners
+btn.addEventListener("click", flashHandler);
+btn.addEventListener("click", counterHandler);
+
+// 2. Removing a specific listener
+btn.removeEventListener("click", flashHandler);
+
+// 3. One-time listener with option object
+btn.addEventListener("click", () => {
+  console.log("Fires exactly once, then automatically unbinds!");
+}, { once: true });</code></pre>
+      </div>
+    </div>
+
+    <!-- Navigation -->
+    <div class="program-nav">
+      <a href="form-events.html" class="nav-prev">&larr; EV 03: Form Events</a>
+      <a href="event-bubbling-capturing.html" class="nav-next">EV 05: Bubbling & Capturing &rarr;</a>
+    </div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-content">
+      <p>&copy; 2026 Web Technology Practical Laboratory • Prepared by <strong>Shaik Roshan</strong></p>
+      <p class="subtext">Computer Science & Engineering Department</p>
+    </div>
+  </footer>
+
+  <script src="../../assets/js/code-viewer.js"></script>
+  <script>
+    const targetBtn = document.getElementById("targetBtn");
+    const historyLog = document.getElementById("historyLog");
+    const statusEl = document.getElementById("listenerStatus");
+    const btnH1 = document.getElementById("btnToggleH1");
+    const btnH2 = document.getElementById("btnToggleH2");
+
+    let h1Attached = true;
+    let h2Attached = true;
+    let clickCount = 0;
+
+    function logHistory(msg) {
+      const div = document.createElement("div");
+      div.textContent = `> ${msg}`;
+      historyLog.prepend(div);
+    }
+
+    function clearHistory() {
+      historyLog.innerHTML = "";
+    }
+
+    // Handler 1
+    function flashEffect() {
+      targetBtn.style.borderColor = "#38bdf8";
+      targetBtn.style.boxShadow = "0 0 20px rgba(56, 189, 248, 0.6)";
+      setTimeout(() => {
+        targetBtn.style.borderColor = "#6366f1";
+        targetBtn.style.boxShadow = "";
+      }, 200);
+      logHistory("[H1] Flash & Highlight Triggered");
+    }
+
+    // Handler 2
+    function incrementCounter() {
+      clickCount++;
+      logHistory(`[H2] Click Counter Incremented to ${clickCount}`);
+    }
+
+    function updateStatus() {
+      let count = (h1Attached ? 1 : 0) + (h2Attached ? 1 : 0);
+      statusEl.textContent = `${count} Active`;
+      statusEl.className = count > 0 ? "status-badge status-active" : "status-badge status-inactive";
+    }
+
+    function toggleHandler1() {
+      if (h1Attached) {
+        targetBtn.removeEventListener("click", flashEffect);
+        h1Attached = false;
+        btnH1.textContent = "Attach";
+        btnH1.className = "btn btn-primary";
+        logHistory("Detached Handler 1 via removeEventListener()");
+      } else {
+        targetBtn.addEventListener("click", flashEffect);
+        h1Attached = true;
+        btnH1.textContent = "Remove";
+        btnH1.className = "btn btn-secondary";
+        logHistory("Attached Handler 1 via addEventListener()");
+      }
+      updateStatus();
+    }
+
+    function toggleHandler2() {
+      if (h2Attached) {
+        targetBtn.removeEventListener("click", incrementCounter);
+        h2Attached = false;
+        btnH2.textContent = "Attach";
+        btnH2.className = "btn btn-primary";
+        logHistory("Detached Handler 2 via removeEventListener()");
+      } else {
+        targetBtn.addEventListener("click", incrementCounter);
+        h2Attached = true;
+        btnH2.textContent = "Remove";
+        btnH2.className = "btn btn-secondary";
+        logHistory("Attached Handler 2 via addEventListener()");
+      }
+      updateStatus();
+    }
+
+    function attachOnceHandler() {
+      targetBtn.addEventListener("click", () => {
+        alert("🎉 Special VIP One-Time Bonus Awarded! (Will never fire again on subsequent clicks)");
+        logHistory("[VIP Once] Fired and automatically removed from event pool.");
+      }, { once: true });
+      logHistory("Attached { once: true } listener successfully.");
+    }
+
+    // Initialize initial handlers
+    targetBtn.addEventListener("click", flashEffect);
+    targetBtn.addEventListener("click", incrementCounter);
+    updateStatus();
+  </script>
+</body>
+</html>

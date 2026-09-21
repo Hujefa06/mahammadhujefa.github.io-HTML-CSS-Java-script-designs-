@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>PR 02 - World Timezone Digital Clock | Web Tech Lab</title>
+  <link rel="stylesheet" href="../../assets/css/style.css">
+  <link rel="stylesheet" href="../../assets/css/program-viewer.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500;700&family=Inter:wght@400;500;600&family=Outfit:wght@600;700;800&display=swap" rel="stylesheet">
+  <style>
+    .world-clocks-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 1.25rem;
+    }
+    .clock-zone-card {
+      background: #0f172a;
+      border: 1px solid #334155;
+      border-radius: 12px;
+      padding: 1.5rem;
+      text-align: center;
+      transition: transform 0.2s, border-color 0.2s;
+    }
+    .clock-zone-card:hover {
+      transform: translateY(-4px);
+      border-color: #38bdf8;
+    }
+    .zone-flag {
+      font-size: 2rem;
+      margin-bottom: 0.25rem;
+    }
+    .zone-city {
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: #f8fafc;
+    }
+    .zone-offset {
+      font-size: 0.75rem;
+      color: #94a3b8;
+      margin-bottom: 1rem;
+    }
+    .zone-time {
+      font-family: 'Fira Code', monospace;
+      font-size: 2rem;
+      font-weight: 700;
+      color: #38bdf8;
+      background: #020617;
+      padding: 0.5rem;
+      border-radius: 8px;
+      border: 1px solid #1e293b;
+      margin-bottom: 0.5rem;
+    }
+    .zone-date {
+      font-size: 0.8rem;
+      color: #cbd5e1;
+    }
+  </style>
+</head>
+<body>
+  <!-- Navbar -->
+  <nav class="navbar">
+    <div class="nav-container">
+      <a href="../../index.html" class="logo">
+        <span class="logo-icon">&lt;/&gt;</span>
+        <span>WebTech<span class="highlight">Lab</span></span>
+      </a>
+      <div class="nav-links">
+        <a href="../../index.html">Dashboard</a>
+        <a href="../../html/index.html">HTML</a>
+        <a href="../../css/index.html">CSS</a>
+        <a href="../index.html" class="active">JavaScript</a>
+      </div>
+    </div>
+  </nav>
+
+  <main class="page-container">
+    <div class="breadcrumb">
+      <a href="../../index.html">Home</a> &rsaquo; 
+      <a href="../index.html">JavaScript</a> &rsaquo; 
+      <a href="index.html">Projects</a> &rsaquo; 
+      <span>PR 02 - World Timezone Clock</span>
+    </div>
+
+    <div class="program-header">
+      <div class="program-badge">Mini Project • Project 02</div>
+      <h1>World Timezone Synchronized Digital Clock</h1>
+      <p class="program-desc">
+        Display synchronized live world clocks for global financial hubs using the 
+        <code>Intl.DateTimeFormat</code> API and custom UTC offset calculations.
+      </p>
+      <div class="student-pill">
+        <span>👨‍💻 Student: <strong>Shaik Roshan</strong></span>
+        <span>•</span>
+        <span>Reg No: <strong>[TO BE FILLED BY STUDENT]</strong></span>
+      </div>
+    </div>
+
+    <!-- Live Demo -->
+    <div class="demo-section">
+      <div class="demo-header">
+        <div class="demo-title">
+          <span>🌍</span> Global Financial Centers
+        </div>
+        <span class="badge badge-success">Live Ticking</span>
+      </div>
+      <div class="demo-body">
+        
+        <div class="world-clocks-grid">
+          
+          <!-- New Delhi -->
+          <div class="clock-zone-card" style="border-top: 4px solid #f97316;">
+            <div class="zone-flag">🇮🇳</div>
+            <div class="zone-city">New Delhi / Mumbai</div>
+            <div class="zone-offset">IST (UTC +5:30)</div>
+            <div class="zone-time" id="timeIst">--:--:--</div>
+            <div class="zone-date" id="dateIst">--</div>
+          </div>
+
+          <!-- London -->
+          <div class="clock-zone-card" style="border-top: 4px solid #3b82f6;">
+            <div class="zone-flag">🇬🇧</div>
+            <div class="zone-city">London (GMT / BST)</div>
+            <div class="zone-offset">UTC +0:00 / +1:00</div>
+            <div class="zone-time" id="timeLondon">--:--:--</div>
+            <div class="zone-date" id="dateLondon">--</div>
+          </div>
+
+          <!-- New York -->
+          <div class="clock-zone-card" style="border-top: 4px solid #ef4444;">
+            <div class="zone-flag">🇺🇸</div>
+            <div class="zone-city">New York (Wall St)</div>
+            <div class="zone-offset">EDT (UTC -4:00)</div>
+            <div class="zone-time" id="timeNy">--:--:--</div>
+            <div class="zone-date" id="dateNy">--</div>
+          </div>
+
+          <!-- Tokyo -->
+          <div class="clock-zone-card" style="border-top: 4px solid #10b981;">
+            <div class="zone-flag">🇯🇵</div>
+            <div class="zone-city">Tokyo (Shinjuku)</div>
+            <div class="zone-offset">JST (UTC +9:00)</div>
+            <div class="zone-time" id="timeTokyo">--:--:--</div>
+            <div class="zone-date" id="dateTokyo">--</div>
+          </div>
+
+        </div>
+
+      </div>
+    </div>
+
+    <!-- Source Code Viewer -->
+    <div class="code-viewer-section">
+      <div class="code-viewer-header">
+        <div class="code-tabs">
+          <button class="code-tab active" data-tab="js">JavaScript Implementation</button>
+        </div>
+        <div class="code-actions">
+          <button class="btn-secondary" id="copyCodeBtn">📋 Copy Code</button>
+        </div>
+      </div>
+      <div class="code-body">
+        <pre><code id="sourceCode">function getTimeInZone(timeZone) {
+  const now = new Date();
+  
+  // Format localized time string
+  const timeStr = now.toLocaleTimeString("en-US", {
+    timeZone,
+    hour12: true,
+    hour: "2-digit",
+    minute: "2-digit",
+    second: "2-digit"
+  });
+
+  // Format localized date string
+  const dateStr = now.toLocaleDateString("en-US", {
+    timeZone,
+    weekday: "short",
+    month: "short",
+    day: "numeric"
+  });
+
+  return { timeStr, dateStr };
+}</code></pre>
+      </div>
+    </div>
+
+    <!-- Navigation -->
+    <div class="program-nav">
+      <a href="calculator.html" class="nav-prev">&larr; PR 01: Digital Calculator</a>
+      <a href="stopwatch-app.html" class="nav-next">PR 03: Sports Stopwatch &rarr;</a>
+    </div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-content">
+      <p>&copy; 2026 Web Technology Practical Laboratory • Prepared by <strong>Shaik Roshan</strong></p>
+      <p class="subtext">Computer Science & Engineering Department</p>
+    </div>
+  </footer>
+
+  <script src="../../assets/js/code-viewer.js"></script>
+  <script>
+    function updateWorldClocks() {
+      const zones = [
+        { id: "Ist", tz: "Asia/Kolkata" },
+        { id: "London", tz: "Europe/London" },
+        { id: "Ny", tz: "America/New_York" },
+        { id: "Tokyo", tz: "Asia/Tokyo" }
+      ];
+
+      const now = new Date();
+
+      zones.forEach(z => {
+        const timeStr = now.toLocaleTimeString('en-US', {
+          timeZone: z.tz,
+          hour12: true,
+          hour: '2-digit',
+          minute: '2-digit',
+          second: '2-digit'
+        });
+
+        const dateStr = now.toLocaleDateString('en-US', {
+          timeZone: z.tz,
+          weekday: 'short',
+          month: 'short',
+          day: 'numeric',
+          year: 'numeric'
+        });
+
+        document.getElementById(`time${z.id}`).textContent = timeStr;
+        document.getElementById(`date${z.id}`).textContent = dateStr;
+      });
+    }
+
+    setInterval(updateWorldClocks, 1000);
+    updateWorldClocks();
+  </script>
+</body>
+</html>

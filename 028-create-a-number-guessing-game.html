@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Taj Mahal - Guessing Game</title>
+<style>
+body{margin:0;font-family:Arial;background:#eaf8ff;text-align:center;padding:50px;color:#063b4c}
+.card{max-width:500px;margin:auto;background:white;padding:35px;border-radius:16px;box-shadow:0 5px 15px #b5d9e5}
+input{padding:12px;border:1px solid #9bcbd8;border-radius:8px}
+button{padding:12px 20px;background:#075b73;color:white;border:0;border-radius:8px;margin-left:5px}
+#result{font-size:20px;font-weight:bold}
+</style>
+</head>
+<body>
+
+<div class="card">
+<h1>🧭 Island Guessing Game</h1>
+<p>Guess a number from 1 to 10.</p>
+
+<input type="number" id="guess">
+<button onclick="checkGuess()">Guess</button>
+
+<p id="result"></p>
+</div>
+
+<script>
+let secretNumber = 7;
+
+function checkGuess() {
+    let guess = Number(document.getElementById("guess").value);
+
+    if (guess === secretNumber) {
+        document.getElementById("result").textContent =
+            "🎉 Correct! You found the island.";
+    } else if (guess < secretNumber) {
+        document.getElementById("result").textContent =
+            "Try a higher number.";
+    } else {
+        document.getElementById("result").textContent =
+            "Try a lower number.";
+    }
+}
+</script>
+
+</body>
+</html>

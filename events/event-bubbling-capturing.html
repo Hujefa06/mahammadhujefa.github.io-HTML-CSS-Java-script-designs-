@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>EV 05 - Event Bubbling & Capturing | Web Tech Lab</title>
+  <link rel="stylesheet" href="../../assets/css/style.css">
+  <link rel="stylesheet" href="../../assets/css/program-viewer.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500&family=Inter:wght@400;500;600&family=Outfit:wght@600;700;800&display=swap" rel="stylesheet">
+  <style>
+    .nest-container {
+      display: grid;
+      grid-template-columns: 1fr 340px;
+      gap: 1.5rem;
+    }
+    @media (max-width: 850px) {
+      .nest-container {
+        grid-template-columns: 1fr;
+      }
+    }
+    .box-grandparent {
+      background: #1e1b4b;
+      border: 2px solid #6366f1;
+      border-radius: 14px;
+      padding: 2rem;
+      cursor: pointer;
+    }
+    .box-parent {
+      background: #1e293b;
+      border: 2px solid #38bdf8;
+      border-radius: 10px;
+      padding: 2rem;
+      margin-top: 1rem;
+      cursor: pointer;
+    }
+    .box-child {
+      background: #0f172a;
+      border: 2px solid #f43f5e;
+      border-radius: 8px;
+      padding: 1.75rem;
+      margin-top: 1rem;
+      text-align: center;
+      cursor: pointer;
+    }
+    .log-stream {
+      background: #090d16;
+      border: 1px solid #334155;
+      border-radius: 8px;
+      padding: 1rem;
+      height: 320px;
+      overflow-y: auto;
+      font-family: 'Fira Code', monospace;
+      font-size: 0.85rem;
+    }
+    .log-item {
+      padding: 4px 8px;
+      border-radius: 4px;
+      margin-bottom: 0.35rem;
+      border-left: 3px solid #334155;
+    }
+    .item-capture { border-left-color: #f59e0b; background: rgba(245, 158, 11, 0.1); }
+    .item-bubble { border-left-color: #10b981; background: rgba(16, 185, 129, 0.1); }
+  </style>
+</head>
+<body>
+  <!-- Navbar -->
+  <nav class="navbar">
+    <div class="nav-container">
+      <a href="../../index.html" class="logo">
+        <span class="logo-icon">&lt;/&gt;</span>
+        <span>WebTech<span class="highlight">Lab</span></span>
+      </a>
+      <div class="nav-links">
+        <a href="../../index.html">Dashboard</a>
+        <a href="../../html/index.html">HTML</a>
+        <a href="../../css/index.html">CSS</a>
+        <a href="../index.html" class="active">JavaScript</a>
+      </div>
+    </div>
+  </nav>
+
+  <main class="page-container">
+    <div class="breadcrumb">
+      <a href="../../index.html">Home</a> &rsaquo; 
+      <a href="../index.html">JavaScript</a> &rsaquo; 
+      <a href="index.html">Events</a> &rsaquo; 
+      <span>EV 05 - Event Bubbling & Capturing</span>
+    </div>
+
+    <div class="program-header">
+      <div class="program-badge">Event Handling • Program 05</div>
+      <h1>Event Propagation: Bubbling vs Capturing</h1>
+      <p class="program-desc">
+        Visualize how events flow through nested DOM hierarchies across 3 phases: 
+        <strong>Capturing</strong> (trickling down), <strong>Target</strong>, and <strong>Bubbling</strong> (rising up), 
+        and how <code>event.stopPropagation()</code> terminates the chain.
+      </p>
+      <div class="student-pill">
+        <span>👨‍💻 Student: <strong>Shaik Roshan</strong></span>
+        <span>•</span>
+        <span>Reg No: <strong>[TO BE FILLED BY STUDENT]</strong></span>
+      </div>
+    </div>
+
+    <!-- Live Demo -->
+    <div class="demo-section">
+      <div class="demo-header">
+        <div class="demo-title">
+          <span>🌊</span> Interactive Nested Hierarchy
+        </div>
+        <div style="display: flex; gap: 0.75rem; align-items: center;">
+          <label style="font-size: 0.8rem; color: #94a3b8; display: flex; align-items: center; gap: 0.35rem; cursor: pointer;">
+            <input type="checkbox" id="stopPropCheck">
+            <span>Call event.stopPropagation()</span>
+          </label>
+          <button class="btn btn-secondary" style="padding: 3px 8px; font-size: 0.75rem;" onclick="clearPropagationLog()">Clear</button>
+        </div>
+      </div>
+      <div class="demo-body">
+        
+        <div class="nest-container">
+          <!-- Nested Elements -->
+          <div>
+            <div id="grandparent" class="box-grandparent">
+              <strong style="color: #818cf8;">Grandparent Element (#grandparent)</strong>
+              
+              <div id="parent" class="box-parent">
+                <strong style="color: #38bdf8;">Parent Element (#parent)</strong>
+                
+                <div id="child" class="box-child">
+                  <strong style="color: #f43f5e;">Child Element (#child)</strong>
+                  <p style="font-size: 0.8rem; color: #cbd5e1; margin-top: 0.35rem;">
+                    Click inside me to trigger propagation!
+                  </p>
+                </div>
+
+              </div>
+            </div>
+          </div>
+
+          <!-- Propagation Log -->
+          <div>
+            <div style="font-size: 0.85rem; color: #94a3b8; margin-bottom: 0.5rem;">Event Dispatch Sequence:</div>
+            <div id="propagationLog" class="log-stream">
+              <div style="color: #64748b;">Click on any nested box to begin tracking propagation order...</div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- Source Code Viewer -->
+    <div class="code-viewer-section">
+      <div class="code-viewer-header">
+        <div class="code-tabs">
+          <button class="code-tab active" data-tab="js">JavaScript Implementation</button>
+        </div>
+        <div class="code-actions">
+          <button class="btn-secondary" id="copyCodeBtn">📋 Copy Code</button>
+        </div>
+      </div>
+      <div class="code-body">
+        <pre><code id="sourceCode">const child = document.getElementById("child");
+const parent = document.getElementById("parent");
+const grandparent = document.getElementById("grandparent");
+
+// 1. Bubbling Phase (Default: 3rd parameter is false)
+child.addEventListener("click", (e) => {
+  console.log("Child (Bubbling)");
+  // e.stopPropagation(); // Halts bubbling upwards
+}, false);
+
+parent.addEventListener("click", () => {
+  console.log("Parent (Bubbling)");
+}, false);
+
+grandparent.addEventListener("click", () => {
+  console.log("Grandparent (Bubbling)");
+}, false);
+
+// 2. Capturing Phase (3rd parameter is true: { capture: true })
+grandparent.addEventListener("click", () => {
+  console.log("Grandparent (Capturing)");
+}, true);</code></pre>
+      </div>
+    </div>
+
+    <!-- Navigation -->
+    <div class="program-nav">
+      <a href="event-listeners.html" class="nav-prev">&larr; EV 04: Event Listeners</a>
+      <a href="event-delegation.html" class="nav-next">EV 06: Event Delegation &rarr;</a>
+    </div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-content">
+      <p>&copy; 2026 Web Technology Practical Laboratory • Prepared by <strong>Shaik Roshan</strong></p>
+      <p class="subtext">Computer Science & Engineering Department</p>
+    </div>
+  </footer>
+
+  <script src="../../assets/js/code-viewer.js"></script>
+  <script>
+    const child = document.getElementById("child");
+    const parent = document.getElementById("parent");
+    const grandparent = document.getElementById("grandparent");
+    const logBox = document.getElementById("propagationLog");
+    const stopCheck = document.getElementById("stopPropCheck");
+
+    function logPropagation(phase, elId) {
+      const item = document.createElement("div");
+      item.className = `log-item item-${phase.toLowerCase()}`;
+      item.textContent = `[${phase}] Fired on #${elId}`;
+      logBox.appendChild(item);
+      logBox.scrollTop = logBox.scrollHeight;
+    }
+
+    function clearPropagationLog() {
+      logBox.innerHTML = "";
+    }
+
+    function handleEvent(phase, elId, event) {
+      logPropagation(phase, elId);
+      if (stopCheck.checked && elId === "child") {
+        event.stopPropagation();
+        const haltNotice = document.createElement("div");
+        haltNotice.style.color = "#f43f5e";
+        haltNotice.style.fontWeight = "bold";
+        haltNotice.textContent = "🛑 event.stopPropagation() called! Propagation halted.";
+        logBox.appendChild(haltNotice);
+      }
+    }
+
+    // Capture listeners (true)
+    grandparent.addEventListener("click", (e) => handleEvent("Capture", "grandparent", e), true);
+    parent.addEventListener("click", (e) => handleEvent("Capture", "parent", e), true);
+    child.addEventListener("click", (e) => handleEvent("Capture", "child", e), true);
+
+    // Bubble listeners (false)
+    child.addEventListener("click", (e) => handleEvent("Bubble", "child", e), false);
+    parent.addEventListener("click", (e) => handleEvent("Bubble", "parent", e), false);
+    grandparent.addEventListener("click", (e) => handleEvent("Bubble", "grandparent", e), false);
+  </script>
+</body>
+</html>

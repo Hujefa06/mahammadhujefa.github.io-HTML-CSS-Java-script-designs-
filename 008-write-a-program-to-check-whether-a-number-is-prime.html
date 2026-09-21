@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Taj Mahal - Prime Number</title>
+
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial;
+            background: #eaf8ff;
+            color: #063b4c;
+            text-align: center;
+            padding: 50px;
+        }
+
+        .card {
+            max-width: 500px;
+            margin: auto;
+            background: white;
+            padding: 35px;
+            border-radius: 16px;
+            box-shadow: 0 5px 15px #b5d9e5;
+        }
+
+        h1 {
+            color: #075b73;
+        }
+
+        #result {
+            font-size: 24px;
+            font-weight: bold;
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="card">
+    <h1>🧭 Prime Explorer</h1>
+    <p>Number: 29</p>
+    <p id="result"></p>
+</div>
+
+<script>
+    let number = 29;
+    let prime = true;
+
+    if (number < 2) {
+        prime = false;
+    }
+
+    for (let i = 2; i < number; i++) {
+        if (number % i === 0) {
+            prime = false;
+            break;
+        }
+    }
+
+    document.getElementById("result").textContent =
+        prime ? "29 is a Prime Number." : "29 is not a Prime Number.";
+</script>
+
+</body>
+</html>

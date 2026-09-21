@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>FM 03 - Field Specific Validators | Web Tech Lab</title>
+  <link rel="stylesheet" href="../../assets/css/style.css">
+  <link rel="stylesheet" href="../../assets/css/program-viewer.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500&family=Inter:wght@400;500;600&family=Outfit:wght@600;700;800&display=swap" rel="stylesheet">
+  <style>
+    .fields-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 1.25rem;
+    }
+    .validator-card {
+      background: #0f172a;
+      border: 1px solid #334155;
+      border-radius: 10px;
+      padding: 1.5rem;
+    }
+    .validator-card h4 {
+      color: #38bdf8;
+      font-size: 0.95rem;
+      margin-bottom: 0.5rem;
+      display: flex;
+      justify-content: space-between;
+    }
+    .val-input {
+      width: 100%;
+      background: #1e293b;
+      border: 1px solid #475569;
+      color: #f8fafc;
+      padding: 0.65rem 0.85rem;
+      border-radius: 6px;
+      margin-top: 0.5rem;
+      margin-bottom: 0.5rem;
+      font-family: 'Fira Code', monospace;
+      font-size: 0.9rem;
+    }
+    .feedback-note {
+      font-size: 0.8rem;
+      color: #94a3b8;
+    }
+    .status-ok { color: #10b981 !important; font-weight: 600; }
+    .status-bad { color: #ef4444 !important; font-weight: 600; }
+  </style>
+</head>
+<body>
+  <!-- Navbar -->
+  <nav class="navbar">
+    <div class="nav-container">
+      <a href="../../index.html" class="logo">
+        <span class="logo-icon">&lt;/&gt;</span>
+        <span>WebTech<span class="highlight">Lab</span></span>
+      </a>
+      <div class="nav-links">
+        <a href="../../index.html">Dashboard</a>
+        <a href="../../html/index.html">HTML</a>
+        <a href="../../css/index.html">CSS</a>
+        <a href="../index.html" class="active">JavaScript</a>
+      </div>
+    </div>
+  </nav>
+
+  <main class="page-container">
+    <div class="breadcrumb">
+      <a href="../../index.html">Home</a> &rsaquo; 
+      <a href="../index.html">JavaScript</a> &rsaquo; 
+      <a href="index.html">Forms</a> &rsaquo; 
+      <span>FM 03 - Field Specific Validators</span>
+    </div>
+
+    <div class="program-header">
+      <div class="program-badge">Form Validation • Program 03</div>
+      <h1>Field Specific Rule Validators</h1>
+      <p class="program-desc">
+        Isolate specific validation logic for distinct input types: alphabetic names, Indian mobile numbers, 
+        age boundaries (18 to 60), standard postal PIN codes (6 digits), and URL web links.
+      </p>
+      <div class="student-pill">
+        <span>👨‍💻 Student: <strong>Shaik Roshan</strong></span>
+        <span>•</span>
+        <span>Reg No: <strong>[TO BE FILLED BY STUDENT]</strong></span>
+      </div>
+    </div>
+
+    <!-- Live Demo -->
+    <div class="demo-section">
+      <div class="demo-header">
+        <div class="demo-title">
+          <span>🎯</span> Live Interactive Field Rules Studio
+        </div>
+        <span class="badge badge-success">Live Evaluation</span>
+      </div>
+      <div class="demo-body">
+        
+        <div class="fields-grid">
+          
+          <!-- Card 1: Alphabetic Name -->
+          <div class="validator-card">
+            <h4>
+              <span>1. Alphabetic Name Only</span>
+              <span id="stName" class="feedback-note">Waiting</span>
+            </h4>
+            <div class="feedback-note">Rule: Letters and spaces only, 3+ characters.</div>
+            <input type="text" id="inpName" class="val-input" placeholder="e.g. Shaik Roshan" oninput="testName()">
+          </div>
+
+          <!-- Card 2: 10-Digit Mobile -->
+          <div class="validator-card">
+            <h4>
+              <span>2. 10-Digit Phone</span>
+              <span id="stPhone" class="feedback-note">Waiting</span>
+            </h4>
+            <div class="feedback-note">Rule: Exact 10 digits starting with 6, 7, 8, or 9.</div>
+            <input type="text" id="inpPhone" class="val-input" placeholder="e.g. 9848022338" maxlength="10" oninput="testPhone()">
+          </div>
+
+          <!-- Card 3: Age Range (18 - 60) -->
+          <div class="validator-card">
+            <h4>
+              <span>3. Age Range (18 - 60)</span>
+              <span id="stAge" class="feedback-note">Waiting</span>
+            </h4>
+            <div class="feedback-note">Rule: Numeric integer between 18 and 60 inclusive.</div>
+            <input type="number" id="inpAge" class="val-input" placeholder="e.g. 21" oninput="testAge()">
+          </div>
+
+          <!-- Card 4: Postal PIN Code (6 Digits) -->
+          <div class="validator-card">
+            <h4>
+              <span>4. Postal PIN Code</span>
+              <span id="stPin" class="feedback-note">Waiting</span>
+            </h4>
+            <div class="feedback-note">Rule: Exactly 6 digits (first digit non-zero).</div>
+            <input type="text" id="inpPin" class="val-input" placeholder="e.g. 500032" maxlength="6" oninput="testPin()">
+          </div>
+
+        </div>
+
+      </div>
+    </div>
+
+    <!-- Source Code Viewer -->
+    <div class="code-viewer-section">
+      <div class="code-viewer-header">
+        <div class="code-tabs">
+          <button class="code-tab active" data-tab="js">JavaScript Implementation</button>
+        </div>
+        <div class="code-actions">
+          <button class="btn-secondary" id="copyCodeBtn">📋 Copy Code</button>
+        </div>
+      </div>
+      <div class="code-body">
+        <pre><code id="sourceCode">// 1. Alphabetic Name: only letters and spaces, at least 3 chars
+const isValidName = (name) => /^[a-zA-Z\s]{3,}$/.test(name);
+
+// 2. Mobile Phone: 10 digits starting with 6-9
+const isValidPhone = (phone) => /^[6-9]\d{9}$/.test(phone);
+
+// 3. Age Range: numeric 18 to 60
+const isValidAge = (age) => {
+  const num = parseInt(age);
+  return !isNaN(num) && num >= 18 && num <= 60;
+};
+
+// 4. Postal PIN: 6 digits, first digit cannot be 0
+const isValidPin = (pin) => /^[1-9][0-9]{5}$/.test(pin);</code></pre>
+      </div>
+    </div>
+
+    <!-- Navigation -->
+    <div class="program-nav">
+      <a href="login-validation.html" class="nav-prev">&larr; FM 02: Login Validation</a>
+      <a href="strong-password-validator.html" class="nav-next">FM 04: Strong Password Validator &rarr;</a>
+    </div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-content">
+      <p>&copy; 2026 Web Technology Practical Laboratory • Prepared by <strong>Shaik Roshan</strong></p>
+      <p class="subtext">Computer Science & Engineering Department</p>
+    </div>
+  </footer>
+
+  <script src="../../assets/js/code-viewer.js"></script>
+  <script>
+    function updateFieldStatus(stEl, isValid, label) {
+      if (isValid) {
+        stEl.textContent = `✔ Valid ${label}`;
+        stEl.className = "feedback-note status-ok";
+      } else {
+        stEl.textContent = `✖ Invalid`;
+        stEl.className = "feedback-note status-bad";
+      }
+    }
+
+    function testName() {
+      const val = document.getElementById("inpName").value.trim();
+      const ok = /^[a-zA-Z\s]{3,}$/.test(val);
+      updateFieldStatus(document.getElementById("stName"), ok, "Name");
+    }
+
+    function testPhone() {
+      const val = document.getElementById("inpPhone").value.trim();
+      const ok = /^[6-9]\d{9}$/.test(val);
+      updateFieldStatus(document.getElementById("stPhone"), ok, "Phone");
+    }
+
+    function testAge() {
+      const val = parseInt(document.getElementById("inpAge").value);
+      const ok = !isNaN(val) && val >= 18 && val <= 60;
+      updateFieldStatus(document.getElementById("stAge"), ok, "Age");
+    }
+
+    function testPin() {
+      const val = document.getElementById("inpPin").value.trim();
+      const ok = /^[1-9][0-9]{5}$/.test(val);
+      updateFieldStatus(document.getElementById("stPin"), ok, "PIN");
+    }
+  </script>
+</body>
+</html>

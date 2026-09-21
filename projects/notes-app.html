@@ -1,0 +1,440 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Project 13: Interactive Sticky Notes App - JavaScript Projects</title>
+  <link rel="stylesheet" href="../../assets/css/style.css">
+  <link rel="stylesheet" href="../../assets/css/program-viewer.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500;600&family=Inter:wght@400;500;600;700&family=Outfit:wght@500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    .notes-container {
+      max-width: 900px;
+      margin: 0 auto;
+    }
+    .notes-toolbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 1rem;
+      flex-wrap: wrap;
+      margin-bottom: 1.5rem;
+      background: var(--bg-card);
+      padding: 1rem 1.25rem;
+      border-radius: var(--radius-md);
+      border: 1px solid var(--border-color);
+    }
+    .notes-search {
+      flex: 1;
+      min-width: 200px;
+      padding: 0.6rem 0.85rem;
+      border-radius: var(--radius-sm);
+      border: 1px solid var(--border-color);
+      background: var(--bg-main);
+      color: var(--text-main);
+      font-size: 0.9rem;
+    }
+    .btn-new-note {
+      padding: 0.6rem 1.25rem;
+      background: var(--primary);
+      color: #fff;
+      border: none;
+      border-radius: var(--radius-sm);
+      font-weight: 600;
+      cursor: pointer;
+      transition: background 0.2s ease;
+    }
+    .btn-new-note:hover { background: var(--primary-hover); }
+
+    .notes-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+      gap: 1.25rem;
+    }
+    .note-card {
+      border-radius: var(--radius-md);
+      padding: 1.25rem;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      min-height: 200px;
+      box-shadow: var(--shadow-sm);
+      border: 1px solid rgba(0,0,0,0.08);
+      color: #1e293b;
+      position: relative;
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+    .note-card:hover {
+      transform: translateY(-2px);
+      box-shadow: var(--shadow-md);
+    }
+    .note-card.yellow { background: #fef08a; }
+    .note-card.blue { background: #bae6fd; }
+    .note-card.green { background: #bbf7d0; }
+    .note-card.pink { background: #fbcfe8; }
+
+    .note-title {
+      font-weight: 700;
+      font-size: 1.05rem;
+      margin-bottom: 0.5rem;
+      outline: none;
+      word-break: break-word;
+    }
+    .note-body {
+      font-size: 0.9rem;
+      line-height: 1.5;
+      flex-grow: 1;
+      outline: none;
+      white-space: pre-wrap;
+      word-break: break-word;
+    }
+    .note-footer {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-top: 1rem;
+      padding-top: 0.75rem;
+      border-top: 1px solid rgba(0,0,0,0.08);
+      font-size: 0.75rem;
+      opacity: 0.85;
+    }
+    .note-del-btn {
+      background: transparent;
+      border: none;
+      cursor: pointer;
+      color: #ef4444;
+      font-size: 1.1rem;
+      line-height: 1;
+      padding: 0.2rem;
+      border-radius: 4px;
+    }
+    .note-del-btn:hover { background: rgba(239, 68, 68, 0.2); }
+
+    /* Color picker modal / popup */
+    .color-choices {
+      display: flex;
+      gap: 0.4rem;
+    }
+    .color-dot {
+      width: 18px;
+      height: 18px;
+      border-radius: 50%;
+      cursor: pointer;
+      border: 1px solid rgba(0,0,0,0.2);
+    }
+    .empty-notes-hint {
+      grid-column: 1 / -1;
+      text-align: center;
+      padding: 3rem 1rem;
+      color: var(--text-secondary);
+    }
+  </style>
+</head>
+<body>
+  <!-- Header -->
+  <header class="app-header">
+    <div class="header-container">
+      <a href="../../index.html" class="brand-logo">
+        <span class="logo-icon">&lt;/&gt;</span>
+        <span class="logo-text">WebLab<span class="logo-highlight">Studio</span></span>
+      </a>
+      <div class="header-student">
+        <span class="student-name">Shaik Roshan</span>
+        <span class="student-id">[TO BE FILLED BY STUDENT]</span>
+      </div>
+    </div>
+  </header>
+
+  <main class="viewer-main">
+    <!-- Breadcrumb -->
+    <nav class="breadcrumb-nav">
+      <a href="../../index.html">Home</a>
+      <span class="breadcrumb-separator">/</span>
+      <a href="../index.html">JavaScript</a>
+      <span class="breadcrumb-separator">/</span>
+      <a href="index.html">Projects</a>
+      <span class="breadcrumb-separator">/</span>
+      <span class="breadcrumb-current">Sticky Notes App</span>
+    </nav>
+
+    <!-- Program Metadata Header -->
+    <section class="program-header-card">
+      <div class="program-badge">Project 13 of 16</div>
+      <h1 class="program-title">Interactive Sticky Notes & Scratchpad</h1>
+      <p class="program-description">
+        A colorful digital sticky notes board featuring live note creation, customizable color themes, real-time keyword filtering, contenteditable text editing, and persistent browser storage.
+      </p>
+      <div class="program-meta-chips">
+        <span class="meta-chip">ContentEditable DOM</span>
+        <span class="meta-chip">Live Keyword Filtering</span>
+        <span class="meta-chip">localStorage JSON</span>
+        <span class="meta-chip">Dynamic Theming</span>
+      </div>
+    </section>
+
+    <!-- Objective Box -->
+    <div class="objective-box">
+      <h3>Educational Objective</h3>
+      <p>
+        Master dynamic HTML5 <code>contenteditable</code> elements for inline text editing. Learn how to bind <code>input</code> listeners that auto-save changes into an array of structured note objects stored in <code>localStorage</code>, alongside real-time search filtering.
+      </p>
+    </div>
+
+    <!-- Live Interactive Demo -->
+    <section class="demo-card">
+      <div class="demo-card-header">
+        <div class="demo-title-area">
+          <span class="live-dot"></span>
+          <h3>Live Sticky Notes Workspace</h3>
+        </div>
+        <span class="demo-tag">Production Demo</span>
+      </div>
+      <div class="demo-card-body">
+        <div class="notes-container">
+          <!-- Toolbar -->
+          <div class="notes-toolbar">
+            <input type="text" id="noteSearch" class="notes-search" placeholder="Search notes by title or content...">
+            <div style="display: flex; align-items: center; gap: 0.75rem;">
+              <div class="color-choices">
+                <span class="color-dot" style="background:#fef08a;" onclick="selectColor('yellow')"></span>
+                <span class="color-dot" style="background:#bae6fd;" onclick="selectColor('blue')"></span>
+                <span class="color-dot" style="background:#bbf7d0;" onclick="selectColor('green')"></span>
+                <span class="color-dot" style="background:#fbcfe8;" onclick="selectColor('pink')"></span>
+              </div>
+              <button class="btn-new-note" id="btnCreateNote">+ New Note</button>
+            </div>
+          </div>
+
+          <!-- Notes Grid -->
+          <div class="notes-grid" id="notesGrid">
+            <!-- Rendered by JavaScript -->
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Source Code Viewer -->
+    <section class="code-viewer-section">
+      <div class="code-viewer-header">
+        <div class="code-tabs">
+          <button class="code-tab active" data-target="html-code">HTML Structure</button>
+          <button class="code-tab" data-target="css-code">CSS Styles</button>
+          <button class="code-tab" data-target="js-code">JavaScript Logic</button>
+        </div>
+        <div class="code-actions">
+          <button class="btn-toggle-code" id="btnToggleCode">Show/Hide Code</button>
+          <button class="btn-copy-code" id="btnCopyCode">Copy Source</button>
+        </div>
+      </div>
+
+      <div class="code-blocks-container" id="codeBlocksContainer">
+        <!-- HTML Code Block -->
+        <pre class="code-block active" id="html-code"><code>&lt;div class="notes-container"&gt;
+  &lt;div class="notes-toolbar"&gt;
+    &lt;input type="text" id="noteSearch" placeholder="Search notes..."&gt;
+    &lt;button id="btnCreateNote"&gt;+ New Note&lt;/button&gt;
+  &lt;/div&gt;
+
+  &lt;div class="notes-grid" id="notesGrid"&gt;&lt;/div&gt;
+&lt;/div&gt;</code></pre>
+
+        <!-- CSS Code Block -->
+        <pre class="code-block" id="css-code"><code>.notes-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: 1.25rem;
+}
+.note-card {
+  border-radius: var(--radius-md);
+  padding: 1.25rem;
+  display: flex;
+  flex-direction: column;
+  min-height: 200px;
+}
+.note-card.yellow { background: #fef08a; }
+.note-card.blue { background: #bae6fd; }
+.note-card.green { background: #bbf7d0; }
+.note-card.pink { background: #fbcfe8; }</code></pre>
+
+        <!-- JS Code Block -->
+        <pre class="code-block" id="js-code"><code>// Sticky Notes Logic
+let notes = JSON.parse(localStorage.getItem('weblab_notes')) || [
+  { id: 1, title: 'Web Lab Project', content: 'Complete all 150 experiments with interactive code viewers!', color: 'yellow', date: 'Sep 21, 2026' },
+  { id: 2, title: 'Exam Revision', content: 'Review DOM tree traversal, event bubbling, and closures.', color: 'blue', date: 'Sep 21, 2026' }
+];
+
+let activeColor = 'yellow';
+
+function renderNotes(filterText = '') {
+  const grid = document.getElementById('notesGrid');
+  const filtered = notes.filter(n =&gt; 
+    n.title.toLowerCase().includes(filterText.toLowerCase()) || 
+    n.content.toLowerCase().includes(filterText.toLowerCase())
+  );
+
+  if (filtered.length === 0) {
+    grid.innerHTML = '&lt;div class="empty-notes-hint"&gt;No notes found. Create a new one!&lt;/div&gt;;
+    return;
+  }
+
+  grid.innerHTML = filtered.map(n =&gt; `
+    &lt;div class="note-card ${n.color}" data-id="${n.id}"&gt;
+      &lt;div class="note-title" contenteditable="true" onblur="updateNote(${n.id}, 'title', this.innerText)"&gt;${escapeHTML(n.title)}&lt;/div&gt;
+      &lt;div class="note-body" contenteditable="true" onblur="updateNote(${n.id}, 'content', this.innerText)"&gt;${escapeHTML(n.content)}&lt;/div&gt;
+      &lt;div class="note-footer"&gt;
+        &lt;span&gt;${n.date}&lt;/span&gt;
+        &lt;button class="note-del-btn" onclick="deleteNote(${n.id})" title="Delete"&gt;&amp;times;&lt;/button&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+  `).join('');
+}
+
+function updateNote(id, key, val) {
+  const note = notes.find(n =&gt; n.id === id);
+  if (note) {
+    note[key] = val.trim();
+    saveNotes();
+  }
+}
+
+function createNote() {
+  const newNote = {
+    id: Date.now(),
+    title: 'Note Title',
+    content: 'Type your note text here...',
+    color: activeColor,
+    date: new Date().toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' })
+  };
+  notes.unshift(newNote);
+  saveNotes();
+  renderNotes();
+}
+
+function deleteNote(id) {
+  notes = notes.filter(n =&gt; n.id !== id);
+  saveNotes();
+  renderNotes();
+}
+
+function saveNotes() {
+  localStorage.setItem('weblab_notes', JSON.stringify(notes));
+}</code></pre>
+      </div>
+    </section>
+
+    <!-- Navigation Footer -->
+    <nav class="program-page-nav">
+      <a href="shopping-cart-app.html" class="nav-btn prev-btn">
+        <span class="nav-icon">&larr;</span>
+        <div class="nav-text">
+          <span class="nav-sub">Previous Project</span>
+          <span class="nav-title">Shopping Cart Engine</span>
+        </div>
+      </a>
+      <a href="password-generator.html" class="nav-btn next-btn">
+        <div class="nav-text">
+          <span class="nav-sub">Next Project</span>
+          <span class="nav-title">Cryptographic Password Generator</span>
+        </div>
+        <span class="nav-icon">&rarr;</span>
+      </a>
+    </nav>
+  </main>
+
+  <footer class="app-footer">
+    <div class="footer-container">
+      <p>&copy; 2026 WebLab Studio &bull; Developed by <strong>Shaik Roshan</strong> (Dept. of CSE) &bull; Academic Laboratory Record</p>
+    </div>
+  </footer>
+
+  <div id="toastNotification" class="toast">Code copied to clipboard!</div>
+
+  <script src="../../assets/js/code-viewer.js"></script>
+  <script>
+    (function() {
+      let notes = JSON.parse(localStorage.getItem('weblab_notes')) || [
+        { id: 1, title: 'Web Lab Project', content: 'Complete all 150 experiments with interactive code viewers and responsive styling!', color: 'yellow', date: 'Sep 21, 2026' },
+        { id: 2, title: 'Algorithms Revision', content: 'Review DOM tree traversal, event bubbling, and closures for technical interview.', color: 'blue', date: 'Sep 21, 2026' },
+        { id: 3, title: 'Book Recommendations', content: '1. Eloquent JavaScript\n2. You Don\'t Know JS\n3. Clean Code', color: 'green', date: 'Sep 21, 2026' }
+      ];
+
+      let activeColor = 'yellow';
+      const notesGrid = document.getElementById('notesGrid');
+      const noteSearch = document.getElementById('noteSearch');
+      const btnCreateNote = document.getElementById('btnCreateNote');
+
+      function escapeHTML(str) {
+        return str.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+      }
+
+      function saveNotes() {
+        localStorage.setItem('weblab_notes', JSON.stringify(notes));
+      }
+
+      window.selectColor = function(c) {
+        activeColor = c;
+        alert(`Selected ${c} color for new sticky notes.`);
+      };
+
+      window.updateNote = function(id, key, val) {
+        const note = notes.find(n => n.id === id);
+        if (note) {
+          note[key] = val;
+          saveNotes();
+        }
+      };
+
+      window.deleteNote = function(id) {
+        notes = notes.filter(n => n.id !== id);
+        saveNotes();
+        renderNotes(noteSearch.value);
+      };
+
+      function renderNotes(query = '') {
+        const q = query.toLowerCase().trim();
+        const filtered = notes.filter(n => 
+          n.title.toLowerCase().includes(q) || 
+          n.content.toLowerCase().includes(q)
+        );
+
+        if (filtered.length === 0) {
+          notesGrid.innerHTML = '<div class="empty-notes-hint">No notes found. Click "+ New Note" to create one!</div>';
+          return;
+        }
+
+        notesGrid.innerHTML = filtered.map(n => `
+          <div class="note-card ${n.color}" data-id="${n.id}">
+            <div class="note-title" contenteditable="true" onblur="window.updateNote(${n.id}, 'title', this.innerText)">${escapeHTML(n.title)}</div>
+            <div class="note-body" contenteditable="true" onblur="window.updateNote(${n.id}, 'content', this.innerText)">${escapeHTML(n.content)}</div>
+            <div class="note-footer">
+              <span>${n.date}</span>
+              <button class="note-del-btn" onclick="window.deleteNote(${n.id})" title="Delete">&times;</button>
+            </div>
+          </div>
+        `).join('');
+      }
+
+      btnCreateNote.addEventListener('click', () => {
+        const newNote = {
+          id: Date.now(),
+          title: 'Quick Memo',
+          content: 'Click here to edit note content...',
+          color: activeColor,
+          date: new Date().toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' })
+        };
+        notes.unshift(newNote);
+        saveNotes();
+        renderNotes(noteSearch.value);
+      });
+
+      noteSearch.addEventListener('input', (e) => {
+        renderNotes(e.target.value);
+      });
+
+      renderNotes();
+    })();
+  </script>
+</body>
+</html>

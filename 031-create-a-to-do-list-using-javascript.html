@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Taj Mahal - Validation</title>
+<style>
+body{margin:0;font-family:Arial;background:#eaf8ff;padding:30px;color:#063b4c}
+form{max-width:550px;margin:auto;background:white;padding:30px;border-radius:16px;box-shadow:0 5px 15px #b5d9e5}
+input{width:100%;padding:12px;margin:6px 0 14px;box-sizing:border-box;border:1px solid #9bcbd8;border-radius:8px}
+button{width:100%;padding:13px;background:#075b73;color:white;border:0;border-radius:8px}
+#message{text-align:center;font-weight:bold;color:#075b73}
+</style>
+</head>
+<body>
+
+<form onsubmit="return validate()">
+<h1>🏛️ Explorer Validation</h1>
+
+<label>Name</label>
+<input type="text" id="name">
+
+<label>Email</label>
+<input type="text" id="email">
+
+<label>Phone</label>
+<input type="text" id="phone">
+
+<label>Password</label>
+<input type="password" id="password">
+
+<button>Validate</button>
+<p id="message"></p>
+</form>
+
+<script>
+function validate(){
+    let name=document.getElementById("name").value.trim();
+    let email=document.getElementById("email").value.trim();
+    let phone=document.getElementById("phone").value.trim();
+    let password=document.getElementById("password").value;
+
+    if(name===""){
+        message("Enter your name.");
+        return false;
+    }
+
+    if(!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)){
+        message("Enter a valid email.");
+        return false;
+    }
+
+    if(!/^[0-9]{10}$/.test(phone)){
+        message("Enter a valid phone number.");
+        return false;
+    }
+
+    if(password.length<6){
+        message("Password must contain at least 6 characters.");
+        return false;
+    }
+
+    message("All details are valid!");
+    return false;
+}
+
+function message(text){
+    document.getElementById("message").textContent=text;
+}
+</script>
+
+</body>
+</html>

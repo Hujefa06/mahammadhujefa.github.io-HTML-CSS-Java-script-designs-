@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>FM 14 - Dynamic Form Fields Repeater | Web Tech Lab</title>
+  <link rel="stylesheet" href="../../assets/css/style.css">
+  <link rel="stylesheet" href="../../assets/css/program-viewer.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500&family=Inter:wght@400;500;600&family=Outfit:wght@600;700;800&display=swap" rel="stylesheet">
+  <style>
+    .repeater-card {
+      max-width: 720px;
+      margin: 0 auto;
+      background: #0f172a;
+      border: 1px solid #334155;
+      border-radius: 12px;
+      padding: 2rem;
+    }
+    .field-row-item {
+      display: grid;
+      grid-template-columns: 2fr 2fr 1fr 1fr 40px;
+      gap: 0.75rem;
+      align-items: center;
+      margin-bottom: 0.75rem;
+      animation: fadeIn 0.2s ease;
+    }
+    @media (max-width: 768px) {
+      .field-row-item {
+        grid-template-columns: 1fr 1fr;
+      }
+    }
+    .repeater-input {
+      background: #1e293b;
+      border: 1px solid #475569;
+      color: #f8fafc;
+      padding: 0.6rem 0.75rem;
+      border-radius: 6px;
+      font-size: 0.85rem;
+    }
+    .btn-remove-row {
+      background: #ef4444;
+      border: none;
+      color: #fff;
+      border-radius: 6px;
+      height: 34px;
+      width: 34px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1rem;
+    }
+    .payload-preview {
+      background: #090d16;
+      border: 1px solid #334155;
+      border-radius: 8px;
+      padding: 1rem;
+      margin-top: 1.5rem;
+      font-family: 'Fira Code', monospace;
+      font-size: 0.85rem;
+      color: #38bdf8;
+      max-height: 180px;
+      overflow-y: auto;
+      white-space: pre-wrap;
+    }
+  </style>
+</head>
+<body>
+  <!-- Navbar -->
+  <nav class="navbar">
+    <div class="nav-container">
+      <a href="../../index.html" class="logo">
+        <span class="logo-icon">&lt;/&gt;</span>
+        <span>WebTech<span class="highlight">Lab</span></span>
+      </a>
+      <div class="nav-links">
+        <a href="../../index.html">Dashboard</a>
+        <a href="../../html/index.html">HTML</a>
+        <a href="../../css/index.html">CSS</a>
+        <a href="../index.html" class="active">JavaScript</a>
+      </div>
+    </div>
+  </nav>
+
+  <main class="page-container">
+    <div class="breadcrumb">
+      <a href="../../index.html">Home</a> &rsaquo; 
+      <a href="../index.html">JavaScript</a> &rsaquo; 
+      <a href="index.html">Forms</a> &rsaquo; 
+      <span>FM 14 - Dynamic Form Fields Repeater</span>
+    </div>
+
+    <div class="program-header">
+      <div class="program-badge">Form Validation • Program 14</div>
+      <h1>Dynamic Form Field Repeater & Payload Serializer</h1>
+      <p class="program-desc">
+        Dynamically append and delete multi-column educational record rows (Degree, Institution, Year, GPA) 
+        before aggregating into a JSON array structure for API submission.
+      </p>
+      <div class="student-pill">
+        <span>👨‍💻 Student: <strong>Shaik Roshan</strong></span>
+        <span>•</span>
+        <span>Reg No: <strong>[TO BE FILLED BY STUDENT]</strong></span>
+      </div>
+    </div>
+
+    <!-- Live Demo -->
+    <div class="demo-section">
+      <div class="demo-header">
+        <div class="demo-title">
+          <span>🎓</span> Student Academic Qualifications Repeater
+        </div>
+        <button class="btn btn-primary" onclick="addEducationRow()">+ Add Degree Row</button>
+      </div>
+      <div class="demo-body">
+        
+        <div class="repeater-card">
+          <div style="font-size: 0.8rem; color: #94a3b8; margin-bottom: 0.75rem; display: grid; grid-template-columns: 2fr 2fr 1fr 1fr 40px; gap: 0.75rem;">
+            <span>Degree / Examination</span>
+            <span>Institution / University</span>
+            <span>Year</span>
+            <span>Percentage / GPA</span>
+            <span></span>
+          </div>
+
+          <div id="educationRows">
+            <!-- Row 1 -->
+            <div class="field-row-item">
+              <input type="text" class="repeater-input row-degree" value="B.Tech in CSE">
+              <input type="text" class="repeater-input row-inst" value="University College of Engineering">
+              <input type="text" class="repeater-input row-year" value="2026">
+              <input type="text" class="repeater-input row-score" value="9.4 GPA">
+              <button type="button" class="btn-remove-row" onclick="removeRow(this)">&times;</button>
+            </div>
+            <!-- Row 2 -->
+            <div class="field-row-item">
+              <input type="text" class="repeater-input row-degree" value="Senior Secondary (Class XII)">
+              <input type="text" class="repeater-input row-inst" value="State Junior College">
+              <input type="text" class="repeater-input row-year" value="2022">
+              <input type="text" class="repeater-input row-score" value="96.5%">
+              <button type="button" class="btn-remove-row" onclick="removeRow(this)">&times;</button>
+            </div>
+          </div>
+
+          <div style="margin-top: 1.5rem; display: flex; gap: 0.75rem;">
+            <button class="btn btn-primary" onclick="serializeFormData()">Serialize & Preview JSON Payload</button>
+            <button class="btn btn-secondary" onclick="clearAllRows()">Clear All</button>
+          </div>
+
+          <div id="payloadOutput" class="payload-preview">// Click 'Serialize & Preview JSON Payload' to inspect serialized array</div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- Source Code Viewer -->
+    <div class="code-viewer-section">
+      <div class="code-viewer-header">
+        <div class="code-tabs">
+          <button class="code-tab active" data-tab="js">JavaScript Implementation</button>
+        </div>
+        <div class="code-actions">
+          <button class="btn-secondary" id="copyCodeBtn">📋 Copy Code</button>
+        </div>
+      </div>
+      <div class="code-body">
+        <pre><code id="sourceCode">function addRow() {
+  const container = document.getElementById("educationRows");
+  const row = document.createElement("div");
+  row.className = "field-row-item";
+  row.innerHTML = `
+    &lt;input type="text" class="repeater-input row-degree" placeholder="Degree"&gt;
+    &lt;input type="text" class="repeater-input row-inst" placeholder="College"&gt;
+    &lt;input type="text" class="repeater-input row-year" placeholder="Year"&gt;
+    &lt;input type="text" class="repeater-input row-score" placeholder="GPA"&gt;
+    &lt;button type="button" class="btn-remove-row" onclick="this.parentElement.remove()"&gt;&times;&lt;/button&gt;
+  `;
+  container.appendChild(row);
+}
+
+function serializeRows() {
+  const rows = document.querySelectorAll(".field-row-item");
+  const data = Array.from(rows).map(row => ({
+    degree: row.querySelector(".row-degree").value,
+    institution: row.querySelector(".row-inst").value,
+    year: row.querySelector(".row-year").value,
+    score: row.querySelector(".row-score").value
+  }));
+  return JSON.stringify(data, null, 2);
+}</code></pre>
+      </div>
+    </div>
+
+    <!-- Navigation -->
+    <div class="program-nav">
+      <a href="shopping-bill-calculator.html" class="nav-prev">&larr; FM 13: Shopping Bill</a>
+      <a href="../browser/index.html" class="nav-next">Next Category: Browser BOM &rarr;</a>
+    </div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-content">
+      <p>&copy; 2026 Web Technology Practical Laboratory • Prepared by <strong>Shaik Roshan</strong></p>
+      <p class="subtext">Computer Science & Engineering Department</p>
+    </div>
+  </footer>
+
+  <script src="../../assets/js/code-viewer.js"></script>
+  <script>
+    const container = document.getElementById("educationRows");
+
+    function addEducationRow() {
+      const row = document.createElement("div");
+      row.className = "field-row-item";
+      row.innerHTML = `
+        <input type="text" class="repeater-input row-degree" placeholder="Degree / Certificate">
+        <input type="text" class="repeater-input row-inst" placeholder="School / Board / University">
+        <input type="text" class="repeater-input row-year" placeholder="Year">
+        <input type="text" class="repeater-input row-score" placeholder="Score / %">
+        <button type="button" class="btn-remove-row" onclick="removeRow(this)">&times;</button>
+      `;
+      container.appendChild(row);
+    }
+
+    function removeRow(btn) {
+      if (container.children.length <= 1) {
+        alert("You must keep at least one qualification row!");
+        return;
+      }
+      btn.parentElement.remove();
+    }
+
+    function clearAllRows() {
+      container.innerHTML = "";
+      addEducationRow();
+    }
+
+    function serializeFormData() {
+      const rows = document.querySelectorAll(".field-row-item");
+      const list = [];
+
+      rows.forEach(r => {
+        list.push({
+          degree: r.querySelector(".row-degree").value.trim(),
+          institution: r.querySelector(".row-inst").value.trim(),
+          year: r.querySelector(".row-year").value.trim(),
+          score: r.querySelector(".row-score").value.trim()
+        });
+      });
+
+      const payload = {
+        student: "Shaik Roshan",
+        rollNumber: "[TO BE FILLED BY STUDENT]",
+        qualifications: list,
+        submittedAt: new Date().toISOString()
+      };
+
+      document.getElementById("payloadOutput").textContent = JSON.stringify(payload, null, 2);
+    }
+  </script>
+</body>
+</html>

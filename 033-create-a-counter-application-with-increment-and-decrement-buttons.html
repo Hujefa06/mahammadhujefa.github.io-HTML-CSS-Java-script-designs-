@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Taj Mahal - Quiz</title>
+<style>
+body{margin:0;font-family:Arial;background:#eaf8ff;padding:40px;color:#063b4c}
+.quiz{max-width:550px;margin:auto;background:white;padding:30px;border-radius:16px;box-shadow:0 5px 15px #b5d9e5}
+button{padding:12px 25px;background:#075b73;color:white;border:0;border-radius:8px}
+label{display:block;padding:10px;background:#eaf8ff;margin:8px;border-radius:8px}
+#result{font-weight:bold;color:#075b73}
+</style>
+</head>
+<body>
+
+<div class="quiz">
+<h1>🧭 Island Quiz</h1>
+
+<p>Which language is used to style webpages?</p>
+
+<label><input type="radio" name="answer" value="HTML"> HTML</label>
+<label><input type="radio" name="answer" value="CSS"> CSS</label>
+<label><input type="radio" name="answer" value="JavaScript"> JavaScript</label>
+
+<button onclick="check()">Submit</button>
+<p id="result"></p>
+</div>
+
+<script>
+function check(){
+    let answer=document.querySelector('input[name="answer"]:checked');
+
+    if(!answer){
+        result("Select an answer.");
+        return;
+    }
+
+    result(answer.value==="CSS" ? "Correct! 🎉" : "Wrong answer.");
+}
+
+function result(text){
+    document.getElementById("result").textContent=text;
+}
+</script>
+
+</body>
+</html>
