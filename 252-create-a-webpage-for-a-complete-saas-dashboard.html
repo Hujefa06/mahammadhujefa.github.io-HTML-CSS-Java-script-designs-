@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Taj Mahal - Complete Dashboard</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<style>
+*{box-sizing:border-box}
+
+body{
+    margin:0;
+    font-family:Arial;
+    background:#eaf8ff;
+    color:#063b4c;
+}
+
+.layout{
+    display:grid;
+    grid-template-columns:220px 1fr;
+    min-height:100vh;
+}
+
+aside{
+    background:#063b4c;
+    color:white;
+    padding:20px;
+}
+
+aside p{
+    padding:12px;
+    background:#075b73;
+    border-radius:8px;
+}
+
+main{
+    padding:30px;
+}
+
+.stats{
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    gap:20px;
+}
+
+.card{
+    background:white;
+    padding:25px;
+    border-radius:15px;
+    box-shadow:0 5px 15px #b5d9e5;
+}
+
+.number{
+    font-size:32px;
+    font-weight:bold;
+}
+
+.chart{
+    height:180px;
+    display:flex;
+    align-items:end;
+    gap:15px;
+}
+
+.bar{
+    flex:1;
+    background:#075b73;
+    border-radius:6px 6px 0 0;
+}
+
+@media(max-width:850px){
+    .stats{grid-template-columns:repeat(2,1fr)}
+}
+
+@media(max-width:600px){
+    .layout{grid-template-columns:1fr}
+    aside{display:flex;gap:8px;overflow:auto}
+    .stats{grid-template-columns:1fr}
+}
+</style>
+</head>
+
+<body>
+
+<div class="layout">
+
+<aside>
+<h2>🏛️ KK</h2>
+<p>🏠 Dashboard</p>
+<p>📊 Analytics</p>
+<p>👥 Students</p>
+<p>⚙️ Settings</p>
+</aside>
+
+<main>
+
+<h1>Island Dashboard</h1>
+
+<div class="stats">
+
+<div class="card">
+<h3>Students</h3>
+<div class="number">248</div>
+</div>
+
+<div class="card">
+<h3>Courses</h3>
+<div class="number">32</div>
+</div>
+
+<div class="card">
+<h3>Faculty</h3>
+<div class="number">18</div>
+</div>
+
+<div class="card">
+<h3>Activity</h3>
+<div class="number">94%</div>
+</div>
+
+</div>
+
+<div class="card" style="margin-top:20px">
+<h2>📊 Weekly Activity</h2>
+
+<div class="chart">
+<div class="bar" style="height:40%"></div>
+<div class="bar" style="height:60%"></div>
+<div class="bar" style="height:50%"></div>
+<div class="bar" style="height:80%"></div>
+<div class="bar" style="height:70%"></div>
+<div class="bar" style="height:95%"></div>
+</div>
+
+</div>
+
+</main>
+</div>
+
+</body>
+</html>

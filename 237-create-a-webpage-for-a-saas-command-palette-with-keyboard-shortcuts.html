@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Taj Mahal - Command Palette</title>
+
+<style>
+body{
+    margin:0;
+    font-family:Arial;
+    background:#eaf8ff;
+    color:#063b4c;
+    padding:40px;
+}
+
+.palette{
+    max-width:500px;
+    margin:auto;
+    background:white;
+    border-radius:15px;
+    box-shadow:0 10px 30px #8ebeca;
+    overflow:hidden;
+}
+
+.search{
+    padding:18px;
+    border-bottom:1px solid #c7e3ea;
+}
+
+.search input{
+    width:100%;
+    border:0;
+    outline:0;
+    font-size:17px;
+}
+
+.item{
+    padding:16px 20px;
+    display:flex;
+    justify-content:space-between;
+}
+
+.item:hover{
+    background:#eaf8ff;
+}
+
+kbd{
+    background:#d8edf2;
+    padding:4px 8px;
+    border-radius:5px;
+}
+</style>
+</head>
+
+<body>
+
+<div class="palette">
+
+<div class="search">
+<input placeholder="Search commands...">
+</div>
+
+<div class="item">
+<span>🏠 Dashboard</span>
+<kbd>Ctrl D</kbd>
+</div>
+
+<div class="item">
+<span>🧭 Explore</span>
+<kbd>Ctrl E</kbd>
+</div>
+
+<div class="item">
+<span>📚 Courses</span>
+<kbd>Ctrl C</kbd>
+</div>
+
+<div class="item">
+<span>⚙️ Settings</span>
+<kbd>Ctrl S</kbd>
+</div>
+
+</div>
+
+</body>
+</html>

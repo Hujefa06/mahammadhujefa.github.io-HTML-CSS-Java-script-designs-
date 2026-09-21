@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Taj Mahal - Complete SaaS Website</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<style>
+*{box-sizing:border-box}
+
+body{
+    margin:0;
+    font-family:Arial;
+    background:#eaf8ff;
+    color:#063b4c;
+}
+
+header{
+    position:sticky;
+    top:0;
+    z-index:10;
+    background:#075b73;
+    color:white;
+    padding:18px 6%;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+}
+
+nav{
+    display:flex;
+    gap:20px;
+}
+
+nav a{
+    color:white;
+    text-decoration:none;
+}
+
+.hero{
+    text-align:center;
+    padding:90px 20px;
+    background:linear-gradient(135deg,#075b73,#39a9c2);
+    color:white;
+}
+
+.hero h1{
+    font-size:clamp(2.5rem,8vw,5rem);
+    margin:0;
+}
+
+button{
+    padding:13px 25px;
+    border:0;
+    border-radius:8px;
+    background:#075b73;
+    color:white;
+}
+
+.hero button{
+    background:white;
+    color:#075b73;
+}
+
+section{
+    padding:50px 7%;
+}
+
+.cards{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:20px;
+}
+
+.card{
+    background:white;
+    padding:25px;
+    border-radius:15px;
+    box-shadow:0 5px 15px #b5d9e5;
+}
+
+.dashboard{
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    gap:15px;
+}
+
+.stat{
+    background:#075b73;
+    color:white;
+    padding:25px;
+    border-radius:15px;
+}
+
+.stat strong{
+    font-size:30px;
+}
+
+footer{
+    background:#063b4c;
+    color:white;
+    text-align:center;
+    padding:30px;
+}
+
+@media(max-width:800px){
+    header{flex-direction:column;gap:15px}
+    .cards{grid-template-columns:1fr 1fr}
+    .dashboard{grid-template-columns:1fr 1fr}
+}
+
+@media(max-width:500px){
+    nav{flex-wrap:wrap;justify-content:center}
+    .cards,.dashboard{grid-template-columns:1fr}
+}
+</style>
+</head>
+
+<body>
+
+<header>
+<h2>🏛️ Taj Mahal</h2>
+
+<nav>
+<a href="#">Home</a>
+<a href="#">Analytics</a>
+<a href="#">AI</a>
+<a href="#">Pricing</a>
+</nav>
+</header>
+
+<section class="hero">
+<h1>Explore Beyond the Waves</h1>
+<p>A complete responsive SaaS experience for Taj Mahal.</p>
+<br>
+<button>Start Exploring</button>
+</section>
+
+<section>
+<h2>📊 Island Analytics</h2>
+
+<div class="dashboard">
+<div class="stat"><strong>248</strong><br>Students</div>
+<div class="stat"><strong>32</strong><br>Courses</div>
+<div class="stat"><strong>18</strong><br>Faculty</div>
+<div class="stat"><strong>94%</strong><br>Activity</div>
+</div>
+</section>
+
+<section>
+<h2>🤖 Intelligent Features</h2>
+
+<div class="cards">
+
+<div class="card">
+<h2>🧭 AI Explorer</h2>
+<p>Discover important island locations.</p>
+</div>
+
+<div class="card">
+<h2>🏛️ Ocean Analytics</h2>
+<p>Analyze ocean and exploration data.</p>
+</div>
+
+<div class="card">
+<h2>📚 Research Hub</h2>
+<p>Organize historical research.</p>
+</div>
+
+</div>
+</section>
+
+<section>
+<h2>💎 Modern SaaS Interface</h2>
+
+<div class="cards">
+<div class="card"><h3>Responsive Design</h3><p>Works across screen sizes.</p></div>
+<div class="card"><h3>Analytics</h3><p>Visualize island activity.</p></div>
+<div class="card"><h3>AI & ML</h3><p>Smart island insights.</p></div>
+</div>
+</section>
+
+<footer>
+<p>🏛️ Taj Mahal • Explore • Learn • Discover</p>
+</footer>
+
+</body>
+</html>

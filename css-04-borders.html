@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Borders & Shapes | CSS-04</title>
+  <link rel="stylesheet" href="../assets/css/style.css">
+  <link rel="stylesheet" href="../assets/css/program-viewer.css">
+  <style>
+    .border-demo-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 1.5rem;
+      text-align: center;
+    }
+    .shape-card {
+      background: #f8fafc;
+      padding: 1.5rem 1rem;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 0.75rem;
+    }
+    /* Styles */
+    .border-solid { border: 3px solid #3b82f6; width: 100px; height: 100px; border-radius: 8px; }
+    .border-dashed { border: 3px dashed #ef4444; width: 100px; height: 100px; border-radius: 8px; }
+    .border-double { border: 5px double #10b981; width: 100px; height: 100px; border-radius: 8px; }
+    .border-circle { border: 3px solid #8b5cf6; width: 100px; height: 100px; border-radius: 50%; }
+    .border-pill { border: 2px solid #ea580c; width: 120px; height: 50px; border-radius: 9999px; }
+  </style>
+</head>
+<body>
+  <header class="navbar">
+    <div class="nav-container">
+      <a href="../index.html" class="nav-brand">
+        <div class="brand-icon" style="background: linear-gradient(135deg, #2563eb, #3b82f6);">
+          <span>&lt;/&gt;</span>
+        </div>
+        <span>CSS Programs</span>
+      </a>
+      <nav>
+        <ul class="nav-links">
+          <li><a href="../index.html" class="nav-link">Home</a></li>
+          <li><a href="../html/index.html" class="nav-link">HTML</a></li>
+          <li><a href="index.html" class="nav-link active">CSS</a></li>
+          <li><a href="../javascript/index.html" class="nav-link">JavaScript</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main class="main-wrapper">
+    <nav class="breadcrumb-bar">
+      <a href="../index.html">Home</a>
+      <span class="breadcrumb-separator">&rarr;</span>
+      <a href="index.html">CSS Programs</a>
+      <span class="breadcrumb-separator">&rarr;</span>
+      <span class="breadcrumb-current">CSS-04: Borders & Shapes</span>
+    </nav>
+
+    <section class="exp-header-card">
+      <div class="exp-meta-row">
+        <span class="exp-id-tag" style="background: #2563eb;">CSS-04</span>
+        <span class="exp-cat-tag">Foundation</span>
+      </div>
+      <h1 class="exp-heading">CSS Border Styles, Radii & Geometric Shapes</h1>
+      <p class="exp-description">
+        Demonstrates border widths, line types (solid, dashed, double), asymmetrical 4-corner border-radius, circular avatars (border-radius: 50%), and pill capsules.
+      </p>
+      <div class="objective-box">
+        <div class="objective-title"><span>🎯</span> Practical Laboratory Objective</div>
+        <div class="objective-text">
+          Understand how border-radius calculates elliptical curves on element boundaries and how geometric shapes are engineered purely in CSS.
+        </div>
+      </div>
+    </section>
+
+    <!-- Live Demonstration -->
+    <section class="demo-section-wrapper">
+      <div class="demo-section-header">
+        <div class="demo-title"><span>⚡</span> Live Border Gallery</div>
+        <span class="demo-live-badge">Working Demo</span>
+      </div>
+      <div class="demo-body" style="background: #ffffff;">
+        <div class="border-demo-grid">
+          <div class="shape-card">
+            <div class="border-solid"></div>
+            <strong>Solid Border</strong>
+          </div>
+          <div class="shape-card">
+            <div class="border-dashed"></div>
+            <strong>Dashed Border</strong>
+          </div>
+          <div class="shape-card">
+            <div class="border-double"></div>
+            <strong>Double Border</strong>
+          </div>
+          <div class="shape-card">
+            <div class="border-circle"></div>
+            <strong>Circle (50%)</strong>
+          </div>
+          <div class="shape-card">
+            <div class="border-pill"></div>
+            <strong>Pill Capsule</strong>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Source Code Section -->
+    <section class="source-section-wrapper">
+      <div class="source-header">
+        <div class="source-tabs">
+          <button class="code-tab-btn active" data-tab="css">CSS Source Code</button>
+        </div>
+        <div class="source-actions">
+          <button class="copy-code-btn" type="button">Copy Code</button>
+          <button class="toggle-code-btn" type="button">Hide Code</button>
+        </div>
+      </div>
+      <div class="code-content-container">
+        <div class="code-pane active" data-tab="css">
+<pre>/* Circular Profile Avatar */
+.avatar-circle {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  border: 3px solid #8b5cf6;
+}
+
+/* Pill Badge Shape */
+.pill-badge {
+  border-radius: 9999px;
+  border: 2px solid #ea580c;
+  padding: 6px 16px;
+}
+
+/* Asymmetrical Corners */
+.custom-card {
+  border-radius: 16px 0 16px 0;
+}</pre>
+        </div>
+      </div>
+    </section>
+
+    <!-- Bottom Navigation -->
+    <nav class="exp-nav-bar">
+      <a href="css-03-backgrounds.html" class="nav-btn nav-btn-prev">&larr; Previous (CSS-03)</a>
+      <a href="index.html" class="nav-btn nav-btn-hub">All CSS Programs</a>
+      <a href="css-05-gradients.html" class="nav-btn nav-btn-next">Next (CSS-05) &rarr;</a>
+    </nav>
+  </main>
+
+  <script src="../assets/js/code-viewer.js"></script>
+</body>
+</html>

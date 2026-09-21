@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Active Sessions</title>
+<style>
+body{margin:0;background:#ecfeff;font-family:Arial;color:#164e63}
+header{background:#0e7490;color:white;text-align:center;padding:25px}
+.container{max-width:850px;margin:40px auto}
+.device{background:white;padding:22px;margin:15px 0;border-radius:14px;box-shadow:0 4px 15px #0002;display:flex;justify-content:space-between;align-items:center}
+.device h3{margin:0}
+.current{color:#059669;font-weight:bold}
+button{padding:9px 16px;border:0;border-radius:7px;background:#dc2626;color:white}
+@media(max-width:600px){.device{flex-direction:column;align-items:flex-start;gap:15px}}
+</style>
+</head>
+<body>
+<header><h1>🏛️ Active Sessions</h1></header>
+<div class="container">
+<div class="device">
+<div><h3>💻 Windows PC</h3><p>Chennai, India • Chrome</p></div>
+<div class="current">Current Session</div>
+</div>
+<div class="device">
+<div><h3>📱 Android Phone</h3><p>Chennai, India • Mobile Browser</p></div>
+<button>Sign Out</button>
+</div>
+<div class="device">
+<div><h3>💻 Laptop</h3><p>Bengaluru, India • Edge</p></div>
+<button>Sign Out</button>
+</div>
+</div>
+</body>
+</html>

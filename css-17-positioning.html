@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CSS Positioning Schemes | CSS-17</title>
+  <link rel="stylesheet" href="../assets/css/style.css">
+  <link rel="stylesheet" href="../assets/css/program-viewer.css">
+  <style>
+    .pos-parent {
+      position: relative;
+      height: 260px;
+      background: #f8fafc;
+      border: 2px dashed #94a3b8;
+      border-radius: 8px;
+      overflow: hidden;
+      margin: 1.5rem 0;
+      padding: 1rem;
+    }
+    .pos-box-abs {
+      position: absolute;
+      top: 20px;
+      right: 20px;
+      background: #ef4444;
+      color: #ffffff;
+      padding: 0.75rem 1rem;
+      border-radius: 6px;
+      font-weight: 700;
+      box-shadow: var(--shadow-md);
+    }
+    .pos-box-rel {
+      position: relative;
+      top: 15px;
+      left: 15px;
+      background: #3b82f6;
+      color: #ffffff;
+      padding: 0.75rem 1rem;
+      border-radius: 6px;
+      font-weight: 700;
+      display: inline-block;
+    }
+    .pos-sticky-container {
+      height: 160px;
+      overflow-y: auto;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      background: #ffffff;
+      padding: 0 1rem;
+      margin-top: 1rem;
+    }
+    .pos-sticky-header {
+      position: sticky;
+      top: 0;
+      background: #4f46e5;
+      color: #ffffff;
+      padding: 0.5rem 1rem;
+      font-weight: 700;
+      border-radius: 4px;
+    }
+  </style>
+</head>
+<body>
+  <header class="navbar">
+    <div class="nav-container">
+      <a href="../index.html" class="nav-brand">
+        <div class="brand-icon" style="background: linear-gradient(135deg, #2563eb, #3b82f6);">
+          <span>&lt;/&gt;</span>
+        </div>
+        <span>CSS Programs</span>
+      </a>
+      <nav>
+        <ul class="nav-links">
+          <li><a href="../index.html" class="nav-link">Home</a></li>
+          <li><a href="../html/index.html" class="nav-link">HTML</a></li>
+          <li><a href="index.html" class="nav-link active">CSS</a></li>
+          <li><a href="../javascript/index.html" class="nav-link">JavaScript</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main class="main-wrapper">
+    <nav class="breadcrumb-bar">
+      <a href="../index.html">Home</a>
+      <span class="breadcrumb-separator">&rarr;</span>
+      <a href="index.html">CSS Programs</a>
+      <span class="breadcrumb-separator">&rarr;</span>
+      <span class="breadcrumb-current">CSS-17: Positioning Schemes</span>
+    </nav>
+
+    <section class="exp-header-card">
+      <div class="exp-meta-row">
+        <span class="exp-id-tag" style="background: #2563eb;">CSS-17</span>
+        <span class="exp-cat-tag">Layout</span>
+      </div>
+      <h1 class="exp-heading">CSS Positioning: Static, Relative, Absolute, Fixed &amp; Sticky</h1>
+      <p class="exp-description">
+        Demonstrates the 5 positioning modes of CSS: static (normal flow), relative (offset relative to self without disrupting siblings), absolute (pinned to nearest positioned ancestor), fixed (pinned to viewport), and sticky (toggles relative to fixed during scroll).
+      </p>
+      <div class="objective-box">
+        <div class="objective-title"><span>🎯</span> Practical Laboratory Objective</div>
+        <div class="objective-text">
+          Understand why a parent must declare `position: relative` to act as an anchor frame for child `position: absolute` elements, and how `position: sticky` powers persistent table headers.
+        </div>
+      </div>
+    </section>
+
+    <!-- Live Demonstration -->
+    <section class="demo-section-wrapper">
+      <div class="demo-section-header">
+        <div class="demo-title"><span>⚡</span> Live Positioning Arena</div>
+        <span class="demo-live-badge">Working Demo</span>
+      </div>
+      <div class="demo-body" style="background: #ffffff;">
+        <h4 style="color: #0f172a; margin-bottom: 0.5rem;">Relative Parent Frame with Absolute &amp; Relative Children</h4>
+        
+        <div class="pos-parent">
+          <small style="color: #64748b; font-weight: 600;">Parent Frame (position: relative)</small>
+
+          <div class="pos-box-rel">
+            position: relative (top: 15px; left: 15px)
+          </div>
+
+          <div class="pos-box-abs">
+            position: absolute (top: 20px; right: 20px)
+          </div>
+
+          <p style="position: absolute; bottom: 15px; left: 15px; font-size: 0.85rem; color: #64748b;">
+            The red box is pinned to the top-right of this dashed parent container, completely taken out of document flow.
+          </p>
+        </div>
+
+        <!-- Sticky Header Demo -->
+        <h4 style="color: #0f172a; margin-top: 2rem; margin-bottom: 0.5rem;">position: sticky Scroll Demonstration</h4>
+        <div class="pos-sticky-container">
+          <div class="pos-sticky-header">
+            📌 Sticky Category Header (Scroll inside this box!)
+          </div>
+          <div style="padding: 1rem 0; line-height: 2; color: #475569;">
+            Line 1: Normal document text item<br>
+            Line 2: Normal document text item<br>
+            Line 3: Normal document text item<br>
+            Line 4: Normal document text item<br>
+            Line 5: Notice the blue header sticks to top!<br>
+            Line 6: Normal document text item<br>
+            Line 7: Normal document text item<br>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Source Code Section -->
+    <section class="source-section-wrapper">
+      <div class="source-header">
+        <div class="source-tabs">
+          <button class="code-tab-btn active" data-tab="css">CSS Source Code</button>
+        </div>
+        <div class="source-actions">
+          <button class="copy-code-btn" type="button">Copy Code</button>
+          <button class="toggle-code-btn" type="button">Hide Code</button>
+        </div>
+      </div>
+      <div class="code-content-container">
+        <div class="code-pane active" data-tab="css">
+<pre>/* Relative Parent Anchor */
+.parent-container {
+  position: relative;
+}
+
+/* Absolute Child: Anchors to nearest non-static parent */
+.child-badge {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+}
+
+/* Fixed: Locks to browser viewport window */
+.fixed-floating-btn {
+  position: fixed;
+  bottom: 24px;
+  right: 24px;
+}
+
+/* Sticky: Behaves relative until scroll reaches threshold */
+.sticky-nav {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+}</pre>
+        </div>
+      </div>
+    </section>
+
+    <!-- Bottom Navigation -->
+    <nav class="exp-nav-bar">
+      <a href="css-16-math-functions.html" class="nav-btn nav-btn-prev">&larr; Previous (CSS-16)</a>
+      <a href="index.html" class="nav-btn nav-btn-hub">All CSS Programs</a>
+      <a href="css-18-z-index.html" class="nav-btn nav-btn-next">Next (CSS-18) &rarr;</a>
+    </nav>
+  </main>
+
+  <script src="../assets/js/code-viewer.js"></script>
+</body>
+</html>

@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>SaaS Pricing Plans</title>
+<style>
+body{margin:0;background:#e0f2fe;font-family:Arial;color:#164e63}
+header{background:#075985;color:white;text-align:center;padding:30px}
+.plans{max-width:1000px;margin:45px auto;display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+.plan{background:white;padding:30px;border-radius:18px;text-align:center;box-shadow:0 5px 18px #0002}
+.price{font-size:40px;color:#0284c7;font-weight:bold}
+button{padding:12px 25px;background:#0284c7;color:white;border:0;border-radius:8px}
+@media(max-width:700px){.plans{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<header><h1>🏛️ Taj Mahal Plans</h1></header>
+<div class="plans">
+<div class="plan"><h2>Basic</h2><div class="price">₹499</div><p>Basic analytics</p><button>Choose</button></div>
+<div class="plan"><h2>Pro</h2><div class="price">₹999</div><p>Advanced analytics</p><button>Choose</button></div>
+<div class="plan"><h2>Enterprise</h2><div class="price">₹1999</div><p>All features</p><button>Choose</button></div>
+</div>
+</body>
+</html>

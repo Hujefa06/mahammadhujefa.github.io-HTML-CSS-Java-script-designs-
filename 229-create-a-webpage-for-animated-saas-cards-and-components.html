@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Taj Mahal - Animated Cards</title>
+
+<style>
+body{font-family:Arial;background:#eaf8ff;padding:40px;color:#063b4c;text-align:center}
+.cards{display:flex;justify-content:center;gap:25px;flex-wrap:wrap}
+.card{background:white;padding:30px;border-radius:16px;width:220px;animation:float 3s ease-in-out infinite;box-shadow:0 5px 15px #b5d9e5}
+.card:nth-child(2){animation-delay:.4s}
+.card:nth-child(3){animation-delay:.8s}
+
+@keyframes float{
+0%,100%{transform:translateY(0)}
+50%{transform:translateY(-12px)}
+}
+</style>
+</head>
+
+<body>
+
+<h1>🏛️ Animated Island Cards</h1>
+
+<div class="cards">
+<div class="card">🏝️<h2>Island</h2><p>Explore</p></div>
+<div class="card">🏛️<h2>Ocean</h2><p>Discover</p></div>
+<div class="card">🧭<h2>Journey</h2><p>Navigate</p></div>
+</div>
+
+</body>
+</html>

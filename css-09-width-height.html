@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Width, Height & Min/Max Constraints | CSS-09</title>
+  <link rel="stylesheet" href="../assets/css/style.css">
+  <link rel="stylesheet" href="../assets/css/program-viewer.css">
+  <style>
+    .dimension-showcase {
+      display: flex;
+      flex-direction: column;
+      gap: 1.5rem;
+    }
+    .dim-card {
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 1.25rem;
+      background: #f8fafc;
+    }
+    .fixed-box {
+      width: 250px;
+      height: 80px;
+      background: #dbeafe;
+      border: 2px solid #3b82f6;
+      border-radius: 6px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 600;
+      color: #1e40af;
+    }
+    .max-width-box {
+      max-width: 500px;
+      width: 100%;
+      background: #dcfce7;
+      border: 2px solid #10b981;
+      border-radius: 6px;
+      padding: 1rem;
+      color: #166534;
+      font-weight: 600;
+    }
+    .fit-content-box {
+      width: fit-content;
+      background: #fef3c7;
+      border: 2px solid #f59e0b;
+      border-radius: 6px;
+      padding: 0.5rem 1rem;
+      color: #92400e;
+      font-weight: 600;
+    }
+  </style>
+</head>
+<body>
+  <header class="navbar">
+    <div class="nav-container">
+      <a href="../index.html" class="nav-brand">
+        <div class="brand-icon" style="background: linear-gradient(135deg, #2563eb, #3b82f6);">
+          <span>&lt;/&gt;</span>
+        </div>
+        <span>CSS Programs</span>
+      </a>
+      <nav>
+        <ul class="nav-links">
+          <li><a href="../index.html" class="nav-link">Home</a></li>
+          <li><a href="../html/index.html" class="nav-link">HTML</a></li>
+          <li><a href="index.html" class="nav-link active">CSS</a></li>
+          <li><a href="../javascript/index.html" class="nav-link">JavaScript</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main class="main-wrapper">
+    <nav class="breadcrumb-bar">
+      <a href="../index.html">Home</a>
+      <span class="breadcrumb-separator">&rarr;</span>
+      <a href="index.html">CSS Programs</a>
+      <span class="breadcrumb-separator">&rarr;</span>
+      <span class="breadcrumb-current">CSS-09: Dimensions & Constraints</span>
+    </nav>
+
+    <section class="exp-header-card">
+      <div class="exp-meta-row">
+        <span class="exp-id-tag" style="background: #2563eb;">CSS-09</span>
+        <span class="exp-cat-tag">Box Model</span>
+      </div>
+      <h1 class="exp-heading">Width, Height and Min/Max Dimension Constraints</h1>
+      <p class="exp-description">
+        Demonstrates the sizing engine of CSS: fixed dimensions (px), percentage fluid dimensions (%), max-width bounds for responsive safety, min-height vertical guarantees, and modern intrinsic sizing using fit-content.
+      </p>
+      <div class="objective-box">
+        <div class="objective-title"><span>🎯</span> Practical Laboratory Objective</div>
+        <div class="objective-text">
+          Understand why `width: 100%; max-width: 600px;` is the golden rule of responsive container design, preventing layout overflow on mobile screens.
+        </div>
+      </div>
+    </section>
+
+    <!-- Live Demonstration -->
+    <section class="demo-section-wrapper">
+      <div class="demo-section-header">
+        <div class="demo-title"><span>⚡</span> Live Dimension Showcase</div>
+        <span class="demo-live-badge">Working Demo</span>
+      </div>
+      <div class="demo-body" style="background: #ffffff;">
+        <div class="dimension-showcase">
+          <!-- Fixed -->
+          <div class="dim-card">
+            <h4 style="color: #0f172a; margin-bottom: 0.5rem;">1. Fixed Dimensions (width: 250px; height: 80px;)</h4>
+            <div class="fixed-box">250px &times; 80px Fixed</div>
+          </div>
+
+          <!-- Responsive Max-Width -->
+          <div class="dim-card">
+            <h4 style="color: #0f172a; margin-bottom: 0.5rem;">2. Responsive Container (width: 100%; max-width: 500px;)</h4>
+            <div class="max-width-box">
+              Expands up to 500px on desktops, but gracefully shrinks to 100% on small smartphone viewports without horizontal scrollbars.
+            </div>
+          </div>
+
+          <!-- Fit Content -->
+          <div class="dim-card">
+            <h4 style="color: #0f172a; margin-bottom: 0.5rem;">3. Intrinsic Width (width: fit-content;)</h4>
+            <div class="fit-content-box">
+              Skins tightly around content text &rarr;
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Source Code Section -->
+    <section class="source-section-wrapper">
+      <div class="source-header">
+        <div class="source-tabs">
+          <button class="code-tab-btn active" data-tab="css">CSS Source Code</button>
+        </div>
+        <div class="source-actions">
+          <button class="copy-code-btn" type="button">Copy Code</button>
+          <button class="toggle-code-btn" type="button">Hide Code</button>
+        </div>
+      </div>
+      <div class="code-content-container">
+        <div class="code-pane active" data-tab="css">
+<pre>/* Responsive Safe Container */
+.container {
+  width: 100%;           /* Fills parent on small screens */
+  max-width: 1200px;     /* Caps width on ultrawide monitors */
+  margin: 0 auto;        /* Center alignment */
+}
+
+/* Intrinsic Sizing */
+.tag-badge {
+  width: fit-content;    /* Clamps to exact text length */
+}</pre>
+        </div>
+      </div>
+    </section>
+
+    <!-- Bottom Navigation -->
+    <nav class="exp-nav-bar">
+      <a href="css-08-box-model.html" class="nav-btn nav-btn-prev">&larr; Previous (CSS-08)</a>
+      <a href="index.html" class="nav-btn nav-btn-hub">All CSS Programs</a>
+      <a href="css-10-box-sizing.html" class="nav-btn nav-btn-next">Next (CSS-10) &rarr;</a>
+    </nav>
+  </main>
+
+  <script src="../assets/js/code-viewer.js"></script>
+</body>
+</html>

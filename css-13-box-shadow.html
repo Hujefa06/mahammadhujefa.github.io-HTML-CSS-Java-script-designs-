@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Box Shadows & Elevation | CSS-13</title>
+  <link rel="stylesheet" href="../assets/css/style.css">
+  <link rel="stylesheet" href="../assets/css/program-viewer.css">
+  <style>
+    .shadow-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 2rem;
+      margin-bottom: 2rem;
+    }
+    .shadow-card {
+      height: 120px;
+      border-radius: 12px;
+      background: #ffffff;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      font-weight: 700;
+      color: #0f172a;
+      transition: all 0.3s ease;
+    }
+    .sh-subtle { box-shadow: 0 2px 5px rgba(0,0,0,0.06); }
+    .sh-medium { box-shadow: 0 8px 20px -3px rgba(79, 70, 229, 0.15); }
+    .sh-elevation { box-shadow: 0 20px 30px -8px rgba(15, 23, 42, 0.15); }
+    .sh-inset { box-shadow: inset 0 3px 8px rgba(0,0,0,0.15); background: #f8fafc; }
+    .sh-hover:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 20px 35px -5px rgba(79, 70, 229, 0.25);
+    }
+  </style>
+</head>
+<body>
+  <header class="navbar">
+    <div class="nav-container">
+      <a href="../index.html" class="nav-brand">
+        <div class="brand-icon" style="background: linear-gradient(135deg, #2563eb, #3b82f6);">
+          <span>&lt;/&gt;</span>
+        </div>
+        <span>CSS Programs</span>
+      </a>
+      <nav>
+        <ul class="nav-links">
+          <li><a href="../index.html" class="nav-link">Home</a></li>
+          <li><a href="../html/index.html" class="nav-link">HTML</a></li>
+          <li><a href="index.html" class="nav-link active">CSS</a></li>
+          <li><a href="../javascript/index.html" class="nav-link">JavaScript</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main class="main-wrapper">
+    <nav class="breadcrumb-bar">
+      <a href="../index.html">Home</a>
+      <span class="breadcrumb-separator">&rarr;</span>
+      <a href="index.html">CSS Programs</a>
+      <span class="breadcrumb-separator">&rarr;</span>
+      <span class="breadcrumb-current">CSS-13: Box Shadows & Elevation</span>
+    </nav>
+
+    <section class="exp-header-card">
+      <div class="exp-meta-row">
+        <span class="exp-id-tag" style="background: #2563eb;">CSS-13</span>
+        <span class="exp-cat-tag">Effects</span>
+      </div>
+      <h1 class="exp-heading">Box Shadow Elevation and Inset Depth Effects</h1>
+      <p class="exp-description">
+        Demonstrates the box-shadow syntax: horizontal offset, vertical offset, blur radius, spread distance, color with alpha transparency, inset debossed styling, and smooth transition elevation lifts.
+      </p>
+      <div class="objective-box">
+        <div class="objective-title"><span>🎯</span> Practical Laboratory Objective</div>
+        <div class="objective-text">
+          Understand how multi-layer ambient lighting shadows create tactile depth in modern interface design systems and how inset shadows convey depressed button states.
+        </div>
+      </div>
+    </section>
+
+    <!-- Live Demonstration -->
+    <section class="demo-section-wrapper">
+      <div class="demo-section-header">
+        <div class="demo-title"><span>⚡</span> Live Shadow Elevation Matrix</div>
+        <span class="demo-live-badge">Working Demo</span>
+      </div>
+      <div class="demo-body" style="background: #f8fafc;">
+        <div class="shadow-grid">
+          <div class="shadow-card sh-subtle">
+            Subtle Shadow
+            <small style="color: #64748b; font-weight: 500;">Elevation 1</small>
+          </div>
+          <div class="shadow-card sh-medium">
+            Ambient Color Glow
+            <small style="color: #6366f1; font-weight: 500;">Elevation 2</small>
+          </div>
+          <div class="shadow-card sh-elevation">
+            High Elevation
+            <small style="color: #64748b; font-weight: 500;">Modal Elevation</small>
+          </div>
+          <div class="shadow-card sh-inset">
+            Inset Debossed
+            <small style="color: #64748b; font-weight: 500;">Well / Input Field</small>
+          </div>
+          <div class="shadow-card sh-hover" style="cursor: pointer; border: 1px solid #c7d2fe;">
+            Hover Lift Me!
+            <small style="color: #4f46e5; font-weight: 600;">Interactive Lift &uarr;</small>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Source Code Section -->
+    <section class="source-section-wrapper">
+      <div class="source-header">
+        <div class="source-tabs">
+          <button class="code-tab-btn active" data-tab="css">CSS Source Code</button>
+        </div>
+        <div class="source-actions">
+          <button class="copy-code-btn" type="button">Copy Code</button>
+          <button class="toggle-code-btn" type="button">Hide Code</button>
+        </div>
+      </div>
+      <div class="code-content-container">
+        <div class="code-pane active" data-tab="css">
+<pre>/* Syntax: box-shadow: [offset-x] [offset-y] [blur] [spread] [color] [inset?]; */
+
+/* 1. Ambient Glow Elevation */
+.card-elevation {
+  box-shadow: 0 8px 20px -3px rgba(79, 70, 229, 0.2);
+}
+
+/* 2. Inset Sunken Well */
+.inset-well {
+  box-shadow: inset 0 3px 8px rgba(0, 0, 0, 0.15);
+}
+
+/* 3. Smooth Hover Card Lift */
+.interactive-card {
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+.interactive-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 20px 35px -5px rgba(79, 70, 229, 0.3);
+}</pre>
+        </div>
+      </div>
+    </section>
+
+    <!-- Bottom Navigation -->
+    <nav class="exp-nav-bar">
+      <a href="css-12-visibility-overflow.html" class="nav-btn nav-btn-prev">&larr; Previous (CSS-12)</a>
+      <a href="index.html" class="nav-btn nav-btn-hub">All CSS Programs</a>
+      <a href="css-14-css-variables.html" class="nav-btn nav-btn-next">Next (CSS-14) &rarr;</a>
+    </nav>
+  </main>
+
+  <script src="../assets/js/code-viewer.js"></script>
+</body>
+</html>

@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Taj Mahal - SaaS Landing Page</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<style>
+*{box-sizing:border-box}
+
+body{
+    margin:0;
+    font-family:Arial;
+    background:#eaf8ff;
+    color:#063b4c;
+}
+
+header{
+    padding:20px 7%;
+    display:flex;
+    justify-content:space-between;
+    background:#075b73;
+    color:white;
+}
+
+.hero{
+    text-align:center;
+    padding:90px 20px;
+    background:#d9f3fa;
+}
+
+.hero h1{
+    font-size:clamp(2.5rem,7vw,5rem);
+}
+
+button{
+    padding:13px 25px;
+    background:#075b73;
+    color:white;
+    border:0;
+    border-radius:8px;
+}
+
+.features{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:20px;
+    padding:40px 7%;
+}
+
+.card{
+    background:white;
+    padding:25px;
+    border-radius:15px;
+    box-shadow:0 5px 15px #b5d9e5;
+}
+
+@media(max-width:700px){
+    header{flex-direction:column;gap:10px;text-align:center}
+    .features{grid-template-columns:1fr}
+}
+</style>
+</head>
+
+<body>
+
+<header>
+<h2>🏛️ Taj Mahal</h2>
+<span>Explore • Learn • Discover</span>
+</header>
+
+<section class="hero">
+<h1>Discover the Lost Island</h1>
+<p>A modern platform for exploring Taj Mahal.</p>
+<button>Start Exploring</button>
+</section>
+
+<section class="features">
+<div class="card"><h2>🧭 Explore</h2><p>Discover ancient locations.</p></div>
+<div class="card"><h2>📚 Learn</h2><p>Study island history.</p></div>
+<div class="card"><h2>📊 Analyze</h2><p>Explore research data.</p></div>
+</section>
+
+</body>
+</html>

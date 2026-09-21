@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Taj Mahal - Help Center</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<style>
+body{
+    margin:0;
+    padding:30px;
+    font-family:Arial;
+    background:#eaf8ff;
+    color:#063b4c;
+}
+
+.help{
+    max-width:900px;
+    margin:auto;
+}
+
+.search{
+    width:100%;
+    padding:16px;
+    border:1px solid #9bcbd8;
+    border-radius:10px;
+    box-sizing:border-box;
+}
+
+.categories{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:20px;
+    margin-top:25px;
+}
+
+.category{
+    background:white;
+    padding:25px;
+    border-radius:15px;
+    box-shadow:0 5px 15px #b5d9e5;
+}
+
+@media(max-width:700px){
+    .categories{grid-template-columns:1fr}
+}
+</style>
+</head>
+
+<body>
+
+<div class="help">
+
+<h1>🏛️ Help Center</h1>
+
+<input class="search" placeholder="Search for help...">
+
+<div class="categories">
+
+<div class="category">
+<h2>📚 Guides</h2>
+<p>Learn the basics.</p>
+</div>
+
+<div class="category">
+<h2>🧭 Exploration</h2>
+<p>Find your way around.</p>
+</div>
+
+<div class="category">
+<h2>💬 Support</h2>
+<p>Contact the island team.</p>
+</div>
+
+</div>
+
+</div>
+
+</body>
+</html>

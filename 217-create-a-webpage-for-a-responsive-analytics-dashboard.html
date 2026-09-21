@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Taj Mahal - Analytics</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<style>
+body{margin:0;font-family:Arial;background:#eaf8ff;color:#063b4c;padding:20px}
+h1{text-align:center}
+.dashboard{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+.box{background:white;padding:25px;border-radius:15px;box-shadow:0 5px 15px #b5d9e5}
+.number{font-size:32px;font-weight:bold}
+.bar{height:20px;background:#d5edf4;border-radius:10px;overflow:hidden}
+.fill{height:100%;background:#075b73}
+@media(max-width:800px){.dashboard{grid-template-columns:1fr 1fr}}
+@media(max-width:500px){.dashboard{grid-template-columns:1fr}}
+</style>
+</head>
+
+<body>
+
+<h1>📊 Taj Mahal Analytics</h1>
+
+<div class="dashboard">
+<div class="box"><h3>Visitors</h3><div class="number">12,450</div></div>
+<div class="box"><h3>Explorers</h3><div class="number">8,320</div></div>
+<div class="box"><h3>Engagement</h3><div class="number">87%</div></div>
+
+<div class="box">
+<h3>Learning Progress</h3>
+<div class="bar"><div class="fill" style="width:80%"></div></div>
+</div>
+
+<div class="box">
+<h3>Course Completion</h3>
+<div class="bar"><div class="fill" style="width:65%"></div></div>
+</div>
+
+<div class="box">
+<h3>Research Activity</h3>
+<div class="bar"><div class="fill" style="width:90%"></div></div>
+</div>
+</div>
+
+</body>
+</html>

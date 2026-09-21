@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Taj Mahal - SaaS Projects</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<style>
+body{
+    margin:0;
+    font-family:Arial;
+    background:#eaf8ff;
+    color:#063b4c;
+}
+
+header{
+    background:#075b73;
+    color:white;
+    padding:30px;
+    text-align:center;
+}
+
+.projects{
+    max-width:1000px;
+    margin:30px auto;
+    padding:20px;
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:20px;
+}
+
+.project{
+    background:white;
+    padding:25px;
+    border-radius:15px;
+    box-shadow:0 5px 15px #b5d9e5;
+}
+
+button{
+    padding:10px 18px;
+    border:0;
+    border-radius:7px;
+    background:#075b73;
+    color:white;
+}
+
+@media(max-width:750px){
+    .projects{grid-template-columns:1fr}
+}
+</style>
+</head>
+
+<body>
+
+<header>
+<h1>🏛️ Taj Mahal Projects</h1>
+<p>Modern Island SaaS Experiences</p>
+</header>
+
+<div class="projects">
+
+<div class="project">
+<h2>Island Dashboard</h2>
+<p>Monitor island activity.</p>
+<button>Open</button>
+</div>
+
+<div class="project">
+<h2>Ocean Analytics</h2>
+<p>Analyze exploration data.</p>
+<button>Open</button>
+</div>
+
+<div class="project">
+<h2>Explorer Hub</h2>
+<p>Manage island journeys.</p>
+<button>Open</button>
+</div>
+
+</div>
+
+</body>
+</html>

@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Taj Mahal - Responsive Cards</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<style>
+body{margin:0;padding:25px;font-family:Arial;background:#eaf8ff;color:#063b4c}
+h1{text-align:center}
+.cards{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+.card{background:white;padding:25px;border-radius:16px;text-align:center;box-shadow:0 5px 15px #b5d9e5}
+.icon{font-size:40px}
+@media(max-width:800px){.cards{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:500px){.cards{grid-template-columns:1fr}}
+</style>
+</head>
+
+<body>
+<h1>🏛️ Island Services</h1>
+
+<div class="cards">
+<div class="card"><div class="icon">📚</div><h2>Learning</h2><p>Explore ancient knowledge.</p></div>
+<div class="card"><div class="icon">🧭</div><h2>Exploration</h2><p>Discover the island.</p></div>
+<div class="card"><div class="icon">🏛️</div><h2>Ocean</h2><p>Study the surrounding seas.</p></div>
+</div>
+
+</body>
+</html>

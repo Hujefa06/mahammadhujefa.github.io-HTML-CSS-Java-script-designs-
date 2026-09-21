@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Taj Mahal - Onboarding</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<style>
+body{
+    margin:0;
+    font-family:Arial;
+    background:#eaf8ff;
+    color:#063b4c;
+}
+
+.container{
+    max-width:700px;
+    margin:50px auto;
+    background:white;
+    padding:35px;
+    border-radius:18px;
+}
+
+.steps{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:15px;
+}
+
+.step{
+    text-align:center;
+    padding:20px;
+    background:#eaf8ff;
+    border-radius:12px;
+}
+
+.active{
+    background:#075b73;
+    color:white;
+}
+
+button{
+    margin-top:25px;
+    padding:13px 25px;
+    background:#075b73;
+    color:white;
+    border:0;
+    border-radius:8px;
+}
+
+@media(max-width:600px){
+    .steps{grid-template-columns:1fr}
+}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+<h1>🏛️ Welcome Explorer</h1>
+<p>Set up your Taj Mahal workspace.</p>
+
+<div class="steps">
+<div class="step active"><h2>1</h2><p>Profile</p></div>
+<div class="step"><h2>2</h2><p>Interests</p></div>
+<div class="step"><h2>3</h2><p>Finish</p></div>
+</div>
+
+<button>Continue</button>
+
+</div>
+
+</body>
+</html>

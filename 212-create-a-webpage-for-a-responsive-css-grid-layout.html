@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Responsive CSS Grid</title>
+<style>
+*{box-sizing:border-box}
+body{margin:0;background:#effcff;font-family:Arial;color:#164e63}
+header{background:#0369a1;color:white;text-align:center;padding:25px}
+.grid{max-width:1000px;margin:45px auto;padding:20px;display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:20px}
+.card{background:white;padding:35px;border-radius:15px;box-shadow:0 4px 15px #0002;text-align:center}
+.card h2{color:#0284c7}
+</style>
+</head>
+<body>
+<header><h1>🏛️ Responsive CSS Grid</h1></header>
+<div class="grid">
+<div class="card"><h2>01</h2><p>Taj Mahal</p></div>
+<div class="card"><h2>02</h2><p>Ancient Ocean</p></div>
+<div class="card"><h2>03</h2><p>Digital Heritage</p></div>
+<div class="card"><h2>04</h2><p>Modern Technology</p></div>
+<div class="card"><h2>05</h2><p>Research</p></div>
+<div class="card"><h2>06</h2><p>Exploration</p></div>
+</div>
+</body>
+</html>

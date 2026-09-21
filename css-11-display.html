@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Display Property Behaviors | CSS-11</title>
+  <link rel="stylesheet" href="../assets/css/style.css">
+  <link rel="stylesheet" href="../assets/css/program-viewer.css">
+  <style>
+    .display-demo-box {
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 1.25rem;
+      margin-bottom: 1.5rem;
+      background: #fafafa;
+    }
+    .sample-block { display: block; background: #dbeafe; border: 1px solid #3b82f6; padding: 0.5rem; margin: 0.4rem 0; color: #1e40af; font-weight: 600; }
+    .sample-inline { display: inline; background: #dcfce7; border: 1px solid #10b981; padding: 0.2rem 0.5rem; color: #166534; font-weight: 600; }
+    .sample-inline-block { display: inline-block; width: 140px; height: 60px; background: #fef3c7; border: 1px solid #f59e0b; padding: 0.5rem; margin: 0.3rem; color: #92400e; font-weight: 600; vertical-align: middle; }
+  </style>
+</head>
+<body>
+  <header class="navbar">
+    <div class="nav-container">
+      <a href="../index.html" class="nav-brand">
+        <div class="brand-icon" style="background: linear-gradient(135deg, #2563eb, #3b82f6);">
+          <span>&lt;/&gt;</span>
+        </div>
+        <span>CSS Programs</span>
+      </a>
+      <nav>
+        <ul class="nav-links">
+          <li><a href="../index.html" class="nav-link">Home</a></li>
+          <li><a href="../html/index.html" class="nav-link">HTML</a></li>
+          <li><a href="index.html" class="nav-link active">CSS</a></li>
+          <li><a href="../javascript/index.html" class="nav-link">JavaScript</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main class="main-wrapper">
+    <nav class="breadcrumb-bar">
+      <a href="../index.html">Home</a>
+      <span class="breadcrumb-separator">&rarr;</span>
+      <a href="index.html">CSS Programs</a>
+      <span class="breadcrumb-separator">&rarr;</span>
+      <span class="breadcrumb-current">CSS-11: Display Property</span>
+    </nav>
+
+    <section class="exp-header-card">
+      <div class="exp-meta-row">
+        <span class="exp-id-tag" style="background: #2563eb;">CSS-11</span>
+        <span class="exp-cat-tag">Box Model</span>
+      </div>
+      <h1 class="exp-heading">CSS Display Properties (Block, Inline, Inline-Block)</h1>
+      <p class="exp-description">
+        Demonstrates the fundamental CSS rendering flow models: display block (fills full available horizontal width and forces line breaks), display inline (flows with text, ignores explicit width/height), and display inline-block (flows inline while respecting width/height).
+      </p>
+      <div class="objective-box">
+        <div class="objective-title"><span>🎯</span> Practical Laboratory Objective</div>
+        <div class="objective-text">
+          Understand how browser render engines calculate document flow, why inline elements cannot accept vertical margins, and how inline-block bridges the gap.
+        </div>
+      </div>
+    </section>
+
+    <!-- Live Demonstration -->
+    <section class="demo-section-wrapper">
+      <div class="demo-section-header">
+        <div class="demo-title"><span>⚡</span> Live Display Showcase</div>
+        <span class="demo-live-badge">Working Demo</span>
+      </div>
+      <div class="demo-body" style="background: #ffffff;">
+        <!-- Block -->
+        <div class="display-demo-box">
+          <h4 style="color: #0f172a; margin-bottom: 0.5rem;">1. display: block</h4>
+          <p style="font-size: 0.85rem; color: #64748b; margin-bottom: 0.5rem;">Each block element begins on a new line and takes 100% of parent width:</p>
+          <div class="sample-block">Block Element 1</div>
+          <div class="sample-block">Block Element 2</div>
+        </div>
+
+        <!-- Inline -->
+        <div class="display-demo-box">
+          <h4 style="color: #0f172a; margin-bottom: 0.5rem;">2. display: inline</h4>
+          <p style="font-size: 0.85rem; color: #64748b; margin-bottom: 0.5rem;">Flows seamlessly inside surrounding paragraph sentences without line breaks:</p>
+          <p style="line-height: 1.8;">
+            Here is ordinary body copy containing <span class="sample-inline">Inline Tag A</span> and right beside it is <span class="sample-inline">Inline Tag B</span> before text continues.
+          </p>
+        </div>
+
+        <!-- Inline Block -->
+        <div class="display-demo-box">
+          <h4 style="color: #0f172a; margin-bottom: 0.5rem;">3. display: inline-block</h4>
+          <p style="font-size: 0.85rem; color: #64748b; margin-bottom: 0.5rem;">Flows inline with adjacent siblings while honoring explicit dimensions (140px &times; 60px):</p>
+          <div class="sample-inline-block">Box A (140x60)</div>
+          <div class="sample-inline-block">Box B (140x60)</div>
+          <div class="sample-inline-block">Box C (140x60)</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Source Code Section -->
+    <section class="source-section-wrapper">
+      <div class="source-header">
+        <div class="source-tabs">
+          <button class="code-tab-btn active" data-tab="css">CSS Source Code</button>
+        </div>
+        <div class="source-actions">
+          <button class="copy-code-btn" type="button">Copy Code</button>
+          <button class="toggle-code-btn" type="button">Hide Code</button>
+        </div>
+      </div>
+      <div class="code-content-container">
+        <div class="code-pane active" data-tab="css">
+<pre>/* Block: Starts new line, takes full width */
+.block-item {
+  display: block;
+  width: 100%;
+}
+
+/* Inline: Stays in text flow, ignores width/height */
+.inline-item {
+  display: inline;
+}
+
+/* Inline-Block: Stays in line, accepts width &amp; height */
+.inline-block-item {
+  display: inline-block;
+  width: 140px;
+  height: 60px;
+}</pre>
+        </div>
+      </div>
+    </section>
+
+    <!-- Bottom Navigation -->
+    <nav class="exp-nav-bar">
+      <a href="css-10-box-sizing.html" class="nav-btn nav-btn-prev">&larr; Previous (CSS-10)</a>
+      <a href="index.html" class="nav-btn nav-btn-hub">All CSS Programs</a>
+      <a href="css-12-visibility-overflow.html" class="nav-btn nav-btn-next">Next (CSS-12) &rarr;</a>
+    </nav>
+  </main>
+
+  <script src="../assets/js/code-viewer.js"></script>
+</body>
+</html>

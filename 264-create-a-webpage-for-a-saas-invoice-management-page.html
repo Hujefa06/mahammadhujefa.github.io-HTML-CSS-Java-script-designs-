@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Taj Mahal - Invoices</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<style>
+body{margin:0;padding:30px;font-family:Arial;background:#eaf8ff;color:#063b4c}
+.container{max-width:900px;margin:auto}
+.invoice{background:white;padding:20px;margin:12px 0;border-radius:12px;display:grid;grid-template-columns:1fr 1fr 1fr auto;align-items:center;box-shadow:0 4px 12px #b5d9e5}
+.status{color:#075b73;font-weight:bold}
+button{padding:9px 15px;background:#075b73;color:white;border:0;border-radius:7px}
+@media(max-width:650px){.invoice{grid-template-columns:1fr 1fr}.invoice button{margin-top:10px}}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+<h1>🧾 Invoice Management</h1>
+
+<div class="invoice">
+<div><strong>#KK1001</strong><br>Aug 25</div>
+<div>Navigator Plan</div>
+<div class="status">Paid</div>
+<button>View</button>
+</div>
+
+<div class="invoice">
+<div><strong>#KK1002</strong><br>Jul 25</div>
+<div>Navigator Plan</div>
+<div class="status">Paid</div>
+<button>View</button>
+</div>
+
+<div class="invoice">
+<div><strong>#KK1003</strong><br>Jun 25</div>
+<div>Explorer Plan</div>
+<div class="status">Paid</div>
+<button>View</button>
+</div>
+
+</div>
+
+</body>
+</html>

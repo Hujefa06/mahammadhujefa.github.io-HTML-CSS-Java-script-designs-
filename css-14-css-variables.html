@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CSS Custom Properties (Variables) | CSS-14</title>
+  <link rel="stylesheet" href="../assets/css/style.css">
+  <link rel="stylesheet" href="../assets/css/program-viewer.css">
+  <style>
+    /* Scoped theme container utilizing CSS variables */
+    .theme-sandbox {
+      --theme-bg: #ffffff;
+      --theme-card: #f8fafc;
+      --theme-accent: #4f46e5;
+      --theme-text: #0f172a;
+      --theme-border: #e2e8f0;
+
+      background-color: var(--theme-bg);
+      color: var(--theme-text);
+      padding: 2rem;
+      border-radius: 12px;
+      border: 2px solid var(--theme-border);
+      transition: all 0.3s ease;
+    }
+    .theme-sandbox.dark-mode {
+      --theme-bg: #0f172a;
+      --theme-card: #1e293b;
+      --theme-accent: #38bdf8;
+      --theme-text: #f8fafc;
+      --theme-border: #334155;
+    }
+    .theme-sandbox.emerald-mode {
+      --theme-bg: #f0fdf4;
+      --theme-card: #dcfce7;
+      --theme-accent: #16a34a;
+      --theme-text: #14532d;
+      --theme-border: #86efac;
+    }
+    .theme-card-preview {
+      background: var(--theme-card);
+      border: 1px solid var(--theme-border);
+      padding: 1.5rem;
+      border-radius: 8px;
+      margin-top: 1rem;
+    }
+    .theme-btn-preview {
+      background: var(--theme-accent);
+      color: #ffffff;
+      padding: 0.6rem 1.2rem;
+      border: none;
+      border-radius: 6px;
+      font-weight: 600;
+      cursor: pointer;
+      margin-top: 0.75rem;
+    }
+  </style>
+</head>
+<body>
+  <header class="navbar">
+    <div class="nav-container">
+      <a href="../index.html" class="nav-brand">
+        <div class="brand-icon" style="background: linear-gradient(135deg, #2563eb, #3b82f6);">
+          <span>&lt;/&gt;</span>
+        </div>
+        <span>CSS Programs</span>
+      </a>
+      <nav>
+        <ul class="nav-links">
+          <li><a href="../index.html" class="nav-link">Home</a></li>
+          <li><a href="../html/index.html" class="nav-link">HTML</a></li>
+          <li><a href="index.html" class="nav-link active">CSS</a></li>
+          <li><a href="../javascript/index.html" class="nav-link">JavaScript</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main class="main-wrapper">
+    <nav class="breadcrumb-bar">
+      <a href="../index.html">Home</a>
+      <span class="breadcrumb-separator">&rarr;</span>
+      <a href="index.html">CSS Programs</a>
+      <span class="breadcrumb-separator">&rarr;</span>
+      <span class="breadcrumb-current">CSS-14: CSS Variables</span>
+    </nav>
+
+    <section class="exp-header-card">
+      <div class="exp-meta-row">
+        <span class="exp-id-tag" style="background: #2563eb;">CSS-14</span>
+        <span class="exp-cat-tag">Foundation</span>
+      </div>
+      <h1 class="exp-heading">CSS Custom Properties (Variables) & Theming</h1>
+      <p class="exp-description">
+        Demonstrates the declaration and inheritance of CSS custom properties using `--name` syntax and the `var(--name, fallback)` function, highlighting real-time runtime theme switching without rewriting stylesheet rules.
+      </p>
+      <div class="objective-box">
+        <div class="objective-title"><span>🎯</span> Practical Laboratory Objective</div>
+        <div class="objective-text">
+          Understand lexical scoping of variables, global :root tokens vs component-scoped variables, and how changing a single variable updates all associated elements across the DOM tree.
+        </div>
+      </div>
+    </section>
+
+    <!-- Live Demonstration -->
+    <section class="demo-section-wrapper">
+      <div class="demo-section-header">
+        <div class="demo-title"><span>⚡</span> Live Theme Switcher Sandbox</div>
+        <span class="demo-live-badge">Working Demo</span>
+      </div>
+      <div class="demo-body" style="background: #f1f5f9;">
+        <!-- Theme Controls -->
+        <div style="display: flex; gap: 0.75rem; margin-bottom: 1rem; flex-wrap: wrap;">
+          <button class="demo-btn" onclick="switchTheme('light')">☀️ Light Theme</button>
+          <button class="demo-btn" style="background: #0f172a;" onclick="switchTheme('dark')">🌙 Dark Theme</button>
+          <button class="demo-btn" style="background: #16a34a;" onclick="switchTheme('emerald')">🌿 Emerald Theme</button>
+        </div>
+
+        <div class="theme-sandbox" id="theme-box">
+          <h3 style="font-size: 1.3rem; margin-bottom: 0.5rem;">Theme Container (--theme-bg / --theme-text)</h3>
+          <p style="opacity: 0.85; line-height: 1.6;">
+            All colors within this component are dynamically inherited from 5 core CSS variables.
+          </p>
+
+          <div class="theme-card-preview">
+            <h4 style="color: var(--theme-accent);">Nested Component Card</h4>
+            <p style="font-size: 0.9rem; margin-top: 0.25rem;">
+              Accent Color Token: <code style="color: var(--theme-accent); font-weight: 700;">var(--theme-accent)</code>
+            </p>
+            <button class="theme-btn-preview">Action Button</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Source Code Section -->
+    <section class="source-section-wrapper">
+      <div class="source-header">
+        <div class="source-tabs">
+          <button class="code-tab-btn active" data-tab="css">CSS Source Code</button>
+        </div>
+        <div class="source-actions">
+          <button class="copy-code-btn" type="button">Copy Code</button>
+          <button class="toggle-code-btn" type="button">Hide Code</button>
+        </div>
+      </div>
+      <div class="code-content-container">
+        <div class="code-pane active" data-tab="css">
+<pre>/* Declare Global CSS Variables in :root */
+:root {
+  --primary-color: #4f46e5;
+  --bg-color: #ffffff;
+  --text-color: #0f172a;
+}
+
+/* Dark Theme Overrides */
+[data-theme="dark"] {
+  --bg-color: #0f172a;
+  --text-color: #f8fafc;
+  --primary-color: #38bdf8;
+}
+
+/* Consumer elements reference tokens cleanly */
+body {
+  background-color: var(--bg-color);
+  color: var(--text-color);
+}
+.button-cta {
+  background-color: var(--primary-color);
+}</pre>
+        </div>
+      </div>
+    </section>
+
+    <!-- Bottom Navigation -->
+    <nav class="exp-nav-bar">
+      <a href="css-13-box-shadow.html" class="nav-btn nav-btn-prev">&larr; Previous (CSS-13)</a>
+      <a href="index.html" class="nav-btn nav-btn-hub">All CSS Programs</a>
+      <a href="css-15-specificity.html" class="nav-btn nav-btn-next">Next (CSS-15) &rarr;</a>
+    </nav>
+  </main>
+
+  <script src="../assets/js/code-viewer.js"></script>
+  <script>
+    const box = document.getElementById('theme-box');
+    function switchTheme(theme) {
+      box.className = 'theme-sandbox';
+      if (theme === 'dark') box.classList.add('dark-mode');
+      if (theme === 'emerald') box.classList.add('emerald-mode');
+    }
+  </script>
+</body>
+</html>

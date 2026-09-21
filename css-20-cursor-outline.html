@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cursor Types & Outline Offsets | CSS-20</title>
+  <link rel="stylesheet" href="../assets/css/style.css">
+  <link rel="stylesheet" href="../assets/css/program-viewer.css">
+  <style>
+    .cursor-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
+      gap: 1rem;
+      margin-bottom: 2rem;
+    }
+    .cursor-box {
+      height: 70px;
+      background: #f8fafc;
+      border: 1.5px solid var(--border);
+      border-radius: 8px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.85rem;
+      font-weight: 600;
+      color: #1e293b;
+      transition: background 0.2s;
+    }
+    .cursor-box:hover {
+      background: #e0e7ff;
+      border-color: #6366f1;
+    }
+    /* Outline offset demo */
+    .outline-demo-btn {
+      padding: 0.85rem 1.5rem;
+      background: #4f46e5;
+      color: #ffffff;
+      border: 2px solid #312e81;
+      border-radius: 6px;
+      outline: 3px dashed #06b6d4;
+      outline-offset: 6px;
+      font-weight: 700;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+  <header class="navbar">
+    <div class="nav-container">
+      <a href="../index.html" class="nav-brand">
+        <div class="brand-icon" style="background: linear-gradient(135deg, #2563eb, #3b82f6);">
+          <span>&lt;/&gt;</span>
+        </div>
+        <span>CSS Programs</span>
+      </a>
+      <nav>
+        <ul class="nav-links">
+          <li><a href="../index.html" class="nav-link">Home</a></li>
+          <li><a href="../html/index.html" class="nav-link">HTML</a></li>
+          <li><a href="index.html" class="nav-link active">CSS</a></li>
+          <li><a href="../javascript/index.html" class="nav-link">JavaScript</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main class="main-wrapper">
+    <nav class="breadcrumb-bar">
+      <a href="../index.html">Home</a>
+      <span class="breadcrumb-separator">&rarr;</span>
+      <a href="index.html">CSS Programs</a>
+      <span class="breadcrumb-separator">&rarr;</span>
+      <span class="breadcrumb-current">CSS-20: Cursors & Outlines</span>
+    </nav>
+
+    <section class="exp-header-card">
+      <div class="exp-meta-row">
+        <span class="exp-id-tag" style="background: #2563eb;">CSS-20</span>
+        <span class="exp-cat-tag">Foundation</span>
+      </div>
+      <h1 class="exp-heading">Custom Cursor Types and Accessible Outlines</h1>
+      <p class="exp-description">
+        Demonstrates the spectrum of user affordance cursors (pointer, crosshair, grab, grabbing, not-allowed, zoom-in, wait), and the distinction between borders (which impact the box model) versus outlines with outline-offset.
+      </p>
+      <div class="objective-box">
+        <div class="objective-title"><span>🎯</span> Practical Laboratory Objective</div>
+        <div class="objective-text">
+          Learn how to convey UI state affordances with contextual cursor feedback, and use non-disruptive keyboard focus rings with outline-offset for WCAG accessibility.
+        </div>
+      </div>
+    </section>
+
+    <!-- Live Demonstration -->
+    <section class="demo-section-wrapper">
+      <div class="demo-section-header">
+        <div class="demo-title"><span>⚡</span> Hover Cursor Palette</div>
+        <span class="demo-live-badge">Working Demo</span>
+      </div>
+      <div class="demo-body" style="background: #ffffff;">
+        <h4 style="color: #0f172a; margin-bottom: 0.75rem;">1. Hover Over Cards to Test Mouse Cursors:</h4>
+        <div class="cursor-grid">
+          <div class="cursor-box" style="cursor: pointer;">pointer</div>
+          <div class="cursor-box" style="cursor: grab;">grab</div>
+          <div class="cursor-box" style="cursor: grabbing;">grabbing</div>
+          <div class="cursor-box" style="cursor: crosshair;">crosshair</div>
+          <div class="cursor-box" style="cursor: not-allowed;">not-allowed</div>
+          <div class="cursor-box" style="cursor: zoom-in;">zoom-in</div>
+          <div class="cursor-box" style="cursor: wait;">wait</div>
+          <div class="cursor-box" style="cursor: text;">text</div>
+        </div>
+
+        <h4 style="color: #0f172a; margin-top: 1.5rem; margin-bottom: 0.75rem;">2. Outline vs Border with outline-offset:</h4>
+        <div style="padding: 2rem; background: #f8fafc; border-radius: 8px; text-align: center;">
+          <button type="button" class="outline-demo-btn">
+            Border + Dashed Cyan Outline (Offset: 6px)
+          </button>
+          <p style="font-size: 0.85rem; color: #64748b; margin-top: 1.5rem;">
+            Notice how the cyan dashed outline floats 6px outside the button without shifting any surrounding elements!
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Source Code Section -->
+    <section class="source-section-wrapper">
+      <div class="source-header">
+        <div class="source-tabs">
+          <button class="code-tab-btn active" data-tab="css">CSS Source Code</button>
+        </div>
+        <div class="source-actions">
+          <button class="copy-code-btn" type="button">Copy Code</button>
+          <button class="toggle-code-btn" type="button">Hide Code</button>
+        </div>
+      </div>
+      <div class="code-content-container">
+        <div class="code-pane active" data-tab="css">
+<pre>/* State-driven Cursors */
+.draggable-card { cursor: grab; }
+.disabled-button { cursor: not-allowed; }
+
+/* Accessible Focus Ring with Outline Offset */
+button:focus-visible {
+  outline: 3px solid #6366f1;
+  outline-offset: 4px; /* Floating space between element and focus ring */
+}</pre>
+        </div>
+      </div>
+    </section>
+
+    <!-- Bottom Navigation -->
+    <nav class="exp-nav-bar">
+      <a href="css-19-float-clear.html" class="nav-btn nav-btn-prev">&larr; Previous (CSS-19)</a>
+      <a href="index.html" class="nav-btn nav-btn-hub">All CSS Programs</a>
+      <a href="css-21-units.html" class="nav-btn nav-btn-next">Next (CSS-21) &rarr;</a>
+    </nav>
+  </main>
+
+  <script src="../assets/js/code-viewer.js"></script>
+</body>
+</html>

@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CSS Math Functions | CSS-16</title>
+  <link rel="stylesheet" href="../assets/css/style.css">
+  <link rel="stylesheet" href="../assets/css/program-viewer.css">
+  <style>
+    .math-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 1.5rem;
+    }
+    .math-card {
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 1.25rem;
+      background: #ffffff;
+    }
+    .clamp-headline {
+      font-size: clamp(1.25rem, 3vw + 0.5rem, 2.5rem);
+      font-weight: 800;
+      color: #4f46e5;
+      line-height: 1.2;
+      margin-top: 0.5rem;
+    }
+    .calc-sidebar-layout {
+      display: flex;
+      gap: 1rem;
+      background: #f1f5f9;
+      padding: 1rem;
+      border-radius: 8px;
+    }
+    .calc-sidebar {
+      width: 120px;
+      background: #dbeafe;
+      padding: 0.5rem;
+      border-radius: 4px;
+      font-size: 0.8rem;
+      font-weight: 600;
+      color: #1e40af;
+    }
+    .calc-main {
+      width: calc(100% - 136px);
+      background: #dcfce7;
+      padding: 0.5rem;
+      border-radius: 4px;
+      font-size: 0.8rem;
+      font-weight: 600;
+      color: #166534;
+    }
+  </style>
+</head>
+<body>
+  <header class="navbar">
+    <div class="nav-container">
+      <a href="../index.html" class="nav-brand">
+        <div class="brand-icon" style="background: linear-gradient(135deg, #2563eb, #3b82f6);">
+          <span>&lt;/&gt;</span>
+        </div>
+        <span>CSS Programs</span>
+      </a>
+      <nav>
+        <ul class="nav-links">
+          <li><a href="../index.html" class="nav-link">Home</a></li>
+          <li><a href="../html/index.html" class="nav-link">HTML</a></li>
+          <li><a href="index.html" class="nav-link active">CSS</a></li>
+          <li><a href="../javascript/index.html" class="nav-link">JavaScript</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main class="main-wrapper">
+    <nav class="breadcrumb-bar">
+      <a href="../index.html">Home</a>
+      <span class="breadcrumb-separator">&rarr;</span>
+      <a href="index.html">CSS Programs</a>
+      <span class="breadcrumb-separator">&rarr;</span>
+      <span class="breadcrumb-current">CSS-16: Math Functions (calc, min, max, clamp)</span>
+    </nav>
+
+    <section class="exp-header-card">
+      <div class="exp-meta-row">
+        <span class="exp-id-tag" style="background: #2563eb;">CSS-16</span>
+        <span class="exp-cat-tag">Foundation</span>
+      </div>
+      <h1 class="exp-heading">CSS Math: calc(), min(), max() &amp; clamp()</h1>
+      <p class="exp-description">
+        Demonstrates mathematical operations directly within CSS properties: calc() for mixing dissimilar units (e.g. 100% minus fixed sidebar pixels), min() for ceiling bounds, max() for floor safeguards, and clamp() for fluid scalable typography without media queries.
+      </p>
+      <div class="objective-box">
+        <div class="objective-title"><span>🎯</span> Practical Laboratory Objective</div>
+        <div class="objective-text">
+          Understand how clamp(min, ideal, max) eliminates dozens of repetitive media query breakpoints by providing continuous, mathematically smooth scaling.
+        </div>
+      </div>
+    </section>
+
+    <!-- Live Demonstration -->
+    <section class="demo-section-wrapper">
+      <div class="demo-section-header">
+        <div class="demo-title"><span>⚡</span> Live Math Demonstrator</div>
+        <span class="demo-live-badge">Working Demo</span>
+      </div>
+      <div class="demo-body" style="background: #ffffff;">
+        <div class="math-grid">
+          <!-- clamp() Typography -->
+          <div class="math-card">
+            <h4 style="color: #0f172a; margin-bottom: 0.25rem;">1. Fluid clamp() Typography</h4>
+            <small style="color: #64748b;">font-size: clamp(1.25rem, 3vw + 0.5rem, 2.5rem)</small>
+            <div class="clamp-headline">Fluid Scalable Heading</div>
+            <p style="font-size: 0.825rem; color: #64748b; margin-top: 0.5rem;">
+              Scales dynamically with browser window width, clamped safely between 1.25rem and 2.5rem.
+            </p>
+          </div>
+
+          <!-- calc() Layout -->
+          <div class="math-card">
+            <h4 style="color: #0f172a; margin-bottom: 0.25rem;">2. calc() Column Subtraction</h4>
+            <small style="color: #64748b;">width: calc(100% - 136px)</small>
+            <div class="calc-sidebar-layout" style="margin-top: 0.75rem;">
+              <div class="calc-sidebar">Sidebar (120px)</div>
+              <div class="calc-main">calc(100% - 136px)</div>
+            </div>
+            <p style="font-size: 0.825rem; color: #64748b; margin-top: 0.5rem;">
+              Combines dynamic percentages with fixed physical pixel offsets effortlessly.
+            </p>
+          </div>
+
+          <!-- min() and max() -->
+          <div class="math-card">
+            <h4 style="color: #0f172a; margin-bottom: 0.25rem;">3. min() and max() Functions</h4>
+            <small style="color: #64748b;">width: min(100%, 350px)</small>
+            <div style="width: min(100%, 350px); background: #fef3c7; border: 1.5px solid #f59e0b; padding: 0.75rem; border-radius: 6px; margin-top: 0.75rem; color: #92400e; font-size: 0.85rem; font-weight: 600;">
+              Caps width at 350px, but gracefully takes 100% when parent is smaller!
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Source Code Section -->
+    <section class="source-section-wrapper">
+      <div class="source-header">
+        <div class="source-tabs">
+          <button class="code-tab-btn active" data-tab="css">CSS Source Code</button>
+        </div>
+        <div class="source-actions">
+          <button class="copy-code-btn" type="button">Copy Code</button>
+          <button class="toggle-code-btn" type="button">Hide Code</button>
+        </div>
+      </div>
+      <div class="code-content-container">
+        <div class="code-pane active" data-tab="css">
+<pre>/* Fluid Typography using clamp() */
+.fluid-title {
+  /* syntax: clamp([min-size], [preferred-fluid-size], [max-size]) */
+  font-size: clamp(1.25rem, 3vw + 0.5rem, 2.5rem);
+}
+
+/* Mixed Unit Subtraction using calc() */
+.content-pane {
+  width: calc(100% - 240px); /* 100% minus fixed sidebar */
+}
+
+/* Bounds using min() and max() */
+.responsive-card {
+  width: min(90vw, 600px); /* Never wider than 600px or 90% of screen */
+  padding: max(16px, 2vw);  /* Never smaller than 16px */
+}</pre>
+        </div>
+      </div>
+    </section>
+
+    <!-- Bottom Navigation -->
+    <nav class="exp-nav-bar">
+      <a href="css-15-specificity.html" class="nav-btn nav-btn-prev">&larr; Previous (CSS-15)</a>
+      <a href="index.html" class="nav-btn nav-btn-hub">All CSS Programs</a>
+      <a href="css-17-positioning.html" class="nav-btn nav-btn-next">Next (CSS-17) &rarr;</a>
+    </nav>
+  </main>
+
+  <script src="../assets/js/code-viewer.js"></script>
+</body>
+</html>

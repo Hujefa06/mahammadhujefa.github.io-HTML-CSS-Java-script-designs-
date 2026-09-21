@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Taj Mahal - AI Agents</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<style>
+body{margin:0;padding:25px;font-family:Arial;background:#eaf8ff;color:#063b4c}
+.agents{max-width:1000px;margin:auto;display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+.agent{background:white;padding:25px;border-radius:15px;box-shadow:0 5px 15px #b5d9e5}
+.status{display:inline-block;padding:6px 12px;border-radius:20px;background:#cceff6;color:#075b73;font-weight:bold}
+.icon{font-size:40px}
+@media(max-width:800px){.agents{grid-template-columns:1fr 1fr}}
+@media(max-width:500px){.agents{grid-template-columns:1fr}}
+</style>
+</head>
+
+<body>
+
+<h1>🤖 AI Agent Management</h1>
+
+<div class="agents">
+
+<div class="agent">
+<div class="icon">🧭</div>
+<h2>Explorer Agent</h2>
+<span class="status">Active</span>
+<p>Maps island locations.</p>
+</div>
+
+<div class="agent">
+<div class="icon">🏛️</div>
+<h2>Ocean Agent</h2>
+<span class="status">Active</span>
+<p>Analyzes ocean data.</p>
+</div>
+
+<div class="agent">
+<div class="icon">📚</div>
+<h2>Research Agent</h2>
+<span class="status">Idle</span>
+<p>Studies historical records.</p>
+</div>
+
+</div>
+
+</body>
+</html>

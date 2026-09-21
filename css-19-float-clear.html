@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Float, Clear & Clearfix | CSS-19</title>
+  <link rel="stylesheet" href="../assets/css/style.css">
+  <link rel="stylesheet" href="../assets/css/program-viewer.css">
+  <style>
+    .clearfix::after {
+      content: "";
+      display: table;
+      clear: both;
+    }
+    .float-image-box {
+      float: left;
+      width: 140px;
+      height: 100px;
+      background: linear-gradient(135deg, #4f46e5, #06b6d4);
+      color: #ffffff;
+      padding: 0.5rem;
+      border-radius: 8px;
+      margin-right: 1.25rem;
+      margin-bottom: 0.5rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 700;
+      text-align: center;
+    }
+  </style>
+</head>
+<body>
+  <header class="navbar">
+    <div class="nav-container">
+      <a href="../index.html" class="nav-brand">
+        <div class="brand-icon" style="background: linear-gradient(135deg, #2563eb, #3b82f6);">
+          <span>&lt;/&gt;</span>
+        </div>
+        <span>CSS Programs</span>
+      </a>
+      <nav>
+        <ul class="nav-links">
+          <li><a href="../index.html" class="nav-link">Home</a></li>
+          <li><a href="../html/index.html" class="nav-link">HTML</a></li>
+          <li><a href="index.html" class="nav-link active">CSS</a></li>
+          <li><a href="../javascript/index.html" class="nav-link">JavaScript</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main class="main-wrapper">
+    <nav class="breadcrumb-bar">
+      <a href="../index.html">Home</a>
+      <span class="breadcrumb-separator">&rarr;</span>
+      <a href="index.html">CSS Programs</a>
+      <span class="breadcrumb-separator">&rarr;</span>
+      <span class="breadcrumb-current">CSS-19: Float & Clearfix</span>
+    </nav>
+
+    <section class="exp-header-card">
+      <div class="exp-meta-row">
+        <span class="exp-id-tag" style="background: #2563eb;">CSS-19</span>
+        <span class="exp-cat-tag">Layout</span>
+      </div>
+      <h1 class="exp-heading">Float, Clear and Parent Clearfix Micro-Hack</h1>
+      <p class="exp-description">
+        Demonstrates the float property (left, right) used for wrapping editorial prose around illustrations, the collapse of parent container heights caused by floated children, and the classic clearfix pseudo-element solution.
+      </p>
+      <div class="objective-box">
+        <div class="objective-title"><span>🎯</span> Practical Laboratory Objective</div>
+        <div class="objective-text">
+          Understand why floating an element pulls it out of the parent's normal height calculation and how the `clearfix` hack forces the container to encompass floated contents.
+        </div>
+      </div>
+    </section>
+
+    <!-- Live Demonstration -->
+    <section class="demo-section-wrapper">
+      <div class="demo-section-header">
+        <div class="demo-title"><span>⚡</span> Live Float &amp; Clearfix Showcase</div>
+        <span class="demo-live-badge">Working Demo</span>
+      </div>
+      <div class="demo-body" style="background: #ffffff;">
+        <!-- Clearfixed Container -->
+        <div class="clearfix" style="border: 2px solid var(--border); border-radius: 8px; padding: 1.25rem; background: #f8fafc;">
+          <div class="float-image-box">
+            Floated Left (float: left)
+          </div>
+          <h3 style="color: #0f172a; margin-bottom: 0.5rem;">Editorial Flow Surrounding Floated Media</h3>
+          <p style="line-height: 1.7; color: #475569;">
+            The text content flows naturally around the right and bottom contours of the floated box. Because the parent container has the <code>clearfix</code> class applied via its <code>::after</code> pseudo-element, the parent maintains its full calculated height and will not let subsequent page elements collide.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Source Code Section -->
+    <section class="source-section-wrapper">
+      <div class="source-header">
+        <div class="source-tabs">
+          <button class="code-tab-btn active" data-tab="css">CSS Source Code</button>
+        </div>
+        <div class="source-actions">
+          <button class="copy-code-btn" type="button">Copy Code</button>
+          <button class="toggle-code-btn" type="button">Hide Code</button>
+        </div>
+      </div>
+      <div class="code-content-container">
+        <div class="code-pane active" data-tab="css">
+<pre>/* Floated Media Element */
+.floated-img {
+  float: left;
+  margin: 0 16px 8px 0;
+}
+
+/* Clearfix Micro-Hack for Parent Containers */
+.clearfix::after {
+  content: "";
+  display: table;
+  clear: both;
+}</pre>
+        </div>
+      </div>
+    </section>
+
+    <!-- Bottom Navigation -->
+    <nav class="exp-nav-bar">
+      <a href="css-18-z-index.html" class="nav-btn nav-btn-prev">&larr; Previous (CSS-18)</a>
+      <a href="index.html" class="nav-btn nav-btn-hub">All CSS Programs</a>
+      <a href="css-20-cursor-outline.html" class="nav-btn nav-btn-next">Next (CSS-20) &rarr;</a>
+    </nav>
+  </main>
+
+  <script src="../assets/js/code-viewer.js"></script>
+</body>
+</html>

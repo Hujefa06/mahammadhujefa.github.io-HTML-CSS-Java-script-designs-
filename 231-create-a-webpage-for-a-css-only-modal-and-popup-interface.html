@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Taj Mahal - CSS Modal</title>
+
+<style>
+body{font-family:Arial;background:#eaf8ff;text-align:center;padding:50px;color:#063b4c}
+button{padding:14px 25px;background:#075b73;color:white;border:0;border-radius:8px}
+#modal{display:none}
+#modal:target{display:flex;position:fixed;inset:0;background:#0008;align-items:center;justify-content:center}
+.box{background:white;padding:35px;border-radius:16px;width:300px}
+.close{display:inline-block;margin-top:15px;color:#075b73;text-decoration:none}
+</style>
+</head>
+
+<body>
+
+<h1>🏛️ Taj Mahal</h1>
+
+<a href="#modal"><button>Open Explorer</button></a>
+
+<div id="modal">
+<div class="box">
+<h2>Island Information</h2>
+<p>Welcome to the ancient island.</p>
+<a class="close" href="#">Close</a>
+</div>
+</div>
+
+</body>
+</html>

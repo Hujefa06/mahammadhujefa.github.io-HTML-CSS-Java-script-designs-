@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Visibility & Overflow | CSS-12</title>
+  <link rel="stylesheet" href="../assets/css/style.css">
+  <link rel="stylesheet" href="../assets/css/program-viewer.css">
+  <style>
+    .vis-box-wrapper {
+      display: flex;
+      gap: 1rem;
+      background: #f1f5f9;
+      padding: 1rem;
+      border-radius: 8px;
+      margin: 1rem 0;
+    }
+    .vis-box {
+      width: 100px;
+      height: 80px;
+      border-radius: 6px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 700;
+      color: #ffffff;
+    }
+    .overflow-scroll-card {
+      width: 280px;
+      height: 120px;
+      overflow-y: auto;
+      border: 2px solid #cbd5e1;
+      padding: 1rem;
+      border-radius: 8px;
+      background: #ffffff;
+      line-height: 1.6;
+      font-size: 0.85rem;
+    }
+  </style>
+</head>
+<body>
+  <header class="navbar">
+    <div class="nav-container">
+      <a href="../index.html" class="nav-brand">
+        <div class="brand-icon" style="background: linear-gradient(135deg, #2563eb, #3b82f6);">
+          <span>&lt;/&gt;</span>
+        </div>
+        <span>CSS Programs</span>
+      </a>
+      <nav>
+        <ul class="nav-links">
+          <li><a href="../index.html" class="nav-link">Home</a></li>
+          <li><a href="../html/index.html" class="nav-link">HTML</a></li>
+          <li><a href="index.html" class="nav-link active">CSS</a></li>
+          <li><a href="../javascript/index.html" class="nav-link">JavaScript</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main class="main-wrapper">
+    <nav class="breadcrumb-bar">
+      <a href="../index.html">Home</a>
+      <span class="breadcrumb-separator">&rarr;</span>
+      <a href="index.html">CSS Programs</a>
+      <span class="breadcrumb-separator">&rarr;</span>
+      <span class="breadcrumb-current">CSS-12: Visibility & Overflow</span>
+    </nav>
+
+    <section class="exp-header-card">
+      <div class="exp-meta-row">
+        <span class="exp-id-tag" style="background: #2563eb;">CSS-12</span>
+        <span class="exp-cat-tag">Box Model</span>
+      </div>
+      <h1 class="exp-heading">Visibility Hidden vs Display None &amp; Overflow Handling</h1>
+      <p class="exp-description">
+        Demonstrates the critical distinction between removing an element from the render flow (display: none) versus hiding pixels while preserving layout space (visibility: hidden), alongside overflow control (visible, hidden, scroll, auto).
+      </p>
+      <div class="objective-box">
+        <div class="objective-title"><span>🎯</span> Practical Laboratory Objective</div>
+        <div class="objective-text">
+          Understand how layout reflow occurs when removing elements, and master scroll clipping for modals, code panes, and tables.
+        </div>
+      </div>
+    </section>
+
+    <!-- Live Demonstration -->
+    <section class="demo-section-wrapper">
+      <div class="demo-section-header">
+        <div class="demo-title"><span>⚡</span> Live Interactive Comparison</div>
+        <span class="demo-live-badge">Working Demo</span>
+      </div>
+      <div class="demo-body" style="background: #ffffff;">
+        <!-- Visibility Comparison -->
+        <div>
+          <h3 style="color: #0f172a; margin-bottom: 0.5rem; font-size: 1.1rem;">1. Hiding Mechanics: Space Preservation</h3>
+          <div style="display: flex; gap: 0.5rem; margin-bottom: 0.75rem;">
+            <button class="demo-btn" onclick="setMiddle('normal')">Reset Normal</button>
+            <button class="demo-btn demo-btn-secondary" onclick="setMiddle('hidden')">visibility: hidden</button>
+            <button class="demo-btn demo-btn-secondary" onclick="setMiddle('none')">display: none</button>
+          </div>
+
+          <div class="vis-box-wrapper">
+            <div class="vis-box" style="background: #3b82f6;">Box 1</div>
+            <div class="vis-box" id="test-middle-box" style="background: #ef4444; transition: opacity 0.2s;">Box 2</div>
+            <div class="vis-box" style="background: #10b981;">Box 3</div>
+          </div>
+          <p id="vis-desc" style="font-size: 0.85rem; color: #64748b;">
+            All 3 boxes are rendered in the layout flow.
+          </p>
+        </div>
+
+        <hr style="border: 0; border-top: 1px solid var(--border); margin: 1.5rem 0;">
+
+        <!-- Overflow -->
+        <div>
+          <h3 style="color: #0f172a; margin-bottom: 0.5rem; font-size: 1.1rem;">2. overflow: auto Scroll Container</h3>
+          <div class="overflow-scroll-card">
+            <strong style="color: #0f172a;">Scrollable Content Area:</strong><br>
+            When text or embedded items exceed the bounding box height of 120px, <code>overflow-y: auto</code> automatically provides smooth browser scrollbars without distorting sibling page elements. Try scrolling this card!
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Source Code Section -->
+    <section class="source-section-wrapper">
+      <div class="source-header">
+        <div class="source-tabs">
+          <button class="code-tab-btn active" data-tab="css">CSS Source Code</button>
+        </div>
+        <div class="source-actions">
+          <button class="copy-code-btn" type="button">Copy Code</button>
+          <button class="toggle-code-btn" type="button">Hide Code</button>
+        </div>
+      </div>
+      <div class="code-content-container">
+        <div class="code-pane active" data-tab="css">
+<pre>/* display: none removes element entirely from layout */
+.item-removed {
+  display: none;
+}
+
+/* visibility: hidden hides element but reserves its physical space */
+.item-invisible {
+  visibility: hidden;
+}
+
+/* overflow: auto introduces scrollbars strictly when content overflows */
+.scroll-pane {
+  max-height: 200px;
+  overflow-y: auto;
+}</pre>
+        </div>
+      </div>
+    </section>
+
+    <!-- Bottom Navigation -->
+    <nav class="exp-nav-bar">
+      <a href="css-11-display.html" class="nav-btn nav-btn-prev">&larr; Previous (CSS-11)</a>
+      <a href="index.html" class="nav-btn nav-btn-hub">All CSS Programs</a>
+      <a href="css-13-box-shadow.html" class="nav-btn nav-btn-next">Next (CSS-13) &rarr;</a>
+    </nav>
+  </main>
+
+  <script src="../assets/js/code-viewer.js"></script>
+  <script>
+    const box = document.getElementById('test-middle-box');
+    const desc = document.getElementById('vis-desc');
+
+    function setMiddle(mode) {
+      if (mode === 'normal') {
+        box.style.display = 'flex';
+        box.style.visibility = 'visible';
+        desc.textContent = 'Normal: All 3 boxes in layout.';
+      } else if (mode === 'hidden') {
+        box.style.display = 'flex';
+        box.style.visibility = 'hidden';
+        desc.textContent = 'visibility: hidden: Box 2 is invisible, but its physical space is preserved!';
+      } else if (mode === 'none') {
+        box.style.display = 'none';
+        desc.textContent = 'display: none: Box 2 is completely removed from document flow; Box 3 snaps left!';
+      }
+    }
+  </script>
+</body>
+</html>

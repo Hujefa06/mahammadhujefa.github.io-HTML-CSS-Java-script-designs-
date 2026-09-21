@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Taj Mahal - Team Workspace</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<style>
+body{
+    margin:0;
+    padding:30px;
+    font-family:Arial;
+    background:#eaf8ff;
+    color:#063b4c;
+}
+
+.workspace{
+    max-width:1000px;
+    margin:auto;
+}
+
+.members{
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    gap:15px;
+}
+
+.member{
+    background:white;
+    padding:20px;
+    border-radius:14px;
+    text-align:center;
+    box-shadow:0 4px 12px #b5d9e5;
+}
+
+.avatar{
+    width:55px;
+    height:55px;
+    margin:auto;
+    border-radius:50%;
+    background:#075b73;
+    color:white;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-size:22px;
+}
+
+@media(max-width:750px){
+    .members{grid-template-columns:repeat(2,1fr)}
+}
+
+@media(max-width:450px){
+    .members{grid-template-columns:1fr}
+}
+</style>
+</head>
+
+<body>
+
+<div class="workspace">
+
+<h1>👥 Island Team Workspace</h1>
+
+<div class="members">
+
+<div class="member">
+<div class="avatar">A</div>
+<h3>Aran</h3>
+<p>Researcher</p>
+</div>
+
+<div class="member">
+<div class="avatar">M</div>
+<h3>Meena</h3>
+<p>Explorer</p>
+</div>
+
+<div class="member">
+<div class="avatar">V</div>
+<h3>Velan</h3>
+<p>Developer</p>
+</div>
+
+<div class="member">
+<div class="avatar">K</div>
+<h3>Kavi</h3>
+<p>Designer</p>
+</div>
+
+</div>
+
+</div>
+
+</body>
+</html>

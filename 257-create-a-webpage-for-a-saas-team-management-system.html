@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Taj Mahal - Team Management</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<style>
+body{margin:0;padding:30px;font-family:Arial;background:#eaf8ff;color:#063b4c}
+.team{max-width:1000px;margin:auto}
+.members{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+.member{background:white;padding:25px;border-radius:15px;text-align:center;box-shadow:0 5px 15px #b5d9e5}
+.avatar{width:60px;height:60px;margin:auto;border-radius:50%;background:#075b73;color:white;display:flex;align-items:center;justify-content:center;font-size:25px}
+.role{color:#075b73;font-weight:bold}
+@media(max-width:700px){.members{grid-template-columns:1fr}}
+</style>
+</head>
+
+<body>
+
+<div class="team">
+
+<h1>👥 Island Team</h1>
+
+<div class="members">
+
+<div class="member">
+<div class="avatar">A</div>
+<h2>Aran</h2>
+<p class="role">Team Lead</p>
+</div>
+
+<div class="member">
+<div class="avatar">M</div>
+<h2>Meena</h2>
+<p class="role">Researcher</p>
+</div>
+
+<div class="member">
+<div class="avatar">V</div>
+<h2>Velan</h2>
+<p class="role">Developer</p>
+</div>
+
+</div>
+
+</div>
+
+</body>
+</html>

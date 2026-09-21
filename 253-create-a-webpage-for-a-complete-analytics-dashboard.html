@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Taj Mahal - Analytics Dashboard</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<style>
+*{box-sizing:border-box}
+body{margin:0;font-family:Arial;background:#eaf8ff;color:#063b4c}
+header{background:#075b73;color:white;padding:20px}
+main{padding:25px}
+.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:18px}
+.card{background:white;padding:22px;border-radius:15px;box-shadow:0 5px 15px #b5d9e5}
+.number{font-size:32px;font-weight:bold;color:#075b73}
+.chart{height:220px;display:flex;align-items:end;gap:12px}
+.bar{flex:1;background:#075b73;border-radius:7px 7px 0 0}
+@media(max-width:800px){.stats{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:500px){.stats{grid-template-columns:1fr}}
+</style>
+</head>
+
+<body>
+
+<header>
+<h1>📊 Taj Mahal Analytics</h1>
+</header>
+
+<main>
+
+<div class="stats">
+<div class="card"><h3>Visitors</h3><div class="number">12,450</div></div>
+<div class="card"><h3>Explorers</h3><div class="number">8,320</div></div>
+<div class="card"><h3>Courses</h3><div class="number">32</div></div>
+<div class="card"><h3>Activity</h3><div class="number">91%</div></div>
+</div>
+
+<div class="card" style="margin-top:20px">
+<h2>Weekly Activity</h2>
+
+<div class="chart">
+<div class="bar" style="height:40%"></div>
+<div class="bar" style="height:65%"></div>
+<div class="bar" style="height:50%"></div>
+<div class="bar" style="height:80%"></div>
+<div class="bar" style="height:70%"></div>
+<div class="bar" style="height:95%"></div>
+<div class="bar" style="height:85%"></div>
+</div>
+</div>
+
+</main>
+</body>
+</html>

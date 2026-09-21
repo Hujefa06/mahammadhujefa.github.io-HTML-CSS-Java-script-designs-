@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CSS Selectors & Combinators | CSS-01</title>
+  <link rel="stylesheet" href="../assets/css/style.css">
+  <link rel="stylesheet" href="../assets/css/program-viewer.css">
+  <style>
+    /* Combinator demonstrations */
+    .parent-box {
+      border: 2px dashed #94a3b8;
+      padding: 1.25rem;
+      border-radius: 8px;
+      margin-bottom: 1rem;
+      background: #f8fafc;
+    }
+    /* Child Combinator (>) */
+    .parent-box > .direct-child {
+      background: #dbeafe;
+      border: 1.5px solid #3b82f6;
+      padding: 0.5rem 0.75rem;
+      border-radius: 6px;
+      color: #1e40af;
+      font-weight: 600;
+      margin: 0.5rem 0;
+    }
+    /* Descendant Combinator (space) */
+    .parent-box .nested-descendant {
+      background: #fef3c7;
+      border: 1.5px solid #f59e0b;
+      padding: 0.5rem 0.75rem;
+      border-radius: 6px;
+      color: #92400e;
+      font-weight: 600;
+      margin: 0.5rem 0;
+    }
+    /* Adjacent Sibling (+) */
+    .base-element + .adjacent-sibling {
+      background: #dcfce7;
+      border: 1.5px solid #10b981;
+      padding: 0.5rem 0.75rem;
+      border-radius: 6px;
+      color: #166534;
+      font-weight: 600;
+      margin: 0.5rem 0;
+    }
+    /* General Sibling (~) */
+    .base-element ~ .general-sibling {
+      background: #f3e8ff;
+      border: 1.5px solid #a855f7;
+      padding: 0.5rem 0.75rem;
+      border-radius: 6px;
+      color: #6b21a8;
+      font-weight: 600;
+      margin: 0.5rem 0;
+    }
+  </style>
+</head>
+<body>
+  <header class="navbar">
+    <div class="nav-container">
+      <a href="../index.html" class="nav-brand">
+        <div class="brand-icon" style="background: linear-gradient(135deg, #2563eb, #3b82f6);">
+          <span>&lt;/&gt;</span>
+        </div>
+        <span>CSS Programs</span>
+      </a>
+      <nav>
+        <ul class="nav-links">
+          <li><a href="../index.html" class="nav-link">Home</a></li>
+          <li><a href="../html/index.html" class="nav-link">HTML</a></li>
+          <li><a href="index.html" class="nav-link active">CSS</a></li>
+          <li><a href="../javascript/index.html" class="nav-link">JavaScript</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main class="main-wrapper">
+    <nav class="breadcrumb-bar">
+      <a href="../index.html">Home</a>
+      <span class="breadcrumb-separator">&rarr;</span>
+      <a href="index.html">CSS Programs</a>
+      <span class="breadcrumb-separator">&rarr;</span>
+      <span class="breadcrumb-current">CSS-01: Selectors & Combinators</span>
+    </nav>
+
+    <section class="exp-header-card">
+      <div class="exp-meta-row">
+        <span class="exp-id-tag" style="background: #2563eb;">CSS-01</span>
+        <span class="exp-cat-tag">Foundation</span>
+      </div>
+      <h1 class="exp-heading">CSS Selectors and Combinator Relationships</h1>
+      <p class="exp-description">
+        Demonstrates relational selector targeting: descendant selector (space), direct child selector (&gt;), adjacent sibling selector (+), and general sibling selector (~), highlighting parent-child boundaries.
+      </p>
+      <div class="objective-box">
+        <div class="objective-title"><span>🎯</span> Practical Laboratory Objective</div>
+        <div class="objective-text">
+          Understand how combinators allow precision targeting of DOM elements based on document tree relationships without requiring redundant inline classes.
+        </div>
+      </div>
+    </section>
+
+    <!-- Live Demonstration -->
+    <section class="demo-section-wrapper">
+      <div class="demo-section-header">
+        <div class="demo-title"><span>⚡</span> Live Combinator Showcase</div>
+        <span class="demo-live-badge">Working Demo</span>
+      </div>
+      <div class="demo-body" style="background: #ffffff;">
+        <div class="parent-box">
+          <strong style="color: #475569;">Container (.parent-box)</strong>
+          
+          <div class="direct-child">
+            .direct-child (Targeted by <code>.parent-box &gt; .direct-child</code>)
+          </div>
+
+          <div style="padding: 0.5rem; border: 1px dotted #cbd5e1; margin: 0.5rem 0; border-radius: 4px;">
+            <small style="color: #64748b;">Intermediate Sub-wrapper</small>
+            <div class="nested-descendant">
+              .nested-descendant (Targeted by <code>.parent-box .nested-descendant</code>)
+            </div>
+          </div>
+
+          <div class="base-element" style="padding: 0.5rem 0.75rem; background: #e2e8f0; border-radius: 6px; font-weight: 600; margin: 0.75rem 0;">
+            Reference Anchor Element (.base-element)
+          </div>
+
+          <div class="adjacent-sibling">
+            .adjacent-sibling (Immediately follows anchor: <code>.base-element + .adjacent-sibling</code>)
+          </div>
+
+          <div class="general-sibling">
+            .general-sibling (Follows anywhere after anchor: <code>.base-element ~ .general-sibling</code>)
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Source Code Section -->
+    <section class="source-section-wrapper">
+      <div class="source-header">
+        <div class="source-tabs">
+          <button class="code-tab-btn active" data-tab="css">CSS Source Code</button>
+        </div>
+        <div class="source-actions">
+          <button class="copy-code-btn" type="button">Copy Code</button>
+          <button class="toggle-code-btn" type="button">Hide Code</button>
+        </div>
+      </div>
+      <div class="code-content-container">
+        <div class="code-pane active" data-tab="css">
+<pre>/* 1. Direct Child Combinator: Targets immediate children only */
+.parent-box > .direct-child {
+  background: #dbeafe;
+  border: 1.5px solid #3b82f6;
+}
+
+/* 2. Descendant Combinator: Targets any nested descendant */
+.parent-box .nested-descendant {
+  background: #fef3c7;
+}
+
+/* 3. Adjacent Sibling: Targets immediately following sibling */
+.base-element + .adjacent-sibling {
+  background: #dcfce7;
+}
+
+/* 4. General Sibling: Targets all subsequent siblings */
+.base-element ~ .general-sibling {
+  background: #f3e8ff;
+}</pre>
+        </div>
+      </div>
+    </section>
+
+    <!-- Bottom Navigation -->
+    <nav class="exp-nav-bar">
+      <a href="index.html" class="nav-btn nav-btn-prev">&larr; Back to Index</a>
+      <a href="index.html" class="nav-btn nav-btn-hub">All CSS Programs</a>
+      <a href="css-02-colors.html" class="nav-btn nav-btn-next">Next (CSS-02) &rarr;</a>
+    </nav>
+  </main>
+
+  <script src="../assets/js/code-viewer.js"></script>
+</body>
+</html>

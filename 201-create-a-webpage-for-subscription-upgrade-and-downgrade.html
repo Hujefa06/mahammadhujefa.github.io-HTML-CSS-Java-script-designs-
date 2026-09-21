@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Upgrade Downgrade</title>
+<style>
+body{margin:0;background:#ecfeff;font-family:Arial;color:#164e63}
+header{background:#0e7490;color:white;text-align:center;padding:25px}
+.plans{max-width:850px;margin:45px auto;display:grid;grid-template-columns:repeat(2,1fr);gap:25px}
+.plan{background:white;padding:30px;border-radius:16px;box-shadow:0 4px 15px #0002;text-align:center}
+.price{font-size:35px;color:#0284c7;font-weight:bold}
+button{padding:11px 22px;border:0;border-radius:8px;background:#0284c7;color:white}
+.downgrade{background:#64748b}
+@media(max-width:650px){.plans{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<header><h1>🏛️ Change Subscription</h1></header>
+<div class="plans">
+<div class="plan">
+<h2>Basic</h2><div class="price">₹499</div>
+<p>Current Plan</p><button class="downgrade">Downgrade</button>
+</div>
+<div class="plan">
+<h2>Pro</h2><div class="price">₹999</div>
+<p>Advanced features</p><button>Upgrade</button>
+</div>
+</div>
+</body>
+</html>

@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Typography & Fonts | CSS-06</title>
+  <link rel="stylesheet" href="../assets/css/style.css">
+  <link rel="stylesheet" href="../assets/css/program-viewer.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,600;1,400&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
+  <style>
+    .font-sample-card {
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 1.5rem;
+      margin-bottom: 1.5rem;
+      background: #ffffff;
+    }
+    .font-serif { font-family: 'Playfair Display', Georgia, serif; }
+    .font-grotesk { font-family: 'Space Grotesk', sans-serif; }
+    .text-shadow-glow {
+      text-shadow: 0 0 10px rgba(99, 102, 241, 0.6), 0 0 20px rgba(99, 102, 241, 0.3);
+    }
+  </style>
+</head>
+<body>
+  <header class="navbar">
+    <div class="nav-container">
+      <a href="../index.html" class="nav-brand">
+        <div class="brand-icon" style="background: linear-gradient(135deg, #2563eb, #3b82f6);">
+          <span>&lt;/&gt;</span>
+        </div>
+        <span>CSS Programs</span>
+      </a>
+      <nav>
+        <ul class="nav-links">
+          <li><a href="../index.html" class="nav-link">Home</a></li>
+          <li><a href="../html/index.html" class="nav-link">HTML</a></li>
+          <li><a href="index.html" class="nav-link active">CSS</a></li>
+          <li><a href="../javascript/index.html" class="nav-link">JavaScript</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main class="main-wrapper">
+    <nav class="breadcrumb-bar">
+      <a href="../index.html">Home</a>
+      <span class="breadcrumb-separator">&rarr;</span>
+      <a href="index.html">CSS Programs</a>
+      <span class="breadcrumb-separator">&rarr;</span>
+      <span class="breadcrumb-current">CSS-06: Web Typography & Fonts</span>
+    </nav>
+
+    <section class="exp-header-card">
+      <div class="exp-meta-row">
+        <span class="exp-id-tag" style="background: #2563eb;">CSS-06</span>
+        <span class="exp-cat-tag">Foundation</span>
+      </div>
+      <h1 class="exp-heading">Web Typography, Google Fonts & Shadows</h1>
+      <p class="exp-description">
+        Demonstrates modern web typography best practices including external Google Fonts integration (@import &amp; link), optical sizing, typographic scale, line-height vertical rhythm, and text shadows.
+      </p>
+      <div class="objective-box">
+        <div class="objective-title"><span>🎯</span> Practical Laboratory Objective</div>
+        <div class="objective-text">
+          Master font pairing (Serif for editorial flair, Sans-Serif for interface readability) and understand how font-display: swap eliminates Flash of Invisible Text (FOIT).
+        </div>
+      </div>
+    </section>
+
+    <!-- Live Demonstration -->
+    <section class="demo-section-wrapper">
+      <div class="demo-section-header">
+        <div class="demo-title"><span>⚡</span> Live Typography Showcase</div>
+        <span class="demo-live-badge">Working Demo</span>
+      </div>
+      <div class="demo-body" style="background: #ffffff;">
+        <div class="font-sample-card">
+          <small style="color: #64748b; font-weight: 600;">Serif Editorial (Playfair Display)</small>
+          <h2 class="font-serif" style="font-size: 2rem; color: #1e293b; margin: 0.5rem 0;">Elegant Academic Typography</h2>
+          <p class="font-serif" style="font-style: italic; color: #475569; font-size: 1.1rem;">
+            "Simplicity is the soul of modern web aesthetics and readable typography."
+          </p>
+        </div>
+
+        <div class="font-sample-card">
+          <small style="color: #64748b; font-weight: 600;">Geometric Sans (Space Grotesk)</small>
+          <h2 class="font-grotesk" style="font-size: 1.8rem; color: #0f172a; margin: 0.5rem 0;">ENGINEERING DESIGN SYSTEMS</h2>
+          <p class="font-grotesk" style="color: #475569; line-height: 1.7;">
+            High-contrast sans-serif typefaces engineered for modern software interfaces and developer analytics consoles.
+          </p>
+        </div>
+
+        <div class="font-sample-card" style="background: #0f172a; color: #ffffff; text-align: center;">
+          <small style="color: #94a3b8; font-weight: 600;">Text Shadow Glow Effect</small>
+          <h2 class="text-shadow-glow" style="font-size: 2.2rem; margin: 0.75rem 0; color: #ffffff;">
+            LUMINESCENT GLOW
+          </h2>
+          <p style="color: #94a3b8;">CSS multi-stop text shadow creates depth and ambient backlighting.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Source Code Section -->
+    <section class="source-section-wrapper">
+      <div class="source-header">
+        <div class="source-tabs">
+          <button class="code-tab-btn active" data-tab="css">CSS Source Code</button>
+        </div>
+        <div class="source-actions">
+          <button class="copy-code-btn" type="button">Copy Code</button>
+          <button class="toggle-code-btn" type="button">Hide Code</button>
+        </div>
+      </div>
+      <div class="code-content-container">
+        <div class="code-pane active" data-tab="css">
+<pre>/* Import Google Fonts with Swap display */
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,600;1,400&amp;display=swap');
+
+/* Font Family Stack with System Fallbacks */
+.editorial-title {
+  font-family: 'Playfair Display', Georgia, 'Times New Roman', serif;
+  font-size: 2rem;
+  line-height: 1.3;
+}
+
+/* Multi-layer Text Shadow Glow */
+.glow-text {
+  color: #ffffff;
+  text-shadow: 0 0 10px rgba(99, 102, 241, 0.8),
+               0 0 20px rgba(99, 102, 241, 0.4);
+}</pre>
+        </div>
+      </div>
+    </section>
+
+    <!-- Bottom Navigation -->
+    <nav class="exp-nav-bar">
+      <a href="css-05-gradients.html" class="nav-btn nav-btn-prev">&larr; Previous (CSS-05)</a>
+      <a href="index.html" class="nav-btn nav-btn-hub">All CSS Programs</a>
+      <a href="css-07-text-properties.html" class="nav-btn nav-btn-next">Next (CSS-07) &rarr;</a>
+    </nav>
+  </main>
+
+  <script src="../assets/js/code-viewer.js"></script>
+</body>
+</html>

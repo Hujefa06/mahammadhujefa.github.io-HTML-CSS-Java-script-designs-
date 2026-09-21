@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Taj Mahal - Fixed Sidebar</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<style>
+body{margin:0;font-family:Arial;background:#eaf8ff;color:#063b4c}
+aside{position:fixed;left:0;top:0;bottom:0;width:220px;background:#063b4c;color:white;padding:20px}
+aside div{padding:15px;background:#075b73;margin:10px 0;border-radius:8px}
+main{margin-left:220px;padding:30px}
+@media(max-width:600px){
+aside{width:80px}
+aside div{font-size:0;text-align:center}
+aside div:first-letter{font-size:22px}
+main{margin-left:80px}
+}
+</style>
+</head>
+
+<body>
+
+<aside>
+<h2>🏛️</h2>
+<div>🏠 Home</div>
+<div>📚 Courses</div>
+<div>🧭 Explore</div>
+<div>⚙️ Settings</div>
+</aside>
+
+<main>
+<h1>Taj Mahal</h1>
+<p>Fixed navigation remains visible while the page scrolls.</p>
+</main>
+
+</body>
+</html>

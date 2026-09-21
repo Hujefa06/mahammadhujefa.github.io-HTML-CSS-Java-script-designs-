@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Box Sizing Comparison | CSS-10</title>
+  <link rel="stylesheet" href="../assets/css/style.css">
+  <link rel="stylesheet" href="../assets/css/program-viewer.css">
+  <style>
+    .sizing-container {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 2rem;
+    }
+    .box-sample {
+      width: 260px;
+      padding: 30px;
+      border: 10px solid #4f46e5;
+      background: #e0e7ff;
+      color: #312e81;
+      font-weight: 600;
+      border-radius: 8px;
+    }
+    .box-content-box {
+      box-sizing: content-box;
+    }
+    .box-border-box {
+      box-sizing: border-box;
+    }
+  </style>
+</head>
+<body>
+  <header class="navbar">
+    <div class="nav-container">
+      <a href="../index.html" class="nav-brand">
+        <div class="brand-icon" style="background: linear-gradient(135deg, #2563eb, #3b82f6);">
+          <span>&lt;/&gt;</span>
+        </div>
+        <span>CSS Programs</span>
+      </a>
+      <nav>
+        <ul class="nav-links">
+          <li><a href="../index.html" class="nav-link">Home</a></li>
+          <li><a href="../html/index.html" class="nav-link">HTML</a></li>
+          <li><a href="index.html" class="nav-link active">CSS</a></li>
+          <li><a href="../javascript/index.html" class="nav-link">JavaScript</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main class="main-wrapper">
+    <nav class="breadcrumb-bar">
+      <a href="../index.html">Home</a>
+      <span class="breadcrumb-separator">&rarr;</span>
+      <a href="index.html">CSS Programs</a>
+      <span class="breadcrumb-separator">&rarr;</span>
+      <span class="breadcrumb-current">CSS-10: Box Sizing</span>
+    </nav>
+
+    <section class="exp-header-card">
+      <div class="exp-meta-row">
+        <span class="exp-id-tag" style="background: #2563eb;">CSS-10</span>
+        <span class="exp-cat-tag">Box Model</span>
+      </div>
+      <h1 class="exp-heading">Box Sizing: Border-Box vs. Content-Box</h1>
+      <p class="exp-description">
+        Demonstrates the fundamental calculation discrepancy between default content-box and modern border-box. Both elements below share identical width (260px), padding (30px), and border (10px).
+      </p>
+      <div class="objective-box">
+        <div class="objective-title"><span>🎯</span> Practical Laboratory Objective</div>
+        <div class="objective-text">
+          Understand why `box-sizing: border-box` simplifies UI mathematics by including padding and borders inside the declared width, preventing unintended layout overflows.
+        </div>
+      </div>
+    </section>
+
+    <!-- Live Demonstration -->
+    <section class="demo-section-wrapper">
+      <div class="demo-section-header">
+        <div class="demo-title"><span>⚡</span> Live Side-by-Side Sizing Engine</div>
+        <span class="demo-live-badge">Working Demo</span>
+      </div>
+      <div class="demo-body" style="background: #ffffff;">
+        <div class="sizing-container">
+          <!-- Content Box -->
+          <div style="background: #fafafa; padding: 1.5rem; border: 1px solid var(--border); border-radius: 8px;">
+            <span style="background: #fee2e2; color: #991b1b; padding: 0.2rem 0.5rem; border-radius: 4px; font-weight: 700; font-size: 0.8rem;">Legacy Default</span>
+            <h3 style="margin: 0.5rem 0; color: #0f172a;">box-sizing: content-box</h3>
+            <p style="font-size: 0.85rem; color: #64748b; margin-bottom: 1rem;">
+              Actual Rendered Width = Width (260) + Padding (30+30) + Border (10+10) = <strong>340px</strong>
+            </p>
+            <div class="box-sample box-content-box">
+              Rendered on screen as 340px wide!
+            </div>
+          </div>
+
+          <!-- Border Box -->
+          <div style="background: #fafafa; padding: 1.5rem; border: 1px solid var(--border); border-radius: 8px;">
+            <span style="background: #dcfce7; color: #166534; padding: 0.2rem 0.5rem; border-radius: 4px; font-weight: 700; font-size: 0.8rem;">Modern Standard</span>
+            <h3 style="margin: 0.5rem 0; color: #0f172a;">box-sizing: border-box</h3>
+            <p style="font-size: 0.85rem; color: #64748b; margin-bottom: 1rem;">
+              Actual Rendered Width = Exactly Width = <strong>260px</strong> (padding/border absorbed inward).
+            </p>
+            <div class="box-sample box-border-box">
+              Rendered on screen as exactly 260px!
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Source Code Section -->
+    <section class="source-section-wrapper">
+      <div class="source-header">
+        <div class="source-tabs">
+          <button class="code-tab-btn active" data-tab="css">CSS Source Code</button>
+        </div>
+        <div class="source-actions">
+          <button class="copy-code-btn" type="button">Copy Code</button>
+          <button class="toggle-code-btn" type="button">Hide Code</button>
+        </div>
+      </div>
+      <div class="code-content-container">
+        <div class="code-pane active" data-tab="css">
+<pre>/* Universal Reset for Modern Web Applications */
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
+/* Under border-box: */
+.box {
+  width: 300px;
+  padding: 20px;
+  border: 2px solid #000000;
+  /* Final rendered width remains precisely 300px! */
+}</pre>
+        </div>
+      </div>
+    </section>
+
+    <!-- Bottom Navigation -->
+    <nav class="exp-nav-bar">
+      <a href="css-09-width-height.html" class="nav-btn nav-btn-prev">&larr; Previous (CSS-09)</a>
+      <a href="index.html" class="nav-btn nav-btn-hub">All CSS Programs</a>
+      <a href="css-11-display.html" class="nav-btn nav-btn-next">Next (CSS-11) &rarr;</a>
+    </nav>
+  </main>
+
+  <script src="../assets/js/code-viewer.js"></script>
+</body>
+</html>

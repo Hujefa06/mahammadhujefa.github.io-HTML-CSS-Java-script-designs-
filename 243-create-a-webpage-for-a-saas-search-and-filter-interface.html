@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Taj Mahal - Search Filter</title>
+
+<style>
+body{
+    margin:0;
+    padding:30px;
+    font-family:Arial;
+    background:#eaf8ff;
+    color:#063b4c;
+}
+
+.container{
+    max-width:800px;
+    margin:auto;
+}
+
+.filters{
+    display:flex;
+    gap:10px;
+    margin-bottom:20px;
+}
+
+input,select{
+    padding:12px;
+    border:1px solid #9bcbd8;
+    border-radius:8px;
+}
+
+input{flex:1}
+
+.cards{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:15px;
+}
+
+.card{
+    background:white;
+    padding:20px;
+    border-radius:12px;
+}
+
+@media(max-width:650px){
+    .filters{flex-direction:column}
+    .cards{grid-template-columns:1fr}
+}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+<h1>🔎 Island Search</h1>
+
+<div class="filters">
+<input placeholder="Search...">
+<select>
+<option>All</option>
+<option>History</option>
+<option>Science</option>
+<option>Culture</option>
+</select>
+</div>
+
+<div class="cards">
+<div class="card"><h3>Ancient Cities</h3><p>History</p></div>
+<div class="card"><h3>Ocean Studies</h3><p>Science</p></div>
+<div class="card"><h3>Island Culture</h3><p>Culture</p></div>
+</div>
+
+</div>
+
+</body>
+</html>

@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Taj Mahal - Responsive Dashboard</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<style>
+*{box-sizing:border-box}
+body{margin:0;font-family:Arial;background:#eaf8ff;color:#063b4c}
+header{background:#075b73;color:white;padding:20px;text-align:center}
+.dashboard{display:grid;grid-template-columns:220px 1fr;min-height:90vh}
+aside{background:#063b4c;color:white;padding:20px}
+aside div{padding:12px;margin:8px 0;background:#075b73;border-radius:8px}
+main{padding:25px}
+.cards{display:grid;grid-template-columns:repeat(4,1fr);gap:20px}
+.card{background:white;padding:25px;border-radius:15px;box-shadow:0 5px 15px #b5d9e5}
+.card h2{margin-top:0}
+@media(max-width:800px){
+.dashboard{grid-template-columns:1fr}
+aside{display:flex;gap:8px;overflow:auto}
+aside div{min-width:120px}
+.cards{grid-template-columns:repeat(2,1fr)}
+}
+@media(max-width:500px){
+.cards{grid-template-columns:1fr}
+main{padding:15px}
+}
+</style>
+</head>
+
+<body>
+<header>
+<h1>🏛️ Taj Mahal Dashboard</h1>
+</header>
+
+<div class="dashboard">
+<aside>
+<div>Dashboard</div>
+<div>Students</div>
+<div>Courses</div>
+<div>Reports</div>
+</aside>
+
+<main>
+<h2>Island Overview</h2>
+
+<div class="cards">
+<div class="card"><h2>248</h2><p>Students</p></div>
+<div class="card"><h2>32</h2><p>Courses</p></div>
+<div class="card"><h2>18</h2><p>Faculty</p></div>
+<div class="card"><h2>94%</h2><p>Attendance</p></div>
+</div>
+</main>
+</div>
+
+</body>
+</html>

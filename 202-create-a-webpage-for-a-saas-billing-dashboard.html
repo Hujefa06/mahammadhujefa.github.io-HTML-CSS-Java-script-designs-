@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>SaaS Billing Dashboard</title>
+<style>
+body{margin:0;background:#e0f2fe;font-family:Arial;color:#164e63}
+header{background:#075985;color:white;text-align:center;padding:25px}
+.dashboard{max-width:950px;margin:40px auto;display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+.card{background:white;padding:25px;border-radius:15px;box-shadow:0 4px 15px #0002}
+.value{font-size:32px;color:#0284c7;font-weight:bold}
+.invoice{grid-column:1/-1}
+@media(max-width:700px){.dashboard{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<header><h1>🏛️ Billing Dashboard</h1></header>
+<div class="dashboard">
+<div class="card"><h3>Current Plan</h3><div class="value">Pro</div></div>
+<div class="card"><h3>Monthly Bill</h3><div class="value">₹999</div></div>
+<div class="card"><h3>Next Payment</h3><div class="value">20 Oct</div></div>
+<div class="card invoice">
+<h3>Recent Invoice</h3>
+<p>Invoice #KK-2026-09 — ₹999 — Paid</p>
+</div>
+</div>
+</body>
+</html>

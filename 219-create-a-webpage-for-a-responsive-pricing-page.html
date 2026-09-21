@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Taj Mahal - Pricing</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<style>
+body{margin:0;font-family:Arial;background:#eaf8ff;color:#063b4c;padding:25px}
+h1{text-align:center}
+.plans{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;max-width:1000px;margin:auto}
+.plan{background:white;padding:30px;border-radius:16px;text-align:center;box-shadow:0 5px 15px #b5d9e5}
+.price{font-size:35px;font-weight:bold;color:#075b73}
+button{padding:12px 25px;background:#075b73;color:white;border:0;border-radius:8px}
+@media(max-width:750px){.plans{grid-template-columns:1fr}}
+</style>
+</head>
+
+<body>
+
+<h1>🏛️ Island Plans</h1>
+
+<div class="plans">
+<div class="plan"><h2>Explorer</h2><div class="price">₹299</div><p>Basic access</p><button>Choose</button></div>
+<div class="plan"><h2>Navigator</h2><div class="price">₹599</div><p>Advanced access</p><button>Choose</button></div>
+<div class="plan"><h2>Guardian</h2><div class="price">₹999</div><p>Complete access</p><button>Choose</button></div>
+</div>
+
+</body>
+</html>

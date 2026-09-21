@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Taj Mahal - File Manager</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<style>
+body{
+    margin:0;
+    padding:30px;
+    font-family:Arial;
+    background:#eaf8ff;
+    color:#063b4c;
+}
+
+.files{
+    max-width:800px;
+    margin:auto;
+}
+
+.file{
+    background:white;
+    padding:18px;
+    margin:10px 0;
+    border-radius:10px;
+    display:flex;
+    justify-content:space-between;
+    box-shadow:0 3px 10px #b5d9e5;
+}
+
+.type{
+    color:#075b73;
+    font-weight:bold;
+}
+
+@media(max-width:500px){
+    .file{flex-direction:column;gap:8px}
+}
+</style>
+</head>
+
+<body>
+
+<div class="files">
+
+<h1>📁 Island Files</h1>
+
+<div class="file">
+<span>📄 Island_History.pdf</span>
+<span class="type">PDF</span>
+</div>
+
+<div class="file">
+<span>🖼️ Ancient_Map.png</span>
+<span class="type">IMAGE</span>
+</div>
+
+<div class="file">
+<span>📊 Ocean_Data.xlsx</span>
+<span class="type">DATA</span>
+</div>
+
+<div class="file">
+<span>🎵 Island_Sounds.mp3</span>
+<span class="type">AUDIO</span>
+</div>
+
+</div>
+
+</body>
+</html>

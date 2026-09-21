@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Taj Mahal - Theme Switcher</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<style>
+:root{
+    --bg:#eaf8ff;
+    --text:#063b4c;
+    --card:#ffffff;
+    --primary:#075b73;
+}
+
+body.dark{
+    --bg:#071b24;
+    --text:#e8faff;
+    --card:#102d38;
+    --primary:#1686a5;
+}
+
+body{
+    margin:0;
+    padding:30px;
+    font-family:Arial;
+    background:var(--bg);
+    color:var(--text);
+    transition:.3s;
+}
+
+header{
+    background:var(--primary);
+    color:white;
+    padding:20px;
+    border-radius:15px;
+    text-align:center;
+}
+
+.card{
+    background:var(--card);
+    padding:25px;
+    margin-top:20px;
+    border-radius:15px;
+}
+
+button{
+    padding:12px 20px;
+    border:0;
+    border-radius:8px;
+    background:white;
+    color:var(--primary);
+    cursor:pointer;
+}
+</style>
+</head>
+
+<body>
+
+<header>
+<h1>🏛️ Taj Mahal</h1>
+<button onclick="document.body.classList.toggle('dark')">
+☀️ / 🌙 Switch Theme
+</button>
+</header>
+
+<div class="card">
+<h2>Island Explorer</h2>
+<p>Switch between light and dark themes.</p>
+</div>
+
+</body>
+</html>

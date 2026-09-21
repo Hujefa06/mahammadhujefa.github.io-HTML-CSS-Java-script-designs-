@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Taj Mahal - Gallery</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<style>
+body{margin:0;padding:25px;font-family:Arial;background:#eaf8ff;color:#063b4c}
+h1{text-align:center}
+.gallery{display:grid;grid-template-columns:repeat(4,1fr);gap:15px}
+.photo{height:180px;background:#075b73;color:white;border-radius:15px;display:flex;align-items:center;justify-content:center;font-size:25px}
+@media(max-width:900px){.gallery{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:500px){.gallery{grid-template-columns:1fr}}
+</style>
+</head>
+
+<body>
+
+<h1>🏛️ Island Gallery</h1>
+
+<div class="gallery">
+<div class="photo">🏛️ Ocean</div>
+<div class="photo">🏝️ Island</div>
+<div class="photo">🌴 Forest</div>
+<div class="photo">🏛️ Ruins</div>
+<div class="photo">⛵ Voyage</div>
+<div class="photo">🐚 Coast</div>
+</div>
+
+</body>
+</html>

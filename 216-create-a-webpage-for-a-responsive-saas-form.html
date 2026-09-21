@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Taj Mahal - Responsive Form</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<style>
+body{margin:0;font-family:Arial;background:#eaf8ff;padding:25px;color:#063b4c}
+form{max-width:600px;margin:auto;background:white;padding:30px;border-radius:16px;box-shadow:0 5px 15px #b5d9e5}
+h1{text-align:center}
+.row{display:grid;grid-template-columns:1fr 1fr;gap:15px}
+label{display:block;margin-top:15px;font-weight:bold}
+input,select,textarea{width:100%;padding:12px;margin-top:6px;border:1px solid #9bcbd8;border-radius:8px}
+button{margin-top:20px;width:100%;padding:13px;background:#075b73;color:white;border:0;border-radius:8px}
+@media(max-width:600px){.row{grid-template-columns:1fr}}
+</style>
+</head>
+
+<body>
+
+<form>
+<h1>🏛️ Island Registration</h1>
+
+<div class="row">
+<div>
+<label>First Name</label>
+<input type="text">
+</div>
+
+<div>
+<label>Last Name</label>
+<input type="text">
+</div>
+</div>
+
+<label>Email</label>
+<input type="email">
+
+<label>Course</label>
+<select>
+<option>Computing</option>
+<option>Data Science</option>
+<option>Cybersecurity</option>
+</select>
+
+<label>Message</label>
+<textarea rows="4"></textarea>
+
+<button>Register</button>
+</form>
+
+</body>
+</html>

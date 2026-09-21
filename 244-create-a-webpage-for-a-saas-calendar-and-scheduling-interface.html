@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Taj Mahal - Calendar</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<style>
+body{
+    margin:0;
+    padding:30px;
+    font-family:Arial;
+    background:#eaf8ff;
+    color:#063b4c;
+}
+
+.calendar{
+    max-width:700px;
+    margin:auto;
+    background:white;
+    padding:25px;
+    border-radius:16px;
+}
+
+.grid{
+    display:grid;
+    grid-template-columns:repeat(7,1fr);
+    gap:6px;
+}
+
+.day{
+    padding:15px 5px;
+    text-align:center;
+    background:#eaf8ff;
+    border-radius:6px;
+}
+
+.head{
+    background:#075b73;
+    color:white;
+}
+
+.event{
+    background:#8ed7e8;
+    font-weight:bold;
+}
+
+@media(max-width:500px){
+    .day{padding:10px 2px;font-size:12px}
+}
+</style>
+</head>
+
+<body>
+
+<div class="calendar">
+
+<h1>📅 Island Schedule</h1>
+
+<div class="grid">
+<div class="day head">Sun</div>
+<div class="day head">Mon</div>
+<div class="day head">Tue</div>
+<div class="day head">Wed</div>
+<div class="day head">Thu</div>
+<div class="day head">Fri</div>
+<div class="day head">Sat</div>
+
+<div class="day"></div>
+<div class="day">1</div>
+<div class="day">2</div>
+<div class="day event">3<br>Meet</div>
+<div class="day">4</div>
+<div class="day">5</div>
+<div class="day">6</div>
+<div class="day">7</div>
+<div class="day">8</div>
+<div class="day event">9<br>Research</div>
+<div class="day">10</div>
+</div>
+
+</div>
+
+</body>
+</html>

@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Usage Based Billing</title>
+<style>
+body{margin:0;background:#ecfeff;font-family:Arial;color:#164e63}
+header{background:#0e7490;color:white;text-align:center;padding:25px}
+.cards{max-width:900px;margin:45px auto;display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+.card{background:white;padding:25px;border-radius:15px;box-shadow:0 4px 15px #0002}
+.value{font-size:30px;color:#0284c7;font-weight:bold}
+@media(max-width:700px){.cards{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<header><h1>🏛️ Usage-Based Billing</h1></header>
+<div class="cards">
+<div class="card"><h3>API Calls</h3><div class="value">12,450</div><p>₹0.05 per call</p></div>
+<div class="card"><h3>Storage</h3><div class="value">48 GB</div><p>₹10 per GB</p></div>
+<div class="card"><h3>AI Tokens</h3><div class="value">82K</div><p>₹0.20 per 1K</p></div>
+</div>
+</body>
+</html>

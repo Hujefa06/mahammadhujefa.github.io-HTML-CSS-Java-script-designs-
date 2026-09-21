@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>z-index & Stacking Contexts | CSS-18</title>
+  <link rel="stylesheet" href="../assets/css/style.css">
+  <link rel="stylesheet" href="../assets/css/program-viewer.css">
+  <style>
+    .stack-stage {
+      position: relative;
+      height: 260px;
+      background: #f8fafc;
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      margin: 1.5rem 0;
+    }
+    .layer-card {
+      position: absolute;
+      width: 200px;
+      height: 120px;
+      border-radius: 8px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      color: #ffffff;
+      font-weight: 700;
+      box-shadow: var(--shadow-md);
+      transition: all 0.3s ease;
+    }
+    .layer-1 { top: 30px; left: 40px; background: #3b82f6; z-index: 1; }
+    .layer-2 { top: 70px; left: 120px; background: #10b981; z-index: 2; }
+    .layer-3 { top: 110px; left: 200px; background: #ef4444; z-index: 3; }
+  </style>
+</head>
+<body>
+  <header class="navbar">
+    <div class="nav-container">
+      <a href="../index.html" class="nav-brand">
+        <div class="brand-icon" style="background: linear-gradient(135deg, #2563eb, #3b82f6);">
+          <span>&lt;/&gt;</span>
+        </div>
+        <span>CSS Programs</span>
+      </a>
+      <nav>
+        <ul class="nav-links">
+          <li><a href="../index.html" class="nav-link">Home</a></li>
+          <li><a href="../html/index.html" class="nav-link">HTML</a></li>
+          <li><a href="index.html" class="nav-link active">CSS</a></li>
+          <li><a href="../javascript/index.html" class="nav-link">JavaScript</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main class="main-wrapper">
+    <nav class="breadcrumb-bar">
+      <a href="../index.html">Home</a>
+      <span class="breadcrumb-separator">&rarr;</span>
+      <a href="index.html">CSS Programs</a>
+      <span class="breadcrumb-separator">&rarr;</span>
+      <span class="breadcrumb-current">CSS-18: z-index & Stacking Context</span>
+    </nav>
+
+    <section class="exp-header-card">
+      <div class="exp-meta-row">
+        <span class="exp-id-tag" style="background: #2563eb;">CSS-18</span>
+        <span class="exp-cat-tag">Layout</span>
+      </div>
+      <h1 class="exp-heading">z-index Layering and Stacking Contexts</h1>
+      <p class="exp-description">
+        Demonstrates the vertical 3D depth axis (Z-axis) of CSS rendering: positioned elements with positive/negative z-index numbers and how isolation / transform / opacity establish distinct stacking contexts.
+      </p>
+      <div class="objective-box">
+        <div class="objective-title"><span>🎯</span> Practical Laboratory Objective</div>
+        <div class="objective-text">
+          Understand why z-index only works on positioned elements (relative, absolute, fixed, sticky) and why a child cannot poke through a parent's stacking context boundary.
+        </div>
+      </div>
+    </section>
+
+    <!-- Live Demonstration -->
+    <section class="demo-section-wrapper">
+      <div class="demo-section-header">
+        <div class="demo-title"><span>⚡</span> Live Stacking Layer Visualizer</div>
+        <span class="demo-live-badge">Working Demo</span>
+      </div>
+      <div class="demo-body" style="background: #ffffff;">
+        <div style="display: flex; gap: 0.5rem; margin-bottom: 1rem; flex-wrap: wrap;">
+          <button class="demo-btn" onclick="bringToFront('layer-1')">Bring Blue to Front</button>
+          <button class="demo-btn" style="background: #10b981;" onclick="bringToFront('layer-2')">Bring Green to Front</button>
+          <button class="demo-btn" style="background: #ef4444;" onclick="bringToFront('layer-3')">Bring Red to Front</button>
+        </div>
+
+        <div class="stack-stage">
+          <div class="layer-card layer-1" id="card-1">
+            Layer 1 (Blue)
+            <small id="z-text-1">z-index: 1</small>
+          </div>
+          <div class="layer-card layer-2" id="card-2">
+            Layer 2 (Green)
+            <small id="z-text-2">z-index: 2</small>
+          </div>
+          <div class="layer-card layer-3" id="card-3">
+            Layer 3 (Red)
+            <small id="z-text-3">z-index: 3</small>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Source Code Section -->
+    <section class="source-section-wrapper">
+      <div class="source-header">
+        <div class="source-tabs">
+          <button class="code-tab-btn active" data-tab="css">CSS Source Code</button>
+        </div>
+        <div class="source-actions">
+          <button class="copy-code-btn" type="button">Copy Code</button>
+          <button class="toggle-code-btn" type="button">Hide Code</button>
+        </div>
+      </div>
+      <div class="code-content-container">
+        <div class="code-pane active" data-tab="css">
+<pre>/* z-index operates strictly on positioned elements */
+.bottom-layer {
+  position: absolute;
+  z-index: 1;
+}
+
+.middle-layer {
+  position: absolute;
+  z-index: 2;
+}
+
+.topmost-modal-layer {
+  position: fixed;
+  z-index: 1000; /* Floats above standard page content */
+}</pre>
+        </div>
+      </div>
+    </section>
+
+    <!-- Bottom Navigation -->
+    <nav class="exp-nav-bar">
+      <a href="css-17-positioning.html" class="nav-btn nav-btn-prev">&larr; Previous (CSS-17)</a>
+      <a href="index.html" class="nav-btn nav-btn-hub">All CSS Programs</a>
+      <a href="css-19-float-clear.html" class="nav-btn nav-btn-next">Next (CSS-19) &rarr;</a>
+    </nav>
+  </main>
+
+  <script src="../assets/js/code-viewer.js"></script>
+  <script>
+    let highestZ = 5;
+    function bringToFront(layerClass) {
+      highestZ++;
+      if (layerClass === 'layer-1') {
+        document.getElementById('card-1').style.zIndex = highestZ;
+        document.getElementById('z-text-1').textContent = 'z-index: ' + highestZ;
+      } else if (layerClass === 'layer-2') {
+        document.getElementById('card-2').style.zIndex = highestZ;
+        document.getElementById('z-text-2').textContent = 'z-index: ' + highestZ;
+      } else if (layerClass === 'layer-3') {
+        document.getElementById('card-3').style.zIndex = highestZ;
+        document.getElementById('z-text-3').textContent = 'z-index: ' + highestZ;
+      }
+    }
+  </script>
+</body>
+</html>

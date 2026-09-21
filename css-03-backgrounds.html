@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CSS Backgrounds & Attachments | CSS-03</title>
+  <link rel="stylesheet" href="../assets/css/style.css">
+  <link rel="stylesheet" href="../assets/css/program-viewer.css">
+  <style>
+    .bg-demo-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 1.5rem;
+      margin-bottom: 2rem;
+    }
+    .bg-card {
+      height: 180px;
+      border-radius: 8px;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      padding: 1rem;
+      color: #ffffff;
+      text-shadow: 0 1px 3px rgba(0,0,0,0.6);
+      box-shadow: var(--shadow-sm);
+      border: 1px solid var(--border);
+    }
+    /* Cover */
+    .bg-cover {
+      background: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.6)), radial-gradient(circle at top right, #6366f1, #0f172a);
+      background-size: cover;
+    }
+    /* Pattern Repeat */
+    .bg-repeat {
+      background-color: #f1f5f9;
+      background-image: radial-gradient(#cbd5e1 1.5px, transparent 1.5px);
+      background-size: 16px 16px;
+      color: #0f172a;
+      text-shadow: none;
+    }
+    /* Fixed Attachment */
+    .bg-fixed {
+      background: linear-gradient(135deg, #0ea5e9, #6366f1);
+      background-attachment: fixed;
+    }
+  </style>
+</head>
+<body>
+  <header class="navbar">
+    <div class="nav-container">
+      <a href="../index.html" class="nav-brand">
+        <div class="brand-icon" style="background: linear-gradient(135deg, #2563eb, #3b82f6);">
+          <span>&lt;/&gt;</span>
+        </div>
+        <span>CSS Programs</span>
+      </a>
+      <nav>
+        <ul class="nav-links">
+          <li><a href="../index.html" class="nav-link">Home</a></li>
+          <li><a href="../html/index.html" class="nav-link">HTML</a></li>
+          <li><a href="index.html" class="nav-link active">CSS</a></li>
+          <li><a href="../javascript/index.html" class="nav-link">JavaScript</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main class="main-wrapper">
+    <nav class="breadcrumb-bar">
+      <a href="../index.html">Home</a>
+      <span class="breadcrumb-separator">&rarr;</span>
+      <a href="index.html">CSS Programs</a>
+      <span class="breadcrumb-separator">&rarr;</span>
+      <span class="breadcrumb-current">CSS-03: Backgrounds & Attachments</span>
+    </nav>
+
+    <section class="exp-header-card">
+      <div class="exp-meta-row">
+        <span class="exp-id-tag" style="background: #2563eb;">CSS-03</span>
+        <span class="exp-cat-tag">Foundation</span>
+      </div>
+      <h1 class="exp-heading">CSS Background Properties and Parallax Attachment</h1>
+      <p class="exp-description">
+        Demonstrates the comprehensive background suite: background-color, background-image, background-size (cover vs contain), background-repeat (no-repeat, repeat), background-position, and fixed attachment effects.
+      </p>
+      <div class="objective-box">
+        <div class="objective-title"><span>🎯</span> Practical Laboratory Objective</div>
+        <div class="objective-text">
+          Understand how background layers stack, how to construct geometric dot/grid patterns via gradient repeats, and how fixed attachment locks image coordinates to the viewport.
+        </div>
+      </div>
+    </section>
+
+    <!-- Live Demonstration -->
+    <section class="demo-section-wrapper">
+      <div class="demo-section-header">
+        <div class="demo-title"><span>⚡</span> Live Background Showcase</div>
+        <span class="demo-live-badge">Working Demo</span>
+      </div>
+      <div class="demo-body" style="background: #ffffff;">
+        <div class="bg-demo-grid">
+          <!-- 1. Background Cover -->
+          <div class="bg-card bg-cover">
+            <h4 style="font-size: 1.1rem; margin-bottom: 0.2rem;">background-size: cover</h4>
+            <p style="font-size: 0.85rem;">Scales seamlessly while preserving container coverage.</p>
+          </div>
+
+          <!-- 2. Pattern Repeat -->
+          <div class="bg-card bg-repeat">
+            <h4 style="font-size: 1.1rem; margin-bottom: 0.2rem; color: #0f172a;">Dot Matrix Pattern</h4>
+            <p style="font-size: 0.85rem; color: #475569;">Created using radial-gradient tile repeat (16px x 16px).</p>
+          </div>
+
+          <!-- 3. Fixed Attachment -->
+          <div class="bg-card bg-fixed">
+            <h4 style="font-size: 1.1rem; margin-bottom: 0.2rem;">background-attachment: fixed</h4>
+            <p style="font-size: 0.85rem;">Locks gradient coordinates to the browser viewport window.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Source Code Section -->
+    <section class="source-section-wrapper">
+      <div class="source-header">
+        <div class="source-tabs">
+          <button class="code-tab-btn active" data-tab="css">CSS Source Code</button>
+        </div>
+        <div class="source-actions">
+          <button class="copy-code-btn" type="button">Copy Code</button>
+          <button class="toggle-code-btn" type="button">Hide Code</button>
+        </div>
+      </div>
+      <div class="code-content-container">
+        <div class="code-pane active" data-tab="css">
+<pre>/* Background Shorthand Syntax */
+.hero-banner {
+  background-color: #0f172a;
+  background-image: url('banner.jpg');
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: cover;
+  background-attachment: fixed; /* Parallax effect */
+}
+
+/* Repeating Pattern via Radial Gradients */
+.pattern-grid {
+  background-color: #f8fafc;
+  background-image: radial-gradient(#cbd5e1 1.5px, transparent 1.5px);
+  background-size: 16px 16px;
+}</pre>
+        </div>
+      </div>
+    </section>
+
+    <!-- Bottom Navigation -->
+    <nav class="exp-nav-bar">
+      <a href="css-02-colors.html" class="nav-btn nav-btn-prev">&larr; Previous (CSS-02)</a>
+      <a href="index.html" class="nav-btn nav-btn-hub">All CSS Programs</a>
+      <a href="css-04-borders.html" class="nav-btn nav-btn-next">Next (CSS-04) &rarr;</a>
+    </nav>
+  </main>
+
+  <script src="../assets/js/code-viewer.js"></script>
+</body>
+</html>
