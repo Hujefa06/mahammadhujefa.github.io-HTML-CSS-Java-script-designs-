@@ -1,431 +1,129 @@
 <!doctype html>
 <html lang="en">
 <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width,initial-scale=1">
-    <title>Taj Mahal · Imperial Web Technology Laboratory (HTML, CSS & JavaScript)</title>
-    <meta name="description" content="A royal academic web laboratory portal celebrating the architectural wonder of the Taj Mahal, featuring 555 practical programs across HTML, CSS, and JavaScript.">
-
-    <link rel="stylesheet" href="theme.css">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Taj Mahal · Imperial Web Technology Laboratory</title>
+  <meta name="description" content="A practical HTML, CSS and JavaScript laboratory by Mahammad Hujefa.">
+  <link rel="stylesheet" href="theme.css">
 </head>
-
 <body>
+  <audio id="ambient" loop preload="auto">
+    <source src="audio/taj-mahal-love-theme.mp3" type="audio/mpeg">
+    <source src="audio/romantic-piano-nocturne.ogg" type="audio/ogg">
+  </audio>
 
-    <!-- ROMANTIC LOVE MUSIC AUDIO ELEMENT -->
-    <audio id="ambient" loop preload="auto">
-        <source src="audio/taj-mahal-love-theme.mp3" type="audio/mpeg">
-        <source src="audio/romantic-piano-nocturne.ogg" type="audio/ogg">
-    </audio>
+  <nav class="topNav" aria-label="Primary navigation">
+    <a class="brandLogo" href="index.html">
+      <span class="brandEmblem">𑁍</span>
+      <span>TAJ MAHAL · IMPERIAL WEB LAB</span>
+    </a>
+    <div class="navLinks">
+      <a class="navLinkItem" href="#pavilions">Pavilions</a>
+      <a class="navLinkItem" href="#wonders">Architectural Marvels</a>
+      <a class="navLinkItem" href="#curriculum">Curriculum</a>
+      <a class="navLinkItem" href="html-01-basic-tags.html">HTML (15)</a>
+      <a class="navLinkItem" href="css-01-selectors.html">CSS (270)</a>
+      <a class="navLinkItem" href="001-write-a-javascript-program-to-display-hello-world.html">JS (270)</a>
+    </div>
+    <button class="musicController" id="soundToggle" type="button" title="Toggle Taj Mahal soothing music">
+      <span class="musicLabel" id="musicStatusText">♫ LOVE MUSIC</span>
+    </button>
+  </nav>
 
-    <!-- TOP NAVIGATION BAR -->
-    <nav class="topNav">
-        <a class="brandLogo" href="index.html">
-            <span class="brandEmblem">𑁍</span>
-            <span>TAJ MAHAL · IMPERIAL WEB LAB</span>
-        </a>
+  <header class="hero">
+    <img class="heroBackground" src="images/taj-mahal-hero.jpg" alt="The Taj Mahal illuminated at night">
+    <div class="heroOverlay"></div>
+    <div class="heroContent">
+      <div class="studentBadgeWrap"><span>⚜</span><span class="studentBadgeText">ACADEMIC SUBMISSION BY MAHAMMAD HUJEFA</span><span>⚜</span></div>
+      <div class="heroKicker">An Architectural Wonder of Eternal Love</div>
+      <h1 class="heroTitle">TAJ MAHAL</h1>
+      <p class="heroSubtitle">An imperial web engineering showcase uniting the timeless symmetry of Mughal architecture with practical HTML, CSS and JavaScript craftsmanship.</p>
+      <div class="heroActions">
+        <a class="btnPrimary" href="#pavilions"><span>EXPLORE THE THREE PAVILIONS ↓</span></a>
+        <a class="btnSecondary" href="#curriculum"><span>ACADEMIC ROADMAP ↗</span></a>
+      </div>
+    </div>
+    <div class="tickerWrap"><div class="tickerTrack">✦ ताज महल · THE CROWN OF PALACES · AGRA · YAMUNA RIVER · 555 PRACTICAL PROGRAMS · HTML5 · CSS3 · JAVASCRIPT ✦</div></div>
+  </header>
 
-        <div class="navLinks">
-            <a class="navLinkItem" href="#pavilions">Pavilions</a>
-            <a class="navLinkItem" href="#wonders">Architectural Marvels</a>
-            <a class="navLinkItem" href="#curriculum">Curriculum</a>
-            <a class="navLinkItem" href="index.html">HTML (15)</a>
-            <a class="navLinkItem" href="index.html">CSS (270)</a>
-            <a class="navLinkItem" href="index.html">JS (270)</a>
-        </div>
+  <section class="statsRibbon" aria-label="Repository statistics">
+    <div class="statCard"><div class="statNumber">555</div><div class="statLabel">Total Practicals</div></div>
+    <div class="statCard"><div class="statNumber">15</div><div class="statLabel">HTML Inscriptions</div></div>
+    <div class="statCard"><div class="statNumber">270</div><div class="statLabel">CSS UI Architectures</div></div>
+    <div class="statCard"><div class="statNumber">270</div><div class="statLabel">JavaScript Engines</div></div>
+  </section>
 
-        <!-- ROMANTIC MUSIC CONTROLLER WIDGET -->
-        <div class="musicController" id="soundToggle" title="Toggle Taj Mahal Soothing Love Music">
-            <div class="equalizerBars">
-                <span class="eqBar"></span>
-                <span class="eqBar"></span>
-                <span class="eqBar"></span>
-                <span class="eqBar"></span>
-            </div>
-            <span class="musicLabel" id="musicStatusText">♫ LOVE MUSIC</span>
-        </div>
-    </nav>
+  <section class="section" id="pavilions">
+    <div class="sectionHeader">
+      <div class="sectionKicker">The Royal Chambers</div>
+      <h2 class="sectionTitle">Three Imperial Pavilions</h2>
+      <p class="sectionDesc">Explore the practical programs from the files and folders available in this repository.</p>
+    </div>
+    <div class="pavilionStack">
+      <article class="pavilionCard">
+        <div class="pavilionMedia"><img src="images/taj-calligraphy.jpg" alt="Taj Mahal calligraphy"><div class="pavilionMediaOverlay"></div><div class="pavilionBadge">PAVILION I</div><div class="pavilionNumeral">01</div></div>
+        <div class="pavilionBody"><div>
+          <div class="pavilionMeta"><span class="pavilionKicker">Foundational Markup &amp; Structure</span><span class="pavilionCountChip">15 Programs</span></div>
+          <h3 class="pavilionTitle">Hall of Inscriptions</h3>
+          <div class="pavilionSubtitle">HTML5 semantic elements, tables, forms and multimedia</div>
+          <p class="pavilionDesc">The HTML practicals are stored as root-level files named <strong>html-01</strong> through <strong>html-15</strong>.</p>
+          <div class="pavilionTags"><span class="tagPill">Semantic HTML5</span><span class="tagPill">Tables</span><span class="tagPill">Forms</span><span class="tagPill">Audio &amp; Video</span></div>
+        </div><div class="pavilionFooter"><div class="pavilionHighlight">✦ <span>Practicals <strong>1 – 15</strong></span></div><a class="btnPrimary" href="html-01-basic-tags.html"><span>ENTER HTML HALL →</span></a></div></div>
+      </article>
 
+      <article class="pavilionCard reverse">
+        <div class="pavilionBody"><div>
+          <div class="pavilionMeta"><span class="pavilionKicker">Visual Symmetry &amp; Design Systems</span><span class="pavilionCountChip">270 Programs</span></div>
+          <h3 class="pavilionTitle">Hall of Architecture</h3>
+          <div class="pavilionSubtitle">CSS selectors, layouts, animations and SaaS interfaces</div>
+          <p class="pavilionDesc">CSS practicals are available as root-level files such as <strong>css-01-selectors.html</strong>, with the remaining CSS showcase files following the same naming pattern.</p>
+          <div class="pavilionTags"><span class="tagPill">Selectors</span><span class="tagPill">Flexbox &amp; Grid</span><span class="tagPill">Animations</span><span class="tagPill">SaaS UI</span></div>
+        </div><div class="pavilionFooter"><div class="pavilionHighlight">✦ <span>Practicals <strong>1 – 270</strong></span></div><a class="btnPrimary" href="css-01-selectors.html"><span>ENTER CSS HALL →</span></a></div></div>
+        <div class="pavilionMedia"><img src="images/taj-architecture.jpg" alt="White marble dome and minarets"><div class="pavilionMediaOverlay"></div><div class="pavilionBadge">PAVILION II</div><div class="pavilionNumeral">02</div></div>
+      </article>
 
-    <!-- HERO SECTION -->
-    <header class="hero">
-        <img class="heroBackground" src="images/taj-mahal-hero.jpg" alt="The Taj Mahal Illuminated at Night">
-        <div class="heroOverlay"></div>
+      <article class="pavilionCard">
+        <div class="pavilionMedia"><img src="images/taj-fountains.jpg" alt="Charbagh reflecting pool and fountains"><div class="pavilionMediaOverlay"></div><div class="pavilionBadge">PAVILION III</div><div class="pavilionNumeral">03</div></div>
+        <div class="pavilionBody"><div>
+          <div class="pavilionMeta"><span class="pavilionKicker">Living Computation &amp; Interactive Logic</span><span class="pavilionCountChip">270 Programs</span></div>
+          <h3 class="pavilionTitle">Hall of Mechanisms</h3>
+          <div class="pavilionSubtitle">JavaScript algorithms, events, DOM and browser storage</div>
+          <p class="pavilionDesc">JavaScript practicals are root-level files such as <strong>001-write-a-javascript-program-to-display-hello-world.html</strong>. Related grouped work is also organised in the <strong>basics</strong>, <strong>browser</strong>, <strong>dom</strong>, <strong>events</strong>, <strong>forms</strong> and <strong>storage</strong> folders.</p>
+          <div class="pavilionTags"><span class="tagPill">ES6+</span><span class="tagPill">DOM</span><span class="tagPill">Events</span><span class="tagPill">LocalStorage</span></div>
+        </div><div class="pavilionFooter"><div class="pavilionHighlight">✦ <span>Practicals <strong>1 – 270</strong></span></div><a class="btnPrimary" href="001-write-a-javascript-program-to-display-hello-world.html"><span>ENTER JS HALL →</span></a></div></div>
+      </article>
+    </div>
+  </section>
 
-        <div class="heroContent">
-            
-            <div class="studentBadgeWrap">
-                <span style="color: var(--gold-primary);">⚜</span>
-                <span class="studentBadgeText">ACADEMIC SUBMISSION BY MAHAMMAD HUJEFA</span>
-                <span style="color: var(--gold-primary);">⚜</span>
-            </div>
+  <section class="section" id="wonders" style="background: rgba(13, 15, 21, 0.4);">
+    <div class="sectionHeader"><div class="sectionKicker">Wonders of Agra</div><h2 class="sectionTitle">Imperial Architectural Marvels</h2><p class="sectionDesc">Every architectural motif of the monument is honoured in this practical laboratory.</p></div>
+    <div class="architectGrid">
+      <div class="architectCard"><div class="architectImage"><img src="images/taj-architecture.jpg" alt="White Makrana dome"></div><div class="architectContent"><h3>The Ivory Dome</h3><p>Symmetry, proportion and structure inspire the CSS architecture of this repository.</p></div></div>
+      <div class="architectCard"><div class="architectImage"><img src="images/taj-calligraphy.jpg" alt="Pietra dura inlays"></div><div class="architectContent"><h3>Pietra Dura Inlay</h3><p>Small, reusable HTML elements combine to create complete practical experiences.</p></div></div>
+      <div class="architectCard"><div class="architectImage"><img src="images/taj-fountains.jpg" alt="Charbagh fountains"></div><div class="architectContent"><h3>Charbagh &amp; Water Dynamics</h3><p>JavaScript adds motion and interaction to otherwise static pages.</p></div></div>
+    </div>
+  </section>
 
-            <div class="heroKicker">
-                An Architectural Wonder of Eternal Love
-            </div>
+  <section class="section" id="curriculum">
+    <div class="sectionHeader"><div class="sectionKicker">Pedagogical Framework</div><h2 class="sectionTitle">Curriculum Learning Phases</h2><p class="sectionDesc">Progressive learning from markup fundamentals to interactive frontend applications.</p></div>
+    <div class="roadmapGrid">
+      <div class="roadmapCard"><span class="roadmapStep">PHASE 01 · STRUCTURE</span><h3>Foundations &amp; Semantics</h3><p>HTML elements, tables, forms, links, media and responsive document structure.</p></div>
+      <div class="roadmapCard"><span class="roadmapStep">PHASE 02 · STYLING &amp; UI</span><h3>CSS Design Systems</h3><p>Selectors, box models, layouts, transforms, animations, cards and dashboards.</p></div>
+      <div class="roadmapCard"><span class="roadmapStep">PHASE 03 · COMPUTATION</span><h3>JavaScript Engines</h3><p>Algorithms, DOM manipulation, event listeners, validation and browser storage.</p></div>
+    </div>
+  </section>
 
-            <h1 class="heroTitle">
-                TAJ MAHAL
-            </h1>
+  <footer class="imperialFooter"><div class="footerLogo">TAJ MAHAL</div><div class="footerDetails">ACADEMIC WEB ENGINEERING LABORATORY RECORD · MAHAMMAD HUJEFA</div><div class="footerCopy">HTML (15) · CSS (270) · JavaScript (270) · Total 555 Practicals · Built with HTML5, CSS3 &amp; ES6+</div></footer>
 
-            <p class="heroSubtitle">
-                An imperial web engineering showcase uniting the timeless symmetry of Mughal architecture
-                with modern digital craftsmanship across 555 comprehensive practical programs.
-            </p>
-
-            <div class="heroActions">
-                <a class="btnPrimary" href="#pavilions">
-                    <span>EXPLORE THE THREE PAVILIONS ↓</span>
-                </a>
-                <a class="btnSecondary" href="#curriculum">
-                    <span>ACADEMIC ROADMAP ↗</span>
-                </a>
-            </div>
-
-        </div>
-
-        <!-- TICKER STRIP -->
-        <div class="tickerWrap">
-            <div class="tickerTrack">
-                ✦ ताज महल · THE CROWN OF PALACES · AGRA · YAMUNA RIVER · 555 PRACTICAL PROGRAMS · HTML5 INSCRIPTIONS (15) · CSS3 ARCHITECTURE (270) · JAVASCRIPT MECHANISMS (270) · 100% WORKING VERIFIED CODE · ✦
-            </div>
-        </div>
-    </header>
-
-
-    <!-- STATS SUMMARY RIBBON -->
-    <section class="statsRibbon">
-        <div class="statCard">
-            <div class="statNumber">555</div>
-            <div class="statLabel">Total Practicals</div>
-        </div>
-        <div class="statCard">
-            <div class="statNumber">15</div>
-            <div class="statLabel">HTML Inscriptions</div>
-        </div>
-        <div class="statCard">
-            <div class="statNumber">270</div>
-            <div class="statLabel">CSS UI Architectures</div>
-        </div>
-        <div class="statCard">
-            <div class="statNumber">270</div>
-            <div class="statLabel">JavaScript Engines</div>
-        </div>
-    </section>
-
-
-    <!-- ========================================================
-         THE THREE IMPERIAL PAVILIONS (STACKED VERTICALLY)
-         ======================================================== -->
-    <section class="section" id="pavilions">
-        <div class="sectionHeader">
-            <div class="sectionKicker">The Royal Chambers</div>
-            <h2 class="sectionTitle">Three Imperial Pavilions</h2>
-            <p class="sectionDesc">
-                Arranged vertically for seamless exploration. Each pavilion represents a distinct pillar
-                of web engineering, containing fully verified, interactive practical programs.
-            </p>
-        </div>
-
-        <div class="pavilionStack">
-
-            <!-- PAVILION 1: HTML (VERTICAL CARD 1) -->
-            <article class="pavilionCard">
-                <div class="pavilionMedia">
-                    <img src="images/taj-calligraphy.jpg" alt="Pietra Dura Arabic Calligraphy">
-                    <div class="pavilionMediaOverlay"></div>
-                    <div class="pavilionBadge">PAVILION I</div>
-                    <div class="pavilionNumeral">01</div>
-                </div>
-
-                <div class="pavilionBody">
-                    <div>
-                        <div class="pavilionMeta">
-                            <span class="pavilionKicker">Foundational Markup & Structure</span>
-                            <span class="pavilionCountChip">15 Programs</span>
-                        </div>
-                        <h3 class="pavilionTitle">Hall of Inscriptions</h3>
-                        <div class="pavilionSubtitle">HTML5 Semantic Hierarchy, Tables, Forms & Accessibility</div>
-                        <p class="pavilionDesc">
-                            Like the sacred calligraphy carved upon the marble gateway, HTML forms the permanent
-                            semantic foundation of the web. Explore headings, rich media, structured timetable tables,
-                            accessible student registration forms, and responsive viewport architectures.
-                        </p>
-                        <div class="pavilionTags">
-                            <span class="tagPill">Semantic HTML5</span>
-                            <span class="tagPill">Table Cell Merging</span>
-                            <span class="tagPill">Form Elements</span>
-                            <span class="tagPill">Audio & Video</span>
-                            <span class="tagPill">Bootstrap Grid</span>
-                        </div>
-                    </div>
-
-                    <div class="pavilionFooter">
-                        <div class="pavilionHighlight">
-                            <span>✦</span>
-                            <span>Curriculum: <strong>Practicals 1 – 15</strong></span>
-                        </div>
-                        <a class="btnPrimary" href="index.html">
-                            <span>ENTER INSCRIPTION HALL →</span>
-                        </a>
-                    </div>
-                </div>
-            </article>
-
-
-            <!-- PAVILION 2: CSS (VERTICAL CARD 2 - REVERSED LAYOUT) -->
-            <article class="pavilionCard reverse">
-                <div class="pavilionBody">
-                    <div>
-                        <div class="pavilionMeta">
-                            <span class="pavilionKicker">Visual Symmetry & Design Systems</span>
-                            <span class="pavilionCountChip">270 Programs</span>
-                        </div>
-                        <h3 class="pavilionTitle">Hall of Architecture</h3>
-                        <div class="pavilionSubtitle">CSS3 Design Systems, Modern SaaS UI, Glassmorphism & AI Dashboards</div>
-                        <p class="pavilionDesc">
-                            Reflecting the flawless symmetry and octagonal proportions of the Taj Mahal,
-                            this comprehensive pavilion masters everything from CSS box models, selectors,
-                            and Flexbox/Grid layouts to enterprise SaaS UI components, AI chat interfaces, and dark-mode themes.
-                        </p>
-                        <div class="pavilionTags">
-                            <span class="tagPill">CSS Box Model</span>
-                            <span class="tagPill">Flexbox & Grid</span>
-                            <span class="tagPill">Keyframe Animations</span>
-                            <span class="tagPill">SaaS UI Libraries</span>
-                            <span class="tagPill">AI Dashboard Cards</span>
-                            <span class="tagPill">Glassmorphism</span>
-                        </div>
-                    </div>
-
-                    <div class="pavilionFooter">
-                        <div class="pavilionHighlight">
-                            <span>✦</span>
-                            <span>Curriculum: <strong>Practicals 1 – 270</strong></span>
-                        </div>
-                        <a class="btnPrimary" href="index.html">
-                            <span>ENTER ARCHITECTURE HALL →</span>
-                        </a>
-                    </div>
-                </div>
-
-                <div class="pavilionMedia">
-                    <img src="images/taj-architecture.jpg" alt="White Marble Dome and Minarets">
-                    <div class="pavilionMediaOverlay"></div>
-                    <div class="pavilionBadge">PAVILION II</div>
-                    <div class="pavilionNumeral">02</div>
-                </div>
-            </article>
-
-
-            <!-- PAVILION 3: JAVASCRIPT (VERTICAL CARD 3) -->
-            <article class="pavilionCard">
-                <div class="pavilionMedia">
-                    <img src="images/taj-fountains.jpg" alt="Charbagh Reflecting Pool and Fountains">
-                    <div class="pavilionMediaOverlay"></div>
-                    <div class="pavilionBadge">PAVILION III</div>
-                    <div class="pavilionNumeral">03</div>
-                </div>
-
-                <div class="pavilionBody">
-                    <div>
-                        <div class="pavilionMeta">
-                            <span class="pavilionKicker">Living Computation & Interactive Logic</span>
-                            <span class="pavilionCountChip">270 Programs</span>
-                        </div>
-                        <h3 class="pavilionTitle">Hall of Mechanisms</h3>
-                        <div class="pavilionSubtitle">ES6+ Logic, DOM Tree Manipulation, Event Systems & Web Storage</div>
-                        <p class="pavilionDesc">
-                            Like the ingenious subterranean hydraulic conduits feeding the Charbagh lotus fountains,
-                            JavaScript breathes life, motion, and intelligence into static markup. Explore mathematical algorithms,
-                            dynamic DOM modifications, drag-and-drop engines, real-time regex form validators, and full LocalStorage CRUD applications.
-                        </p>
-                        <div class="pavilionTags">
-                            <span class="tagPill">ES6+ & Arrow Functions</span>
-                            <span class="tagPill">DOM Tree Operations</span>
-                            <span class="tagPill">Event Delegation</span>
-                            <span class="tagPill">Regex Validation</span>
-                            <span class="tagPill">LocalStorage CRUD</span>
-                            <span class="tagPill">Interactive Games</span>
-                        </div>
-                    </div>
-
-                    <div class="pavilionFooter">
-                        <div class="pavilionHighlight">
-                            <span>✦</span>
-                            <span>Curriculum: <strong>Practicals 1 – 270</strong></span>
-                        </div>
-                        <a class="btnPrimary" href="index.html">
-                            <span>ENTER MECHANISMS HALL →</span>
-                        </a>
-                    </div>
-                </div>
-            </article>
-
-        </div>
-    </section>
-
-
-    <!-- ========================================================
-         ARCHITECTURAL MARVELS (CUSTOM SHOWCASE)
-         ======================================================== -->
-    <section class="section" id="wonders" style="background: rgba(13, 15, 21, 0.4);">
-        <div class="sectionHeader">
-            <div class="sectionKicker">Wonders of Agra</div>
-            <h2 class="sectionTitle">Imperial Architectural Marvels</h2>
-            <p class="sectionDesc">
-                Every architectural motif of the monument is honored within the aesthetic of our codebase.
-            </p>
-        </div>
-
-        <div class="architectGrid">
-            <div class="architectCard">
-                <div class="architectImage">
-                    <img src="images/taj-architecture.jpg" alt="White Makrana Dome">
-                </div>
-                <div class="architectContent">
-                    <h3>The Ivory Dome</h3>
-                    <p>
-                        Engineered with pure Makrana white marble, the 35-meter bulbous dome sits on an octagonal
-                        drum, creating an iconic silhouette celebrated across civilizations.
-                    </p>
-                </div>
-            </div>
-
-            <div class="architectCard">
-                <div class="architectImage">
-                    <img src="images/taj-calligraphy.jpg" alt="Pietra Dura Inlays">
-                </div>
-                <div class="architectContent">
-                    <h3>Pietra Dura Inlay</h3>
-                    <p>
-                        Intricate floral flourishes crafted with precious and semiprecious stones—lapis lazuli,
-                        carnelian, jade, and jasper—inlaid with microscopic millimeter precision.
-                    </p>
-                </div>
-            </div>
-
-            <div class="architectCard">
-                <div class="architectImage">
-                    <img src="images/taj-fountains.jpg" alt="Charbagh Fountains">
-                </div>
-                <div class="architectContent">
-                    <h3>Charbagh & Water Dynamics</h3>
-                    <p>
-                        The four-part paradise garden reflects the monument with flawless optical symmetry,
-                        powered by ancient copper water pressure fountains along the central reflecting pool.
-                    </p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-
-    <!-- ========================================================
-         CURRICULUM MILESTONES (ACADEMIC ROADMAP)
-         ======================================================== -->
-    <section class="section" id="curriculum">
-        <div class="sectionHeader">
-            <div class="sectionKicker">Pedagogical Framework</div>
-            <h2 class="sectionTitle">Curriculum Learning Phases</h2>
-            <p class="sectionDesc">
-                Structured progressive learning from markup fundamentals to full-stack frontend mastery.
-            </p>
-        </div>
-
-        <div class="roadmapGrid">
-            <div class="roadmapCard">
-                <span class="roadmapStep">PHASE 01 · STRUCTURE</span>
-                <h3>Foundations & Semantics</h3>
-                <p>
-                    HTML elements, hierarchical heading tags, structured tables with rowspan & colspan,
-                    interactive inputs, forms, and multimedia integration.
-                </p>
-            </div>
-
-            <div class="roadmapCard">
-                <span class="roadmapStep">PHASE 02 · STYLING & UI</span>
-                <h3>CSS Design Systems</h3>
-                <p>
-                    Box models, advanced pseudo-selectors, responsive Flexbox and Grid layouts,
-                    2D/3D transformations, SaaS dashboard cards, and dark-mode tokens.
-                </p>
-            </div>
-
-            <div class="roadmapCard">
-                <span class="roadmapStep">PHASE 03 · COMPUTATION</span>
-                <h3>JavaScript Engines</h3>
-                <p>
-                    Algorithmic logic, DOM manipulation, custom event listeners, live input validation,
-                    browser storage persistence, and dynamic mini-applications.
-                </p>
-            </div>
-        </div>
-    </section>
-
-
-    <!-- IMPERIAL FOOTER -->
-    <footer class="imperialFooter">
-        <div class="footerLogo">TAJ MAHAL</div>
-        <div class="footerDetails">
-            ACADEMIC WEB ENGINEERING LABORATORY RECORD · MAHAMMAD HUJEFA
-        </div>
-        <div class="footerCopy">
-            Curriculum: HTML (15) · CSS (270) · JavaScript (270) · Total 555 Verified Practicals · Built with Modern HTML5, CSS3 & ES6+
-        </div>
-    </footer>
-
-
-    <!-- AUDIO INTERACTION SCRIPT -->
-    <script>
-        const audio = document.getElementById('ambient');
-        const toggleBtn = document.getElementById('soundToggle');
-        const statusText = document.getElementById('musicStatusText');
-        let isPlaying = false;
-
-        async function playMusic() {
-            try {
-                audio.volume = 0.45;
-                await audio.play();
-                isPlaying = true;
-                toggleBtn.classList.add('playing');
-                statusText.textContent = '♫ LOVE MUSIC ON';
-            } catch (err) {
-                isPlaying = false;
-                toggleBtn.classList.remove('playing');
-                statusText.textContent = '♫ LOVE MUSIC OFF';
-                console.log('Autoplay deferred until user interaction.');
-            }
-        }
-
-        function pauseMusic() {
-            audio.pause();
-            isPlaying = false;
-            toggleBtn.classList.remove('playing');
-            statusText.textContent = '♫ LOVE MUSIC OFF';
-        }
-
-        // Click on music widget
-        toggleBtn.addEventListener('click', (e) => {
-            e.stopPropagation();
-            if (audio.paused) {
-                playMusic();
-            } else {
-                pauseMusic();
-            }
-        });
-
-        // Start playback on first click anywhere
-        document.addEventListener('click', () => {
-            if (!isPlaying && audio.paused) {
-                playMusic();
-            }
-        }, { once: true });
-
-        // Initialize
-        window.addEventListener('load', () => {
-            playMusic();
-        });
-    </script>
-
+  <script>
+    const audio = document.getElementById('ambient');
+    const toggle = document.getElementById('soundToggle');
+    const status = document.getElementById('musicStatusText');
+    async function playMusic() { try { audio.volume = 0.45; await audio.play(); toggle.classList.add('playing'); status.textContent = '♫ LOVE MUSIC ON'; } catch (_) { status.textContent = '♫ LOVE MUSIC OFF'; } }
+    function pauseMusic() { audio.pause(); toggle.classList.remove('playing'); status.textContent = '♫ LOVE MUSIC OFF'; }
+    toggle.addEventListener('click', () => audio.paused ? playMusic() : pauseMusic());
+    document.addEventListener('click', () => { if (audio.paused && !toggle.contains(event.target)) playMusic(); }, { once: true });
+  </script>
 </body>
 </html>
