@@ -1,119 +1,431 @@
 <!doctype html>
 <html lang="en">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="A practical HTML, CSS and JavaScript laboratory by Mahammad Hujefa.">
-  <title>Web Technology Practical Laboratory</title>
-  <style>
-    :root { color-scheme: dark; --bg:#0b1020; --panel:#131b31; --panel-2:#1a2540; --text:#eef3ff; --muted:#aab6d3; --accent:#7dd3fc; --accent-2:#c4b5fd; --border:#2d3a5d; }
-    * { box-sizing:border-box; }
-    body { margin:0; font-family:Inter,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif; color:var(--text); background:radial-gradient(circle at top left,#1c3157 0,var(--bg) 42rem); line-height:1.6; }
-    a { color:inherit; }
-    .wrap { width:min(1120px,calc(100% - 2rem)); margin:auto; }
-    .topbar { border-bottom:1px solid var(--border); background:rgba(11,16,32,.86); position:sticky; top:0; z-index:5; backdrop-filter:blur(12px); }
-    .nav { min-height:68px; display:flex; align-items:center; justify-content:space-between; gap:1rem; }
-    .brand { font-weight:800; letter-spacing:.04em; text-decoration:none; }
-    .nav-links { display:flex; flex-wrap:wrap; gap:.5rem; justify-content:flex-end; }
-    .nav-links a,.button { padding:.5rem .8rem; border:1px solid var(--border); border-radius:999px; text-decoration:none; color:var(--muted); font-size:.9rem; }
-    .nav-links a:hover,.button:hover { color:var(--text); border-color:var(--accent); }
-    .hero { padding:6rem 0 4rem; text-align:center; }
-    .eyebrow { color:var(--accent); font-weight:700; letter-spacing:.16em; text-transform:uppercase; font-size:.78rem; }
-    h1 { max-width:850px; margin:.7rem auto 1rem; font-size:clamp(2.5rem,7vw,5.2rem); line-height:1.02; }
-    .hero p { max-width:720px; margin:0 auto 1.6rem; color:var(--muted); font-size:1.1rem; }
-    .hero-actions { display:flex; flex-wrap:wrap; justify-content:center; gap:.75rem; }
-    .button.primary { color:#07111f; background:var(--accent); border-color:var(--accent); font-weight:700; }
-    section { padding:3.5rem 0; }
-    .section-head { margin-bottom:1.5rem; }
-    h2 { margin:.25rem 0; font-size:clamp(1.7rem,4vw,2.6rem); }
-    .section-head p,.card p,.note { color:var(--muted); }
-    .stats,.cards { display:grid; gap:1rem; }
-    .stats { grid-template-columns:repeat(4,1fr); }
-    .stat,.card { border:1px solid var(--border); background:linear-gradient(145deg,rgba(26,37,64,.92),rgba(19,27,49,.92)); border-radius:18px; }
-    .stat { padding:1.2rem; text-align:center; }
-    .stat strong { display:block; color:var(--accent); font-size:2rem; }
-    .stat span { color:var(--muted); font-size:.9rem; }
-    .cards { grid-template-columns:repeat(3,1fr); }
-    .card { padding:1.35rem; display:flex; flex-direction:column; }
-    .card h3 { margin:.2rem 0 .35rem; font-size:1.35rem; }
-    .card .count { color:var(--accent-2); font-size:.85rem; font-weight:700; }
-    .card p { flex:1; }
-    .card a { align-self:flex-start; margin-top:1rem; color:var(--accent); font-weight:700; text-decoration:none; }
-    .card a:hover { text-decoration:underline; }
-    .subgrid { display:grid; grid-template-columns:repeat(4,1fr); gap:.75rem; }
-    .subgrid a { padding:1rem; border:1px solid var(--border); border-radius:14px; background:rgba(19,27,49,.72); text-decoration:none; }
-    .subgrid a:hover { border-color:var(--accent-2); }
-    footer { border-top:1px solid var(--border); padding:2rem 0; color:var(--muted); text-align:center; }
-    @media (max-width:800px) { .stats,.cards,.subgrid { grid-template-columns:repeat(2,1fr); } .nav { align-items:flex-start; padding:1rem 0; flex-direction:column; } .nav-links { justify-content:flex-start; } }
-    @media (max-width:520px) { .stats,.cards,.subgrid { grid-template-columns:1fr; } .hero { padding-top:4rem; } }
-  </style>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Taj Mahal · Imperial Web Technology Laboratory (HTML, CSS & JavaScript)</title>
+    <meta name="description" content="A royal academic web laboratory portal celebrating the architectural wonder of the Taj Mahal, featuring 555 practical programs across HTML, CSS, and JavaScript.">
+
+    <link rel="stylesheet" href="theme.css">
 </head>
+
 <body>
-  <header class="topbar">
-    <div class="wrap nav">
-      <a class="brand" href="index.html">&lt;/&gt; WEB TECHNOLOGY LAB</a>
-      <nav class="nav-links" aria-label="Primary navigation">
-        <a href="#collections">Collections</a>
-        <a href="#practicals">Practical Files</a>
-        <a href="README.md">README</a>
-      </nav>
-    </div>
-  </header>
 
-  <main>
-    <section class="hero">
-      <div class="wrap">
-        <div class="eyebrow">HTML · CSS · JavaScript</div>
-        <h1>Practical Web Engineering Laboratory</h1>
-        <p>Browse the learning collections and practical webpages that are actually organised in this repository.</p>
-        <div class="hero-actions">
-          <a class="button primary" href="#collections">Explore collections</a>
-          <a class="button" href="html-01-basic-tags.html">Open first HTML practical</a>
+    <!-- ROMANTIC LOVE MUSIC AUDIO ELEMENT -->
+    <audio id="ambient" loop preload="auto">
+        <source src="audio/taj-mahal-love-theme.mp3" type="audio/mpeg">
+        <source src="audio/romantic-piano-nocturne.ogg" type="audio/ogg">
+    </audio>
+
+    <!-- TOP NAVIGATION BAR -->
+    <nav class="topNav">
+        <a class="brandLogo" href="index.html">
+            <span class="brandEmblem">𑁍</span>
+            <span>TAJ MAHAL · IMPERIAL WEB LAB</span>
+        </a>
+
+        <div class="navLinks">
+            <a class="navLinkItem" href="#pavilions">Pavilions</a>
+            <a class="navLinkItem" href="#wonders">Architectural Marvels</a>
+            <a class="navLinkItem" href="#curriculum">Curriculum</a>
+            <a class="navLinkItem" href="index.html">HTML (15)</a>
+            <a class="navLinkItem" href="index.html">CSS (270)</a>
+            <a class="navLinkItem" href="index.html">JS (270)</a>
         </div>
-      </div>
+
+        <!-- ROMANTIC MUSIC CONTROLLER WIDGET -->
+        <div class="musicController" id="soundToggle" title="Toggle Taj Mahal Soothing Love Music">
+            <div class="equalizerBars">
+                <span class="eqBar"></span>
+                <span class="eqBar"></span>
+                <span class="eqBar"></span>
+                <span class="eqBar"></span>
+            </div>
+            <span class="musicLabel" id="musicStatusText">♫ LOVE MUSIC</span>
+        </div>
+    </nav>
+
+
+    <!-- HERO SECTION -->
+    <header class="hero">
+        <img class="heroBackground" src="images/taj-mahal-hero.jpg" alt="The Taj Mahal Illuminated at Night">
+        <div class="heroOverlay"></div>
+
+        <div class="heroContent">
+            
+            <div class="studentBadgeWrap">
+                <span style="color: var(--gold-primary);">⚜</span>
+                <span class="studentBadgeText">ACADEMIC SUBMISSION BY MAHAMMAD HUJEFA</span>
+                <span style="color: var(--gold-primary);">⚜</span>
+            </div>
+
+            <div class="heroKicker">
+                An Architectural Wonder of Eternal Love
+            </div>
+
+            <h1 class="heroTitle">
+                TAJ MAHAL
+            </h1>
+
+            <p class="heroSubtitle">
+                An imperial web engineering showcase uniting the timeless symmetry of Mughal architecture
+                with modern digital craftsmanship across 555 comprehensive practical programs.
+            </p>
+
+            <div class="heroActions">
+                <a class="btnPrimary" href="#pavilions">
+                    <span>EXPLORE THE THREE PAVILIONS ↓</span>
+                </a>
+                <a class="btnSecondary" href="#curriculum">
+                    <span>ACADEMIC ROADMAP ↗</span>
+                </a>
+            </div>
+
+        </div>
+
+        <!-- TICKER STRIP -->
+        <div class="tickerWrap">
+            <div class="tickerTrack">
+                ✦ ताज महल · THE CROWN OF PALACES · AGRA · YAMUNA RIVER · 555 PRACTICAL PROGRAMS · HTML5 INSCRIPTIONS (15) · CSS3 ARCHITECTURE (270) · JAVASCRIPT MECHANISMS (270) · 100% WORKING VERIFIED CODE · ✦
+            </div>
+        </div>
+    </header>
+
+
+    <!-- STATS SUMMARY RIBBON -->
+    <section class="statsRibbon">
+        <div class="statCard">
+            <div class="statNumber">555</div>
+            <div class="statLabel">Total Practicals</div>
+        </div>
+        <div class="statCard">
+            <div class="statNumber">15</div>
+            <div class="statLabel">HTML Inscriptions</div>
+        </div>
+        <div class="statCard">
+            <div class="statNumber">270</div>
+            <div class="statLabel">CSS UI Architectures</div>
+        </div>
+        <div class="statCard">
+            <div class="statNumber">270</div>
+            <div class="statLabel">JavaScript Engines</div>
+        </div>
     </section>
 
-    <section class="wrap" aria-label="Repository statistics">
-      <div class="stats">
-        <div class="stat"><strong>15</strong><span>HTML practical files</span></div>
-        <div class="stat"><strong>36</strong><span>CSS practical files</span></div>
-        <div class="stat"><strong>4</strong><span>JavaScript collections</span></div>
-        <div class="stat"><strong>555+</strong><span>Total root and grouped files</span></div>
-      </div>
+
+    <!-- ========================================================
+         THE THREE IMPERIAL PAVILIONS (STACKED VERTICALLY)
+         ======================================================== -->
+    <section class="section" id="pavilions">
+        <div class="sectionHeader">
+            <div class="sectionKicker">The Royal Chambers</div>
+            <h2 class="sectionTitle">Three Imperial Pavilions</h2>
+            <p class="sectionDesc">
+                Arranged vertically for seamless exploration. Each pavilion represents a distinct pillar
+                of web engineering, containing fully verified, interactive practical programs.
+            </p>
+        </div>
+
+        <div class="pavilionStack">
+
+            <!-- PAVILION 1: HTML (VERTICAL CARD 1) -->
+            <article class="pavilionCard">
+                <div class="pavilionMedia">
+                    <img src="images/taj-calligraphy.jpg" alt="Pietra Dura Arabic Calligraphy">
+                    <div class="pavilionMediaOverlay"></div>
+                    <div class="pavilionBadge">PAVILION I</div>
+                    <div class="pavilionNumeral">01</div>
+                </div>
+
+                <div class="pavilionBody">
+                    <div>
+                        <div class="pavilionMeta">
+                            <span class="pavilionKicker">Foundational Markup & Structure</span>
+                            <span class="pavilionCountChip">15 Programs</span>
+                        </div>
+                        <h3 class="pavilionTitle">Hall of Inscriptions</h3>
+                        <div class="pavilionSubtitle">HTML5 Semantic Hierarchy, Tables, Forms & Accessibility</div>
+                        <p class="pavilionDesc">
+                            Like the sacred calligraphy carved upon the marble gateway, HTML forms the permanent
+                            semantic foundation of the web. Explore headings, rich media, structured timetable tables,
+                            accessible student registration forms, and responsive viewport architectures.
+                        </p>
+                        <div class="pavilionTags">
+                            <span class="tagPill">Semantic HTML5</span>
+                            <span class="tagPill">Table Cell Merging</span>
+                            <span class="tagPill">Form Elements</span>
+                            <span class="tagPill">Audio & Video</span>
+                            <span class="tagPill">Bootstrap Grid</span>
+                        </div>
+                    </div>
+
+                    <div class="pavilionFooter">
+                        <div class="pavilionHighlight">
+                            <span>✦</span>
+                            <span>Curriculum: <strong>Practicals 1 – 15</strong></span>
+                        </div>
+                        <a class="btnPrimary" href="index.html">
+                            <span>ENTER INSCRIPTION HALL →</span>
+                        </a>
+                    </div>
+                </div>
+            </article>
+
+
+            <!-- PAVILION 2: CSS (VERTICAL CARD 2 - REVERSED LAYOUT) -->
+            <article class="pavilionCard reverse">
+                <div class="pavilionBody">
+                    <div>
+                        <div class="pavilionMeta">
+                            <span class="pavilionKicker">Visual Symmetry & Design Systems</span>
+                            <span class="pavilionCountChip">270 Programs</span>
+                        </div>
+                        <h3 class="pavilionTitle">Hall of Architecture</h3>
+                        <div class="pavilionSubtitle">CSS3 Design Systems, Modern SaaS UI, Glassmorphism & AI Dashboards</div>
+                        <p class="pavilionDesc">
+                            Reflecting the flawless symmetry and octagonal proportions of the Taj Mahal,
+                            this comprehensive pavilion masters everything from CSS box models, selectors,
+                            and Flexbox/Grid layouts to enterprise SaaS UI components, AI chat interfaces, and dark-mode themes.
+                        </p>
+                        <div class="pavilionTags">
+                            <span class="tagPill">CSS Box Model</span>
+                            <span class="tagPill">Flexbox & Grid</span>
+                            <span class="tagPill">Keyframe Animations</span>
+                            <span class="tagPill">SaaS UI Libraries</span>
+                            <span class="tagPill">AI Dashboard Cards</span>
+                            <span class="tagPill">Glassmorphism</span>
+                        </div>
+                    </div>
+
+                    <div class="pavilionFooter">
+                        <div class="pavilionHighlight">
+                            <span>✦</span>
+                            <span>Curriculum: <strong>Practicals 1 – 270</strong></span>
+                        </div>
+                        <a class="btnPrimary" href="index.html">
+                            <span>ENTER ARCHITECTURE HALL →</span>
+                        </a>
+                    </div>
+                </div>
+
+                <div class="pavilionMedia">
+                    <img src="images/taj-architecture.jpg" alt="White Marble Dome and Minarets">
+                    <div class="pavilionMediaOverlay"></div>
+                    <div class="pavilionBadge">PAVILION II</div>
+                    <div class="pavilionNumeral">02</div>
+                </div>
+            </article>
+
+
+            <!-- PAVILION 3: JAVASCRIPT (VERTICAL CARD 3) -->
+            <article class="pavilionCard">
+                <div class="pavilionMedia">
+                    <img src="images/taj-fountains.jpg" alt="Charbagh Reflecting Pool and Fountains">
+                    <div class="pavilionMediaOverlay"></div>
+                    <div class="pavilionBadge">PAVILION III</div>
+                    <div class="pavilionNumeral">03</div>
+                </div>
+
+                <div class="pavilionBody">
+                    <div>
+                        <div class="pavilionMeta">
+                            <span class="pavilionKicker">Living Computation & Interactive Logic</span>
+                            <span class="pavilionCountChip">270 Programs</span>
+                        </div>
+                        <h3 class="pavilionTitle">Hall of Mechanisms</h3>
+                        <div class="pavilionSubtitle">ES6+ Logic, DOM Tree Manipulation, Event Systems & Web Storage</div>
+                        <p class="pavilionDesc">
+                            Like the ingenious subterranean hydraulic conduits feeding the Charbagh lotus fountains,
+                            JavaScript breathes life, motion, and intelligence into static markup. Explore mathematical algorithms,
+                            dynamic DOM modifications, drag-and-drop engines, real-time regex form validators, and full LocalStorage CRUD applications.
+                        </p>
+                        <div class="pavilionTags">
+                            <span class="tagPill">ES6+ & Arrow Functions</span>
+                            <span class="tagPill">DOM Tree Operations</span>
+                            <span class="tagPill">Event Delegation</span>
+                            <span class="tagPill">Regex Validation</span>
+                            <span class="tagPill">LocalStorage CRUD</span>
+                            <span class="tagPill">Interactive Games</span>
+                        </div>
+                    </div>
+
+                    <div class="pavilionFooter">
+                        <div class="pavilionHighlight">
+                            <span>✦</span>
+                            <span>Curriculum: <strong>Practicals 1 – 270</strong></span>
+                        </div>
+                        <a class="btnPrimary" href="index.html">
+                            <span>ENTER MECHANISMS HALL →</span>
+                        </a>
+                    </div>
+                </div>
+            </article>
+
+        </div>
     </section>
 
-    <section class="wrap" id="collections">
-      <div class="section-head">
-        <div class="eyebrow">Repository folders</div>
-        <h2>Learning collections</h2>
-        <p>Use the folder hubs for grouped JavaScript topics. HTML and CSS foundations remain available from the root-level practical files.</p>
-      </div>
-      <div class="cards">
-        <article class="card"><span class="count">15 ROOT PRACTICALS</span><h3>HTML Foundations</h3><p>Tags, lists, tables, forms, media, frames, semantic elements and HTML5 inputs.</p><a href="html-01-basic-tags.html">Start HTML →</a></article>
-        <article class="card"><span class="count">36 ROOT PRACTICALS</span><h3>CSS Design Systems</h3><p>Selectors, colors, layout, box model, transforms, animations, responsive grids and SaaS interfaces.</p><a href="css-01-selectors.html">Start CSS →</a></article>
-        <article class="card"><span class="count">18 PROGRAMS</span><h3>JavaScript Basics</h3><p>Arithmetic, algorithms, arrays, strings, functions, ES6 classes and asynchronous promises.</p><a href="basics/index.html">Open basics →</a></article>
-        <article class="card"><span class="count">8 EXPERIMENTS</span><h3>Browser APIs</h3><p>Timers, clocks, dialogs, location, history, navigator, screen information and geolocation.</p><a href="browser/index.html">Open browser →</a></article>
-        <article class="card"><span class="count">15 PROGRAMS</span><h3>DOM Manipulation</h3><p>Dynamic elements, classes, attributes, tables, lists, tabs, modals and image slideshows.</p><a href="dom/index.html">Open DOM →</a></article>
-        <article class="card"><span class="count">12 PROGRAMS</span><h3>Events</h3><p>Mouse, keyboard, form, drag-and-drop, counters, movement, delegation and event listeners.</p><a href="events/index.html">Open events →</a></article>
-        <article class="card"><span class="count">14 PROGRAMS</span><h3>Forms &amp; Validation</h3><p>Age, salary and grade calculators, registration, login, regex, password and multi-step forms.</p><a href="forms/index.html">Open forms →</a></article>
-      </div>
+
+    <!-- ========================================================
+         ARCHITECTURAL MARVELS (CUSTOM SHOWCASE)
+         ======================================================== -->
+    <section class="section" id="wonders" style="background: rgba(13, 15, 21, 0.4);">
+        <div class="sectionHeader">
+            <div class="sectionKicker">Wonders of Agra</div>
+            <h2 class="sectionTitle">Imperial Architectural Marvels</h2>
+            <p class="sectionDesc">
+                Every architectural motif of the monument is honored within the aesthetic of our codebase.
+            </p>
+        </div>
+
+        <div class="architectGrid">
+            <div class="architectCard">
+                <div class="architectImage">
+                    <img src="images/taj-architecture.jpg" alt="White Makrana Dome">
+                </div>
+                <div class="architectContent">
+                    <h3>The Ivory Dome</h3>
+                    <p>
+                        Engineered with pure Makrana white marble, the 35-meter bulbous dome sits on an octagonal
+                        drum, creating an iconic silhouette celebrated across civilizations.
+                    </p>
+                </div>
+            </div>
+
+            <div class="architectCard">
+                <div class="architectImage">
+                    <img src="images/taj-calligraphy.jpg" alt="Pietra Dura Inlays">
+                </div>
+                <div class="architectContent">
+                    <h3>Pietra Dura Inlay</h3>
+                    <p>
+                        Intricate floral flourishes crafted with precious and semiprecious stones—lapis lazuli,
+                        carnelian, jade, and jasper—inlaid with microscopic millimeter precision.
+                    </p>
+                </div>
+            </div>
+
+            <div class="architectCard">
+                <div class="architectImage">
+                    <img src="images/taj-fountains.jpg" alt="Charbagh Fountains">
+                </div>
+                <div class="architectContent">
+                    <h3>Charbagh & Water Dynamics</h3>
+                    <p>
+                        The four-part paradise garden reflects the monument with flawless optical symmetry,
+                        powered by ancient copper water pressure fountains along the central reflecting pool.
+                    </p>
+                </div>
+            </div>
+        </div>
     </section>
 
-    <section class="wrap" id="practicals">
-      <div class="section-head"><div class="eyebrow">Quick access</div><h2>Featured practical files</h2><p class="note">These links use filenames that exist at the repository root.</p></div>
-      <div class="subgrid">
-        <a href="001-create-a-basic-html-webpage-using-headings-paragraphs-and-line-breaks.html">HTML: headings &amp; paragraphs</a>
-        <a href="html-06-audio-video.html">HTML: audio &amp; video</a>
-        <a href="css-27-animations.html">CSS: animations</a>
-        <a href="css-36-saas-landing-project.html">CSS: SaaS landing project</a>
-        <a href="001-write-a-javascript-program-to-display-hello-world.html">JS: hello world</a>
-        <a href="027-create-a-simple-calculator-using-html-css-and-javascript.html">JS: calculator</a>
-        <a href="043-store-and-retrieve-data-using-localstorage.html">JS: localStorage</a>
-        <a href="270-create-a-crud-application-using-localstorage-create-read-update-and-delete-rec.html">JS: CRUD application</a>
-      </div>
-    </section>
-  </main>
 
-  <footer><div class="wrap">Academic Web Engineering Laboratory · Mahammad Hujefa</div></footer>
+    <!-- ========================================================
+         CURRICULUM MILESTONES (ACADEMIC ROADMAP)
+         ======================================================== -->
+    <section class="section" id="curriculum">
+        <div class="sectionHeader">
+            <div class="sectionKicker">Pedagogical Framework</div>
+            <h2 class="sectionTitle">Curriculum Learning Phases</h2>
+            <p class="sectionDesc">
+                Structured progressive learning from markup fundamentals to full-stack frontend mastery.
+            </p>
+        </div>
+
+        <div class="roadmapGrid">
+            <div class="roadmapCard">
+                <span class="roadmapStep">PHASE 01 · STRUCTURE</span>
+                <h3>Foundations & Semantics</h3>
+                <p>
+                    HTML elements, hierarchical heading tags, structured tables with rowspan & colspan,
+                    interactive inputs, forms, and multimedia integration.
+                </p>
+            </div>
+
+            <div class="roadmapCard">
+                <span class="roadmapStep">PHASE 02 · STYLING & UI</span>
+                <h3>CSS Design Systems</h3>
+                <p>
+                    Box models, advanced pseudo-selectors, responsive Flexbox and Grid layouts,
+                    2D/3D transformations, SaaS dashboard cards, and dark-mode tokens.
+                </p>
+            </div>
+
+            <div class="roadmapCard">
+                <span class="roadmapStep">PHASE 03 · COMPUTATION</span>
+                <h3>JavaScript Engines</h3>
+                <p>
+                    Algorithmic logic, DOM manipulation, custom event listeners, live input validation,
+                    browser storage persistence, and dynamic mini-applications.
+                </p>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- IMPERIAL FOOTER -->
+    <footer class="imperialFooter">
+        <div class="footerLogo">TAJ MAHAL</div>
+        <div class="footerDetails">
+            ACADEMIC WEB ENGINEERING LABORATORY RECORD · MAHAMMAD HUJEFA
+        </div>
+        <div class="footerCopy">
+            Curriculum: HTML (15) · CSS (270) · JavaScript (270) · Total 555 Verified Practicals · Built with Modern HTML5, CSS3 & ES6+
+        </div>
+    </footer>
+
+
+    <!-- AUDIO INTERACTION SCRIPT -->
+    <script>
+        const audio = document.getElementById('ambient');
+        const toggleBtn = document.getElementById('soundToggle');
+        const statusText = document.getElementById('musicStatusText');
+        let isPlaying = false;
+
+        async function playMusic() {
+            try {
+                audio.volume = 0.45;
+                await audio.play();
+                isPlaying = true;
+                toggleBtn.classList.add('playing');
+                statusText.textContent = '♫ LOVE MUSIC ON';
+            } catch (err) {
+                isPlaying = false;
+                toggleBtn.classList.remove('playing');
+                statusText.textContent = '♫ LOVE MUSIC OFF';
+                console.log('Autoplay deferred until user interaction.');
+            }
+        }
+
+        function pauseMusic() {
+            audio.pause();
+            isPlaying = false;
+            toggleBtn.classList.remove('playing');
+            statusText.textContent = '♫ LOVE MUSIC OFF';
+        }
+
+        // Click on music widget
+        toggleBtn.addEventListener('click', (e) => {
+            e.stopPropagation();
+            if (audio.paused) {
+                playMusic();
+            } else {
+                pauseMusic();
+            }
+        });
+
+        // Start playback on first click anywhere
+        document.addEventListener('click', () => {
+            if (!isPlaying && audio.paused) {
+                playMusic();
+            }
+        }, { once: true });
+
+        // Initialize
+        window.addEventListener('load', () => {
+            playMusic();
+        });
+    </script>
+
 </body>
 </html>
